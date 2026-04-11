@@ -47,6 +47,7 @@ export interface DestinationData {
   id: string;
   name: string;
   slug: string;
+  stateSlug: string;
   tagline: string;
   state: string;
   country: string;
@@ -79,6 +80,7 @@ export const destinationsData: DestinationData[] = [
     id: "1",
     name: "Kedarnath",
     slug: "kedarnath",
+    stateSlug: "uttarakhand",
     tagline: "Journey to the Abode of Lord Shiva",
     state: "Uttarakhand",
     country: "India",
@@ -227,6 +229,7 @@ export const destinationsData: DestinationData[] = [
     id: "2",
     name: "Ladakh",
     slug: "ladakh",
+    stateSlug: "ladakh",
     tagline: "Land of High Passes & Turquoise Lakes",
     state: "Ladakh (UT)",
     country: "India",
@@ -391,6 +394,7 @@ export const destinationsData: DestinationData[] = [
     id: "3",
     name: "Kashmir",
     slug: "kashmir",
+    stateSlug: "jammu-and-kashmir",
     tagline: "Heaven on Earth — Shikara, Snow & Serenity",
     state: "Jammu & Kashmir (UT)",
     country: "India",
@@ -535,6 +539,7 @@ export const destinationsData: DestinationData[] = [
     id: "4",
     name: "Valley of Flowers",
     slug: "valley-of-flowers",
+    stateSlug: "uttarakhand",
     tagline: "A UNESCO World Heritage Trek Through Alpine Blooms",
     state: "Uttarakhand",
     country: "India",
@@ -687,6 +692,7 @@ export const destinationsData: DestinationData[] = [
     id: "5",
     name: "Varanasi",
     slug: "varanasi",
+    stateSlug: "uttar-pradesh",
     tagline: "The Eternal City — Where Life Meets the Sacred",
     state: "Uttar Pradesh",
     country: "India",
@@ -813,6 +819,7 @@ export const destinationsData: DestinationData[] = [
     id: "6",
     name: "Manali",
     slug: "manali",
+    stateSlug: "himachal-pradesh",
     tagline: "Adventure, Snow & Himalayan Serenity in Himachal",
     state: "Himachal Pradesh",
     country: "India",
@@ -948,6 +955,7 @@ export const destinationsData: DestinationData[] = [
     id: "7",
     name: "Rishikesh",
     slug: "rishikesh",
+    stateSlug: "uttarakhand",
     tagline: "The Yoga Capital — Adventure, Spirituality & the Ganga",
     state: "Uttarakhand",
     country: "India",
@@ -1075,6 +1083,7 @@ export const destinationsData: DestinationData[] = [
     id: "8",
     name: "Char Dham",
     slug: "char-dham",
+    stateSlug: "uttarakhand",
     tagline: "The Sacred Circuit of Uttarakhand — Four Dhams, One Journey",
     state: "Uttarakhand",
     country: "India",

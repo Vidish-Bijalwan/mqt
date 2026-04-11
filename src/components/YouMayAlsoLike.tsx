@@ -67,15 +67,9 @@ const YouMayAlsoLike = ({ packages, title = "You May Also Like" }: YouMayAlsoLik
                 <h3 className="font-body font-semibold text-sm text-card-foreground mb-2 leading-snug">
                   {pkg.title}
                 </h3>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="font-body font-bold text-accent">
-                      ₹{pkg.price.toLocaleString("en-IN")}
-                    </span>
-                    <span className="text-xs text-muted-foreground">/person</span>
-                  </div>
-                  <span className="text-xs text-muted-foreground line-through">
-                    ₹{pkg.originalPrice.toLocaleString("en-IN")}
+                <div className="pt-2 border-t border-border/50">
+                  <span className="text-[12px] text-muted-foreground font-body italic">
+                    Pricing on enquiry
                   </span>
                 </div>
               </div>

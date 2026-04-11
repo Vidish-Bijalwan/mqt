@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
+import EnquirySection from "@/components/EnquirySection";
 import InquiryBanner from "@/components/InquiryBanner";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import TrendingBadge from "@/components/TrendingBadge";
@@ -137,13 +138,14 @@ const PackageDetail = () => {
             <div className="lg:col-span-1">
               <div className="sticky top-28 bg-background border border-border rounded-xl shadow-elevated overflow-hidden">
                 <div className="p-6">
-                  <p className="text-xs text-muted-foreground font-body font-semibold uppercase tracking-wider mb-2">Price Per Person</p>
-                  <div className="flex items-end gap-3 mb-2">
-                    <span className="text-3xl font-display font-bold text-accent">₹{pkg.price.toLocaleString("en-IN")}</span>
-                    <span className="text-lg text-muted-foreground line-through mb-1">₹{pkg.originalPrice.toLocaleString("en-IN")}</span>
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Trip Customization</span>
+                    <span className="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded">AVAILABLE</span>
                   </div>
-                  <p className="text-sm text-success font-medium mb-6 bg-success/10 px-3 py-1.5 rounded-md inline-block">
-                    You save ₹{(pkg.originalPrice - pkg.price).toLocaleString("en-IN")}
+                  
+                  <h3 className="font-display text-xl font-bold mb-3 leading-tight">{pkg.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    Share your requirements and we will send you a tailored itinerary with a custom quote.
                   </p>
 
                   <div className="space-y-3 mt-4">
@@ -153,19 +155,19 @@ const PackageDetail = () => {
                         document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
                       }}
                     >
-                      Enquire to Book
+                      Get Custom Quote
                     </Button>
                     <Button 
                       variant="outline" 
                       className="w-full py-6 h-auto text-base font-medium border-border"
-                      onClick={() => track("download_itinerary", { slug: pkg.slug })}
+                      onClick={() => window.open(`https://wa.me/919876543210?text=${encodeURIComponent(`Hi! I am interested in the ${pkg.title} trip. Please share itinerary options and pricing details.`)}`, "_blank")}
                     >
-                      <Download className="w-4 h-4 mr-2" /> Download Itinerary
+                      WhatsApp Expert
                     </Button>
                   </div>
 
                   <p className="text-xs text-center text-muted-foreground mt-4">
-                    No advance payment required for inquiry.
+                    Response usually within 2 hours.
                   </p>
                 </div>
                 <div className="bg-surface p-4 border-t border-border flex items-center justify-between">
@@ -186,15 +188,17 @@ const PackageDetail = () => {
       <YouMayAlsoLike packages={similarPackages} title="Similar Packages" />
       <RecentlyViewed excludeSlug={pkg.slug} />
 
+      <EnquirySection />
+
       <InquiryBanner 
         title={`Plan your ${pkg.title} today`}
         waMessage={`Hi! I want to book the ${pkg.title} package.`}
       />
 
       <StickyMobileCTA 
-        price={pkg.price}
-        label="Book Now"
-        whatsappText={`Hi! I want to book the ${pkg.title} package.`}
+        label="Get Custom Quote"
+        whatsappText={`Hi! I want details and a quote for the ${pkg.title} package.`}
+        isEnquiryOnly={true}
         onEnquireClick={() => {
           document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
         }}

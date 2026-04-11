@@ -3,6 +3,10 @@ import { Phone, MessageCircle, Mail, MapPin, Clock, Lock, Zap } from "lucide-rea
 import { Button } from "@/components/ui/button";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { getPrefilledEnquiry, setPrefilledEnquiry } from "@/lib/personalization";
+import { motion, AnimatePresence } from "framer-motion";
+import { fadeIn, staggerContainer, staggerItem } from "@/lib/motion";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const EnquirySection = () => {
   const { track } = useAnalytics();
@@ -59,24 +63,44 @@ const EnquirySection = () => {
 
   return (
     <section className="section-padding bg-background" id="enquiry">
-      <div className="container mx-auto">
+      <ScrollReveal className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left - Form */}
           <div>
             <h2 className="section-heading mb-2">Plan Your Perfect Trip</h2>
             <p className="section-subheading mb-8">Fill in your details and our travel experts will craft a personalised itinerary for you</p>
 
-            {isSuccess ? (
-              <div className="bg-success/10 border border-success/30 rounded-xl p-8 text-center animate-fade-in">
-                <div className="w-16 h-16 bg-success rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-success-foreground text-2xl">✓</span>
-                </div>
-                <h3 className="font-display text-2xl font-semibold text-foreground mb-2">Enquiry Received!</h3>
-                <p className="text-muted-foreground font-body">Thank you, {formData.name}. Our destination expert will contact you within 2 hours with a customised itinerary.</p>
-                <Button onClick={() => setIsSuccess(false)} variant="outline" className="mt-6">Submit Another Enquiry</Button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+            <AnimatePresence mode="wait">
+              {isSuccess ? (
+                <motion.div 
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4 }}
+                  className="bg-success/10 border border-success/30 rounded-xl p-8 text-center"
+                >
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
+                    className="w-16 h-16 bg-success rounded-full flex items-center justify-center mx-auto mb-4"
+                  >
+                    <span className="text-success-foreground text-2xl">✓</span>
+                  </motion.div>
+                  <h3 className="font-display text-2xl font-semibold text-foreground mb-2">Enquiry Received!</h3>
+                  <p className="text-muted-foreground font-body">Thank you, {formData.name}. Our destination expert will contact you within 2 hours with a customised itinerary.</p>
+                  <Button onClick={() => setIsSuccess(false)} variant="outline" className="mt-6">Submit Another Enquiry</Button>
+                </motion.div>
+              ) : (
+                <motion.form 
+                  key="form"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  onSubmit={handleSubmit} 
+                  className="space-y-4"
+                >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">Full Name *</label>
@@ -132,8 +156,8 @@ const EnquirySection = () => {
                     <select id="budget" name="budget" value={formData.budget || ""} onChange={handleChange}
                       className="w-full px-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none">
                       <option value="">Select budget</option>
-                      <option value="under-10k">Under ₹10,000</option><option value="10k-25k">₹10,000 – ₹25,000</option>
-                      <option value="25k-50k">₹25,000 – ₹50,000</option><option value="50k-plus">₹50,000+</option>
+                      <option value="economy">Economy</option><option value="comfort">Comfort</option>
+                      <option value="premium">Premium</option><option value="luxury">Luxury</option>
                     </select>
                   </div>
                   <div>
@@ -153,22 +177,31 @@ const EnquirySection = () => {
                     className="w-full px-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all resize-none" placeholder="Any special requests..." />
                 </div>
 
-                <Button type="submit" size="lg" disabled={isSubmitting} className="w-full gradient-accent text-accent-foreground font-semibold text-base py-6 h-auto hover:scale-[1.01] transition-transform">
-                  {isSubmitting ? "Sending..." : "Send Enquiry — Get Callback in 2 Hours"}
-                </Button>
+                <MagneticButton>
+                  <Button type="submit" size="lg" disabled={isSubmitting} className="w-full gradient-accent text-accent-foreground font-semibold text-base py-6 h-auto transition-transform hover:shadow-lg">
+                    {isSubmitting ? "Sending..." : "Send Enquiry — Get Callback in 2 Hours"}
+                  </Button>
+                </MagneticButton>
 
                 <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1"><Lock className="h-3.5 w-3.5" /> Your data is 100% secure</span>
                   <span className="flex items-center gap-1"><Zap className="h-3.5 w-3.5" /> Avg response: under 2 hours</span>
                 </div>
-              </form>
-            )}
+                </motion.form>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Right - Contact Info */}
           <div className="space-y-6">
-            <div className="bg-surface rounded-xl p-6 space-y-6">
-              <div className="flex items-start gap-4">
+            <motion.div 
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              className="bg-surface rounded-xl p-6 space-y-6"
+            >
+              <motion.div variants={staggerItem} className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
                   <Phone className="h-5 w-5 text-primary-foreground" />
                 </div>
@@ -177,9 +210,9 @@ const EnquirySection = () => {
                   <a href="tel:+919876543210" className="text-primary font-medium text-lg">+91-9876543210</a>
                   <p className="text-xs text-muted-foreground mt-1">Mon–Sat, 9AM–7PM</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4">
+              <motion.div variants={staggerItem} className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-lg bg-success flex items-center justify-center flex-shrink-0">
                   <MessageCircle className="h-5 w-5 text-success-foreground" />
                 </div>
@@ -196,9 +229,9 @@ const EnquirySection = () => {
                     Open WhatsApp →
                   </a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4">
+              <motion.div variants={staggerItem} className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-lg gradient-accent flex items-center justify-center flex-shrink-0">
                   <Mail className="h-5 w-5 text-accent-foreground" />
                 </div>
@@ -206,9 +239,9 @@ const EnquirySection = () => {
                   <h4 className="font-body font-semibold text-foreground">Email</h4>
                   <a href="mailto:info@myquicktrippers.com" className="text-primary font-medium">info@myquicktrippers.com</a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4">
+              <motion.div variants={staggerItem} className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-lg bg-surface-2 flex items-center justify-center flex-shrink-0">
                   <MapPin className="h-5 w-5 text-primary" />
                 </div>
@@ -216,9 +249,9 @@ const EnquirySection = () => {
                   <h4 className="font-body font-semibold text-foreground">Office</h4>
                   <p className="text-sm text-muted-foreground">New Delhi, India</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4">
+              <motion.div variants={staggerItem} className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-lg bg-surface-2 flex items-center justify-center flex-shrink-0">
                   <Clock className="h-5 w-5 text-primary" />
                 </div>
@@ -227,11 +260,11 @@ const EnquirySection = () => {
                   <p className="text-sm text-muted-foreground">Mon–Sat: 9:00 AM – 7:00 PM</p>
                   <p className="text-sm text-muted-foreground">Sun: 10:00 AM – 4:00 PM</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

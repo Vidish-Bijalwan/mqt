@@ -62,7 +62,7 @@ const EmptyState = ({
                 </div>
                 <div className="p-3">
                   <p className="font-body font-semibold text-xs text-foreground leading-snug">{pkg.title}</p>
-                  <p className="text-accent font-bold text-sm mt-1">₹{pkg.price.toLocaleString("en-IN")}</p>
+                  <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{pkg.includes.join(" | ")}</p>
                 </div>
               </Link>
             ))}

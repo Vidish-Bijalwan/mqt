@@ -2,22 +2,23 @@ import { Link } from "react-router-dom";
 import { Star, Clock, Flame } from "lucide-react";
 import type { TourPackage } from "@/data/packages";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 interface PackageCardProps {
   pkg: TourPackage;
 }
 
 const PackageCard = ({ pkg }: PackageCardProps) => {
-  const savings = pkg.originalPrice - pkg.price;
   const { track } = useAnalytics();
 
   return (
-    <Link
-      to={`/packages/${pkg.categories[0]}/${pkg.slug}`}
-      onClick={() => track("package_click", { slug: pkg.slug, source: "package_card" })}
-      className="bg-card rounded-xl overflow-hidden border border-border card-hover shadow-soft group block"
-    >
-      {/* Image */}
+    <TiltCard className="bg-card h-full rounded-xl overflow-hidden border border-border shadow-soft group block">
+      <Link
+        to={`/packages/${pkg.categories[0]}/${pkg.slug}`}
+        onClick={() => track("package_click", { slug: pkg.slug, source: "package_card" })}
+        className="block h-full relative border-none outline-none"
+      >
+        {/* Image */}
       <div className="relative overflow-hidden aspect-[16/10]">
         <img
           src={pkg.image}
@@ -42,11 +43,6 @@ const PackageCard = ({ pkg }: PackageCardProps) => {
         </div>
 
         <div className="absolute top-3 right-3 flex flex-col gap-1.5 items-end">
-          {pkg.discountBadge && (
-            <span className="bg-destructive text-destructive-foreground text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm">
-              {pkg.discountBadge}
-            </span>
-          )}
           {pkg.seatsLeft && pkg.seatsLeft <= 5 && (
             <span className="bg-foreground/80 backdrop-blur-sm text-background text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
               Only {pkg.seatsLeft} left!
@@ -84,24 +80,20 @@ const PackageCard = ({ pkg }: PackageCardProps) => {
         </div>
 
         <div className="mb-4">
-          <span className="font-body font-bold text-lg text-accent">₹{pkg.price.toLocaleString("en-IN")}</span>
-          <span className="text-xs text-muted-foreground ml-1">/person</span>
-          <div className="flex items-center gap-2 mt-0.5">
-            <span className="text-xs text-muted-foreground line-through">₹{pkg.originalPrice.toLocaleString("en-IN")}</span>
-            <span className="text-xs text-success font-medium">Save ₹{savings.toLocaleString("en-IN")}</span>
-          </div>
+          <p className="text-[13px] text-muted-foreground italic">Pricing shared after enquiry.</p>
         </div>
 
         <div className="flex gap-2">
-          <span className="flex-1 text-center py-2 rounded-md gradient-primary text-primary-foreground text-xs font-medium cursor-pointer transition-transform hover:scale-[1.02]">
+          <span className="flex-1 text-center py-2 rounded-md border border-primary text-primary hover:bg-primary hover:text-primary-foreground text-xs font-medium cursor-pointer transition-colors">
             View Details
           </span>
-          <span className="flex-1 text-center py-2 rounded-md border border-primary text-primary hover:bg-primary hover:text-primary-foreground text-xs font-medium cursor-pointer transition-colors">
-            Enquire Now
+          <span className="flex-1 text-center py-2 rounded-md gradient-primary text-primary-foreground text-xs font-medium cursor-pointer transition-transform hover:scale-[1.02]">
+            Get Custom Quote
           </span>
         </div>
       </div>
-    </Link>
+      </Link>
+    </TiltCard>
   );
 };
 

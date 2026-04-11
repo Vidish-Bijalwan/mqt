@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { MessageCircle, ArrowUp, Phone, Mail, Home } from "lucide-react";
 import FloatingWhatsApp from "./FloatingWhatsApp";
+import { motion, AnimatePresence } from "framer-motion";
 
 const FloatingElements = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -16,15 +17,22 @@ const FloatingElements = () => {
       <FloatingWhatsApp />
 
       {/* Scroll to Top */}
-      {showScrollTop && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-24 right-6 z-50 w-10 h-10 rounded-full gradient-primary text-primary-foreground flex items-center justify-center shadow-card hover:scale-110 transition-all animate-fade-in"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp className="h-5 w-5" />
-        </button>
-      )}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-24 right-6 z-50 w-10 h-10 rounded-full gradient-primary text-primary-foreground flex items-center justify-center shadow-card"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="h-5 w-5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Bottom Bar */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 gradient-primary">

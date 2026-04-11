@@ -41,13 +41,13 @@ const Footer = () => {
           <div>
             <h4 className="font-body font-semibold text-sm text-dark-foreground mb-4 tracking-wide uppercase">Destinations</h4>
             <ul className="space-y-2 text-sm text-dark-foreground/60">
-              <li><Link to="/destinations/kedarnath" className="hover:text-accent transition-colors">Kedarnath Yatra</Link></li>
-              <li><Link to="/destinations/ladakh" className="hover:text-accent transition-colors">Ladakh Tour</Link></li>
-              <li><Link to="/destinations/valley-of-flowers" className="hover:text-accent transition-colors">Valley of Flowers</Link></li>
-              <li><Link to="/destinations/kashmir" className="hover:text-accent transition-colors">Kashmir Tour</Link></li>
-              <li><Link to="/destinations/manali" className="hover:text-accent transition-colors">Manali Tour</Link></li>
-              <li><Link to="/destinations/varanasi" className="hover:text-accent transition-colors">Varanasi Tour</Link></li>
-              <li><Link to="/destinations/char-dham" className="hover:text-accent transition-colors">Char Dham Yatra</Link></li>
+              <li><Link to="/destinations/uttarakhand/kedarnath" className="hover:text-accent transition-colors">Kedarnath Yatra</Link></li>
+              <li><Link to="/destinations/ladakh/ladakh" className="hover:text-accent transition-colors">Ladakh Tour</Link></li>
+              <li><Link to="/destinations/uttarakhand/valley-of-flowers" className="hover:text-accent transition-colors">Valley of Flowers</Link></li>
+              <li><Link to="/destinations/jammu-and-kashmir/kashmir" className="hover:text-accent transition-colors">Kashmir Tour</Link></li>
+              <li><Link to="/destinations/himachal-pradesh/manali" className="hover:text-accent transition-colors">Manali Tour</Link></li>
+              <li><Link to="/destinations/uttar-pradesh/varanasi" className="hover:text-accent transition-colors">Varanasi Tour</Link></li>
+              <li><Link to="/destinations/uttarakhand/char-dham" className="hover:text-accent transition-colors">Char Dham Yatra</Link></li>
               <li><Link to="/destinations" className="text-accent hover:underline">View All →</Link></li>
             </ul>
           </div>

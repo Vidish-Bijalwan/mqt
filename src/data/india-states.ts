@@ -1,0 +1,517 @@
+// Fallback images since we don't have dedicated assets for all 36 entities right now.
+// In reality, each state should import its own high-res hero image.
+import destLadakh from "@/assets/dest-ladakh.jpg";
+import destKashmir from "@/assets/dest-kashmir.jpg";
+import destKedarnath from "@/assets/dest-kedarnath.jpg";
+import destRishikesh from "@/assets/dest-rishikesh.jpg";
+import destManali from "@/assets/dest-manali.jpg";
+import destVaranasi from "@/assets/dest-varanasi.jpg";
+import destValleyFlowers from "@/assets/dest-valley-flowers.jpg";
+
+export type Region = "North India" | "South India" | "East India" | "West India" | "Central India" | "North East India" | "Islands & Union Territories";
+
+export interface IndiaStateData {
+  id: string;
+  name: string;
+  slug: string;
+  type: "State" | "Union Territory";
+  region: Region;
+  image: string;
+  shortDescription: string;
+  introOverview: string;
+  quickFacts: {
+    bestSeason: string;
+    travelThemes: string[];
+    topPlacesCount: number;
+    capital: string;
+  };
+  famousDestinations: string[]; // slugs mapping to destinations.ts
+}
+
+export const indiaStates: IndiaStateData[] = [
+  // --- NORTH INDIA ---
+  {
+    id: "s1",
+    name: "Uttarakhand",
+    slug: "uttarakhand",
+    type: "State",
+    region: "North India",
+    image: destKedarnath, // Fallback
+    shortDescription: "The Land of Gods — home to Himalayan peaks, the sacred Char Dham, and the yoga capital.",
+    introOverview: "Devbhoomi Uttarakhand is a mystical realm of sky-piercing peaks, plunging river valleys, and deeply embedded spiritual heritage. From the extreme adventure of white-water rafting in Rishikesh to the intense devotion of the Kedarnath pilgrimage, the state offers unparalleled Himalayan access.",
+    quickFacts: {
+      bestSeason: "March to June, Sep to Nov",
+      travelThemes: ["Pilgrimage", "Trekking", "Wildlife", "Yoga"],
+      topPlacesCount: 12,
+      capital: "Dehradun",
+    },
+    famousDestinations: ["kedarnath", "rishikesh", "valley-of-flowers", "char-dham"],
+  },
+  {
+    id: "s2",
+    name: "Himachal Pradesh",
+    slug: "himachal-pradesh",
+    type: "State",
+    region: "North India",
+    image: destManali, // Fallback
+    shortDescription: "Snow-clad summits, lush pine valleys, and ancient Buddhist monasteries.",
+    introOverview: "Himachal Pradesh is India's most beloved mountain state. It seamlessly blends raw alpine beauty with vibrant local cultures, offering everything from relaxing family holidays in Shimla to extreme trans-Himalayan adventures in Spiti.",
+    quickFacts: {
+      bestSeason: "March to June (Summer), Dec to Feb (Snow)",
+      travelThemes: ["Honeymoon", "Adventure", "Family Holidays", "Backpacking"],
+      topPlacesCount: 15,
+      capital: "Shimla",
+    },
+    famousDestinations: ["manali", "shimla", "dharamshala", "spiti-valley"],
+  },
+  {
+    id: "s3",
+    name: "Uttar Pradesh",
+    slug: "uttar-pradesh",
+    type: "State",
+    region: "North India",
+    image: destVaranasi, // Fallback
+    shortDescription: "The heartland of India, housing the Taj Mahal, Kashi, and the cultural roots of the nation.",
+    introOverview: "Uttar Pradesh is defined by its deep historical and spiritual resonance. The holy ghats of Varanasi lie in stark contrast to the magnificent Mughal architecture of Agra, creating a deeply profound travel experience.",
+    quickFacts: {
+      bestSeason: "October to March",
+      travelThemes: ["Heritage", "Pilgrimage", "Culture", "Food"],
+      topPlacesCount: 10,
+      capital: "Lucknow",
+    },
+    famousDestinations: ["varanasi", "agra", "ayodhya", "mathura"],
+  },
+  {
+    id: "s4",
+    name: "Punjab",
+    slug: "punjab",
+    type: "State",
+    region: "North India",
+    image: destRishikesh, // Fallback map
+    shortDescription: "The land of five rivers, golden wheat fields, and the spectacular Golden Temple.",
+    introOverview: "Known for its hearty hospitality, rich culinary heritage, and energetic culture.",
+    quickFacts: {
+      bestSeason: "October to March",
+      travelThemes: ["Culture", "Food", "Heritage"],
+      topPlacesCount: 6,
+      capital: "Chandigarh",
+    },
+    famousDestinations: ["amritsar", "jalandhar", "pathankot"],
+  },
+  {
+    id: "s5",
+    name: "Haryana",
+    slug: "haryana",
+    type: "State",
+    region: "North India",
+    image: destRishikesh,
+    shortDescription: "Ancient historical sites and modern urban landscapes.",
+    introOverview: "A blend of ancient civilization roots like Kurukshetra and the modern metropolis of Gurugram.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage", "Business"], topPlacesCount: 5, capital: "Chandigarh" },
+    famousDestinations: ["kurukshetra"],
+  },
+  
+  // --- WEST INDIA ---
+  {
+    id: "s6",
+    name: "Rajasthan",
+    slug: "rajasthan",
+    type: "State",
+    region: "West India",
+    image: destVaranasi,
+    shortDescription: "Grand forts, sprawling deserts, and royal heritage.",
+    introOverview: "Rajasthan is India's most colourful state. It is a visual feast of majestic forts, opulent palaces, sprawling desert dunes, and vibrant festivals that keep the Rajput history alive.",
+    quickFacts: {
+      bestSeason: "October to March",
+      travelThemes: ["Luxury", "Heritage", "Romance", "Desert Safari"],
+      topPlacesCount: 15,
+      capital: "Jaipur",
+    },
+    famousDestinations: ["jaipur", "udaipur", "jaisalmer", "jodhpur", "pushkar"],
+  },
+  {
+    id: "s7",
+    name: "Gujarat",
+    slug: "gujarat",
+    type: "State",
+    region: "West India",
+    image: destKashmir,
+    shortDescription: "The vibrant state of the Rann of Kutch, Asiatic lions, and rich textiles.",
+    introOverview: "From the blinding white salt desert of Kutch to the home of the last surviving Asiatic lions in Gir, Gujarat offers highly distinct landscapes and cultural deeply rooted in trade and art.",
+    quickFacts: {
+      bestSeason: "November to February",
+      travelThemes: ["Culture", "Wildlife", "Heritage"],
+      topPlacesCount: 10,
+      capital: "Gandhinagar",
+    },
+    famousDestinations: ["rann-of-kutch", "gir", "somnath", "ahmedabad"],
+  },
+  {
+    id: "s8",
+    name: "Maharashtra",
+    slug: "maharashtra",
+    type: "State",
+    region: "West India",
+    image: destLadakh,
+    shortDescription: "The powerhouse of India featuring the Western Ghats, ancient caves, and coastal beauty.",
+    introOverview: "Combining the fast-paced life of Mumbai with the ancient, intricately carved caves of Ajanta and Ellora, and the misty monsoon hill stations of the Sahyadris.",
+    quickFacts: {
+      bestSeason: "September to April",
+      travelThemes: ["Nature", "History", "Beaches", "Urban"],
+      topPlacesCount: 14,
+      capital: "Mumbai",
+    },
+    famousDestinations: ["mumbai", "pune", "mahabaleshwar", "ajanta-ellora"],
+  },
+  {
+    id: "s9",
+    name: "Goa",
+    slug: "goa",
+    type: "State",
+    region: "West India",
+    image: destKashmir,
+    shortDescription: "India's pocket-sized paradise of sun, sand, and Portuguese heritage.",
+    introOverview: "Famous globally for its golden beaches, trance parties, and laid-back vibe, Goa also hides beautiful 16th-century churches and dense spice plantations inland.",
+    quickFacts: {
+      bestSeason: "November to March",
+      travelThemes: ["Beaches", "Nightlife", "Relaxation", "Heritage"],
+      topPlacesCount: 8,
+      capital: "Panaji",
+    },
+    famousDestinations: ["north-goa", "south-goa", "panaji"],
+  },
+
+  // --- SOUTH INDIA ---
+  {
+    id: "s10",
+    name: "Kerala",
+    slug: "kerala",
+    type: "State",
+    region: "South India",
+    image: destValleyFlowers,
+    shortDescription: "God's Own Country — tranquil backwaters and lush tea gardens.",
+    introOverview: "Kerala is a network of glistening backwaters, spice and tea-covered hills of the Western Ghats, and sweeping golden beaches bordering the Arabian Sea.",
+    quickFacts: {
+      bestSeason: "September to March",
+      travelThemes: ["Ayurveda", "Nature", "Honeymoon", "Wildlife"],
+      topPlacesCount: 12,
+      capital: "Thiruvananthapuram",
+    },
+    famousDestinations: ["munnar", "alleppey", "wayanad", "kochi"],
+  },
+  {
+    id: "s11",
+    name: "Karnataka",
+    slug: "karnataka",
+    type: "State",
+    region: "South India",
+    image: destRishikesh,
+    shortDescription: "A glorious mix of IT hubs, ancient temple ruins, and coffee plantations.",
+    introOverview: "From the ruined empire of Hampi to the lush coffee estates of Coorg and the tiger reserves of Kabini, Karnataka is exceptionally diverse.",
+    quickFacts: {
+      bestSeason: "October to April",
+      travelThemes: ["Heritage", "Wildlife", "Nature"],
+      topPlacesCount: 15,
+      capital: "Bengaluru",
+    },
+    famousDestinations: ["coorg", "hampi", "mysuru", "gokarna"],
+  },
+  {
+    id: "s12",
+    name: "Tamil Nadu",
+    slug: "tamil-nadu",
+    type: "State",
+    region: "South India",
+    image: destVaranasi,
+    shortDescription: "The epicentre of Dravidian culture with towering temples and high hill stations.",
+    introOverview: "Home to some of the greatest living Chola temples, the colonial charm of Ooty, and the southernmost tip of India at Kanyakumari.",
+    quickFacts: {
+      bestSeason: "November to March",
+      travelThemes: ["Temple Architecture", "Culture", "Hill Stations"],
+      topPlacesCount: 12,
+      capital: "Chennai",
+    },
+    famousDestinations: ["chennai", "ooty", "kodaikanal", "madurai"],
+  },
+  {
+    id: "s13",
+    name: "Andhra Pradesh",
+    slug: "andhra-pradesh",
+    type: "State",
+    region: "South India",
+    image: destKedarnath,
+    shortDescription: "Rich in spiritual wealth and coastal beauty.",
+    introOverview: "Home to Tirupati, one of the most visited pilgrimage centers in the world, and scenic valleys like Araku.",
+    quickFacts: { bestSeason: "November to February", travelThemes: ["Pilgrimage", "Coastal"], topPlacesCount: 8, capital: "Amaravati" },
+    famousDestinations: ["tirupati", "araku-valley", "vizag"],
+  },
+  {
+    id: "s14",
+    name: "Telangana",
+    slug: "telangana",
+    type: "State",
+    region: "South India",
+    image: destVaranasi,
+    shortDescription: "A fusion of royal Nizami heritage and booming technology.",
+    introOverview: "Anchored by Hyderabad's spectacular Golconda Fort and Charminar, blended with mouth-watering cuisine.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage", "Food", "Urban"], topPlacesCount: 5, capital: "Hyderabad" },
+    famousDestinations: ["hyderabad", "warangal"],
+  },
+
+  // --- EAST INDIA ---
+  {
+    id: "s15",
+    name: "West Bengal",
+    slug: "west-bengal",
+    type: "State",
+    region: "East India",
+    image: destManali,
+    shortDescription: "From the Himalayas in Darjeeling to the mangrove tigers of Sundarbans.",
+    introOverview: "A state defined by its intellectual heritage, the colonial architecture of Kolkata, and the world's largest mangrove forest hosting the Royal Bengal Tiger.",
+    quickFacts: {
+      bestSeason: "October to March",
+      travelThemes: ["Culture", "Wildlife", "Hill Stations"],
+      topPlacesCount: 10,
+      capital: "Kolkata",
+    },
+    famousDestinations: ["kolkata", "darjeeling", "sundarbans"],
+  },
+  {
+    id: "s16",
+    name: "Odisha",
+    slug: "odisha",
+    type: "State",
+    region: "East India",
+    image: destVaranasi,
+    shortDescription: "India's best-kept secret of spectacular temples and pristine beaches.",
+    introOverview: "Home to the architectural marvel of the Konark Sun Temple and the deeply revered Jagannath Temple in Puri.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Temples", "Beaches", "Tribal Culture"], topPlacesCount: 8, capital: "Bhubaneswar" },
+    famousDestinations: ["puri", "bhubaneswar", "konark"],
+  },
+  {
+    id: "s17",
+    name: "Bihar",
+    slug: "bihar",
+    type: "State",
+    region: "East India",
+    image: destVaranasi,
+    shortDescription: "The birthplace of Buddhism and Jainism.",
+    introOverview: "Steeped in ancient history, it houses the Mahabodhi Temple where the Buddha gained enlightenment, and the ruins of the ancient Nalanda University.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Pilgrimage", "History"], topPlacesCount: 5, capital: "Patna" },
+    famousDestinations: ["bodh-gaya", "nalanda", "rajgir"],
+  },
+  {
+    id: "s18",
+    name: "Jharkhand",
+    slug: "jharkhand",
+    type: "State",
+    region: "East India",
+    image: destValleyFlowers,
+    shortDescription: "The land of forests, waterfalls, and rich tribal heritage.",
+    introOverview: "An offbeat destination for nature lovers to explore raw waterfalls, dense forests, and wildlife sanctuaries.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Nature", "Waterfalls"], topPlacesCount: 4, capital: "Ranchi" },
+    famousDestinations: ["ranchi", "netarhat", "deoghar"],
+  },
+
+  // --- CENTRAL INDIA ---
+  {
+    id: "s19",
+    name: "Madhya Pradesh",
+    slug: "madhya-pradesh",
+    type: "State",
+    region: "Central India",
+    image: destRishikesh,
+    shortDescription: "The heart of incredible India, unmatched in wildlife and heritage.",
+    introOverview: "Features the vast tiger reserves of Bandhavgarh and Kanha, and UNESCO sites like the Khajuraho temples and Sanchi Stupa.",
+    quickFacts: {
+      bestSeason: "October to March",
+      travelThemes: ["Wildlife Safari", "Heritage", "Forts"],
+      topPlacesCount: 12,
+      capital: "Bhopal",
+    },
+    famousDestinations: ["khajuraho", "bandhavgarh", "kanha", "gwalior"],
+  },
+  {
+    id: "s20",
+    name: "Chhattisgarh",
+    slug: "chhattisgarh",
+    type: "State",
+    region: "Central India",
+    image: destValleyFlowers,
+    shortDescription: "A heavily forested state known for spectacular waterfalls and tribal culture.",
+    introOverview: "Largely unexplored, offering the mighty Chitrakote Falls (the Niagara of India) and ancient Bastar tribal traditions.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Nature", "Tribal", "Waterfalls"], topPlacesCount: 5, capital: "Raipur" },
+    famousDestinations: ["jagdalpur", "chitrakote"],
+  },
+
+  // --- NORTH EAST INDIA ---
+  {
+    id: "s21",
+    name: "Assam",
+    slug: "assam",
+    type: "State",
+    region: "North East India",
+    image: destValleyFlowers,
+    shortDescription: "Rolling tea gardens and the stronghold of the one-horned rhinoceros.",
+    introOverview: "Divided by the mighty Brahmaputra river, Assam offers Kaziranga National Park and the world's largest river island, Majuli.",
+    quickFacts: { bestSeason: "November to April", travelThemes: ["Wildlife", "Nature", "Culture"], topPlacesCount: 8, capital: "Dispur" },
+    famousDestinations: ["kaziranga", "guwahati", "majuli"],
+  },
+  {
+    id: "s22",
+    name: "Meghalaya",
+    slug: "meghalaya",
+    type: "State",
+    region: "North East India",
+    image: destValleyFlowers,
+    shortDescription: "The abode of clouds, living root bridges, and crystal-clear rivers.",
+    introOverview: "A stunning canvas of waterfalls, mysterious caves, and the surreal living root bridges crafted by the Khasi tribes.",
+    quickFacts: { bestSeason: "October to May", travelThemes: ["Nature", "Adventure", "Monsoon"], topPlacesCount: 6, capital: "Shillong" },
+    famousDestinations: ["shillong", "cherrapunji", "dawki"],
+  },
+  {
+    id: "s23",
+    name: "Sikkim",
+    slug: "sikkim",
+    type: "State",
+    region: "North East India",
+    image: destLadakh,
+    shortDescription: "A pristine Himalayan kingdom famous for Kanchenjunga and organic farming.",
+    introOverview: "Bordering Tibet, Nepal and Bhutan, Sikkim is a high-altitude sanctuary of Buddhist monasteries and jaw-dropping views of India's highest peak.",
+    quickFacts: { bestSeason: "March to May, Oct to Dec", travelThemes: ["Himalayan", "Monasteries", "Nature"], topPlacesCount: 8, capital: "Gangtok" },
+    famousDestinations: ["gangtok", "pelling", "nathula-pass", "lachung"],
+  },
+  { id: "s24", name: "Arunachal Pradesh", slug: "arunachal-pradesh", type: "State", region: "North East India", image: destManali, shortDescription: "The land of dawn-lit mountains.", introOverview: "Untouched and wild, home to the massive Tawang Monastery.", quickFacts: { bestSeason: "October to April", travelThemes: ["Adventure", "Culture"], topPlacesCount: 4, capital: "Itanagar" }, famousDestinations: ["tawang", "ziro-valley"] },
+  { id: "s25", name: "Nagaland", slug: "nagaland", type: "State", region: "North East India", image: destValleyFlowers, shortDescription: "Fierce tribal culture and the Hornbill festival.", introOverview: "A mountainous state heavily invested in preserving its 16 major indigenous tribes.", quickFacts: { bestSeason: "October to May", travelThemes: ["Festivals", "Tribal"], topPlacesCount: 4, capital: "Kohima" }, famousDestinations: ["kohima", "dzukou-valley", "dimapur"] },
+  { id: "s26", name: "Manipur", slug: "manipur", type: "State", region: "North East India", image: destValleyFlowers, shortDescription: "The jeweled land with floating national parks.", introOverview: "Home to Loktak Lake, the only floating national park in the world.", quickFacts: { bestSeason: "October to March", travelThemes: ["Nature", "Culture"], topPlacesCount: 3, capital: "Imphal" }, famousDestinations: ["imphal", "loktak-lake"] },
+  { id: "s27", name: "Mizoram", slug: "mizoram", type: "State", region: "North East India", image: destValleyFlowers, shortDescription: "The land of the hill people.", introOverview: "Dense bamboo jungles and deeply rooted Mizo culture.", quickFacts: { bestSeason: "November to March", travelThemes: ["Nature"], topPlacesCount: 3, capital: "Aizawl" }, famousDestinations: ["aizawl", "champhai"] },
+  { id: "s28", name: "Tripura", slug: "tripura", type: "State", region: "North East India", image: destVaranasi, shortDescription: "A blend of royal heritage and natural beauty.", introOverview: "Famous for the spectacular Neermahal, a royal palace situated in the middle of a lake.", quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage"], topPlacesCount: 3, capital: "Agartala" }, famousDestinations: ["agartala", "neermahal"] },
+
+  // --- UNION TERRITORIES (Islands & Northern Mountains) ---
+  {
+    id: "ut1",
+    name: "Jammu and Kashmir",
+    slug: "jammu-and-kashmir",
+    type: "Union Territory",
+    region: "Islands & Union Territories", // Mapped for grouping, but geographically North
+    image: destKashmir,
+    shortDescription: "Heaven on Earth — Shikaras, Snow, and Serenity.",
+    introOverview: "A visually extraordinary blend of emerald meadows, snow-frosted peaks, and the legendary Dal Lake.",
+    quickFacts: {
+      bestSeason: "April to October (Summer), Dec to Feb (Skiing)",
+      travelThemes: ["Honeymoon", "Nature", "Skiing", "Pilgrimage"],
+      topPlacesCount: 8,
+      capital: "Srinagar (Summer), Jammu (Winter)",
+    },
+    famousDestinations: ["kashmir", "srinagar", "gulmarg", "pahalgam", "sonamarg"],
+  },
+  {
+    id: "ut2",
+    name: "Ladakh",
+    slug: "ladakh",
+    type: "Union Territory",
+    region: "Islands & Union Territories",
+    image: destLadakh,
+    shortDescription: "The land of high passes, cold deserts, and turquoise lakes.",
+    introOverview: "A high-altitude sanctuary of stark, surreal beauty with ancient monasteries clinging to impossibly steep cliffs.",
+    quickFacts: {
+      bestSeason: "June to September",
+      travelThemes: ["Adventure", "Motorbiking", "Culture"],
+      topPlacesCount: 6,
+      capital: "Leh",
+    },
+    famousDestinations: ["ladakh", "leh", "nubra-valley", "pangong-tsol", "tso-moriri"],
+  },
+  {
+    id: "ut3",
+    name: "Andaman and Nicobar Islands",
+    slug: "andaman-and-nicobar-islands",
+    type: "Union Territory",
+    region: "Islands & Union Territories",
+    image: destKashmir, // Fallback
+    shortDescription: "Pristine white sand beaches and tropical coral reefs in the Bay of Bengal.",
+    introOverview: "A tropical paradise known for world-class scuba diving, untouched beaches like Radhanagar, and dense tropical rainforests.",
+    quickFacts: {
+      bestSeason: "October to May",
+      travelThemes: ["Beaches", "Scuba Diving", "Honeymoon"],
+      topPlacesCount: 5,
+      capital: "Port Blair",
+    },
+    famousDestinations: ["havelock", "port-blair", "neil-island"],
+  },
+  {
+    id: "ut4",
+    name: "Lakshadweep",
+    slug: "lakshadweep",
+    type: "Union Territory",
+    region: "Islands & Union Territories",
+    image: destKashmir,
+    shortDescription: "India's own coral atolls in the Arabian Sea.",
+    introOverview: "An archipelago of 36 islands offering some of the clearest waters and most secluded beaches in the Indian Ocean.",
+    quickFacts: {
+      bestSeason: "October to mid-May",
+      travelThemes: ["Seclusion", "Scuba Diving", "Relaxation"],
+      topPlacesCount: 4,
+      capital: "Kavaratti",
+    },
+    famousDestinations: ["agatti", "kavaratti", "bangaram"],
+  },
+  {
+    id: "ut5",
+    name: "Delhi",
+    slug: "delhi",
+    type: "Union Territory",
+    region: "Islands & Union Territories",
+    image: destVaranasi,
+    shortDescription: "The historic capital spanning massive empires.",
+    introOverview: "A hyper-energetic metropolis overflowing with Mughal tombs, colonial architecture, and incredible street food.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage", "Food", "Urban"], topPlacesCount: 15, capital: "New Delhi" },
+    famousDestinations: ["new-delhi", "old-delhi"],
+  },
+  {
+    id: "ut6",
+    name: "Chandigarh",
+    slug: "chandigarh",
+    type: "Union Territory",
+    region: "Islands & Union Territories",
+    image: destRishikesh,
+    shortDescription: "India's first planned city.",
+    introOverview: "Designed by Le Corbusier, known for its grid layout, modernist architecture, and the famous Rock Garden.",
+    quickFacts: { bestSeason: "August to November", travelThemes: ["Urban Planning", "Gardens"], topPlacesCount: 3, capital: "Chandigarh" },
+    famousDestinations: ["chandigarh-city"],
+  },
+  {
+    id: "ut7",
+    name: "Puducherry",
+    slug: "puducherry",
+    type: "Union Territory",
+    region: "Islands & Union Territories",
+    image: destVaranasi,
+    shortDescription: "A charming slice of France on the Coromandel Coast.",
+    introOverview: "Featuring mustard-yellow colonial villas, chic cafes, and the experimental township of Auroville.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage", "Spiritual", "Beaches"], topPlacesCount: 4, capital: "Puducherry" },
+    famousDestinations: ["pondicherry-town", "auroville"],
+  },
+  {
+    id: "ut8",
+    name: "Dadra and Nagar Haveli and Daman and Diu",
+    slug: "dadra-nagar-haveli-daman-diu",
+    type: "Union Territory",
+    region: "Islands & Union Territories",
+    image: destKashmir,
+    shortDescription: "Portuguese forts, quiet beaches, and tribal life.",
+    introOverview: "Formed by merging two previous UTs, offering colonial heritage alongside lush green forestry.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage", "Beaches"], topPlacesCount: 4, capital: "Daman" },
+    famousDestinations: ["daman", "diu"],
+  },
+];
+
+// Helper functions for easy data access
+export const getStatesByRegion = (region: Region | "All"): IndiaStateData[] => {
+  if (region === "All") return indiaStates;
+  return indiaStates.filter((state) => state.region === region);
+};
+
+export const getStateBySlug = (slug: string): IndiaStateData | undefined => {
+  return indiaStates.find((state) => state.slug === slug);
+};

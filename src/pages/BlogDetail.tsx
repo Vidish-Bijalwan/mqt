@@ -27,10 +27,9 @@ const BlogDetail = () => {
 
   useEffect(() => {
     if (post) {
-      document.title = `${post.seoTitle} | MyQuickTrippers`;
-      // In a real app we'd also inject meta description and JSON-LD schema here
+      document.title = `${post.title} | MyQuickTrippers`;
       const checkMeta = document.querySelector('meta[name="description"]');
-      if (checkMeta) checkMeta.setAttribute("content", post.seoDescription);
+      if (checkMeta) checkMeta.setAttribute("content", post.metaDescription);
       
       window.scrollTo(0, 0);
       track("page_view", { type: "blog", slug: post.slug });
@@ -43,7 +42,6 @@ const BlogDetail = () => {
 
   const handleShare = (platform: string) => {
     track("social_share", { platform, slug: post.slug });
-    // Minimal mock for sharing
     if (platform === 'copy') {
       navigator.clipboard.writeText(window.location.href);
       alert('Link copied to clipboard!');
@@ -85,15 +83,37 @@ const BlogDetail = () => {
 
           {/* Content Sections */}
           <div className="prose prose-lg dark:prose-invert max-w-none font-body">
-            {post.sections.map((section, idx) => (
-              <div key={idx} className="mb-10">
-                <h2 className="font-display text-2xl font-semibold mb-4 text-foreground">{section.heading}</h2>
-                <div 
-                  className="text-muted-foreground leading-relaxed space-y-4"
-                  dangerouslySetInnerHTML={{ __html: section.content.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>') }}
-                />
-              </div>
-            ))}
+            {post.content.map((section, idx) => {
+              switch (section.type) {
+                case "heading":
+                  return <h2 key={idx} className="font-display text-2xl font-semibold mt-10 mb-4 text-foreground">{section.content}</h2>;
+                case "paragraph":
+                  return <p key={idx} className="text-muted-foreground leading-relaxed mb-6">{section.content}</p>;
+                case "list":
+                  return (
+                    <div key={idx} className="mb-8">
+                      {section.content && <p className="font-medium text-foreground mb-3">{section.content}</p>}
+                      <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                        {section.items?.map((item, i) => <li key={i}>{item}</li>)}
+                      </ul>
+                    </div>
+                  );
+                case "tip_box":
+                  return (
+                    <div key={idx} className="bg-surface-2 border-l-4 border-primary p-6 rounded-r-lg my-8">
+                      <p className="text-foreground font-medium m-0">{section.content}</p>
+                    </div>
+                  );
+                case "callout":
+                  return (
+                    <div key={idx} className="bg-primary/10 border border-primary/20 p-6 rounded-xl text-center my-10">
+                      <p className="text-primary font-semibold text-lg m-0">{section.content}</p>
+                    </div>
+                  );
+                default:
+                  return null;
+              }
+            })}
           </div>
 
           {/* Tags */}

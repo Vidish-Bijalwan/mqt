@@ -2,16 +2,16 @@ import { MessageCircle, Phone } from "lucide-react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 interface StickyMobileCTAProps {
-  price?: number;
+  isEnquiryOnly?: boolean;
   label?: string;
   whatsappText?: string;
   onEnquireClick?: () => void;
 }
 
 const StickyMobileCTA = ({
-  price,
-  label = "Enquire Now",
-  whatsappText = "Hi! I'm interested in this tour package.",
+  isEnquiryOnly,
+  label = "Get Custom Quote",
+  whatsappText = "Hi! I'm interested in this trip. Please share a tailored quote.",
   onEnquireClick,
 }: StickyMobileCTAProps) => {
   const { track } = useAnalytics();
@@ -27,16 +27,13 @@ const StickyMobileCTA = ({
 
   return (
     <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-t border-border shadow-elevated flex items-center gap-2 px-4 py-3">
-      {/* Price */}
-      {price && (
-        <div className="flex-1 min-w-0">
-          <p className="text-xs text-muted-foreground font-body">Starting from</p>
-          <p className="font-body font-bold text-accent text-lg leading-tight">
-            ₹{price.toLocaleString("en-IN")}
-            <span className="text-xs font-normal text-muted-foreground">/person</span>
-          </p>
-        </div>
-      )}
+      {/* Info Block */}
+      <div className="flex-1 min-w-0">
+        <p className="font-body font-bold text-accent text-[15px] leading-tight">
+          Request Pricing
+        </p>
+        <p className="text-[11px] text-muted-foreground font-body">Tailored for your dates</p>
+      </div>
 
       {/* WhatsApp */}
       <a

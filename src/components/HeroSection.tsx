@@ -2,6 +2,10 @@ import { Search, Calendar, Users, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-kedarnath.jpg";
 import { useNavigate } from "react-router-dom";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { staggerContainer, staggerItem } from "@/lib/motion";
+import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const stats = [
   { icon: "🏔", label: "200+ Trips Completed" },
@@ -14,52 +18,69 @@ const popularTags = ["Kedarnath", "Ladakh", "Valley of Flowers", "Kashmir", "Var
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const { scrollY } = useScroll();
+  const bgY = useTransform(scrollY, [0, 1000], [0, 300]);
+
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <img
-        src={heroImage}
-        alt="Majestic Kedarnath Temple with snow-capped Himalayan peaks at sunrise"
-        className="absolute inset-0 w-full h-full object-cover"
-        width={1920}
-        height={1080}
-      />
-      <div className="absolute inset-0 gradient-hero" />
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
+      {/* Background with Parallax */}
+      <motion.div 
+        style={{ y: bgY, scale: 1.1 }}
+        className="absolute inset-0 w-full h-full"
+      >
+        <img
+          src={heroImage}
+          alt="Majestic Kedarnath Temple with snow-capped Himalayan peaks at sunrise"
+          className="absolute inset-0 w-full h-full object-cover"
+          width={1920}
+          height={1080}
+        />
+        <div className="absolute inset-0 gradient-hero" />
+      </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center pt-16 pb-32">
-        <p className="text-accent font-body font-medium text-sm md:text-base tracking-widest uppercase mb-4 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+      <motion.div 
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 container mx-auto px-4 text-center pt-16 pb-32"
+      >
+        <motion.p variants={staggerItem} className="text-accent font-body font-medium text-sm md:text-base tracking-widest uppercase mb-4">
           🏔 Himalayan Travel Experts Since 2019
-        </p>
+        </motion.p>
 
-        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold text-background leading-tight mb-6 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+        <motion.h1 variants={staggerItem} className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold text-background leading-tight mb-6">
           Discover the Soul<br className="hidden md:block" /> of the Himalayas
-        </h1>
+        </motion.h1>
 
-        <p className="font-body text-base md:text-lg text-background/70 max-w-2xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+        <motion.p variants={staggerItem} className="font-body text-base md:text-lg text-background/70 max-w-2xl mx-auto mb-8">
           Handcrafted journeys to Kedarnath, Ladakh, Valley of Flowers and beyond — built around you, not a template.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 animate-fade-up" style={{ animationDelay: "0.4s" }}>
-          <Button 
-            size="lg" 
-            onClick={() => navigate("/packages")}
-            className="gradient-accent text-accent-foreground font-semibold px-8 text-base hover:scale-[1.02] transition-transform"
-          >
-            Explore Packages
-          </Button>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            onClick={() => document.getElementById("enquiry")?.scrollIntoView({ behavior: "smooth" })}
-            className="bg-transparent border-white text-white hover:bg-white/20 hover:text-white font-medium px-8 text-base"
-          >
-            Plan Custom Trip →
-          </Button>
-        </div>
+        <motion.div variants={staggerItem} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+          <MagneticButton>
+            <Button 
+              size="lg" 
+              onClick={() => navigate("/packages")}
+              className="gradient-accent text-accent-foreground font-semibold px-8 text-base hover:scale-[1.02] transition-transform shadow-lg"
+            >
+              Explore Packages
+            </Button>
+          </MagneticButton>
+          <MagneticButton>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              onClick={() => document.getElementById("enquiry")?.scrollIntoView({ behavior: "smooth" })}
+              className="bg-transparent border-white text-white hover:bg-white/20 hover:text-white font-medium px-8 text-base shadow-sm backdrop-blur-sm"
+            >
+              Plan Custom Trip →
+            </Button>
+          </MagneticButton>
+        </motion.div>
 
         {/* Stats */}
-        <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 animate-fade-up" style={{ animationDelay: "0.5s" }}>
+        <motion.div variants={staggerItem} className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
           {stats.map((stat, i) => (
             <div key={i} className="flex items-center gap-2 text-background/80 text-sm">
               <span>{stat.icon}</span>
@@ -67,17 +88,17 @@ const HeroSection = () => {
               {i < stats.length - 1 && <span className="hidden md:inline text-background/30 ml-4">|</span>}
             </div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Search Widget */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 px-4">
+      <ScrollReveal delay={0.6} className="absolute bottom-0 left-0 right-0 z-20 px-4">
         <div className="container mx-auto -mb-12">
-          <div className="bg-background rounded-xl shadow-elevated p-4 md:p-6">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+          <div className="bg-background rounded-xl shadow-elevated p-4 md:p-6 relative overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-3 relative z-10">
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <select className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none">
+                <select className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none cursor-pointer hover:border-primary/50">
                   <option value="">Destination</option>
                   <option>Kedarnath</option>
                   <option>Ladakh</option>
@@ -89,11 +110,11 @@ const HeroSection = () => {
               </div>
               <div className="relative">
                 <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <input type="date" className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" />
+                <input type="date" className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all cursor-pointer hover:border-primary/50" />
               </div>
               <div className="relative">
                 <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <select className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none">
+                <select className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none cursor-pointer hover:border-primary/50">
                   <option value="">Travellers</option>
                   <option>1 Person</option>
                   <option>2 People</option>
@@ -102,7 +123,7 @@ const HeroSection = () => {
                 </select>
               </div>
               <div className="relative">
-                <select className="w-full px-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none">
+                <select className="w-full px-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none cursor-pointer hover:border-primary/50">
                   <option value="">Tour Type</option>
                   <option>Honeymoon</option>
                   <option>Family</option>
@@ -113,17 +134,17 @@ const HeroSection = () => {
               </div>
               <Button 
                 onClick={() => navigate("/packages")}
-                className="gradient-primary text-primary-foreground font-semibold py-3 h-auto text-sm"
+                className="gradient-primary text-primary-foreground font-semibold py-3 h-auto text-sm transition-transform hover:scale-[1.02] hover:shadow-lg"
               >
                 <Search className="h-4 w-4 mr-2" /> Search Packages
               </Button>
             </div>
-            <div className="flex flex-wrap items-center gap-2 mt-4">
+            <div className="flex flex-wrap items-center gap-2 mt-4 relative z-10">
               <span className="text-xs text-muted-foreground font-medium">Popular:</span>
               {popularTags.map((tag) => (
                 <button
                   key={tag}
-                  className="text-xs px-3 py-1 rounded-full bg-surface-2 text-primary hover:bg-primary hover:text-primary-foreground transition-colors font-medium"
+                  className="text-xs px-3 py-1 rounded-full bg-surface-2 text-primary hover:bg-primary hover:text-primary-foreground transition-colors font-medium border border-transparent hover:border-primary/20"
                 >
                   #{tag}
                 </button>
@@ -131,7 +152,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

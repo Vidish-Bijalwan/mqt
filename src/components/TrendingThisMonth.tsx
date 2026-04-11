@@ -67,9 +67,8 @@ const TrendingThisMonth = ({ packages, title = "Trending This Month" }: Trending
                   {pkg.title}
                 </h3>
                 <div className="flex items-center justify-between">
-                  <span className="font-body font-bold text-accent text-base">
-                    ₹{pkg.price.toLocaleString("en-IN")}
-                    <span className="text-xs font-normal text-muted-foreground">/person</span>
+                  <span className="text-[12px] text-muted-foreground font-body italic mt-1 pb-[2px]">
+                    Pricing on enquiry
                   </span>
                   {pkg.lastBookedHours && (
                     <span className="text-xs text-muted-foreground">

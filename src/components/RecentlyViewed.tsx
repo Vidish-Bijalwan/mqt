@@ -53,11 +53,11 @@ const RecentlyViewed = ({ excludeSlug, title = "Recently Viewed" }: RecentlyView
             const dest = !isPackage ? (item.data as DestinationData) : null;
             const href = isPackage
               ? `/packages/${pkg!.categories[0]}/${pkg!.slug}`
-              : `/destinations/${dest!.slug}`;
+              : `/destinations/${dest!.stateSlug}/${dest!.slug}`;
             const title = isPackage ? pkg!.title : dest!.name;
             const image = isPackage ? pkg!.image : dest!.image;
             const sub = isPackage
-              ? `₹${pkg!.price.toLocaleString("en-IN")}/person`
+              ? `${pkg!.duration.nights}N / ${pkg!.duration.days}D`
               : dest!.tagline ?? dest!.state;
 
             return (

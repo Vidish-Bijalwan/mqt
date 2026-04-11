@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Clock, Star, MapPin } from "lucide-react";
 import type { TourPackage, Destination } from "@/data/packages";
-import type { DestinationData } from "@/data/destinations";
+import { destinationsData, type DestinationData } from "@/data/destinations";
 
 interface RelatedPackageCardsProps {
   type: "package";
@@ -61,8 +61,8 @@ const RelatedCards = (props: RelatedCardsProps) => {
                     {pkg.title}
                   </h3>
                   <div className="flex items-center justify-between">
-                    <span className="font-body font-bold text-accent">
-                      From ₹{pkg.price.toLocaleString("en-IN")}
+                    <span className="text-[12px] text-muted-foreground font-body italic mt-1 pb-[2px]">
+                      Pricing on enquiry
                     </span>
                     <div className="flex items-center gap-1 text-xs text-muted-foreground">
                       <Star className="h-3 w-3 fill-accent text-accent" />
@@ -79,6 +79,7 @@ const RelatedCards = (props: RelatedCardsProps) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {(props as RelatedDestinationCardsProps).items.map((dest) => {
               const slug = "slug" in dest ? dest.slug : dest.slug;
+              const stateSlug = "stateSlug" in dest ? dest.stateSlug : destinationsData.find(d => d.slug === slug)?.stateSlug || "india";
               const name = "name" in dest ? dest.name : dest.name;
               const image = "image" in dest ? dest.image : dest.image;
               const count = "packagesCount" in dest ? dest.packagesCount : undefined;
@@ -86,7 +87,7 @@ const RelatedCards = (props: RelatedCardsProps) => {
               return (
                 <Link
                   key={slug}
-                  to={`/destinations/${slug}`}
+                  to={`/destinations/${stateSlug}/${slug}`}
                   className="group relative rounded-xl overflow-hidden aspect-[4/3] block card-hover shadow-soft"
                 >
                   <img

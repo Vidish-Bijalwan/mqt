@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
+import EnquirySection from "@/components/EnquirySection";
 import FAQAccordion from "@/components/FAQAccordion";
 import InquiryBanner from "@/components/InquiryBanner";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
@@ -14,21 +15,24 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { setLastDestination } from "@/lib/personalization";
 import { MapPin, Thermometer, CloudRain, CalendarDays } from "lucide-react";
 
+import { getStateBySlug } from "@/data/india-states";
+
 const DestinationDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const { stateSlug, slug } = useParams<{ stateSlug: string, slug: string }>();
   const { track } = useAnalytics();
 
   const destination = useMemo(() => destinationsData.find((d) => d.slug === slug), [slug]);
+  const stateData = useMemo(() => stateSlug ? getStateBySlug(stateSlug) : undefined, [stateSlug]);
   const relatedPackages = useMemo(() => destination ? getTopPackagesForDestination(destination.slug, tourPackages, 6) : [], [destination]);
 
   useEffect(() => {
-    if (destination) {
-      document.title = `${destination.name} Tour Packages & Guide | MyQuickTrippers`;
+    if (destination && stateData) {
+      document.title = `${destination.name}, ${stateData.name} Tour Packages & Guide | MyQuickTrippers`;
       window.scrollTo(0, 0);
       setLastDestination(destination.name);
-      track("page_view", { type: "destination", slug: destination.slug });
+      track("page_view", { type: "destination", slug: destination.slug, state: stateData.slug });
     }
-  }, [destination, track]);
+  }, [destination, stateData, track]);
 
   if (!destination) {
     return <Navigate to="/404" replace />;
@@ -56,7 +60,11 @@ const DestinationDetail = () => {
         backgroundImage={destination.image}
         badge={destination.tagline}
         quickFacts={quickFacts}
-        breadcrumb={[{ label: "Destinations", href: "/destinations" }, { label: destination.name }]}
+        breadcrumb={[
+          { label: "Destinations", href: "/destinations" },
+          ...(stateData ? [{ label: stateData.name, href: `/destinations/${stateData.slug}` }] : []),
+          { label: destination.name }
+        ]}
       />
 
       {/* About & Weather Section */}
@@ -110,6 +118,8 @@ const DestinationDetail = () => {
           title={`FAQs about ${destination.name}`} 
         />
       )}
+
+      <EnquirySection />
 
       <InquiryBanner 
         title={`Ready to explore ${destination.name}?`}

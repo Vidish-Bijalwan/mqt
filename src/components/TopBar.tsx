@@ -28,8 +28,7 @@ const TopBar = () => {
             <MessageCircle className="h-3.5 w-3.5" />
             <span>WhatsApp Chat</span>
           </a>
-          <span className="text-primary-foreground/50">|</span>
-          <span className="text-primary-foreground/80">₹ INR</span>
+          <span className="text-primary-foreground/80">Premium Trips</span>
         </div>
       </div>
     </div>
