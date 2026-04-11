@@ -6,6 +6,11 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
 const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 
+// Fallback strings prevent `@supabase/supabase-js` from crashing the DOM render sequence
+// if the production Vercel container misses the env variables during the Vite build step.
+const safeUrl = supabaseUrl || "https://missing-url.supabase.co";
+const safeKey = supabaseKey || "missing_key";
+
 if (!supabaseUrl || !supabaseKey) {
   console.error(
     "🚨 [Supabase] FATAL: Missing VITE_SUPABASE_URL or VITE_SUPABASE_PUBLISHABLE_KEY in environment variables. Database connections will fail globally."
@@ -280,7 +285,7 @@ export interface Database {
 // ─────────────────────────────────────────────────────────────────────────────
 // Singleton Browser Supabase Client
 // ─────────────────────────────────────────────────────────────────────────────
-export const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
+export const supabase = createClient<Database>(safeUrl, safeKey, {
   auth: {
     persistSession: true, // required for preserving Admin identity across reloads
     autoRefreshToken: true,
