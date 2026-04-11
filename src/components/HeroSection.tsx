@@ -1,6 +1,7 @@
 import { Search, Calendar, Users, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-kedarnath.jpg";
+import { useNavigate } from "react-router-dom";
 
 const stats = [
   { icon: "🏔", label: "200+ Trips Completed" },
@@ -12,6 +13,7 @@ const stats = [
 const popularTags = ["Kedarnath", "Ladakh", "Valley of Flowers", "Kashmir", "Varanasi"];
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       {/* Background */}
@@ -39,10 +41,19 @@ const HeroSection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 animate-fade-up" style={{ animationDelay: "0.4s" }}>
-          <Button size="lg" className="gradient-accent text-accent-foreground font-semibold px-8 text-base hover:scale-[1.02] transition-transform">
+          <Button 
+            size="lg" 
+            onClick={() => navigate("/packages")}
+            className="gradient-accent text-accent-foreground font-semibold px-8 text-base hover:scale-[1.02] transition-transform"
+          >
             Explore Packages
           </Button>
-          <Button size="lg" variant="outline" className="border-background/40 text-background hover:bg-background/10 font-medium px-8 text-base">
+          <Button 
+            size="lg" 
+            variant="outline" 
+            onClick={() => document.getElementById("enquiry")?.scrollIntoView({ behavior: "smooth" })}
+            className="bg-transparent border-white text-white hover:bg-white/20 hover:text-white font-medium px-8 text-base"
+          >
             Plan Custom Trip →
           </Button>
         </div>
@@ -100,7 +111,10 @@ const HeroSection = () => {
                   <option>Solo</option>
                 </select>
               </div>
-              <Button className="gradient-primary text-primary-foreground font-semibold py-3 h-auto text-sm">
+              <Button 
+                onClick={() => navigate("/packages")}
+                className="gradient-primary text-primary-foreground font-semibold py-3 h-auto text-sm"
+              >
                 <Search className="h-4 w-4 mr-2" /> Search Packages
               </Button>
             </div>
