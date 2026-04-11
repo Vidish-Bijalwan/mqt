@@ -1,6 +1,23 @@
 import { supabase, type DbTestimonial } from "@/lib/supabase";
 import { allTestimonials } from "@/data/testimonials";
+import { resolveImageSource } from "@/lib/storage";
 import type { ServiceResponse } from "./enquiryService";
+
+// Helper to map DB to Domain
+const mapDbToDomain = (row: DbTestimonial): any => ({
+  id: row.id,
+  name: row.name,
+  location: row.location || "",
+  tour: row.tour || "",
+  destination: row.destination || "",
+  date: row.date || "",
+  rating: row.rating,
+  text: row.text,
+  initials: row.initials,
+  avatar: row.avatar_url ? resolveImageSource("testimonial-images", row.avatar_url, "") : undefined,
+  verified: row.verified,
+  source: row.source || "Direct",
+});
 
 // Helper to map TS data to Db shape for fallback
 const mapStaticToDb = (t: any): DbTestimonial => ({
@@ -40,11 +57,11 @@ export async function getTestimonials(limit?: number): Promise<ServiceResponse<D
     if (error) throw error;
     if (!data || data.length === 0) throw new Error("No data found");
 
-    return { data, error: null };
+    return { data: data.map(mapDbToDomain), error: null };
   } catch (err) {
     console.warn("[TestimonialService] Falling back to static data", err);
     // Fallback
-    let fallback = allTestimonials.map(mapStaticToDb);
+    let fallback = [...allTestimonials];
     if (limit) fallback = fallback.slice(0, limit);
     return { data: fallback, error: null };
   }
@@ -69,12 +86,11 @@ export async function getTestimonialsByDestination(destination: string, limit?: 
     if (error) throw error;
     if (!data || data.length === 0) throw new Error("No data found");
 
-    return { data, error: null };
+    return { data: data.map(mapDbToDomain), error: null };
   } catch (err) {
     console.warn(`[TestimonialService] Falling back to static data for destination: ${destination}`, err);
     let fallback = allTestimonials
-      .filter((t) => t.destination.toLowerCase() === destination.toLowerCase())
-      .map(mapStaticToDb);
+      .filter((t) => t.destination.toLowerCase() === destination.toLowerCase());
     if (limit) fallback = fallback.slice(0, limit);
     return { data: fallback, error: null };
   }

@@ -8,6 +8,7 @@ export interface Testimonial {
   rating: number;
   text: string;
   initials: string;
+  avatar?: string;
   verified: boolean;
   source?: "Google" | "TripAdvisor" | "Direct";
 }

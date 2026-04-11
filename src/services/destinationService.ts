@@ -1,5 +1,6 @@
 import { supabase, type DbDestination, type DbDestinationItineraryDay } from "@/lib/supabase";
 import { destinationsData, type DestinationData } from "@/data/destinations";
+import { resolveImageSource } from "@/lib/storage";
 import type { ServiceResponse } from "./enquiryService";
 
 type DbDestinationWithItinerary = DbDestination & {
@@ -12,17 +13,19 @@ const mapDbToDomain = (row: DbDestinationWithItinerary): DestinationData => {
     ? [...row.destination_itinerary_days].sort((a, b) => a.day_number - b.day_number)
     : [];
 
+  // Locate fallback to pull the local vite asset string if DB string is null
+  const fallbackObj = destinationsData.find(d => d.slug === row.slug);
+
   return {
     id: row.id,
     name: row.name,
     slug: row.slug,
-    stateSlug: row.state_ut_id, // We will fake stateSlug here for now since states_ut uses real IDs now, but wait! The row.slug is what matters. To avoid breaking relations, we should fetch state_slug from the joint state table.
-    // For now to keep the fallback seamless:
+    stateSlug: row.state_ut_id, // See comment in getDestinationBySlug below
     state: row.state,
     country: row.country,
     tagline: row.tagline || "",
-    image: row.image_url,
-    heroImage: row.hero_image_url,
+    image: resolveImageSource("destination-images", row.image_url, fallbackObj?.image || ""),
+    heroImage: resolveImageSource("destination-images", row.hero_image_url, fallbackObj?.heroImage || ""),
     altitude: row.altitude || undefined,
     bestSeason: row.best_season,
     idealDuration: row.ideal_duration,

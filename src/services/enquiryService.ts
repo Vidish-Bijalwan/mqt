@@ -48,3 +48,39 @@ export async function submitEnquiry(enquiry: DbEnquiryInsert, honeypotValue: str
     return { data: null, error: error as Error };
   }
 }
+
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Admin Dashboard API Layer
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Requires valid authenticated session.
+ */
+export async function getEnquiries(): Promise<ServiceResponse<any[]>> {
+  try {
+    const { data, error } = await supabase
+      .from("enquiries")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    console.error("[EnquiryService] Error fetching enquiries:", error);
+    return { data: null, error: error as Error };
+  }
+}
+
+export async function updateEnquiryStatus(id: string, status: "new" | "contacted" | "converted"): Promise<ServiceResponse<boolean>> {
+  try {
+    const { error } = await supabase
+      .from("enquiries")
+      .update({ status, updated_at: new Date().toISOString() })
+      .eq("id", id);
+      
+    if (error) throw error;
+    return { data: true, error: null };
+  } catch (error) {
+    console.error("[EnquiryService] Error updating enquiry:", error);
+    return { data: null, error: error as Error };
+  }
+}

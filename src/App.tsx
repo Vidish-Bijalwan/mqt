@@ -17,6 +17,14 @@ import Blog from "./pages/Blog.tsx";
 import BlogDetail from "./pages/BlogDetail.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
+// Admin Imports
+import { ProtectedRoute } from "./components/admin/ProtectedRoute.tsx";
+import { AdminLayout } from "./components/admin/AdminLayout.tsx";
+import AdminLogin from "./pages/admin/AdminLogin.tsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
+import AdminEnquiries from "./pages/admin/AdminEnquiries.tsx";
+import AdminMedia from "./pages/admin/AdminMedia.tsx";
+
 const queryClient = new QueryClient();
 
 const AnimatedRoutes = () => {
@@ -45,6 +53,23 @@ const AnimatedRoutes = () => {
         <Route path="/terms" element={<NotFound />} />
         <Route path="/privacy" element={<NotFound />} />
         <Route path="/refund" element={<NotFound />} />
+        
+        {/* Admin Public Route */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* Admin Protected Workspace */}
+        <Route element={<ProtectedRoute />}>
+          <Route element={<AdminLayout />}>
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/enquiries" element={<AdminEnquiries />} />
+            <Route path="/admin/content" element={
+              <div className="bg-white rounded-xl border border-dashed border-gray-300 p-12 text-center">
+                <p className="text-gray-500 font-medium">Content Manager coming soon...</p>
+              </div>
+            } />
+            <Route path="/admin/media" element={<AdminMedia />} />
+          </Route>
+        </Route>
 
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />

@@ -1,38 +1,43 @@
 import { supabase, type DbPackagePublic } from "@/lib/supabase";
 import { tourPackages, type TourPackage } from "@/data/packages";
+import { resolveImageSource } from "@/lib/storage";
 import type { ServiceResponse } from "./enquiryService";
 
-const mapDbToDomain = (row: DbPackagePublic): TourPackage => ({
-  id: row.id,
-  title: row.title,
-  slug: row.slug,
-  destination: row.destination,
-  state: row.state,
-  country: row.country,
-  type: row.type,
-  duration: { nights: row.duration_nights, days: row.duration_days },
-  price: 0, // Safely stripped from DB view
-  originalPrice: 0, // Safely stripped from DB view
-  rating: Number(row.rating),
-  reviewsCount: row.reviews_count,
-  image: row.image_url,
-  badge: row.badge || undefined,
-  includes: row.includes || [],
-  categories: row.categories || [],
-  tags: row.tags || [],
-  highlights: row.highlights || [],
-  season: row.season,
-  availability: row.availability,
-  popularityScore: row.popularity_score,
-  bookingCount: row.booking_count,
-  trending: row.trending,
-  featured: row.featured,
-  seatsLeft: row.seats_left || undefined,
-  overview: row.overview || undefined,
-  itineraryHighlights: row.itinerary_highlights || undefined,
-  inclusions: row.inclusions || undefined,
-  exclusions: row.exclusions || undefined,
-});
+const mapDbToDomain = (row: DbPackagePublic): TourPackage => {
+  const fallbackObj = tourPackages.find(p => p.slug === row.slug);
+  
+  return {
+    id: row.id,
+    title: row.title,
+    slug: row.slug,
+    destination: row.destination,
+    state: row.state,
+    country: row.country,
+    type: row.type,
+    duration: { nights: row.duration_nights, days: row.duration_days },
+    price: 0, // Safely stripped from DB view
+    originalPrice: 0, // Safely stripped from DB view
+    rating: Number(row.rating),
+    reviewsCount: row.reviews_count,
+    image: resolveImageSource("package-images", row.image_url, fallbackObj?.image || ""),
+    badge: row.badge || undefined,
+    includes: row.includes || [],
+    categories: row.categories || [],
+    tags: row.tags || [],
+    highlights: row.highlights || [],
+    season: row.season,
+    availability: row.availability,
+    popularityScore: row.popularity_score,
+    bookingCount: row.booking_count,
+    trending: row.trending,
+    featured: row.featured,
+    seatsLeft: row.seats_left || undefined,
+    overview: row.overview || undefined,
+    itineraryHighlights: row.itinerary_highlights || undefined,
+    inclusions: row.inclusions || undefined,
+    exclusions: row.exclusions || undefined,
+  };
+};
 
 export async function getPackages(limit?: number): Promise<ServiceResponse<TourPackage[]>> {
   try {

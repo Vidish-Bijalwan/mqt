@@ -156,6 +156,7 @@ export interface DbTestimonial {
   rating: number;
   text: string;
   initials: string;
+  avatar_url: string | null;
   verified: boolean;
   source: "Google" | "TripAdvisor" | "Direct" | null;
   featured: boolean;

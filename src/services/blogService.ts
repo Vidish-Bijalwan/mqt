@@ -1,30 +1,35 @@
 import { supabase, type DbBlogPost } from "@/lib/supabase";
 import { blogPosts, type BlogPost } from "@/data/blog";
+import { resolveImageSource } from "@/lib/storage";
 import type { ServiceResponse } from "./enquiryService";
 
 // Mapper to map snake_case DB row back to camelCase Domain Model
-const mapDbToDomain = (row: DbBlogPost): BlogPost => ({
-  id: row.id,
-  slug: row.slug,
-  title: row.title,
-  metaDescription: row.meta_description,
-  category: row.category,
-  tags: row.tags || [],
-  author: {
-    name: row.author_name,
-    role: row.author_role,
-    initials: row.author_initials,
-  },
-  date: row.date,
-  readTime: row.read_time,
-  excerpt: row.excerpt,
-  image: row.image_url, // For now, this is standard
+const mapDbToDomain = (row: DbBlogPost): BlogPost => {
+  const fallbackObj = blogPosts.find(p => p.slug === row.slug);
+
+  return {
+    id: row.id,
+    slug: row.slug,
+    title: row.title,
+    metaDescription: row.meta_description,
+    category: row.category,
+    tags: row.tags || [],
+    author: {
+      name: row.author_name,
+      role: row.author_role,
+      initials: row.author_initials,
+    },
+    date: row.date,
+    readTime: row.read_time,
+    excerpt: row.excerpt,
+    image: resolveImageSource("blog-images", row.image_url, fallbackObj?.image || ""),
   content: row.content as any,
   relatedPackageSlugs: row.related_package_slugs || [],
-  relatedDestinationSlugs: row.related_destination_slugs || [],
-  relatedBlogSlugs: row.related_blog_slugs || [],
-  featured: row.featured,
-});
+    relatedDestinationSlugs: row.related_destination_slugs || [],
+    relatedBlogSlugs: row.related_blog_slugs || [],
+    featured: row.featured,
+  };
+};
 
 export async function getBlogPosts(limit?: number): Promise<ServiceResponse<BlogPost[]>> {
   try {
