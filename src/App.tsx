@@ -13,6 +13,7 @@ import ValleyOfFlowers from "./pages/destinations/ValleyOfFlowers.tsx";
 import Varanasi from "./pages/destinations/Varanasi.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import WhatsAppButton from "./components/WhatsAppButton.tsx";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <WhatsAppButton />
+      <Analytics />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
