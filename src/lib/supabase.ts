@@ -282,8 +282,8 @@ export interface Database {
 // ─────────────────────────────────────────────────────────────────────────────
 export const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
   auth: {
-    persistSession: false, // public website — no user auth
-    autoRefreshToken: false,
+    persistSession: true, // required for preserving Admin identity across reloads
+    autoRefreshToken: true,
   },
   global: {
     headers: {
