@@ -12,6 +12,7 @@ import Ladakh from "./pages/destinations/Ladakh.tsx";
 import ValleyOfFlowers from "./pages/destinations/ValleyOfFlowers.tsx";
 import Varanasi from "./pages/destinations/Varanasi.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import WhatsAppButton from "./components/WhatsAppButton.tsx";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <WhatsAppButton />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
