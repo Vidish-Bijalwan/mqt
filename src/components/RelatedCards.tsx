@@ -78,11 +78,11 @@ const RelatedCards = (props: RelatedCardsProps) => {
         {type === "destination" && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {(props as RelatedDestinationCardsProps).items.map((dest) => {
-              const slug = "slug" in dest ? dest.slug : dest.slug;
-              const stateSlug = "stateSlug" in dest ? dest.stateSlug : destinationsData.find(d => d.slug === slug)?.stateSlug || "india";
-              const name = "name" in dest ? dest.name : dest.name;
-              const image = "image" in dest ? dest.image : dest.image;
-              const count = "packagesCount" in dest ? dest.packagesCount : undefined;
+              const slug = dest.slug;
+              const stateSlug = "stateSlug" in dest ? (dest as DestinationData).stateSlug : destinationsData.find(d => d.slug === slug)?.stateSlug || "india";
+              const name = dest.name;
+              const image = dest.image;
+              const count = dest.packagesCount;
 
               return (
                 <Link

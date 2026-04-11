@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn, staggerContainer, staggerItem } from "@/lib/motion";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { submitEnquiry } from "@/services/enquiryService";
+import type { DbEnquiryInsert } from "@/lib/supabase";
 
 const EnquirySection = () => {
   const { track } = useAnalytics();
@@ -21,9 +23,12 @@ const EnquirySection = () => {
     tourType: "",
     budget: "",
     requirements: "",
+    honeypot: "",
+    preferredContactMethod: "Phone",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   // Hydrate from localStorage
   useEffect(() => {
@@ -31,18 +36,40 @@ const EnquirySection = () => {
     setFormData((prev) => ({ ...prev, ...prefilled }));
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMsg(null);
     
-    // Simulate API call
-    setTimeout(() => {
-      track("enquiry_submit", { destination: formData.destination, tourType: formData.tourType });
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      // Save info for future auto-fill
-      setPrefilledEnquiry({ name: formData.name, email: formData.email, phone: formData.phone });
-    }, 1200);
+    const enquiryPayload: DbEnquiryInsert = {
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      destination: formData.destination,
+      travel_date: formData.travelDate || null,
+      adults: parseInt(formData.adults) || 2,
+      children: parseInt(formData.children) || 0,
+      travellers_count: (parseInt(formData.adults) || 2) + (parseInt(formData.children) || 0),
+      tour_type: formData.tourType,
+      budget_tier: formData.budget,
+      requirements: formData.requirements,
+      preferred_contact_method: formData.preferredContactMethod,
+      source_page: window.location.pathname,
+      source_path: window.location.href,
+    };
+
+    const { data, error } = await submitEnquiry(enquiryPayload, formData.honeypot);
+
+    setIsSubmitting(false);
+
+    if (error) {
+      setErrorMsg(error.message);
+      return;
+    }
+
+    track("enquiry_submit", { destination: formData.destination, tourType: formData.tourType });
+    setIsSuccess(true);
+    setPrefilledEnquiry({ name: formData.name, email: formData.email, phone: formData.phone });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -176,6 +203,42 @@ const EnquirySection = () => {
                   <textarea id="requirements" name="requirements" rows={3} value={formData.requirements || ""} onChange={handleChange}
                     className="w-full px-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all resize-none" placeholder="Any special requests..." />
                 </div>
+
+                {/* Preferred Contact Method */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Preferred Contact Method</label>
+                  <div className="flex gap-4">
+                    <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer">
+                      <input type="radio" name="preferredContactMethod" value="Phone" checked={formData.preferredContactMethod === "Phone"} onChange={handleChange} className="accent-primary" />
+                      Phone Call
+                    </label>
+                    <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer">
+                      <input type="radio" name="preferredContactMethod" value="WhatsApp" checked={formData.preferredContactMethod === "WhatsApp"} onChange={handleChange} className="accent-primary" />
+                      WhatsApp
+                    </label>
+                    <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer">
+                      <input type="radio" name="preferredContactMethod" value="Email" checked={formData.preferredContactMethod === "Email"} onChange={handleChange} className="accent-primary" />
+                      Email
+                    </label>
+                  </div>
+                </div>
+
+                {/* Honeypot field - hidden from real users */}
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={formData.honeypot || ""}
+                  onChange={handleChange}
+                  style={{ display: "none" }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
+                {errorMsg && (
+                  <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-200">
+                    {errorMsg}
+                  </div>
+                )}
 
                 <MagneticButton>
                   <Button type="submit" size="lg" disabled={isSubmitting} className="w-full gradient-accent text-accent-foreground font-semibold text-base py-6 h-auto transition-transform hover:shadow-lg">

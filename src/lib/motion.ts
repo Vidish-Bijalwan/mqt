@@ -1,8 +1,8 @@
 import { Variants } from "framer-motion";
 
 // Global premium easings
-export const EASE_OUT_UP = [0.16, 1, 0.3, 1];
-export const EASE_SMOOTH = [0.4, 0, 0.2, 1];
+export const EASE_OUT_UP: [number, number, number, number] = [0.16, 1, 0.3, 1];
+export const EASE_SMOOTH: [number, number, number, number] = [0.4, 0, 0.2, 1];
 
 export const defaultTransition = {
   duration: 0.6,
