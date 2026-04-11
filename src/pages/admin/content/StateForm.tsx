@@ -28,13 +28,13 @@ export default function StateForm() {
 
   const { data: existing, isLoading: editLoading } = useQuery({
     queryKey: ["admin-state", id],
-    queryFn: () => getStateById(id!),
+    queryFn: () => getStateById(id!).then(r => r.data),
     enabled: isEdit,
   });
 
   useEffect(() => {
-    if (existing?.data) {
-      const { id: _id, created_at, updated_at, ...rest } = existing.data as any;
+    if (existing) {
+      const { id: _id, created_at, updated_at, ...rest } = existing as any;
       setForm(rest);
       setAutoSlug(false);
     }

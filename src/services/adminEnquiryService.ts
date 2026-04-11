@@ -69,7 +69,7 @@ export async function updateEnquiryStatus(
   try {
     const { error } = await supabase
       .from("enquiries")
-      .update({ status, updated_at: new Date().toISOString() })
+      .update({ status, updated_at: new Date().toISOString() } as any)
       .eq("id", id);
     if (error) throw error;
     return { data: true, error: null };
@@ -85,7 +85,7 @@ export async function updateEnquiryNotes(
   try {
     const { error } = await supabase
       .from("enquiries")
-      .update({ admin_notes, updated_at: new Date().toISOString() })
+      .update({ admin_notes, updated_at: new Date().toISOString() } as any)
       .eq("id", id);
     if (error) throw error;
     return { data: true, error: null };

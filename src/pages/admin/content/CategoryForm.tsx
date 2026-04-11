@@ -23,13 +23,13 @@ export default function CategoryForm() {
 
   const { data: existing, isLoading } = useQuery({
     queryKey: ["admin-category", id],
-    queryFn: () => getCategoryById(id!),
+    queryFn: () => getCategoryById(id!).then(r => r.data),
     enabled: isEdit,
   });
 
   useEffect(() => {
-    if (existing?.data) {
-      const { id: _id, created_at, updated_at, ...rest } = existing.data as any;
+    if (existing) {
+      const { id: _id, created_at, updated_at, ...rest } = existing as any;
       setForm(rest);
       setAutoSlug(false);
     }

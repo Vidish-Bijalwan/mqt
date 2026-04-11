@@ -39,7 +39,7 @@ export async function getFAQById(id: string): Promise<ServiceResponse<FAQ>> {
 
 export async function createFAQ(payload: FAQInsert): Promise<ServiceResponse<FAQ>> {
   try {
-    const { data, error } = await supabase.from("faqs").insert([payload]).select().single();
+    const { data, error } = await supabase.from("faqs").insert([payload] as any).select().single();
     if (error) throw error;
     return { data: data as FAQ, error: null };
   } catch (e) {
@@ -51,7 +51,7 @@ export async function updateFAQ(id: string, payload: Partial<FAQInsert>): Promis
   try {
     const { data, error } = await supabase
       .from("faqs")
-      .update({ ...payload, updated_at: new Date().toISOString() })
+      .update({ ...payload, updated_at: new Date().toISOString() } as any)
       .eq("id", id).select().single();
     if (error) throw error;
     return { data: data as FAQ, error: null };

@@ -187,7 +187,7 @@ export default function AdminEnquiries() {
 
   const { data: enquiries, isLoading, isError } = useQuery({
     queryKey: ["admin-enquiries", activeStatus, search],
-    queryFn: () => listEnquiries({ status: activeStatus, search }),
+    queryFn: () => listEnquiries({ status: activeStatus, search }).then(r => r.data ?? []),
     staleTime: 30_000,
   });
 

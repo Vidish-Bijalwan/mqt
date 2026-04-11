@@ -16,7 +16,7 @@ export default function AdminStates() {
 
   const { data: states, isLoading } = useQuery({
     queryKey: ["admin-states", search, regionFilter, typeFilter],
-    queryFn: () => listStates({ search, region: regionFilter, type: typeFilter }),
+    queryFn: () => listStates({ search, region: regionFilter, type: typeFilter }).then(r => r.data ?? []),
     staleTime: 30_000,
   });
 

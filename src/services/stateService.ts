@@ -49,7 +49,7 @@ export async function getStateById(id: string): Promise<ServiceResponse<StateUT>
 
 export async function createState(payload: StateUTInsert): Promise<ServiceResponse<StateUT>> {
   try {
-    const { data, error } = await supabase.from("states_uts").insert([payload]).select().single();
+    const { data, error } = await supabase.from("states_uts").insert([payload] as any).select().single();
     if (error) throw error;
     return { data: data as StateUT, error: null };
   } catch (e) {
@@ -61,7 +61,7 @@ export async function updateState(id: string, payload: Partial<StateUTInsert>): 
   try {
     const { data, error } = await supabase
       .from("states_uts")
-      .update({ ...payload, updated_at: new Date().toISOString() })
+      .update({ ...payload, updated_at: new Date().toISOString() } as any)
       .eq("id", id)
       .select()
       .single();

@@ -20,7 +20,7 @@ export function AdminFAQs() {
 
   const { data: faqs, isLoading } = useQuery({
     queryKey: ["admin-faqs", scope],
-    queryFn: () => listFAQs(scope),
+    queryFn: () => listFAQs(scope).then(r => r.data ?? []),
     staleTime: 30_000,
   });
 
@@ -69,7 +69,7 @@ export function AdminFAQs() {
                 </tr>
               </thead>
               <tbody>
-                {(faqs as FAQ[]).map(faq => (
+                {faqs.map(faq => (
                   <tr key={faq.id} className="border-b border-gray-50 hover:bg-gray-50 last:border-0">
                     <td className="px-5 py-4"><span className="text-[10px] font-bold uppercase bg-violet-50 text-violet-600 px-2 py-1 rounded-full">{faq.scope}</span></td>
                     <td className="px-5 py-4 font-medium text-gray-800 max-w-xs truncate">{faq.question}</td>
@@ -118,13 +118,13 @@ export function FAQForm() {
 
   const { data: existing, isLoading } = useQuery({
     queryKey: ["admin-faq", id],
-    queryFn: () => getFAQById(id!),
+    queryFn: () => getFAQById(id!).then(r => r.data),
     enabled: isEdit,
   });
 
   useEffect(() => {
-    if (existing?.data) {
-      const { id: _id, created_at, updated_at, ...rest } = existing.data as any;
+    if (existing) {
+      const { id: _id, created_at, updated_at, ...rest } = existing as any;
       setForm(rest);
     }
   }, [existing]);

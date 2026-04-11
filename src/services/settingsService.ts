@@ -51,17 +51,18 @@ export async function upsertSiteSettings(payload: Partial<SiteSettings>): Promis
   try {
     const { data: existing } = await supabase.from("site_settings").select("id").limit(1).single();
     let result;
-    if (existing?.id) {
+    const existingId = (existing as any)?.id;
+    if (existingId) {
       result = await supabase
         .from("site_settings")
-        .update({ ...payload, updated_at: new Date().toISOString() })
-        .eq("id", existing.id)
+        .update({ ...payload, updated_at: new Date().toISOString() } as any)
+        .eq("id", existingId)
         .select()
         .single();
     } else {
       result = await supabase
         .from("site_settings")
-        .insert([{ ...payload, updated_at: new Date().toISOString() }])
+        .insert([{ ...payload, updated_at: new Date().toISOString() }] as any)
         .select()
         .single();
     }
@@ -99,17 +100,18 @@ export async function upsertHomepageSection(
       .single();
 
     let result;
-    if (existing?.id) {
+    const existingId = (existing as any)?.id;
+    if (existingId) {
       result = await supabase
         .from("homepage_sections")
-        .update({ ...payload, updated_at: new Date().toISOString() })
-        .eq("id", existing.id)
+        .update({ ...payload, updated_at: new Date().toISOString() } as any)
+        .eq("id", existingId)
         .select()
         .single();
     } else {
       result = await supabase
         .from("homepage_sections")
-        .insert([{ ...payload, section_key, updated_at: new Date().toISOString() }])
+        .insert([{ ...payload, section_key, updated_at: new Date().toISOString() }] as any)
         .select()
         .single();
     }

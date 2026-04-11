@@ -43,7 +43,7 @@ export async function getCategoryById(id: string): Promise<ServiceResponse<Categ
 
 export async function createCategory(payload: CategoryInsert): Promise<ServiceResponse<Category>> {
   try {
-    const { data, error } = await supabase.from("package_categories").insert([payload]).select().single();
+    const { data, error } = await supabase.from("package_categories").insert([payload] as any).select().single();
     if (error) throw error;
     return { data: data as Category, error: null };
   } catch (e) {
@@ -55,7 +55,7 @@ export async function updateCategory(id: string, payload: Partial<CategoryInsert
   try {
     const { data, error } = await supabase
       .from("package_categories")
-      .update({ ...payload, updated_at: new Date().toISOString() })
+      .update({ ...payload, updated_at: new Date().toISOString() } as any)
       .eq("id", id).select().single();
     if (error) throw error;
     return { data: data as Category, error: null };

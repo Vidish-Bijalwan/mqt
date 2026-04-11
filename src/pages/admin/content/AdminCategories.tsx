@@ -12,7 +12,7 @@ export default function AdminCategories() {
 
   const { data: categories, isLoading } = useQuery({
     queryKey: ["admin-categories", search],
-    queryFn: () => listCategories(search),
+    queryFn: () => listCategories(search).then(r => r.data ?? []),
     staleTime: 30_000,
   });
 
