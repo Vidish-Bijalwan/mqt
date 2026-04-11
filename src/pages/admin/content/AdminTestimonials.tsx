@@ -8,6 +8,7 @@ import {
   createAdminTestimonial, updateAdminTestimonial, toggleTestimonialApproval,
   type AdminTestimonial, type AdminTestimonialInsert
 } from "@/services/adminTestimonialService";
+import { MediaInput } from "@/components/admin/MediaInput";
 
 const inputCls = "w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
 const Field = ({ label, children }: { label: string; children: React.ReactNode }) =>
@@ -211,7 +212,7 @@ export function TestimonialForm() {
               <Field label="Destination Visited"><input type="text" value={form.destination ?? ""} onChange={e => set("destination", e.target.value)} placeholder="e.g. Kashmir" className={inputCls} /></Field>
               <Field label="Tour / Package Name"><input type="text" value={form.tour ?? ""} onChange={e => set("tour", e.target.value)} placeholder="e.g. 5N/6D Premium Kashmir" className={inputCls} /></Field>
             </div>
-            <Field label="Avatar Image Path (Optional)"><input type="text" value={form.avatar_url ?? ""} onChange={e => set("avatar_url", e.target.value)} placeholder="testimonial-images/rahul.webp" className={inputCls} /></Field>
+            <Field label="Avatar Image Path (Optional)"><MediaInput value={form.avatar_url ?? ""} onChange={v => set("avatar_url", v)} defaultBucket="testimonial-images" placeholder="testimonial-images/rahul.webp" /></Field>
           </section>
 
           <section className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">

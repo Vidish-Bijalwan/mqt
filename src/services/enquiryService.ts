@@ -37,7 +37,8 @@ export async function submitEnquiry(enquiry: DbEnquiryInsert, honeypotValue: str
   try {
     const { error } = await supabase
       .from("enquiries")
-      .insert([enquiry]);
+      // @ts-ignore
+      .insert([enquiry] as any);
 
     if (error) throw error;
 
@@ -74,7 +75,8 @@ export async function updateEnquiryStatus(id: string, status: "new" | "contacted
   try {
     const { error } = await supabase
       .from("enquiries")
-      .update({ status, updated_at: new Date().toISOString() })
+      // @ts-ignore
+      .update({ status, updated_at: new Date().toISOString() } as any)
       .eq("id", id);
       
     if (error) throw error;

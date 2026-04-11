@@ -22,6 +22,7 @@ const mapDbToDomain = (row: DbTestimonial): any => ({
 // Helper to map TS data to Db shape for fallback
 const mapStaticToDb = (t: any): DbTestimonial => ({
   id: t.id,
+  avatar_url: t.avatar || "",
   name: t.name,
   location: t.location || "",
   tour: t.tour || "",
@@ -39,7 +40,7 @@ const mapStaticToDb = (t: any): DbTestimonial => ({
   updated_at: new Date().toISOString(),
 });
 
-export async function getTestimonials(limit?: number): Promise<ServiceResponse<DbTestimonial[]>> {
+export async function getTestimonials(limit?: number): Promise<ServiceResponse<any[]>> {
   try {
     let query = supabase
       .from("testimonials")
@@ -63,11 +64,11 @@ export async function getTestimonials(limit?: number): Promise<ServiceResponse<D
     // Fallback
     let fallback = [...allTestimonials];
     if (limit) fallback = fallback.slice(0, limit);
-    return { data: fallback, error: null };
+    return { data: fallback as any[], error: null };
   }
 }
 
-export async function getTestimonialsByDestination(destination: string, limit?: number): Promise<ServiceResponse<DbTestimonial[]>> {
+export async function getTestimonialsByDestination(destination: string, limit?: number): Promise<ServiceResponse<any[]>> {
   try {
     let query = supabase
       .from("testimonials")
@@ -90,8 +91,8 @@ export async function getTestimonialsByDestination(destination: string, limit?: 
   } catch (err) {
     console.warn(`[TestimonialService] Falling back to static data for destination: ${destination}`, err);
     let fallback = allTestimonials
-      .filter((t) => t.destination.toLowerCase() === destination.toLowerCase());
+      .filter((t: any) => t.destination.toLowerCase() === destination.toLowerCase());
     if (limit) fallback = fallback.slice(0, limit);
-    return { data: fallback, error: null };
+    return { data: fallback as any[], error: null };
   }
 }

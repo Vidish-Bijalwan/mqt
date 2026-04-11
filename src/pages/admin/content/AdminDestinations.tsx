@@ -8,6 +8,7 @@ import {
   listAdminDestinations, deleteAdminDestination, getAdminDestinationById,
   createAdminDestination, updateAdminDestination, type AdminDestination, type AdminDestinationInsert
 } from "@/services/adminDestinationService";
+import { MediaInput } from "@/components/admin/MediaInput";
 
 const inputCls = "w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
 
@@ -216,8 +217,8 @@ export function DestinationForm() {
 
           <section className="bg-white rounded-2xl border border-gray-100 p-6 space-y-5">
             <h2 className="font-semibold text-gray-700 text-sm border-b border-gray-100 pb-3">Images</h2>
-            <Field label="Card Image Path"><input type="text" value={form.image_url ?? ""} onChange={e => set("image_url", e.target.value)} placeholder="destination-images/varanasi/card.webp" className={inputCls} /></Field>
-            <Field label="Hero Image Path"><input type="text" value={form.hero_image_url ?? ""} onChange={e => set("hero_image_url", e.target.value)} placeholder="destination-images/varanasi/hero.webp" className={inputCls} /></Field>
+            <Field label="Card Image Path"><MediaInput value={form.image_url ?? ""} onChange={v => set("image_url", v)} defaultBucket="destination-images" placeholder="destination-images/varanasi/card.webp" /></Field>
+            <Field label="Hero Image Path"><MediaInput value={form.hero_image_url ?? ""} onChange={v => set("hero_image_url", v)} defaultBucket="destination-images" placeholder="destination-images/varanasi/hero.webp" /></Field>
           </section>
 
           <section className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">

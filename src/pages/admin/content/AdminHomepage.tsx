@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Save, HelpCircle } from "lucide-react";
 import { listHomepageSections, upsertHomepageSection, type HomepageSection } from "@/services/settingsService";
+import { MediaInput } from "@/components/admin/MediaInput";
 
 const inputCls = "w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
 const Toggle = ({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) => (
@@ -101,7 +102,7 @@ export default function AdminHomepage() {
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-500 mb-1.5">Background Image URL</label>
-                <input value={(getPayload("hero")?.bg_image as string) || ""} onChange={e => updatePayloadField("hero", "bg_image", e.target.value)} className={inputCls} placeholder="e.g. site-assets/hero-bg.jpg" />
+                <MediaInput value={(getPayload("hero")?.bg_image as string) || ""} onChange={(v: string) => updatePayloadField("hero", "bg_image", v)} defaultBucket="site-assets" placeholder="e.g. site-assets/hero-bg.jpg" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>

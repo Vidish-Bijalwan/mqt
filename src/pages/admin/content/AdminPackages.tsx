@@ -8,6 +8,7 @@ import {
   createAdminPackage, updateAdminPackage, type AdminPackage, type AdminPackageInsert
 } from "@/services/adminPackageService";
 import { listCategories } from "@/services/categoryService";
+import { MediaInput } from "@/components/admin/MediaInput";
 
 const inputCls = "w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
 const Field = ({ label, children }: { label: string; children: React.ReactNode }) =>
@@ -232,7 +233,7 @@ export function PackageForm() {
             </div>
 
             <Field label="Short Description"><textarea value={form.short_description ?? ""} onChange={e => set("short_description", e.target.value)} rows={2} className={inputCls} /></Field>
-            <Field label="Main Image Path"><input type="text" value={form.image_url ?? ""} onChange={e => set("image_url", e.target.value)} placeholder="package-images/kashmir/card.webp" className={inputCls} /></Field>
+            <Field label="Main Image Path"><MediaInput value={form.image_url ?? ""} onChange={v => set("image_url", v)} defaultBucket="package-images" placeholder="package-images/kashmir/card.webp" /></Field>
           </section>
 
           <section className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">

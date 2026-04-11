@@ -7,6 +7,7 @@ import {
   listAdminBlogPosts, deleteAdminBlogPost, getAdminBlogPostById,
   createAdminBlogPost, updateAdminBlogPost, type AdminBlogPost, type AdminBlogInsert
 } from "@/services/adminBlogService";
+import { MediaInput } from "@/components/admin/MediaInput";
 
 const inputCls = "w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
 const Field = ({ label, children }: { label: string; children: React.ReactNode }) =>
@@ -197,7 +198,7 @@ export function BlogForm() {
               <Field label="Read Time"><input type="text" value={form.read_time ?? ""} onChange={e => set("read_time", e.target.value)} placeholder="5 min read" className={inputCls} /></Field>
             </div>
             <Field label="Excerpt"><textarea value={form.excerpt ?? ""} onChange={e => set("excerpt", e.target.value)} rows={3} className={inputCls} /></Field>
-            <Field label="Cover Image Path"><input type="text" value={form.image_url ?? ""} onChange={e => set("image_url", e.target.value)} placeholder="blog-images/post-name/cover.webp" className={inputCls} /></Field>
+            <Field label="Cover Image Path"><MediaInput value={form.image_url ?? ""} onChange={v => set("image_url", v)} defaultBucket="blog-images" placeholder="blog-images/post-name/cover.webp" /></Field>
             <Field label="Publish Date"><input type="date" value={form.date ?? ""} onChange={e => set("date", e.target.value)} className={inputCls} /></Field>
           </section>
 
