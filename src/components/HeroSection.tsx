@@ -44,18 +44,17 @@ const HeroSection = () => {
         className="absolute inset-0 w-full h-full"
       >
         {heroSlides.map((slide, index) => (
-          <motion.img
+          <img
             key={index}
             src={slide}
-            alt={`Premium Indian travel destination ${index + 1}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: currentSlide === index ? 1 : 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover"
+            alt="Beautiful curated luxury travel destinations across India"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${
+              currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
           />
         ))}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] z-0" />
-        <div className="absolute inset-0 gradient-hero" />
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-20" />
+        <div className="absolute inset-0 gradient-hero z-20" />
       </motion.div>
 
       {/* Content */}
