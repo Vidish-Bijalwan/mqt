@@ -5,6 +5,7 @@ import PageHero from "@/components/PageHero";
 import InquiryBanner from "@/components/InquiryBanner";
 import EmptyState from "@/components/EmptyState";
 import { blogPosts } from "@/data/blog";
+import { getBlogImage } from "@/lib/imageMap";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import blogHero from "@/assets/dest-ladakh.jpg";
 
@@ -35,7 +36,7 @@ const Blog = () => {
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img
-                      src={post.image}
+                      src={getBlogImage(post.slug, 'card', post.image)}
                       alt={post.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"

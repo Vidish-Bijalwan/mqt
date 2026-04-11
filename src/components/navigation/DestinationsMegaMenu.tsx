@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, ChevronRight, Compass, ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { megaMenuData, popularDestinationsData, MegaMenuState, MegaMenuRegion } from '@/data/destinationsMegaMenu';
+import { getStateImage, getCityImage } from '@/lib/imageMap';
 
 export default function DestinationsMegaMenu() {
   const [activeTab, setActiveTab] = useState<"state" | "region" | "popular">("state");
@@ -119,7 +120,7 @@ export default function DestinationsMegaMenu() {
                     {/* Visual Fallback Image Header (Replaces blank empty space) */}
                     {currentHoveredState.image && (
                        <div className="w-full h-32 rounded-xl mb-4 overflow-hidden shadow-sm">
-                         <img src={currentHoveredState.image} alt={currentHoveredState.name} className="w-full h-full object-cover" />
+                         <img src={getStateImage(currentHoveredState.slug, 'thumbnail', currentHoveredState.image)} alt={currentHoveredState.name} className="w-full h-full object-cover" />
                        </div>
                     )}
                     {!currentHoveredState.image && (
@@ -224,7 +225,7 @@ export default function DestinationsMegaMenu() {
                   {/* Rich Image Header */}
                   <div className="h-40 relative w-full overflow-hidden shrink-0">
                     <img 
-                      src={currentHoveredRegion.image || "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80"} 
+                      src={currentHoveredRegion.image || getStateImage('india-generic', 'hero')} 
                       alt={currentHoveredRegion.name} 
                       className="w-full h-full object-cover" 
                     />
@@ -333,7 +334,7 @@ export default function DestinationsMegaMenu() {
                         className="group relative h-28 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                       >
                         <img 
-                          src={dest.image || "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80"} 
+                          src={getCityImage(dest.state?.toLowerCase().replace(/\s+/g,'-') || 'unknown', dest.slug, 'thumbnail', dest.image)} 
                           alt={dest.name} 
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                         />

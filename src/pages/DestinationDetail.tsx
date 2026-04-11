@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
+import { getStateImage } from "@/lib/imageMap";
 import EnquirySection from "@/components/EnquirySection";
 import FAQAccordion from "@/components/FAQAccordion";
 import InquiryBanner from "@/components/InquiryBanner";
@@ -57,7 +58,7 @@ const DestinationDetail = () => {
       <PageHero
         title={destination.name}
         subtitle={destination.overview[0]}
-        backgroundImage={destination.image}
+        backgroundImage={getStateImage(destination.slug, 'hero', destination.image)}
         badge={destination.tagline}
         quickFacts={quickFacts}
         breadcrumb={[

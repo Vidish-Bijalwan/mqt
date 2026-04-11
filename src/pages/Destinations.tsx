@@ -4,6 +4,7 @@ import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import InquiryBanner from "@/components/InquiryBanner";
 import { indiaStates, getStatesByRegion, Region } from "@/data/india-states";
+import { getStateImage } from "@/lib/imageMap";
 import destHero from "@/assets/dest-ladakh.jpg";
 
 const REGIONS: ("All" | Region)[] = [
@@ -65,7 +66,7 @@ const Destinations = () => {
               >
                 <div className="absolute inset-0">
                   <img
-                    src={state.image}
+                    src={getStateImage(state.slug, 'card', state.image)}
                     alt={state.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Star, Clock, MapPin, Search } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
 import type { FeaturedPackage } from "@/data/packageMenuData";
+import { getPackageImage } from "@/lib/imageMap";
 
 interface PackageCardProps {
   pkg: FeaturedPackage;
@@ -19,7 +20,7 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
         {/* Image Section */}
         <div className="relative overflow-hidden aspect-[16/10] shrink-0">
           <img
-            src={pkg.image}
+            src={getPackageImage(pkg.slug, 'card', pkg.image)}
             alt={`${pkg.title} - ${pkg.destination} tour package`}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
