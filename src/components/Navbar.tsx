@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, Phone, Mountain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { destinationsData } from "@/data/destinations";
 import { experienceCategories } from "@/data/experiences";
+import DestinationsMegaMenu from "./navigation/DestinationsMegaMenu";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn, fadeUp, staggerContainer, staggerItem } from "@/lib/motion";
 
@@ -64,34 +65,7 @@ const Navbar = () => {
             </button>
             <AnimatePresence>
               {activeDropdown === "destinations" && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute left-1/2 -translate-x-1/2 top-full pt-2"
-                >
-                  <div className="bg-background rounded-lg shadow-elevated border border-border p-6 min-w-[500px]">
-                    <h4 className="font-body font-semibold text-sm text-primary mb-3 tracking-wide uppercase">Popular Destinations</h4>
-                    <div className="grid grid-cols-2 gap-4">
-                      {destinationsData.slice(0, 8).map((dest) => (
-                        <Link
-                          key={dest.slug}
-                          to={`/destinations/${dest.stateSlug || "india"}/${dest.slug}`}
-                          className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
-                        >
-                          <img src={dest.image} alt="" className="w-8 h-8 rounded-md object-cover" />
-                          {dest.name}
-                        </Link>
-                      ))}
-                    </div>
-                    <div className="border-t border-border pt-4 mt-4 flex gap-4">
-                      <Link to="/destinations" className="text-sm font-medium text-primary hover:text-primary-dark transition-colors">
-                        View All Destinations →
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
+                <DestinationsMegaMenu />
               )}
             </AnimatePresence>
           </motion.div>
