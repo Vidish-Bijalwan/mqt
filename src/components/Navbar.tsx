@@ -2,64 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, Mountain } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const destinationsMega = {
-  "Himalayan Highlights": [
-    { name: "Kedarnath Yatra", href: "/destinations/kedarnath" },
-    { name: "Valley of Flowers", href: "/destinations/valley-of-flowers" },
-    { name: "Char Dham Yatra", href: "/destinations/char-dham" },
-    { name: "Badrinath", href: "/destinations/badrinath" },
-    { name: "Gangotri & Yamunotri", href: "/destinations/gangotri" },
-    { name: "Kedarkantha Trek", href: "/destinations/kedarkantha" },
-  ],
-  "North India": [
-    { name: "Ladakh & Leh", href: "/destinations/ladakh" },
-    { name: "Kashmir", href: "/destinations/kashmir" },
-    { name: "Himachal Pradesh", href: "/destinations/manali" },
-    { name: "Spiti Valley", href: "/destinations/spiti" },
-    { name: "Rishikesh & Haridwar", href: "/destinations/rishikesh" },
-    { name: "Varanasi & Prayagraj", href: "/destinations/varanasi" },
-  ],
-  "Rest of India": [
-    { name: "Rajasthan", href: "/destinations/rajasthan" },
-    { name: "Kerala", href: "/destinations/kerala" },
-    { name: "Goa", href: "/destinations/goa" },
-    { name: "Andaman & Nicobar", href: "/destinations/andaman" },
-    { name: "North East India", href: "/destinations/northeast" },
-    { name: "South India", href: "/destinations/south-india" },
-  ],
-  "International": [
-    { name: "Nepal", href: "/destinations/nepal" },
-    { name: "Bhutan", href: "/destinations/bhutan" },
-    { name: "Sri Lanka", href: "/destinations/srilanka" },
-    { name: "Maldives", href: "/destinations/maldives" },
-    { name: "Thailand", href: "/destinations/thailand" },
-    { name: "Dubai", href: "/destinations/dubai" },
-  ],
-};
-
-const tourTypes = [
-  { name: "Honeymoon Packages", href: "/packages/honeymoon" },
-  { name: "Family Tour Packages", href: "/packages/family" },
-  { name: "Solo Travel Packages", href: "/packages/solo" },
-  { name: "Pilgrimage Packages", href: "/packages/pilgrimage" },
-  { name: "Adventure Packages", href: "/packages/adventure" },
-  { name: "Group Tour Packages", href: "/packages/group" },
-  { name: "Budget Packages", href: "/packages/budget" },
-  { name: "Luxury Packages", href: "/packages/luxury" },
-  { name: "Weekend Getaways", href: "/packages/weekend" },
-];
-
-const services = [
-  { name: "Holiday Packages", href: "/services/holiday-packages" },
-  { name: "Hotel Booking", href: "/services/hotel-booking" },
-  { name: "Flight Booking", href: "/services/flight-booking" },
-  { name: "Cab / Transfer Booking", href: "/services/cab-booking" },
-  { name: "Trek Booking", href: "/services/trek-booking" },
-  { name: "Travel Insurance", href: "/services/travel-insurance" },
-  { name: "Visa Assistance", href: "/services/visa-assistance" },
-  { name: "Customised Itinerary", href: "/services/custom-itinerary" },
-];
+import { destinationsData } from "@/data/destinations";
+import { experienceCategories } from "@/data/experiences";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -107,30 +51,23 @@ const Navbar = () => {
             </button>
             {activeDropdown === "destinations" && (
               <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 animate-fade-in" style={{ animationDelay: "0s" }}>
-                <div className="bg-background rounded-lg shadow-elevated border border-border p-6 grid grid-cols-4 gap-8 min-w-[720px]">
-                  {Object.entries(destinationsMega).map(([category, items]) => (
-                    <div key={category}>
-                      <h4 className="font-body font-semibold text-sm text-primary mb-3 tracking-wide uppercase">{category}</h4>
-                      <ul className="space-y-2">
-                        {items.map((item) => (
-                          <li key={item.name}>
-                            <Link
-                              to={item.href}
-                              className="text-sm text-muted-foreground hover:text-primary transition-colors block"
-                            >
-                              {item.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                  <div className="col-span-4 border-t border-border pt-4 flex gap-4">
+                <div className="bg-background rounded-lg shadow-elevated border border-border p-6 min-w-[500px]">
+                  <h4 className="font-body font-semibold text-sm text-primary mb-3 tracking-wide uppercase">Popular Destinations</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    {destinationsData.slice(0, 8).map((dest) => (
+                      <Link
+                        key={dest.slug}
+                        to={`/destinations/${dest.slug}`}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+                      >
+                        <img src={dest.image} alt="" className="w-8 h-8 rounded-md object-cover" />
+                        {dest.name}
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="border-t border-border pt-4 mt-4 flex gap-4">
                     <Link to="/destinations" className="text-sm font-medium text-primary hover:text-primary-dark transition-colors">
                       View All Destinations →
-                    </Link>
-                    <Link to="/services/custom-itinerary" className="text-sm font-medium text-accent hover:text-accent-light transition-colors">
-                      Custom Itinerary →
                     </Link>
                   </div>
                 </div>
@@ -150,41 +87,19 @@ const Navbar = () => {
             {activeDropdown === "packages" && (
               <div className="absolute left-0 top-full pt-2 animate-fade-in">
                 <div className="bg-background rounded-lg shadow-elevated border border-border py-2 min-w-[220px]">
-                  {tourTypes.map((item) => (
+                  {experienceCategories.map((item) => (
                     <Link
-                      key={item.name}
-                      to={item.href}
+                      key={item.slug}
+                      to={`/packages/${item.slug}`}
                       className="block px-4 py-2 text-sm text-foreground hover:bg-surface hover:text-primary transition-colors"
                     >
-                      {item.name}
+                      {item.title}
                     </Link>
                   ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Services Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setActiveDropdown("services")}
-            onMouseLeave={() => setActiveDropdown(null)}
-          >
-            <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Services <ChevronDown className="h-3.5 w-3.5" />
-            </button>
-            {activeDropdown === "services" && (
-              <div className="absolute left-0 top-full pt-2 animate-fade-in">
-                <div className="bg-background rounded-lg shadow-elevated border border-border py-2 min-w-[220px]">
-                  {services.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className="block px-4 py-2 text-sm text-foreground hover:bg-surface hover:text-primary transition-colors"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  <div className="my-1 border-t border-border"></div>
+                  <Link to="/packages" className="block px-4 py-2 text-sm font-medium text-primary hover:bg-surface transition-colors">
+                    View All Packages
+                  </Link>
                 </div>
               </div>
             )}
@@ -203,11 +118,11 @@ const Navbar = () => {
 
         {/* Desktop CTAs */}
         <div className="hidden lg:flex items-center gap-3">
-          <Button variant="default" size="sm" className="gradient-primary text-primary-foreground font-medium">
-            Get Free Quote
+          <Button asChild variant="default" size="sm" className="gradient-primary text-primary-foreground font-medium">
+            <Link to="/contact">Get Free Quote</Link>
           </Button>
-          <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-            <Phone className="h-3.5 w-3.5 mr-1" /> Call Now
+          <Button asChild variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+            <a href="tel:+919876543210"><Phone className="h-3.5 w-3.5 mr-1" /> Call Now</a>
           </Button>
         </div>
 
@@ -236,17 +151,15 @@ const Navbar = () => {
                 Destinations <ChevronDown className={`h-4 w-4 transition-transform ${mobileAccordion === "dest" ? "rotate-180" : ""}`} />
               </button>
               {mobileAccordion === "dest" && (
-                <div className="pb-3 pl-4 space-y-2">
-                  {Object.entries(destinationsMega).map(([cat, items]) => (
-                    <div key={cat}>
-                      <p className="text-xs font-semibold text-primary uppercase tracking-wider mt-2 mb-1">{cat}</p>
-                      {items.map((item) => (
-                        <Link key={item.name} to={item.href} className="block py-1.5 text-sm text-muted-foreground" onClick={() => setMobileOpen(false)}>
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
+                <div className="pb-3 pl-4 space-y-2 mt-2">
+                  {destinationsData.map((dest) => (
+                    <Link key={dest.slug} to={`/destinations/${dest.slug}`} className="block py-1.5 text-sm text-muted-foreground" onClick={() => setMobileOpen(false)}>
+                      {dest.name}
+                    </Link>
                   ))}
+                  <Link to="/destinations" className="block py-1.5 text-sm font-medium text-primary mt-2" onClick={() => setMobileOpen(false)}>
+                    View All Destinations
+                  </Link>
                 </div>
               )}
             </div>
@@ -260,31 +173,15 @@ const Navbar = () => {
                 Tour Packages <ChevronDown className={`h-4 w-4 transition-transform ${mobileAccordion === "pkg" ? "rotate-180" : ""}`} />
               </button>
               {mobileAccordion === "pkg" && (
-                <div className="pb-3 pl-4 space-y-2">
-                  {tourTypes.map((item) => (
-                    <Link key={item.name} to={item.href} className="block py-1.5 text-sm text-muted-foreground" onClick={() => setMobileOpen(false)}>
-                      {item.name}
+                <div className="pb-3 pl-4 space-y-2 mt-2">
+                  {experienceCategories.map((item) => (
+                    <Link key={item.slug} to={`/packages/${item.slug}`} className="block py-1.5 text-sm text-muted-foreground" onClick={() => setMobileOpen(false)}>
+                      {item.title}
                     </Link>
                   ))}
-                </div>
-              )}
-            </div>
-
-            {/* Mobile Services Accordion */}
-            <div className="border-b border-border">
-              <button
-                className="flex items-center justify-between w-full py-3 text-foreground font-medium"
-                onClick={() => setMobileAccordion(mobileAccordion === "svc" ? null : "svc")}
-              >
-                Services <ChevronDown className={`h-4 w-4 transition-transform ${mobileAccordion === "svc" ? "rotate-180" : ""}`} />
-              </button>
-              {mobileAccordion === "svc" && (
-                <div className="pb-3 pl-4 space-y-2">
-                  {services.map((item) => (
-                    <Link key={item.name} to={item.href} className="block py-1.5 text-sm text-muted-foreground" onClick={() => setMobileOpen(false)}>
-                      {item.name}
-                    </Link>
-                  ))}
+                  <Link to="/packages" className="block py-1.5 text-sm font-medium text-primary mt-2" onClick={() => setMobileOpen(false)}>
+                    View All Packages
+                  </Link>
                 </div>
               )}
             </div>
@@ -294,9 +191,11 @@ const Navbar = () => {
             <Link to="/contact" className="block py-3 text-foreground font-medium border-b border-border" onClick={() => setMobileOpen(false)}>Contact</Link>
 
             <div className="pt-4 space-y-3">
-              <Button className="w-full gradient-primary text-primary-foreground font-medium">Get Free Quote</Button>
-              <Button variant="outline" className="w-full border-primary text-primary">
-                <Phone className="h-4 w-4 mr-2" /> Call Now
+              <Button asChild className="w-full gradient-primary text-primary-foreground font-medium" onClick={() => setMobileOpen(false)}>
+                <Link to="/contact">Get Free Quote</Link>
+              </Button>
+              <Button asChild variant="outline" className="w-full border-primary text-primary" onClick={() => setMobileOpen(false)}>
+                <a href="tel:+919876543210"><Phone className="h-4 w-4 mr-2" /> Call Now</a>
               </Button>
             </div>
           </div>

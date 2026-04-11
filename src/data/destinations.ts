@@ -1,0 +1,1245 @@
+import destKedarnath from "@/assets/dest-kedarnath.jpg";
+import destLadakh from "@/assets/dest-ladakh.jpg";
+import destValleyFlowers from "@/assets/dest-valley-flowers.jpg";
+import destVaranasi from "@/assets/dest-varanasi.jpg";
+import destKashmir from "@/assets/dest-kashmir.jpg";
+import destManali from "@/assets/dest-manali.jpg";
+import destRishikesh from "@/assets/dest-rishikesh.jpg";
+
+export interface QuickFact {
+  label: string;
+  value: string;
+}
+
+export interface BestTimeRow {
+  month: string;
+  weather: string;
+  crowd: "Low" | "Moderate" | "High" | "Very High";
+  rating: number;
+}
+
+export interface ItineraryDay {
+  day: number;
+  title: string;
+  description: string;
+  activities: string[];
+  stay: string;
+  meals: string;
+}
+
+export interface DestinationHighlight {
+  emoji: string;
+  title: string;
+  desc: string;
+}
+
+export interface DestinationFAQ {
+  question: string;
+  answer: string;
+}
+
+export interface GalleryImage {
+  src: string;
+  alt: string;
+}
+
+export interface DestinationData {
+  id: string;
+  name: string;
+  slug: string;
+  tagline: string;
+  state: string;
+  country: string;
+  image: string;
+  heroImage: string;
+  altitude?: string;
+  bestSeason: string;
+  idealDuration: string;
+  difficulty: "Easy" | "Moderate" | "Challenging";
+  popularityScore: number;
+  trending: boolean;
+  packagesCount: number;
+  overview: string[];
+  quickFacts: QuickFact[];
+  bestTimeToVisit: BestTimeRow[];
+  highlights: DestinationHighlight[];
+  itinerary: ItineraryDay[];
+  inclusions: string[];
+  exclusions: string[];
+  travelTips: string[];
+  faqs: DestinationFAQ[];
+  gallery: GalleryImage[];
+  relatedDestinations: string[];
+  relatedPackageSlugs: string[];
+  relatedBlogSlugs: string[];
+}
+
+export const destinationsData: DestinationData[] = [
+  {
+    id: "1",
+    name: "Kedarnath",
+    slug: "kedarnath",
+    tagline: "Journey to the Abode of Lord Shiva",
+    state: "Uttarakhand",
+    country: "India",
+    image: destKedarnath,
+    heroImage: destKedarnath,
+    altitude: "3,583 m",
+    bestSeason: "May–June, September–October",
+    idealDuration: "5–7 Days",
+    difficulty: "Moderate",
+    popularityScore: 99,
+    trending: true,
+    packagesCount: 15,
+    overview: [
+      "Kedarnath is one of the most revered pilgrimage destinations in India, nestled deep in the Garhwal Himalayas at an elevation of 3,583 metres. The site is home to the ancient Kedarnath Temple, dedicated to Lord Shiva and one of the twelve Jyotirlingas. The temple's exact age is unknown, but it is widely believed to have been built by the Pandavas and later restored by Adi Shankaracharya in the 8th century.",
+      "The journey to Kedarnath is not merely a physical trek — it is a deeply spiritual experience. The 16-km trek from Gaurikund ascends through dense forests, alpine meadows, and rocky terrain with the Mandakini River rushing alongside. Every step brings pilgrims closer to the towering Kedarnath peak (6,940 m) and the divine atmosphere of the temple.",
+      "In recent years, Kedarnath has also become a destination for adventure travellers and trekkers who are drawn by the raw natural beauty, the golden-hued sunrises over snow-capped peaks, and the meditative silence of the high Himalayas. Helicopter services from Phata, Guptkashi, and Sersi make the journey accessible even for those with limited mobility.",
+      "MyQuickTrippers has been organising Kedarnath yatras since 2019, working with local guides, verified government-approved lodges, and experienced support teams to ensure your pilgrimage is safe, comfortable, and spiritually fulfilling.",
+    ],
+    quickFacts: [
+      { label: "Altitude", value: "3,583 m" },
+      { label: "Trek Distance", value: "16 km (one way)" },
+      { label: "Base Camp", value: "Gaurikund" },
+      { label: "Nearest City", value: "Rishikesh (228 km)" },
+      { label: "Best Season", value: "May–Oct" },
+      { label: "Temple Opens", value: "May (Akshaya Tritiya)" },
+    ],
+    bestTimeToVisit: [
+      { month: "May–June", weather: "Cool & Clear (8–15°C)", crowd: "High", rating: 5 },
+      { month: "July–August", weather: "Monsoon & Rain (10–18°C)", crowd: "Moderate", rating: 3 },
+      { month: "September–October", weather: "Crisp & Scenic (5–12°C)", crowd: "Moderate", rating: 5 },
+      { month: "November–April", weather: "Temple Closed / Snow", crowd: "Low", rating: 1 },
+    ],
+    highlights: [
+      { emoji: "🛕", title: "Kedarnath Temple Darshan", desc: "Pay reverence at the 8th-century Jyotirlinga shrine of Lord Shiva amidst the Himalayas." },
+      { emoji: "🚁", title: "Helicopter Option Available", desc: "Direct heli rides from Phata or Guptkashi for seniors, children, and those short on time." },
+      { emoji: "🏔", title: "Kedarnath Peak Views", desc: "Unobstructed views of Kedarnath (6,940m), Thalay Sagar, and Bhrigupanth peaks." },
+      { emoji: "🌊", title: "Mandakini River Trek Path", desc: "Trek alongside the sacred Mandakini river through scenic Himalayan forests." },
+      { emoji: "🌅", title: "Sunrise at Shankaracharya Samadhi", desc: "Witness a golden sunrise from the samadhi of Adi Shankaracharya, just above the temple." },
+      { emoji: "🏕", title: "Vasuki Tal Day Trek", desc: "Optional day trek to Vasuki Tal lake (4,135m) with panoramic glacier views." },
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Haridwar / Rishikesh",
+        description: "Arrive at Haridwar or Rishikesh, meet our representative, and check into your hotel. Evening Ganga Aarti at Har Ki Pauri or Triveni Ghat.",
+        activities: ["Hotel check-in", "Ganga Aarti", "Briefing with trip advisor"],
+        stay: "Hotel in Haridwar / Rishikesh",
+        meals: "Dinner",
+      },
+      {
+        day: 2,
+        title: "Drive to Guptkashi (220 km, 7–8 hrs)",
+        description: "Early morning departure by private cab through the scenic Devprayag, Rudraprayag, and Agastmuni route. Stop at Devprayag for the sacred Sangam of Alaknanda and Bhagirathi.",
+        activities: ["Devprayag Sangam visit", "Rudraprayag rest stop", "Arrival Guptkashi"],
+        stay: "Hotel in Guptkashi",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 3,
+        title: "Guptkashi → Gaurikund → Kedarnath Trek",
+        description: "Early drive to Gaurikund (30 km), begin the 16-km trek to Kedarnath. Trek through Jungle Chatti, Bheembali, and Lincholi. Arrive Kedarnath by afternoon. Attend evening aarti at the temple.",
+        activities: ["16-km Himalayan trek", "Temple darshan", "Evening aarti"],
+        stay: "Guesthouse / Camp near Kedarnath Temple",
+        meals: "Breakfast, Lunch & Dinner",
+      },
+      {
+        day: 4,
+        title: "Kedarnath Darshan & Optional Vasuki Tal",
+        description: "Early morning temple darshan before crowds arrive. Optional day trek to Vasuki Tal (2 km beyond Kedarnath). Afternoon visit to Shankaracharya Samadhi. Optional sunrise photography session.",
+        activities: ["Early morning pooja", "Vasuki Tal option", "Sam Hamam & Bhairavnath Temple"],
+        stay: "Guesthouse / Camp near Kedarnath Temple",
+        meals: "All meals",
+      },
+      {
+        day: 5,
+        title: "Trek Back to Gaurikund → Drive to Haridwar",
+        description: "Post-breakfast, trek or take ponies/palki back to Gaurikund. Drive back to Haridwar/Rishikesh. Drop at hotel or railway station.",
+        activities: ["Return trek", "Drop at Haridwar/Rishikesh"],
+        stay: "Hotel in Haridwar (optional)",
+        meals: "Breakfast & Lunch",
+      },
+    ],
+    inclusions: [
+      "Accommodation on twin-sharing basis (hotels + guesthouses)",
+      "All meals as specified in the itinerary",
+      "Private cab throughout (Haridwar ↔ Gaurikund)",
+      "Expert local guide with first-aid training",
+      "Medical kit and emergency support",
+      "Temple entry formalities assistance",
+      "Ponies / palkis available on request (extra cost)",
+    ],
+    exclusions: [
+      "Helicopter charges (₹4,000–5,500 per person one-way)",
+      "Personal expenses (tips, shopping, phone)",
+      "Travel insurance (strongly recommended)",
+      "Anything not mentioned in inclusions",
+    ],
+    travelTips: [
+      "Carry warm layers even in summer — temperature drops sharply after sunset above 2,500m.",
+      "Start the trek early (by 5–6 AM from Gaurikund) to avoid afternoon rain and crowds.",
+      "Stay hydrated — drink 3+ litres of water per day to prevent altitude-related fatigue.",
+      "Register your Char Dham Yatra registration online at registrationandtouristcare.uk.gov.in before departure.",
+      "Carry a valid photo ID (Aadhaar/passport) — mandatory for yatra registration at Sonprayag.",
+      "If you have cardiac or respiratory conditions, consult your doctor before booking.",
+      "Book accommodations well in advance for May–June and September — peak season fills up fast.",
+    ],
+    faqs: [
+      {
+        question: "When does the Kedarnath Temple open and close each year?",
+        answer: "The Kedarnath Temple opens on Akshaya Tritiya (late April or May) and closes on Bhai Dooj (November, 14 days after Diwali). Exact dates are announced each year by the Badrinath-Kedarnath Temple Committee (BKTC). During closure, the deity is moved to Ukhimath for the winter months.",
+      },
+      {
+        question: "What is the trek difficulty level for Kedarnath?",
+        answer: "The Gaurikund to Kedarnath trek is 16 km one-way and is rated Moderate. While there is no technical climbing, the altitude and steep sections can be demanding, especially for first-time trekkers. Seniors, children, and those with health conditions can opt for ponies, palki (palanquin), or helicopter services.",
+      },
+      {
+        question: "Can I take a helicopter to Kedarnath?",
+        answer: "Yes. Helicopter services operate from Phata, Guptkashi, Sirsi, and Agustmuni helipads. The one-way fare ranges from ₹4,000–5,500 per person. Booking must be done in advance via the official Uttarakhand helicopter booking portal. We can assist with booking as part of your package.",
+      },
+      {
+        question: "Is Kedarnath safe to visit?",
+        answer: "Yes. Kedarnath has been operating safely with major infrastructure upgrades post the 2013 floods. NDRF teams, medical stations, and BSNL connectivity are in place throughout the route. Our guides are trained in first aid and mountain rescue. We ensure all our clients register for the yatra with valid IDs.",
+      },
+      {
+        question: "What should I pack for a Kedarnath trip?",
+        answer: "Pack warm layers (fleece + down jacket), waterproof trekking shoes, a rain poncho, a daypack, sunscreen (SPF 50+), a torch/headlamp, water bottles, and personal medication. Warm clothing is available for rent at Gaurikund if needed.",
+      },
+      {
+        question: "How many days should I plan for Kedarnath?",
+        answer: "A minimum of 5 days is recommended: 1 day travel from your base city, 1 day to Guptkashi, 1 day trek to Kedarnath, 1 day for darshan, 1 day for return. If combining with Badrinath or other Char Dham sites, plan 10–12 days total.",
+      },
+    ],
+    gallery: [
+      { src: destKedarnath, alt: "Kedarnath Temple at sunrise with snow-capped peak" },
+      { src: destKedarnath, alt: "Pilgrims trekking the Gaurikund trail" },
+      { src: destKedarnath, alt: "Kedarnath valley in morning mist" },
+      { src: destKedarnath, alt: "Aerial view of Kedarnath temple" },
+      { src: destKedarnath, alt: "Mandakini river flowing through the gorge" },
+      { src: destKedarnath, alt: "Helicopter landing at Kedarnath helipad" },
+    ],
+    relatedDestinations: ["char-dham", "rishikesh", "manali"],
+    relatedPackageSlugs: ["kedarnath-yatra-5-nights-6-days"],
+    relatedBlogSlugs: ["best-time-to-visit-kedarnath-2025", "char-dham-yatra-complete-planning-guide"],
+  },
+  {
+    id: "2",
+    name: "Ladakh",
+    slug: "ladakh",
+    tagline: "Land of High Passes & Turquoise Lakes",
+    state: "Ladakh (UT)",
+    country: "India",
+    image: destLadakh,
+    heroImage: destLadakh,
+    altitude: "3,524 m (Leh city)",
+    bestSeason: "June–September",
+    idealDuration: "7–10 Days",
+    difficulty: "Moderate",
+    popularityScore: 97,
+    trending: true,
+    packagesCount: 12,
+    overview: [
+      "Ladakh, the 'Land of High Passes', is one of the most breathtaking destinations on Earth. Situated at altitudes between 3,500m and 5,600m in the Himalayan rain shadow, it is a high-altitude cold desert of stark, surreal beauty — snow-capped peaks, turquoise lakes, ancient monasteries, fluttering prayer flags, and the most incredible roads in the world.",
+      "Leh, the capital of the Ladakh Union Territory, serves as the gateway to this extraordinary landscape. From here, travellers can access Pangong Tso (the famous 'three cups of tea' lake of 3 Idiots fame), the sand dunes of Nubra Valley, the stark beauty of Tso Moriri, and the world's highest motorable passes — Khardung La (5,359m) and Chang La (5,360m).",
+      "Despite its remote location, Ladakh has developed excellent tourist infrastructure with a range of accommodations from budget guesthouses to heritage boutique hotels. The Ladakhi people are among the most warm and welcoming in India, with a culture deeply influenced by Tibetan Buddhism.",
+      "MyQuickTrippers organises meticulously planned Ladakh expeditions that include proper acclimatisation days, inner line permits for restricted areas, and experienced local guides. We ensure your Ladakh trip is not just safe but transformative.",
+    ],
+    quickFacts: [
+      { label: "Altitude (Leh)", value: "3,524 m" },
+      { label: "Best Route", value: "Fly to Leh (Kushok Bakula Airport)" },
+      { label: "Permits Required", value: "Inner Line Permit (ILP)" },
+      { label: "Key Attractions", value: "Pangong, Nubra, Tso Moriri" },
+      { label: "Season", value: "June–September" },
+      { label: "Temperature", value: "15–30°C (day), 5–15°C (night)" },
+    ],
+    bestTimeToVisit: [
+      { month: "June", weather: "Pleasant (15–25°C), roads just opened", crowd: "Moderate", rating: 4 },
+      { month: "July–August", weather: "Peak summer, all roads open, 18–30°C", crowd: "High", rating: 5 },
+      { month: "September", weather: "Clear skies, fewer crowds, 12–22°C", crowd: "Moderate", rating: 5 },
+      { month: "Oct–May", weather: "Most roads closed / extreme cold", crowd: "Low", rating: 2 },
+    ],
+    highlights: [
+      { emoji: "🏔", title: "Khardung La Pass", desc: "Drive over one of the world's highest motorable passes at 5,359m with sweeping Karakoram views." },
+      { emoji: "💧", title: "Pangong Tso Lake", desc: "The iconic 134-km-long lake whose waters shift from sapphire to turquoise to emerald through the day." },
+      { emoji: "🐪", title: "Nubra Valley & Bactrian Camels", desc: "Ride double-humped Bactrian camels on the sand dunes of Hunder, backdropped by snow peaks." },
+      { emoji: "🛕", title: "Thiksey Monastery", desc: "A 12-storey monastery resembling the Potala Palace in Lhasa — one of Ladakh's most photogenic landmarks." },
+      { emoji: "🏍", title: "Manali–Leh Highway", desc: "One of the world's most scenic and adventurous road journeys across 5 high passes." },
+      { emoji: "🌌", title: "Stargazing at Tso Moriri", desc: "Zero light pollution makes Tso Moriri a world-class stargazing site with the Milky Way visible to the naked eye." },
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrive Leh — Rest & Acclimatise",
+        description: "Fly to Leh (Kushok Bakula Airport). It is absolutely essential to rest on arrival day and avoid exertion. SHORT walk around the market in the evening only. Drink lots of water. Medical briefing.",
+        activities: ["Airport pickup", "Hotel check-in", "Rest & hydration", "Light Leh market walk"],
+        stay: "Hotel in Leh",
+        meals: "Dinner",
+      },
+      {
+        day: 2,
+        title: "Leh Local Sightseeing",
+        description: "After a full night's rest, visit Leh Palace, Shanti Stupa, Namgyal Tsemo Monastery, and the bustling Leh Main Market. This gentle day allows your body to acclimatise fully before higher-altitude excursions.",
+        activities: ["Leh Palace", "Shanti Stupa", "Namgyal Tsemo", "Leh Market"],
+        stay: "Hotel in Leh",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 3,
+        title: "Leh → Nubra Valley via Khardung La (120 km)",
+        description: "Drive over Khardung La Pass (5,359m) — stop for photos and tea. Descend into the lush Nubra Valley. Evening camel ride at Hunder sand dunes. Overnight in Nubra.",
+        activities: ["Khardung La photo stop", "Diskit Monastery", "Bactrian camel ride at Hunder"],
+        stay: "Camp / Hotel in Hunder / Nubra",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 4,
+        title: "Nubra → Pangong Tso via Shyok Route (160 km)",
+        description: "Drive through the scenic Shyok River valley to reach Pangong Tso Lake (4,350m). Arrive by afternoon — spend golden hour and sunset at the lake. Overnight at lakeside camp or homestay.",
+        activities: ["Shyok River valley drive", "Pangong sunset", "Lakeside camp evening"],
+        stay: "Camp / Homestay at Pangong",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 5,
+        title: "Pangong — Full Day at the Lake",
+        description: "Wake up for the famous Pangong sunrise — the lake turns multiple shades of blue and green as the sun moves. Explore the changing colors throughout the day. Optional sunrise photography session.",
+        activities: ["Sunrise at Pangong", "Lake exploration", "Fingerpost photo point", "Merak village visit"],
+        stay: "Camp / Homestay at Pangong",
+        meals: "All meals",
+      },
+      {
+        day: 6,
+        title: "Pangong → Leh via Chang La (140 km)",
+        description: "Morning return to Leh via Chang La Pass (5,360m). Stop at Thiksey Monastery and Hemis Monastery en route. Evening free in Leh.",
+        activities: ["Chang La Pass", "Thiksey Monastery", "Hemis Monastery", "Leh free evening"],
+        stay: "Hotel in Leh",
+        meals: "Breakfast",
+      },
+      {
+        day: 7,
+        title: "Departure from Leh",
+        description: "Transfer to airport for onward flight. Shopping for Ladakhi handicrafts, pashmina, and dry apricots.",
+        activities: ["Airport transfer", "Optional last-minute shopping"],
+        stay: "N/A",
+        meals: "Breakfast",
+      },
+    ],
+    inclusions: [
+      "All accommodation on twin-sharing basis",
+      "All meals as per itinerary",
+      "Private reserved cab (Force Tempo Traveller / Innova Crysta)",
+      "Inner Line Permits for Nubra, Pangong, and Chang La",
+      "Experienced Ladakhi guide fluent in Hindi and English",
+      "Oxygen cylinder backup in vehicle",
+      "Pick-up and drop at Leh airport",
+    ],
+    exclusions: [
+      "Airfare to/from Leh",
+      "Camel ride at Hunder (₹200–300/person)",
+      "Camera and monastery entry fees",
+      "Personal expenses and tips",
+      "Travel insurance",
+    ],
+    travelTips: [
+      "Spend at least 1–2 full days acclimatising in Leh before any high-altitude excursions — this prevents AMS (Altitude Mountain Sickness).",
+      "Carry Diamox (acetazolamide) tablets after consulting your doctor — helps with altitude adjustment.",
+      "Do NOT fly out of Leh the same day if you are coming from the Pangong/Nubra area at 4,500+ m.",
+      "Inner Line Permits are required for Nubra, Pangong, and Tso Moriri. We arrange these for all our guests.",
+      "Download offline maps on Google Maps or Maps.me before the trip — mobile data is unreliable beyond Leh city.",
+      "Carry sufficient cash — ATMs in Leh are the only option. Card readers are rare beyond city limits.",
+    ],
+    faqs: [
+      {
+        question: "Is it safe to visit Ladakh due to the border situation?",
+        answer: "Yes, civilian tourism areas of Ladakh — Leh, Nubra, Pangong, Tso Moriri — are completely safe and open to Indian tourists with proper permits. Military areas are off-limits and well-marked. The Indian Army has a strong presence that ensures the safety of the region.",
+      },
+      {
+        question: "Do I need a permit to visit Ladakh?",
+        answer: "Indian nationals do not need a permit to visit Leh city. However, Inner Line Permits (ILPs) are required for Nubra Valley, Pangong Tso, Chang La, Tso Moriri, and Dah-Hanu. Foreign nationals require Protected Area Permits (PAPs). We handle all permit paperwork for our guests.",
+      },
+      {
+        question: "What is the best way to reach Ladakh?",
+        answer: "Flying to Leh (Kushok Bakula Rimpochee Airport) is the easiest and most recommended option — 1-hour flights from Delhi, Chandigarh, Srinagar, and Mumbai. Alternatively, road trips from Manali (Manali–Leh Highway, open June–September, 490 km, 2 days) or Srinagar (Srinagar–Leh Highway, always scenic, 434 km) are popular adventure options.",
+      },
+      {
+        question: "Will I experience altitude sickness in Ladakh?",
+        answer: "Altitude sickness (AMS) is possible when flying directly to Leh (3,524m). Symptoms include headache, nausea, dizziness, and fatigue. The key prevention is rest, hydration, and a gradual acclimatisation schedule. Our itineraries always include 1–2 acclimatisation days in Leh before proceeding to higher destinations.",
+      },
+      {
+        question: "What is the ideal group size for Ladakh?",
+        answer: "Ladakh works well for solo travellers, couples, groups of friends (4–8), and small family groups. We do not recommend young children (under 8) for high-altitude destinations like Pangong (4,350m) or Nubra. We have dedicated family-friendly Ladakh itineraries that focus on Leh city and lower-altitude sites.",
+      },
+      {
+        question: "Can I do Ladakh on a budget?",
+        answer: "Yes. Budget Ladakh trips start from ₹18,000–22,000 per person for a 6-night package with guesthouses, shared cabs, and basic meals. Our standard packages range from ₹24,000–35,000 (twin-sharing, private cab, permits included) and luxury options go up to ₹60,000+.",
+      },
+    ],
+    gallery: [
+      { src: destLadakh, alt: "Pangong Lake reflecting snow-capped Himalayan peaks" },
+      { src: destLadakh, alt: "Khardung La Pass with prayer flags" },
+      { src: destLadakh, alt: "Bactrian camels at Hunder sand dunes, Nubra Valley" },
+      { src: destLadakh, alt: "Thiksey Monastery perched on a hilltop" },
+      { src: destLadakh, alt: "Sunrise at Pangong Tso with spectacular reflections" },
+      { src: destLadakh, alt: "The Manali-Leh Highway cutting through barren mountains" },
+    ],
+    relatedDestinations: ["kashmir", "manali", "rishikesh"],
+    relatedPackageSlugs: ["ladakh-adventure-7-nights-8-days"],
+    relatedBlogSlugs: ["ladakh-travel-guide-beginners"],
+  },
+  {
+    id: "3",
+    name: "Kashmir",
+    slug: "kashmir",
+    tagline: "Heaven on Earth — Shikara, Snow & Serenity",
+    state: "Jammu & Kashmir (UT)",
+    country: "India",
+    image: destKashmir,
+    heroImage: destKashmir,
+    altitude: "1,585 m (Srinagar)",
+    bestSeason: "April–October",
+    idealDuration: "5–7 Days",
+    difficulty: "Easy",
+    popularityScore: 98,
+    trending: true,
+    packagesCount: 18,
+    overview: [
+      "Kashmir — the crown jewel of India — has captivated poets, emperors, and travellers for millennia. Often called 'Paradise on Earth', the Kashmir Valley is an extraordinary blend of emerald meadows, snow-frosted peaks, shimmering lakes, and fragrant gardens that seem almost too beautiful to be real.",
+      "Srinagar, the summer capital, is the heart of Kashmir. Floating on the famous Dal Lake in a traditional houseboat is a quintessential experience — waking up to mirror-still water, shikaras gliding past flower sellers, and the distant call of the muezzin echoing across the lake. The Mughal Gardens — Shalimar Bagh, Nishat Bagh, Chashme Shahi — built by Emperor Jahangir are stunning examples of Mughal landscape architecture.",
+      "Beyond Srinagar, the meadows of Gulmarg (2,690m) offer India's premier ski resort in winter and lush green high-altitude meadows in summer, with the Gulmarg Gondola providing breathtaking views of Nanga Parbat (8,126m). Pahalgam and the Betaab Valley offer pristine river scenery, horse riding, and peaceful nature walks.",
+      "Kashmir has become one of India's most popular honeymoon destinations, along with being a top choice for families, trekkers, and pilgrimage travellers (Amarnath Yatra). MyQuickTrippers curates thoughtful Kashmir itineraries that balance sightseeing, leisure, and cultural immersion.",
+    ],
+    quickFacts: [
+      { label: "Srinagar Altitude", value: "1,585 m" },
+      { label: "Gulmarg Altitude", value: "2,690 m" },
+      { label: "Best For", value: "Honeymoon, Family, Adventure" },
+      { label: "Must Try", value: "Shikara ride, Houseboat stay" },
+      { label: "Nearest Airport", value: "Sheikh ul Alam International, Srinagar" },
+      { label: "Season", value: "Apr–Oct (Year-round possible)" },
+    ],
+    bestTimeToVisit: [
+      { month: "April–May", weather: "Spring flowers, tulips in bloom, 12–22°C", crowd: "Moderate", rating: 5 },
+      { month: "June–August", weather: "Warm summer, lush green meadows, 18–28°C", crowd: "High", rating: 4 },
+      { month: "September–October", weather: "Autumn colours, chinar leaves golden, 10–20°C", crowd: "Moderate", rating: 5 },
+      { month: "December–February", weather: "Snow season, perfect for Gulmarg skiing, -2–8°C", crowd: "Moderate", rating: 4 },
+    ],
+    highlights: [
+      { emoji: "🛶", title: "Dal Lake Shikara Ride", desc: "Glide through the lotus-covered Dal Lake on a wooden shikara at sunrise and sunset — a Kashmir essential." },
+      { emoji: "🏠", title: "Traditional Houseboat Stay", desc: "Sleep on a heritage houseboat moored on Dal or Nagin Lake — choose from budget to luxury Maharaja category." },
+      { emoji: "🚡", title: "Gulmarg Gondola", desc: "Asia's highest cable car ride (3,979m phase 2) offers jaw-dropping views of Nanga Parbat and the Himalayan range." },
+      { emoji: "🌷", title: "Indira Gandhi Tulip Garden", desc: "Asia's largest tulip garden — a riot of 1.5 million tulips in bloom during April–May with the Zabarwan hills as backdrop." },
+      { emoji: "🌿", title: "Pahalgam & Betaab Valley", desc: "Valley of the Shepherds — pristine meadows, rivers, pine forests, and Bollywood filming locations." },
+      { emoji: "🎿", title: "Skiing at Gulmarg", desc: "India's premier ski destination with world-class slopes and heli-skiing options from December to February." },
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrive Srinagar — Houseboat Check-in",
+        description: "Arrive at Srinagar airport, meet your guide, and board your traditional houseboat on Dal Lake. Evening shikara ride around the floating gardens and vegetable markets of Dal Lake.",
+        activities: ["Airport pickup", "Houseboat check-in", "Evening shikara ride", "Houseboat dinner"],
+        stay: "Traditional Houseboat, Dal Lake",
+        meals: "Dinner",
+      },
+      {
+        day: 2,
+        title: "Srinagar Sightseeing — Mughal Gardens & City Tour",
+        description: "Visit the Mughal Gardens (Shalimar Bagh, Nishat Bagh, Chashme Shahi), Shankaracharya Temple, Hazratbal Shrine, and the historic Lal Chowk. Evening at the vibrant Polo View Market for Kashmiri crafts.",
+        activities: ["Mughal Gardens tour", "Shankaracharya Temple", "Hazratbal Shrine", "Lal Chowk market"],
+        stay: "Houseboat / Hotel Srinagar",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 3,
+        title: "Gulmarg Day Excursion (56 km)",
+        description: "Drive to Gulmarg, the 'Meadow of Flowers'. Take the Gulmarg Gondola (Phase 1 to Kongdori, optional Phase 2 to Apharwat Peak at 3,979m). Optional ATV rides, pony rides, and sledding in season.",
+        activities: ["Gulmarg Gondola ride", "Apharwat Peak views", "Pony ride on the meadow", "ATV option"],
+        stay: "Houseboat / Hotel Srinagar",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 4,
+        title: "Pahalgam — Valley & River Day",
+        description: "Drive to Pahalgam (97 km), the picturesque 'Valley of Shepherds'. Visit Betaab Valley, Chandanwari, Baisaran meadows (mini Switzerland of India), and the Lidder riverside.",
+        activities: ["Betaab Valley", "Baisaran meadows", "Lidder River walk", "Chandanwari visit"],
+        stay: "Houseboat / Hotel Srinagar",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 5,
+        title: "Departure from Srinagar",
+        description: "Last morning shikara ride and shopping for Kashmiri pashmina, saffron, walnut carvings, and dried fruits. Transfer to airport.",
+        activities: ["Sunrise shikara ride", "Kashmiri souvenir shopping", "Airport transfer"],
+        stay: "N/A",
+        meals: "Breakfast",
+      },
+    ],
+    inclusions: [
+      "2–3 nights on traditional houseboat (Twin-sharing, Deluxe or Luxury category)",
+      "Hotel accommodation in Srinagar (remaining nights)",
+      "All meals during houseboat stay",
+      "Private cab throughout",
+      "Local expert guide fluent in Hindi & English",
+      "Shikara ride included (morning + evening)",
+      "Airport transfers",
+    ],
+    exclusions: [
+      "Airfare to/from Srinagar",
+      "Gulmarg Gondola tickets (₹700–1000 per phase)",
+      "Horse/pony rides in Gulmarg or Pahalgam",
+      "Travel insurance",
+      "Personal expenses",
+    ],
+    travelTips: [
+      "Carry a light jacket even in summer — evenings get cool above 1,500m.",
+      "Bargain at Lal Chowk and floating markets, but buy pashmina only from certified stores (look for GI tag certificate).",
+      "Houseboat category matters: Standard (good), Deluxe (nice), A-Deluxe (excellent), Luxury/5-Star (premium). We recommend 'Deluxe' for the best value-to-comfort ratio.",
+      "Hire a local guide for Srinagar's old city — the bylanes and heritage Sufi shrines are best explored with someone who knows them.",
+      "Do NOT miss a sunrise shikara — the stillness of Dal Lake at 5:30 AM is one of the most magical experiences in India.",
+      "Respect local customs: dress modestly when visiting shrines and mosques. Women should carry a scarf.",
+    ],
+    faqs: [
+      {
+        question: "Is Kashmir safe for tourists?",
+        answer: "Yes — Kashmir has been welcoming millions of tourists annually. The main tourist areas (Srinagar, Dal Lake, Gulmarg, Pahalgam, Sonamarg) are completely safe with strong tourist infrastructure and police presence. We stay connected with our local ground team in real-time to ensure smooth and safe travel.",
+      },
+      {
+        question: "What is the best area to stay in Srinagar?",
+        answer: "For the quintessential Kashmir experience, a houseboat on Dal Lake is highly recommended for 2–3 nights. For modern comfort, hotels in the Dal Gate, Residency Road, or Boulevard area offer great lake views and proximity to attractions.",
+      },
+      {
+        question: "Is Kashmir good for a honeymoon?",
+        answer: "Absolutely — Kashmir is one of India's top honeymoon destinations. Private shikara rides, candlelit houseboat dinners, the Mughal Gardens at sunset, and the snow-capped mountains create an incredibly romantic atmosphere. We offer special honeymoon packages with customised experiences.",
+      },
+      {
+        question: "Can I visit Kashmir in winter?",
+        answer: "Yes! Winter (December–February) transforms Kashmir into a snow wonderland. Gulmarg becomes an international ski destination, and the houseboats on frozen Dal Lake have a surreal beauty. Roads to higher areas may be closed, but Srinagar–Gulmarg–Pahalgam circuit works perfectly in winter.",
+      },
+      {
+        question: "What is a shikara ride and how much does it cost?",
+        answer: "A shikara is a traditional wooden flat-bottomed boat used on Dal Lake. Rides vary from 1-hour evening cruises (₹400–600) to full-day floating market excursions (₹1,500–2,500). Our packages include at least one complimentary morning or evening shikara ride.",
+      },
+    ],
+    gallery: [
+      { src: destKashmir, alt: "Traditional shikara on Dal Lake at sunset" },
+      { src: destKashmir, alt: "Gulmarg meadows with snow-capped peaks in background" },
+      { src: destKashmir, alt: "Traditional Kashmir houseboat moored on Dal Lake" },
+      { src: destKashmir, alt: "Indira Gandhi Tulip Garden in full bloom" },
+      { src: destKashmir, alt: "Pahalgam valley with Lidder River flowing through meadows" },
+      { src: destKashmir, alt: "Mughal Shalimar Garden, Srinagar" },
+    ],
+    relatedDestinations: ["ladakh", "manali", "kedarnath"],
+    relatedPackageSlugs: ["kashmir-honeymoon-5-nights-6-days"],
+    relatedBlogSlugs: ["kashmir-honeymoon-houseboat-to-gulmarg"],
+  },
+  {
+    id: "4",
+    name: "Valley of Flowers",
+    slug: "valley-of-flowers",
+    tagline: "A UNESCO World Heritage Trek Through Alpine Blooms",
+    state: "Uttarakhand",
+    country: "India",
+    image: destValleyFlowers,
+    heroImage: destValleyFlowers,
+    altitude: "3,658 m",
+    bestSeason: "July–September",
+    idealDuration: "6–8 Days",
+    difficulty: "Moderate",
+    popularityScore: 89,
+    trending: false,
+    packagesCount: 8,
+    overview: [
+      "The Valley of Flowers National Park is one of India's most extraordinary natural treasures — a UNESCO World Heritage Site since 2005 and one of the few places on Earth where you can walk through a meadow carpeted with over 500 species of wildflowers in full bloom, set against a backdrop of snow-capped Himalayan peaks.",
+      "Located in the Chamoli district of Uttarakhand at 3,658m, the valley is accessible only during the monsoon season from July to September, when the entire meadow transforms into a living painting of blues, purples, reds, yellows, and whites. The valley stretches over 87 square kilometres and is home to Himalayan wildlife including snow leopards, blue sheep, and Himalayan black bears.",
+      "The trek to the Valley of Flowers combines the spiritual with the natural — you pass through Govindghat and the Sikh holy site of Hemkund Sahib (4,329m), one of the world's highest gurudwaras. The combination of a UNESCO site, an important pilgrimage, and pristine Himalayan biodiversity makes this one of India's most special trekking experiences.",
+      "Our Valley of Flowers packages are carefully timed to coincide with peak bloom (late July to late August) and include experienced naturalist guides who can identify the rare and endemic species including Brahma Kamal (the state flower of Uttarakhand).",
+    ],
+    quickFacts: [
+      { label: "Altitude (Valley)", value: "3,658 m" },
+      { label: "Trek from Govindghat", value: "13 km to Ghangaria" },
+      { label: "Valley Entry", value: "3 km from Ghangaria" },
+      { label: "UNESCO Status", value: "World Heritage Site (2005)" },
+      { label: "Season", value: "July 1 – October 31" },
+      { label: "Flower Species", value: "500+" },
+    ],
+    bestTimeToVisit: [
+      { month: "July", weather: "Flowers opening, some rain, 10–18°C", crowd: "Moderate", rating: 4 },
+      { month: "August", weather: "Peak bloom, maximum flowers, 12–20°C", crowd: "High", rating: 5 },
+      { month: "September", weather: "Late bloom, clear skies, 8–15°C", crowd: "Low", rating: 4 },
+      { month: "Oct–Jun", weather: "Valley closed or under snow", crowd: "Low", rating: 1 },
+    ],
+    highlights: [
+      { emoji: "🌸", title: "500+ Wildflower Species", desc: "The valley holds over 500 species of rare Himalayan wildflowers, including many endemic to the region." },
+      { emoji: "🛕", title: "Hemkund Sahib (4,329m)", desc: "One of the highest Sikh shrines in the world — a sacred lake surrounded by seven mountain peaks." },
+      { emoji: "🏔", title: "Pushpawati River Valley", desc: "Trek alongside the pristine Pushpawati River through ancient moraines and boulder fields." },
+      { emoji: "🌿", title: "Brahma Kamal", desc: "Spot the elusive Brahma Kamal — the sacred lotus of the Himalayas, blooming only in peak season." },
+      { emoji: "🦌", title: "Wildlife Encounters", desc: "Habitat of snow leopard, Himalayan brown bear, musk deer, and over 114 bird species." },
+      { emoji: "📸", title: "Landscape Photography", desc: "A paradise for photographers — every turn reveals a meadow composition that rivals any botanical garden." },
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrive Haridwar / Rishikesh",
+        description: "Arrive at Haridwar or Rishikesh. Meet your guide and check into hotel. Pre-trek briefing and gear check.",
+        activities: ["Hotel check-in", "Pre-trek briefing", "Gear preparation"],
+        stay: "Hotel Haridwar / Rishikesh",
+        meals: "Dinner",
+      },
+      {
+        day: 2,
+        title: "Drive to Govindghat / Pulna (280 km, 10–11 hrs)",
+        description: "Long but scenic drive through Devprayag, Rudraprayag, Joshimath to Govindghat or Pulna. Pass Nanda Devi Biosphere Reserve.",
+        activities: ["Scenic mountain drive", "Joshimath rest stop", "Arrive Govindghat"],
+        stay: "Guesthouse at Govindghat / Pulna",
+        meals: "Dinner",
+      },
+      {
+        day: 3,
+        title: "Trek Govindghat → Ghangaria (13 km, 4–5 hrs)",
+        description: "Begin the 13-km trek along the Pushpawati River gorge to the base village of Ghangaria (3,048m). The trail ascends steadily through waterfalls, dense forests, and meadows.",
+        activities: ["13 km Himalayan trek", "Arrive Ghangaria", "Evening rest"],
+        stay: "Guesthouse at Ghangaria",
+        meals: "All meals",
+      },
+      {
+        day: 4,
+        title: "Valley of Flowers Exploration",
+        description: "Full day in the Valley of Flowers (entry 7 AM – 5 PM). Trek 3 km from Ghangaria into the valley. Spend 4–5 hours exploring the 87 sq km meadow with your naturalist guide. Identify rare species including Brahma Kamal, Cobra Lily, Blue Poppy, and Edelweiss.",
+        activities: ["Valley of Flowers trek", "Flower identification walk", "Photography time", "Naturalist guide"],
+        stay: "Guesthouse at Ghangaria",
+        meals: "All meals",
+      },
+      {
+        day: 5,
+        title: "Hemkund Sahib Pilgrimage (6 km, 3–4 hrs)",
+        description: "Trek to Hemkund Sahib (4,329m) — one of the world's highest gurudwaras. Pay respects at the sacred lake surrounded by seven Himalayan peaks. The ascent is steep but deeply rewarding.",
+        activities: ["Hemkund Sahib darshan", "Sacred lake visit", "Stunning peak panorama"],
+        stay: "Guesthouse at Ghangaria",
+        meals: "All meals",
+      },
+      {
+        day: 6,
+        title: "Trek Back Ghangaria → Drive to Haridwar",
+        description: "Return trek to Govindghat/Pulna. Drive back to Haridwar or Rishikesh overnight.",
+        activities: ["Return trek", "Return drive"],
+        stay: "Hotel Haridwar / Rishikesh",
+        meals: "Breakfast",
+      },
+    ],
+    inclusions: [
+      "All accommodation (hotels + mountain guesthouses)",
+      "All meals during trek",
+      "Experienced naturalist trek guide",
+      "National Park entry fees",
+      "Porter service (one porter per 2 persons)",
+      "First-aid kit and emergency support",
+      "Mules/ponies available on request",
+    ],
+    exclusions: [
+      "Airfare or train to Haridwar/Rishikesh",
+      "Personal trekking gear",
+      "Travel insurance (strongly recommended)",
+      "Hemkund Sahib Gurudwara langar donation",
+      "Personal expenses",
+    ],
+    travelTips: [
+      "The Valley of Flowers is open only July 1 to October 31. Plan your trip between late July and mid-August for peak bloom.",
+      "Wear waterproof trekking boots — the valley gets frequent rain (it's a monsoon-season trek).",
+      "The valley only permits entry from 7 AM – 5 PM. You must return to Ghangaria each night.",
+      "No food, accommodation, or camping is allowed inside the valley — wildlife and plant protection rules.",
+      "Carry a rain poncho or waterproof jacket — monsoon showers can appear suddenly.",
+      "Mobile network is available only at Ghangaria (BSNL). Download offline maps before departure.",
+    ],
+    faqs: [
+      {
+        question: "What is the Valley of Flowers and why is it so famous?",
+        answer: "The Valley of Flowers is a national park and UNESCO World Heritage Site in Uttarakhand's Chamoli district. It is famous for its extraordinary carpet of 500+ species of wildflowers that bloom during the monsoon season (July–September), set against the backdrop of snow-capped Himalayan peaks. It is one of the few places in the world where such biodiversity exists at high altitude in a concentrated, accessible area.",
+      },
+      {
+        question: "What is the Trek difficulty?",
+        answer: "The Valley of Flowers trek is rated Moderate. The trek from Govindghat to Ghangaria (13 km) gains about 1,000m in altitude over 4–5 hours on a well-maintained trail. The valley itself is easy walking. Hemkund Sahib (an optional addition) is steeper and more demanding at 4,329m.",
+      },
+      {
+        question: "Can I visit the Valley of Flowers without a guide?",
+        answer: "Technically yes for Indian nationals, but a licensed guide is highly recommended. A naturalist guide significantly enhances the experience by identifying rare species, knowing the best bloom locations, and ensuring you follow National Park rules. Our guides are certified naturalists with 5+ years of Valley experience.",
+      },
+      {
+        question: "What flowers bloom in the Valley of Flowers?",
+        answer: "During peak season (late July to mid-August), you will see: Brahma Kamal (Saussurea obvallata), Himalayan Blue Poppy (Meconopsis aculeata), Cobra Lily (Arisaema), Himalayan Edelweiss, Marsh Marigold, Potentilla, Anemone, Geranium, Primula, Aconitum, and over 490 more species.",
+      },
+      {
+        question: "Is the Valley of Flowers suitable for children?",
+        answer: "Children aged 10 and above who are comfortable walking 8–10 km per day can do this trek. Mules and ponies are available for hire at Govindghat for those who need assistance. We do not recommend the trek for children under 8 or those with respiratory/cardiac conditions.",
+      },
+    ],
+    gallery: [
+      { src: destValleyFlowers, alt: "Valley of Flowers in peak bloom — carpet of wildflowers" },
+      { src: destValleyFlowers, alt: "Brahma Kamal in its natural habitat" },
+      { src: destValleyFlowers, alt: "Hemkund Sahib sacred lake in the Himalayas" },
+      { src: destValleyFlowers, alt: "Pushpawati River flowing through the valley" },
+      { src: destValleyFlowers, alt: "Trekkers walking through the valley trail" },
+      { src: destValleyFlowers, alt: "Alpine wildflowers with snow peaks in background" },
+    ],
+    relatedDestinations: ["kedarnath", "rishikesh", "char-dham"],
+    relatedPackageSlugs: ["valley-of-flowers-trek-6-nights-7-days"],
+    relatedBlogSlugs: ["valley-of-flowers-trek-complete-guide"],
+  },
+  {
+    id: "5",
+    name: "Varanasi",
+    slug: "varanasi",
+    tagline: "The Eternal City — Where Life Meets the Sacred",
+    state: "Uttar Pradesh",
+    country: "India",
+    image: destVaranasi,
+    heroImage: destVaranasi,
+    altitude: "80 m",
+    bestSeason: "October–March",
+    idealDuration: "3–4 Days",
+    difficulty: "Easy",
+    popularityScore: 88,
+    trending: false,
+    packagesCount: 10,
+    overview: [
+      "Varanasi — also known as Kashi and Banaras — is one of the oldest continuously inhabited cities on Earth and the holiest city in Hinduism. Situated on the banks of the Ganga in Uttar Pradesh, this ancient city has been a centre of learning, philosophy, weaving, and spirituality for over 3,500 years.",
+      "The ghats of Varanasi are its defining feature — 88 stone steps leading down to the Ganga, each with its own character, history, and religious significance. The Dashashwamedh Ghat hosts the grandest Ganga Aarti every evening, where hundreds of priests perform a synchronised fire ritual that has been conducted without interruption for centuries. Witnessing it from a boat on the Ganga is one of the most overwhelming spiritual experiences available anywhere in the world.",
+      "Varanasi is also the starting point for the Buddhist pilgrimage circuit — Sarnath, just 10 km away, is where the Buddha gave his first sermon after attaining enlightenment. For Hindu pilgrims, the Kashi Vishwanath Temple (one of the twelve Jyotirlingas) and a ritual dip in the Ganga are among the most sacred acts possible.",
+      "Our Varanasi packages combine the deep spiritual experience of the ghats, a boat ride at sunrise, a visit to Sarnath, and the rich sensory experience of the old city's lanes — the weavers, the music, the sweets, and the philosophy.",
+    ],
+    quickFacts: [
+      { label: "Religion", value: "Hinduism, Buddhism, Jainism" },
+      { label: "Key Event", value: "Ganga Aarti (daily, sunset)" },
+      { label: "UNESCO Related", value: "Sarnath (Buddhist heritage)" },
+      { label: "Best Month", value: "Oct–Feb" },
+      { label: "Must Do", value: "Sunrise boat ride on Ganga" },
+      { label: "Nearest Airport", value: "Lal Bahadur Shastri, Varanasi" },
+    ],
+    bestTimeToVisit: [
+      { month: "October–November", weather: "Post-monsoon, pleasant, 20–30°C", crowd: "Moderate", rating: 5 },
+      { month: "December–January", weather: "Cool & misty, 10–20°C, Dev Deepawali", crowd: "High", rating: 5 },
+      { month: "February–March", weather: "Warm, Holi celebrations, 18–28°C", crowd: "Moderate", rating: 4 },
+      { month: "April–July", weather: "Hot & humid (40°C+), not ideal", crowd: "Low", rating: 2 },
+    ],
+    highlights: [
+      { emoji: "🔥", title: "Ganga Aarti at Dashashwamedh Ghat", desc: "The grandest evening fire ritual on the Ganga performed by priests in synchronised choreography — one of India's greatest spectacles." },
+      { emoji: "🚣", title: "Sunrise Boat Ride on the Ganga", desc: "Float past the 88 ghats in pre-dawn silence as Varanasi awakens — one of the most peaceful experiences in India." },
+      { emoji: "🛕", title: "Kashi Vishwanath Temple", desc: "One of the twelve Jyotirlingas of Shiva — the most important temple in Varanasi, now renovated and magnificent." },
+      { emoji: "☸️", title: "Sarnath — Where Buddha Preached", desc: "Just 10 km from Varanasi, the Deer Park where Siddhartha became the Buddha and delivered his first sermon." },
+      { emoji: "🕯", title: "Manikarnika Ghat — The Burning Ghat", desc: "The most sacred cremation site in Hinduism — observed from a respectful distance for an insight into Hindu philosophy of life and death." },
+      { emoji: "🧵", title: "Banarasi Weaving & Silk", desc: "Varanasi is famous for its silk brocade Banarasi sarees — visit a weaver's workshop to see the intricate handloom process." },
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrive Varanasi — Evening Ganga Aarti",
+        description: "Arrive at Varanasi (airport or railway station). Check in and head to Dashashwamedh Ghat for the grand evening aarti. Watch the spectacle from the ghats or from a boat on the Ganga.",
+        activities: ["Hotel check-in", "Evening Ganga Aarti", "Ghat walk"],
+        stay: "Hotel Varanasi",
+        meals: "Dinner",
+      },
+      {
+        day: 2,
+        title: "Sunrise Boat Ride & Sarnath",
+        description: "5 AM sunrise boat ride along all 88 ghats — witness morning rituals, yoga, and the incredible changing light. Afternoon visit to Sarnath — Dhamek Stupa, Deer Park, and the Sarnath Museum.",
+        activities: ["Sunrise boat ride", "Subah-e-Banaras walk", "Sarnath Dhamek Stupa", "Sarnath Museum"],
+        stay: "Hotel Varanasi",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 3,
+        title: "Kashi Vishwanath & Old City Walk",
+        description: "Visit the Kashi Vishwanath Temple Corridor, Durga Temple, Tulsi Manas Temple, and Annapurna Temple. Walk through the ancient lanes of the old city — experience the weavers, sweet shops, and centuries-old cultures.",
+        activities: ["Kashi Vishwanath darshan", "Old city lane walk", "Weaver workshop visit", "Lassi at Blue Lassi shop"],
+        stay: "Hotel Varanasi",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 4,
+        title: "Departure",
+        description: "Morning at leisure. Shopping for Banarasi silk sarees, sandalwood items, and Benarasi paan. Transfer to airport/railway station.",
+        activities: ["Souvenir shopping", "Airport/station transfer"],
+        stay: "N/A",
+        meals: "Breakfast",
+      },
+    ],
+    inclusions: [
+      "Hotel accommodation (3 nights twin-sharing)",
+      "Meals as per itinerary",
+      "Airport/station pickup and drop",
+      "Licensed English-speaking guide",
+      "Sunrise boat ride on the Ganga",
+      "All sightseeing as per itinerary",
+    ],
+    exclusions: [
+      "Train or air fare to Varanasi",
+      "Temple darshan fees (Vishwanath VIP — optional)",
+      "Personal shopping",
+      "Travel insurance",
+    ],
+    travelTips: [
+      "Arrive at Dashashwamedh Ghat at least 45 minutes before the evening aarti for a good position — it gets very crowded.",
+      "The sunrise boat ride (5–6 AM) is non-negotiable — Varanasi at dawn is unlike anything else.",
+      "Dress modestly when visiting temples — cover shoulders and knees. Remove footwear near temple precincts.",
+      "The old lanes (galis) are narrow and maze-like — always move with a guide on your first visit.",
+      "If you want to photograph the ghats, shoot during the golden hour after sunrise or before sunset.",
+      "Try the iconic Banarasi Chaat, Kachori Sabzi, and rabri-jalebi from street vendors near the ghats — the food is extraordinary.",
+    ],
+    faqs: [
+      {
+        question: "What is the significance of Varanasi in Hinduism?",
+        answer: "Varanasi (Kashi) is considered the most sacred city in Hinduism. According to Hindu belief, dying in Varanasi and being cremated at Manikarnika Ghat grants moksha (liberation from the cycle of birth and death). The city is also associated with Lord Shiva, who is said to personally guide the souls of those who die here to liberation.",
+      },
+      {
+        question: "When is the best time to visit Varanasi?",
+        answer: "October to March is the best period. The most magnificent time is Dev Deepawali (November–December, 15 days after Diwali) when 100,000+ oil lamps are lit along all 88 ghats simultaneously — a breathtaking spectacle. Maha Shivratri (February–March) is also extremely atmospheric but very crowded.",
+      },
+      {
+        question: "Is Varanasi suitable for non-Hindu tourists?",
+        answer: "Absolutely. Varanasi draws philosophers, artists, anthropologists, and curious travellers from all religions and nationalities. The city's atmosphere — its ancient lanes, the Ganga, the music, the rituals — is profoundly interesting for anyone. Note that the inner sanctum of Kashi Vishwanath Temple is restricted to Hindus only.",
+      },
+    ],
+    gallery: [
+      { src: destVaranasi, alt: "Evening Ganga Aarti at Dashashwamedh Ghat, Varanasi" },
+      { src: destVaranasi, alt: "Sunrise boat ride past the 88 ghats of Varanasi" },
+      { src: destVaranasi, alt: "Kashi Vishwanath Temple Corridor, Varanasi" },
+      { src: destVaranasi, alt: "Holy dip at the Ganga ghat during morning prayers" },
+      { src: destVaranasi, alt: "Dhamek Stupa at Sarnath in morning light" },
+      { src: destVaranasi, alt: "The narrow ancient lanes of old Varanasi" },
+    ],
+    relatedDestinations: ["kedarnath", "rishikesh", "char-dham"],
+    relatedPackageSlugs: ["varanasi-spiritual-3-nights-4-days"],
+    relatedBlogSlugs: ["how-to-plan-kedarnath-badrinath-pilgrimage"],
+  },
+  {
+    id: "6",
+    name: "Manali",
+    slug: "manali",
+    tagline: "Adventure, Snow & Himalayan Serenity in Himachal",
+    state: "Himachal Pradesh",
+    country: "India",
+    image: destManali,
+    heroImage: destManali,
+    altitude: "2,050 m",
+    bestSeason: "Year-round",
+    idealDuration: "4–6 Days",
+    difficulty: "Easy",
+    popularityScore: 94,
+    trending: true,
+    packagesCount: 14,
+    overview: [
+      "Manali, perched at 2,050m in the Beas River valley of Himachal Pradesh, is one of India's most accessible and beloved Himalayan destinations. Its perfect combination of snow-capped peaks, adventure sports, ancient wooden temples, apple orchards, and the vibrant backpacker culture of Old Manali makes it appealing to virtually every type of traveller.",
+      "Solang Valley, just 14 km from Manali town, offers year-round adventure — paragliding, zorbing, and snow activities in winter (December–February) or ropeway and ATV rides in summer. Rohtang Pass (3,978m), 51 km from Manali, is a dramatic high-altitude pass with vast snowfields accessible from May to October, offering a taste of high-altitude terrain without technical trekking.",
+      "Old Manali is a charming alternative to the newer town — a peaceful village with cafes, the historic Manu Temple (the oldest temple in Manali), and a relaxed traveller hub with budget guesthouses, art galleries, and mountain cafes.",
+      "Manali is also the gateway to Spiti Valley (an extraordinary cold desert journey via Rohtang and Kunzum passes), Triund Trek (one of the easiest Himalayan treks from nearby Dharamshala), and the Manali–Leh Highway — one of the world's most legendary road trips.",
+    ],
+    quickFacts: [
+      { label: "Altitude", value: "2,050 m" },
+      { label: "Rohtang Pass", value: "3,978 m (51 km from Manali)" },
+      { label: "Nearest Airport", value: "Bhuntar / Kullu (52 km)" },
+      { label: "Best Season", value: "Year-round (purpose-specific)" },
+      { label: "Best For", value: "Adventure, Family, Honeymoon, Solo" },
+      { label: "Distance from Delhi", value: "540 km (12–14 hrs by road)" },
+    ],
+    bestTimeToVisit: [
+      { month: "December–February", weather: "Snow season, -4 to 8°C, winter sports", crowd: "High", rating: 5 },
+      { month: "March–May", weather: "Pleasant, 10–20°C, blooming orchards", crowd: "Moderate", rating: 4 },
+      { month: "June–August", weather: "Green meadows, 15–25°C, Rohtang open", crowd: "Very High", rating: 4 },
+      { month: "Sept–November", weather: "Post-monsoon clear, 8–18°C, Spiti open", crowd: "Moderate", rating: 5 },
+    ],
+    highlights: [
+      { emoji: "🏂", title: "Solang Valley Snow Activities", desc: "India's most popular snow destination — skiing, snowboarding, and sledding on pristine Himalayan slopes." },
+      { emoji: "🏔", title: "Rohtang Pass Adventure", desc: "Cross the dramatic 3,978m pass for views of the barren Lahaul-Spiti landscape and endless snowfields." },
+      { emoji: "🪂", title: "Paragliding at Solang Valley", desc: "Tandem paragliding over the Beas Valley with stunning aerial views of the Pir Panjal range." },
+      { emoji: "🕌", title: "Hadimba Devi Temple", desc: "A magnificent 16th-century wooden temple surrounded by cedar forests — one of Manali's most iconic landmarks." },
+      { emoji: "🌊", title: "River Rafting on Beas", desc: "White-water rafting through Grade 2–3 rapids of the Beas River with valley and mountain views." },
+      { emoji: "☕", title: "Old Manali Cafe Culture", desc: "The bohemian Old Manali district is lined with cosy cafes, wooden guesthouses, and the serene Manu Temple." },
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrive Manali — Old Manali Orientation",
+        description: "Arrive by overnight bus/car from Delhi or taxi from Bhuntar airport. Check in and explore Old Manali — the Manu Temple, the Vashisht hot springs, and the Beas River promenade.",
+        activities: ["Hotel check-in", "Manu Temple", "Vashisht hot springs", "Beas river walk"],
+        stay: "Hotel in Manali",
+        meals: "Dinner",
+      },
+      {
+        day: 2,
+        title: "Solang Valley — Snow Activities",
+        description: "Visit Solang Valley (14 km) for skiing, snowboarding, zorbing, and ropeway ride (seasonal). In summer: paragliding, ATV rides, and trekking on the valley trails.",
+        activities: ["Skiing / Snowboarding (winter)", "Paragliding (summer)", "Ropeway ride", "Zorbing"],
+        stay: "Hotel in Manali",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 3,
+        title: "Rohtang Pass Excursion",
+        description: "Early morning drive to Rohtang Pass (3,978m, 51 km). Massive snowfields, stunning Lahaul Valley views, and optional snow activities at the pass. Permit required from Forest Department (we arrange).",
+        activities: ["Rohtang Pass (3,978m)", "Snow play at the pass", "Lahaul Valley views", "Chandra River photo point"],
+        stay: "Hotel in Manali",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 4,
+        title: "Manali Sightseeing & Leisure",
+        description: "Visit Hadimba Devi Temple, Tibetan Monastery, Club House (Mall Road), and the local market for Kullu shawls, Himachali caps, and apple products.",
+        activities: ["Hadimba Temple", "Tibetan Monastery & market", "Club House", "Mall Road"],
+        stay: "Hotel in Manali",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 5,
+        title: "River Rafting & Departure",
+        description: "Morning white-water rafting on the Beas River (2–3 hours). Post-lunch, depart for Delhi or Chandigarh by car/bus.",
+        activities: ["Beas River rafting", "Souvenir shopping", "Return departure"],
+        stay: "N/A (overnight bus to Delhi)",
+        meals: "Breakfast",
+      },
+    ],
+    inclusions: [
+      "Hotel accommodation (4 nights twin-sharing)",
+      "Meals as per itinerary",
+      "Private cab for all sightseeing (Innova/Ertiga)",
+      "Rohtang Pass permit (arranged by us)",
+      "Expert local guide",
+      "Beas River rafting (Grade 2–3)",
+    ],
+    exclusions: [
+      "Travel to/from Manali (bus/flight/train fare)",
+      "Snow activity charges at Solang (₹500–2,000 depending on activity)",
+      "Paragliding charges (₹1,500–2,500 for tandem)",
+      "Travel insurance",
+      "Personal shopping",
+    ],
+    travelTips: [
+      "Book Rohtang Pass permits online at https://rohtangpermits.nic.in — only 1,200 vehicles allowed daily. We book these on your behalf.",
+      "Carry woollen clothing year-round — even in June–August, mornings and evenings are cold at 2,000m+.",
+      "Snow gear (snow boots, gloves, jackets) is available on rent at Solang Valley — you don't need to carry your own.",
+      "Avoid Manali during long weekends (especially in summer May–June) — crowds can be overwhelming. Opt for weekday travel.",
+      "The Chandigarh–Manali Highway (NH-3) is prone to landslides during monsoon (July–August) — build buffer days into your itinerary.",
+      "Old Manali cafes are delightful — try The Lazy Dog, Drifters Cafe, and Cafe 1947 for a leisurely meal with mountain views.",
+    ],
+    faqs: [
+      {
+        question: "What is the best time to see snow in Manali?",
+        answer: "For guaranteed snow, visit between December and February when Solang Valley and Rohtang Pass are blanketed in deep snow (4–8 feet). Even from March to May, Rohtang Pass has significant snowfield. In June–August, you can drive up to Rohtang for seasonal snowfields, though the valley itself is green.",
+      },
+      {
+        question: "Is Manali good for a family trip?",
+        answer: "Absolutely — Manali is one of India's best family destinations. The activities are accessible (snow play, apple orchards, gentle river walks, temple visits), the altitude (2,050m) is manageable for children and seniors, and there is excellent accommodation for all budgets. We have specific family packages that include child-friendly itineraries.",
+      },
+      {
+        question: "How do I reach Manali from Delhi?",
+        answer: "Option 1: Overnight Volvo bus (12–14 hrs, ₹800–1,500, comfortable). Option 2: Fly to Bhuntar Airport (Kullu) and taxi 50 km to Manali (1.5 hrs). Option 3: Drive by private car (540 km, 12–14 hrs via NH-3). We arrange private cab pickups from Delhi/Chandigarh for all our guests.",
+      },
+    ],
+    gallery: [
+      { src: destManali, alt: "Solang Valley snowfields in winter with skiers" },
+      { src: destManali, alt: "Rohtang Pass panorama with Lahaul Valley" },
+      { src: destManali, alt: "Hadimba Devi Temple surrouned by cedar forests" },
+      { src: destManali, alt: "Old Manali village with colourful guesthouses" },
+      { src: destManali, alt: "Paragliding over the Beas Valley, Manali" },
+      { src: destManali, alt: "Beas River with snow-capped peaks in background" },
+    ],
+    relatedDestinations: ["ladakh", "kashmir", "rishikesh"],
+    relatedPackageSlugs: ["manali-family-4-nights-5-days"],
+    relatedBlogSlugs: ["manali-in-december-is-it-worth-it"],
+  },
+  {
+    id: "7",
+    name: "Rishikesh",
+    slug: "rishikesh",
+    tagline: "The Yoga Capital — Adventure, Spirituality & the Ganga",
+    state: "Uttarakhand",
+    country: "India",
+    image: destRishikesh,
+    heroImage: destRishikesh,
+    altitude: "372 m",
+    bestSeason: "October–June",
+    idealDuration: "3–4 Days",
+    difficulty: "Easy",
+    popularityScore: 92,
+    trending: true,
+    packagesCount: 9,
+    overview: [
+      "Rishikesh is one of the most spiritually charged and adventure-packed destinations in India. Nestled in the Himalayan foothills where the Ganga emerges from the mountains onto the plains, this city has been a centre of yoga, Ayurveda, and Vedantic philosophy for centuries.",
+      "While Rishikesh is globally known as the 'Yoga Capital of the World' — with hundreds of ashrams, yoga schools, and world-class wellness retreats — it is equally famous as India's adventure sports capital. The stretch of Ganga between Rishikesh and Devprayag offers Grade 1–5 white-water rafting through dramatic Himalayan gorges, and the cliffs above the river are used for bungee jumping (India's highest bungee at 83m), cliff jumping, and flying fox.",
+      "The Beatles Ashram (Maharishi Mahesh Yogi's Chaurasi Kutia), now a colourful art installation, is one of the world's most intriguing heritage sites. The evening Ganga aarti at Triveni Ghat and the iconic Ram Jhula and Laxman Jhula suspension bridges are quintessential Rishikesh experiences.",
+      "Rishikesh is also the starting point for most Uttarakhand pilgrimages (Kedarnath, Badrinath, Valley of Flowers, Char Dham) and a convenient overnight stop between Delhi and the Himalayas.",
+    ],
+    quickFacts: [
+      { label: "Altitude", value: "372 m" },
+      { label: "Famous For", value: "Yoga, Rafting, Bungee jumping" },
+      { label: "Nearest Airport", value: "Jolly Grant, Dehradun (25 km)" },
+      { label: "Distance from Delhi", value: "240 km (5–6 hrs)" },
+      { label: "Best Season", value: "Oct–June (avoid July monsoon)" },
+      { label: "Rafting Season", value: "Sep–June" },
+    ],
+    bestTimeToVisit: [
+      { month: "October–November", weather: "Post-monsoon, clean Ganga, 18–28°C", crowd: "Moderate", rating: 5 },
+      { month: "February–April", weather: "Spring, pleasant, International Yoga Festival (March)", crowd: "Moderate", rating: 5 },
+      { month: "May–June", weather: "Pre-monsoon, hot but riverrafting excellent", crowd: "High", rating: 4 },
+      { month: "July–September", weather: "Monsoon, rafting suspended, very crowded", crowd: "High", rating: 2 },
+    ],
+    highlights: [
+      { emoji: "🌊", title: "Ganga River Rafting", desc: "Grade 2–4 rafting through dramatic Himalayan gorges — from Shivpuri (16 km) to Marine Drive (26 km)." },
+      { emoji: "🪂", title: "Bungee Jumping (83m)", desc: "India's highest bungee jump at Jumpin Heights — 83m above a gorge, not for the faint-hearted." },
+      { emoji: "🧘", title: "Yoga & Meditation Retreats", desc: "International Yoga Festival (March), 200-hr TTCs, daily yoga at Parmarth Niketan — world-class spiritual learning." },
+      { emoji: "🎸", title: "Beatles Ashram", desc: "The colourful ruins of the ashram where The Beatles studied Transcendental Meditation in 1968 — now an outdoor art installation." },
+      { emoji: "🔥", title: "Triveni Ghat Aarti", desc: "Rishikesh's moving evening aarti at the confluence of Ganga, Yamuna, and Saraswati rivers at Triveni Ghat." },
+      { emoji: "🏕", title: "Camping by the Ganga", desc: "Luxury riverside camps with bonfire evenings, stargazing, and morning yoga over the silent Ganga." },
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrive Rishikesh — Evening Aarti",
+        description: "Arrive from Delhi or Dehradun. Check into riverside hotel or camp. Walk across Ram Jhula or Laxman Jhula. Attend the Triveni Ghat evening aarti.",
+        activities: ["Hotel/camp check-in", "Laxman Jhula walk", "Triveni Ghat aarti", "Ghat-side dinner"],
+        stay: "Hotel / Riverside Camp, Rishikesh",
+        meals: "Dinner",
+      },
+      {
+        day: 2,
+        title: "White-water Rafting & Evening Yoga",
+        description: "Morning rafting expedition from Shivpuri (16 km run, Grade 2–3) or Marine Drive (26 km, Grade 3–4). Afternoon: visit Beatles Ashram. Evening yoga session with a certified instructor at sunset.",
+        activities: ["Ganga white-water rafting", "Beatles Ashram tour", "Sunset yoga session"],
+        stay: "Hotel / Camp",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 3,
+        title: "Bungee / Adventure Sports & Ashram Visit",
+        description: "Morning bungee jumping at Jumpin Heights (book in advance). Afternoon visit to Parmarth Niketan Ashram or Divine Life Society for a guided tour on Vedanta philosophy and meditation.",
+        activities: ["Bungee jumping at 83m (optional)", "Flying fox / cliff jump", "Parmarth Niketan", "Evening Ganga walk"],
+        stay: "Hotel / Camp",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 4,
+        title: "Morning Yoga & Departure",
+        description: "Sunrise yoga class followed by a Ganga dip. Shopping for rudraksha, essential oils, yoga accessories, and Ayurvedic products. Transfer to Delhi/Dehradun.",
+        activities: ["Sunrise yoga class", "Ganga dip (optional)", "Yoga market shopping", "Departure"],
+        stay: "N/A",
+        meals: "Breakfast",
+      },
+    ],
+    inclusions: [
+      "Accommodation (3 nights — hotel or riverside camp)",
+      "Meals as per itinerary",
+      "White-water rafting (one session included)",
+      "Bonfire at camp (camp packages)",
+      "Local guide and transportation",
+      "Evening yoga session",
+    ],
+    exclusions: [
+      "Travel to/from Rishikesh",
+      "Bungee jumping (₹3,500 per person — book in advance)",
+      "Ashram retreat fees (if you enrol for multi-day programmes)",
+      "Personal expenses",
+      "Travel insurance",
+    ],
+    travelTips: [
+      "Book bungee jumping at Jumpin Heights at least 48 hours in advance — slots fill fast, especially weekends.",
+      "The best rafting is from September to June. Rafting is suspended during July–August monsoon when the Ganga is in spate.",
+      "If you plan to stay in an ashram, most require pre-registration: Parmarth Niketan, Sivananda Ashram, Omkarananda have good facilities.",
+      "Rishikesh is a vegetarian city — most restaurants and ashrams do not serve meat or alcohol. This adds to its meditative atmosphere.",
+      "The Laxman Jhula and Ram Jhula suspension bridges are pedestrian only — do not attempt crossing by vehicle.",
+      "International Yoga Festival in March is extraordinary but requires early booking (accommodation and event passes) up to 3 months in advance.",
+    ],
+    faqs: [
+      {
+        question: "Is Rishikesh good for beginners at yoga?",
+        answer: "Absolutely. Rishikesh has yoga schools for all levels from complete beginners to advanced practitioners. Parmarth Niketan, Sivananda Ashram, and hundreds of smaller schools offer drop-in classes (₹300–500 per class), weekend retreats, and intensive 200–500 hour teacher training courses.",
+      },
+      {
+        question: "What is the highest bungee jump in India?",
+        answer: "Jumpin Heights at Mohan Chatti, just outside Rishikesh town, is India's highest fixed-platform bungee jump at 83m (272 feet). They also offer a Flying Fox (zip line) and Giant Swing. The operation is internationally certified and follows strict safety standards. Minimum age 12 and weight 40–110 kg.",
+      },
+      {
+        question: "How long is the Ganga rafting in Rishikesh?",
+        answer: "Rafting routes: (1) Brahmpuri to Rishikesh — 9 km, 2 hours, Grade 1–2, ideal for beginners and families. (2) Shivpuri to Rishikesh — 16 km, 3 hours, Grade 2–3, most popular. (3) Marine Drive to Rishikesh — 26 km, 4–5 hours, Grade 3–4, for experienced adventure seekers.",
+      },
+    ],
+    gallery: [
+      { src: destRishikesh, alt: "White water rafting on the Ganga near Rishikesh" },
+      { src: destRishikesh, alt: "Laxman Jhula suspension bridge at sunset" },
+      { src: destRishikesh, alt: "Triveni Ghat Ganga Aarti in Rishikesh" },
+      { src: destRishikesh, alt: "Luxury riverside camp with Ganga views" },
+      { src: destRishikesh, alt: "Yoga class at a Rishikesh ashram at sunrise" },
+      { src: destRishikesh, alt: "Bungee jumping cliff above the Ganga gorge" },
+    ],
+    relatedDestinations: ["kedarnath", "manali", "valley-of-flowers"],
+    relatedPackageSlugs: [],
+    relatedBlogSlugs: ["rishikesh-adventure-activities-full-guide"],
+  },
+  {
+    id: "8",
+    name: "Char Dham",
+    slug: "char-dham",
+    tagline: "The Sacred Circuit of Uttarakhand — Four Dhams, One Journey",
+    state: "Uttarakhand",
+    country: "India",
+    image: destKedarnath,
+    heroImage: destKedarnath,
+    altitude: "3,583 m (Kedarnath)",
+    bestSeason: "May–June, September–October",
+    idealDuration: "10–12 Days",
+    difficulty: "Moderate",
+    popularityScore: 91,
+    trending: false,
+    packagesCount: 6,
+    overview: [
+      "The Char Dham Yatra is one of the most sacred pilgrimages in Hinduism — a circuit of four holy shrines in the Garhwal Himalayas of Uttarakhand: Yamunotri, Gangotri, Kedarnath, and Badrinath. Together, these four abodes of the divine represent the spiritual heart of the Himalayan pilgrimage tradition.",
+      "Yamunotri is dedicated to Goddess Yamuna and is the source of the Yamuna River. Gangotri is the source shrine of the Ganga (the actual source, Gaumukh glacier, is 18 km further). Kedarnath is the most important of the twelve Jyotirlingas (shrines of Lord Shiva). Badrinath is dedicated to Lord Vishnu and is the most visited of the four dhams.",
+      "The Char Dham Yatra typically runs from April–May to October–November, following the opening of the shrines. The journey covers over 1,000 km of Himalayan roads, passing through dramatic river gorges, lush valleys, and high-altitude passes. It is simultaneously a physical and spiritual journey of extraordinary intensity.",
+      "MyQuickTrippers offers both fixed-departure group Char Dham tours and fully customised private packages, with helicopter options for those who require an expedited programme.",
+    ],
+    quickFacts: [
+      { label: "Four Dhams", value: "Yamunotri, Gangotri, Kedarnath, Badrinath" },
+      { label: "Total Distance", value: "~1,000 km circuit" },
+      { label: "Starting Point", value: "Haridwar / Rishikesh" },
+      { label: "Highest Point", value: "Kedarnath (3,583m)" },
+      { label: "Duration", value: "10–12 Days (minimum)" },
+      { label: "Season", value: "May–June, Sept–Oct" },
+    ],
+    bestTimeToVisit: [
+      { month: "May–June", weather: "Peak yatra season, pleasantly cool, 8–18°C", crowd: "Very High", rating: 5 },
+      { month: "September–October", weather: "Post-monsoon, clearer skies, fewer crowds", crowd: "Moderate", rating: 5 },
+      { month: "July–August", weather: "Monsoon, landslide risk on roads", crowd: "High", rating: 2 },
+      { month: "Nov–April", weather: "All shrines closed", crowd: "Low", rating: 1 },
+    ],
+    highlights: [
+      { emoji: "🛕", title: "Kedarnath Jyotirlinga", desc: "The most sacred Shiva shrine in the Himalayas — an essential stop on any pilgrimage to Char Dham." },
+      { emoji: "🙏", title: "Badrinath Vishnu Shrine", desc: "Lord Vishnu's principal abode — the most visited of the four dhams with a beautifully painted temple façade." },
+      { emoji: "💧", title: "Source of Sacred Rivers", desc: "Visit the sources of the Yamuna (Yamunotri) and Ganga (Gangotri) — the two most sacred rivers of Hinduism." },
+      { emoji: "🚁", title: "Char Dham by Helicopter", desc: "Complete all four dhams in just 1–2 days with our premium helicopter yatra packages." },
+      { emoji: "🌄", title: "Himalayan Road Journey", desc: "The yatra route passes through some of the most dramatic Himalayan scenery in Uttarakhand." },
+      { emoji: "📿", title: "Complete Spiritual Circuit", desc: "Hinduism traditionally believes completing the Char Dham Yatra washes away all sins and secures moksha." },
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Haridwar → Barkot (230 km)",
+        description: "Depart from Haridwar. Drive via Mussoorie or Dehradun to Barkot — the base for Yamunotri.",
+        activities: ["Haridwar Ganga Aarti (evening before departure)", "Drive to Barkot"],
+        stay: "Hotel Barkot",
+        meals: "Dinner",
+      },
+      {
+        day: 2,
+        title: "Yamunotri Dham",
+        description: "Trek from Janki Chatti (6 km, moderate) to Yamunotri Temple. Dip in Surya Kund hot spring. Darshan at Yamunotri shrine. Return to Barkot.",
+        activities: ["6 km trek to Yamunotri", "Surya Kund dip", "Temple darshan", "Return to Barkot"],
+        stay: "Hotel Barkot",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 3,
+        title: "Barkot → Gangotri (100 km)",
+        description: "Drive to Uttarkashi and then to Gangotri. Evening darshan at Gangotri Temple (3,048m) with the Bhagirathi River rushing past.",
+        activities: ["Drive to Gangotri", "Evening darshan", "Ganga sacred dip"],
+        stay: "Hotel Gangotri",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 4,
+        title: "Gangotri → Guptkashi (250 km)",
+        description: "Early morning Gangotri darshan. Long drive to Guptkashi (Kedarnath base camp), passing through Uttarkashi and Rudraprayag.",
+        activities: ["Morning Gangotri darshan", "Scenic mountain drive", "Arrive Guptkashi"],
+        stay: "Hotel Guptkashi",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 5,
+        title: "Kedarnath Trek & Darshan",
+        description: "First vehicle to Gaurikund (30 km), then 16 km trek to Kedarnath or helicopter. Darshan at Kedarnath Temple. Overnight near temple.",
+        activities: ["16 km trek / helicopter to Kedarnath", "Kedarnath darshan", "Evening aarti"],
+        stay: "Guesthouse near Kedarnath",
+        meals: "All meals",
+      },
+      {
+        day: 6,
+        title: "Kedarnath → Badrinath (220 km via Guptkashi)",
+        description: "Trek back to Gaurikund. Long drive through Rudraprayag, Chamoli to Badrinath. Evening darshan at Badrinath Temple.",
+        activities: ["Return trek", "Drive to Badrinath", "Tapt Kund dip", "Badrinath darshan"],
+        stay: "Hotel Badrinath",
+        meals: "Breakfast & Dinner",
+      },
+      {
+        day: 7,
+        title: "Badrinath → Haridwar (310 km)",
+        description: "Early morning Badrinath darshan and Maha Abhishek puja option. Visit Mana Village (last Indian village before the Tibet border). Return drive to Haridwar.",
+        activities: ["Morning Badrinath darshan", "Mana village visit", "Return drive to Haridwar"],
+        stay: "Hotel Haridwar",
+        meals: "Breakfast",
+      },
+    ],
+    inclusions: [
+      "All accommodation (twin-sharing at hotels / yatra guesthouses)",
+      "Meals as per itinerary",
+      "Private reserved cab or Tempo Traveller throughout",
+      "Experienced yatra guide with religious knowledge",
+      "Yatra registration assistance",
+      "All temple entry and darshan coordination",
+    ],
+    exclusions: [
+      "Helicopter charges at Kedarnath (optional, ₹4,000–6,000 per person)",
+      "Pony / palki at Kedarnath or Yamunotri",
+      "Puja and prasad at temples",
+      "Personal expenses and tips",
+      "Travel insurance",
+    ],
+    travelTips: [
+      "Register for the Char Dham Yatra online at registrationandtouristcare.uk.gov.in before departure — it is mandatory.",
+      "Carry all original ID proof documents — they are checked at multiple entry points.",
+      "Senior pilgrims and those with health conditions should get a pre-trip medical check and carry all prescriptions.",
+      "The Char Dham route is notorious for traffic jams in May–June — start all driving legs before 7 AM.",
+      "Weather can change rapidly at high altitude — always carry warm layers and a rain poncho.",
+      "The shrines open early (5–6 AM) — early morning darshan avoids the densest crowds and has the most peaceful atmosphere.",
+    ],
+    faqs: [
+      {
+        question: "What is the Char Dham Yatra?",
+        answer: "The Char Dham (four abodes) Yatra refers to a pilgrimage circuit visiting four sacred Hindu shrines in the Garhwal Himalayas: Yamunotri (Goddess Yamuna), Gangotri (Goddess Ganga), Kedarnath (Lord Shiva), and Badrinath (Lord Vishnu). Traditionally, the pilgrimage proceeds west to east in this exact order. Completing the full circuit is considered one of the most spiritually significant acts in Hinduism.",
+      },
+      {
+        question: "Can I do Char Dham by helicopter?",
+        answer: "Yes — dedicated Char Dham Helicopter packages allow pilgrims to visit all four dhams in 1–2 days. Helicopter services operate from Dehradun (Sahastradhara helipad) covering all four sites. We offer both individual helicopter bookings and full all-inclusive helicopter yatra packages. Prices range from ₹1.5L–2.5L per person for the complete circuit.",
+      },
+      {
+        question: "Is Char Dham yatra safe for senior citizens?",
+        answer: "Yes, with the right preparation and support. Senior citizens commonly complete the Char Dham Yatra with pony/palki rides for Kedarnath (reducing the trek to near zero), helicopter for Kedarnath and Yamunotri, and private vehicles with rest stops throughout. Our senior-friendly Char Dham packages are specifically designed for this demographic.",
+      },
+      {
+        question: "How far in advance should I book a Char Dham package?",
+        answer: "We recommend booking 2–3 months in advance for May–June season travel and 1 month in advance for September–October. Helicopter packages should be booked 3–4 months in advance. Accommodation in Kedarnath and Badrinath fills up extremely fast during the peak yatra months.",
+      },
+    ],
+    gallery: [
+      { src: destKedarnath, alt: "Kedarnath Temple — the jewel of Char Dham yatra" },
+      { src: destKedarnath, alt: "Badrinath Temple façade painted in bright colours" },
+      { src: destKedarnath, alt: "Pilgrims trekking the route to Kedarnath" },
+      { src: destKedarnath, alt: "Gangotri Temple with the Bhagirathi River" },
+      { src: destKedarnath, alt: "Helicopter landing at Kedarnath helipad" },
+      { src: destKedarnath, alt: "Mana Village — last village before Tibet border" },
+    ],
+    relatedDestinations: ["kedarnath", "rishikesh", "varanasi"],
+    relatedPackageSlugs: [],
+    relatedBlogSlugs: ["char-dham-yatra-complete-planning-guide", "how-to-plan-kedarnath-badrinath-pilgrimage"],
+  },
+];
+
+// ── Convenience exports ───────────────────────────────────────────────────────
+
+export function getDestinationBySlug(slug: string): DestinationData | undefined {
+  return destinationsData.find((d) => d.slug === slug);
+}
+
+export function getTrendingDestinations(): DestinationData[] {
+  return destinationsData
+    .filter((d) => d.trending)
+    .sort((a, b) => b.popularityScore - a.popularityScore);
+}
+
+export function getAllDestinations(): DestinationData[] {
+  return [...destinationsData].sort((a, b) => b.popularityScore - a.popularityScore);
+}

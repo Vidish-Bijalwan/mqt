@@ -6,6 +6,10 @@ import destKashmir from "@/assets/dest-kashmir.jpg";
 import destManali from "@/assets/dest-manali.jpg";
 import destRishikesh from "@/assets/dest-rishikesh.jpg";
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Type Definitions
+// ─────────────────────────────────────────────────────────────────────────────
+
 export interface TourPackage {
   id: string;
   title: string;
@@ -28,6 +32,20 @@ export interface TourPackage {
   highlights: string[];
   season: string;
   availability: string;
+  // Intelligence fields
+  popularityScore: number;
+  bookingCount: number;
+  trending: boolean;
+  featured: boolean;
+  seasonalTag?: string;
+  discountExpiry?: string;
+  seatsLeft?: number;
+  lastBookedHours?: number;
+  // Rich content for detail pages
+  overview?: string;
+  itineraryHighlights?: string[];
+  inclusions?: string[];
+  exclusions?: string[];
 }
 
 export interface Destination {
@@ -37,6 +55,10 @@ export interface Destination {
   image: string;
   packagesCount: number;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Destination Thumbnails (for homepage explorer)
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const destinations: Destination[] = [
   { id: "1", name: "Kedarnath", slug: "kedarnath", image: destKedarnath, packagesCount: 15 },
@@ -48,6 +70,10 @@ export const destinations: Destination[] = [
   { id: "7", name: "Rishikesh", slug: "rishikesh", image: destRishikesh, packagesCount: 9 },
   { id: "8", name: "Char Dham", slug: "char-dham", image: destKedarnath, packagesCount: 6 },
 ];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tour Packages — 15 packages across all categories
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const tourPackages: TourPackage[] = [
   {
@@ -72,6 +98,18 @@ export const tourPackages: TourPackage[] = [
     highlights: ["Kedarnath Temple Darshan", "Helicopter Option", "Rishikesh Sightseeing"],
     season: "May–October",
     availability: "Available",
+    popularityScore: 99,
+    bookingCount: 312,
+    trending: true,
+    featured: true,
+    seasonalTag: "Summer Special",
+    discountExpiry: "2025-06-30",
+    seatsLeft: 4,
+    lastBookedHours: 2,
+    overview: "A deeply spiritual 5-night journey to the abode of Lord Shiva at 3,583m. Includes the 16-km Himalayan trek, temple darshan, and Rishikesh sightseeing — all handled end-to-end.",
+    itineraryHighlights: ["Day 1: Haridwar arrival + Ganga Aarti", "Day 2: Drive to Guptkashi", "Day 3: Trek to Kedarnath", "Day 4: Kedarnath darshan + Vasuki Tal option", "Day 5: Return trek + drive", "Day 6: Haridwar departure"],
+    inclusions: ["Twin-sharing hotel/guesthouse throughout", "All meals on trek days", "Private cab (Haridwar ↔ Gaurikund)", "Expert local guide", "Medical kit & emergency support"],
+    exclusions: ["Helicopter charges (optional)", "Personal expenses", "Travel insurance"],
   },
   {
     id: "2",
@@ -95,6 +133,17 @@ export const tourPackages: TourPackage[] = [
     highlights: ["Pangong Lake", "Nubra Valley", "Khardung La Pass"],
     season: "June–September",
     availability: "Available",
+    popularityScore: 97,
+    bookingCount: 214,
+    trending: true,
+    featured: true,
+    seasonalTag: "Summer Adventure",
+    seatsLeft: 6,
+    lastBookedHours: 5,
+    overview: "7 nights across Leh, Nubra Valley and the iconic Pangong Tso — with proper acclimatisation, all inner line permits, and an experienced Ladakhi guide throughout.",
+    itineraryHighlights: ["Day 1–2: Leh acclimatisation + local sightseeing", "Day 3: Nubra Valley via Khardung La", "Day 4: Hunder camel ride → Pangong", "Day 5: Pangong full day", "Day 6: Return via Chang La + Thiksey Monastery", "Day 7–8: Leh shopping + departure"],
+    inclusions: ["All accommodation twin-sharing", "All meals as per itinerary", "Private reserved cab", "Inner Line Permits (Nubra, Pangong, Chang La)", "Oxygen cylinder backup"],
+    exclusions: ["Airfare to/from Leh", "Camel ride charges", "Personal expenses"],
   },
   {
     id: "3",
@@ -118,6 +167,18 @@ export const tourPackages: TourPackage[] = [
     highlights: ["Dal Lake Shikara", "Gulmarg Gondola", "Pahalgam Valley"],
     season: "Year-round",
     availability: "Available",
+    popularityScore: 98,
+    bookingCount: 278,
+    trending: true,
+    featured: true,
+    seasonalTag: "Honeymoon Dream",
+    discountExpiry: "2025-05-31",
+    seatsLeft: 3,
+    lastBookedHours: 1,
+    overview: "5 nights of pure romance in the Valley — a traditional houseboat on Dal Lake, the Gulmarg Gondola at 3,979m, Pahalgam meadows, and a private shikara arranged just for two.",
+    itineraryHighlights: ["Day 1: Arrive → Houseboat + evening shikara", "Day 2: Mughal Gardens + Srinagar city", "Day 3: Gulmarg gondola", "Day 4: Pahalgam + Betaab Valley", "Day 5: Free morning + shopping", "Day 6: Departure"],
+    inclusions: ["2 nights houseboat (Deluxe)", "3 nights hotel", "Honeymoon welcome decoration", "Private cab throughout", "Morning + evening shikara rides"],
+    exclusions: ["Airfare", "Gondola tickets", "Personal expenses"],
   },
   {
     id: "4",
@@ -141,6 +202,16 @@ export const tourPackages: TourPackage[] = [
     highlights: ["UNESCO Heritage Site", "Hemkund Sahib", "Alpine Meadows"],
     season: "July–September",
     availability: "Available",
+    popularityScore: 89,
+    bookingCount: 134,
+    trending: false,
+    featured: true,
+    seasonalTag: "Monsoon Trek",
+    seatsLeft: 8,
+    overview: "A 6-night naturalist-guided trek to the UNESCO Valley of Flowers with 500+ wildflower species in bloom — including the optional Hemkund Sahib pilgrimage at 4,329m.",
+    itineraryHighlights: ["Day 1: Haridwar arrival", "Day 2: Drive to Govindghat", "Day 3: Trek to Ghangaria (13 km)", "Day 4: Valley of Flowers full day", "Day 5: Hemkund Sahib trek", "Day 6–7: Return trek + departure"],
+    inclusions: ["Hotels + mountain guesthouses", "All trek meals", "Naturalist guide", "National Park entry fees", "Porter service"],
+    exclusions: ["Personal trekking gear", "Travel insurance"],
   },
   {
     id: "5",
@@ -163,6 +234,14 @@ export const tourPackages: TourPackage[] = [
     highlights: ["Ganga Aarti", "Kashi Vishwanath", "Sarnath Visit"],
     season: "October–March",
     availability: "Available",
+    popularityScore: 88,
+    bookingCount: 389,
+    trending: false,
+    featured: false,
+    seasonalTag: "Winter Special",
+    overview: "3 nights in the eternal city — witnessing the grandest Ganga Aarti in India, a sunrise boat ride past all 88 ghats, Sarnath Buddhist circuit, and Kashi Vishwanath Temple darshan.",
+    inclusions: ["3-night hotel twin-sharing", "Meals as itinerary", "Sunrise boat ride", "Licensed guide", "Airport/station transfers"],
+    exclusions: ["Train/air fare", "Temple VIP darshan fee", "Personal shopping"],
   },
   {
     id: "6",
@@ -185,8 +264,307 @@ export const tourPackages: TourPackage[] = [
     highlights: ["Solang Valley", "Rohtang Pass", "Old Manali"],
     season: "Year-round",
     availability: "Available",
+    popularityScore: 94,
+    bookingCount: 267,
+    trending: true,
+    featured: true,
+    seasonalTag: "Family Special",
+    seatsLeft: 5,
+    lastBookedHours: 8,
+    overview: "4 nights in Manali for the whole family — Solang Valley snow activities, Rohtang Pass (permit arranged), Hadimba Temple, river rafting on the Beas, and Old Manali café walk.",
+    inclusions: ["4-night family hotel twin-sharing", "Meals as itinerary", "Private Innova/Ertiga", "Rohtang Pass permit", "Beas River rafting (Grade 2–3)"],
+    exclusions: ["Travel to/from Manali", "Snow activity charges", "Paragliding"],
+  },
+  {
+    id: "7",
+    title: "Rishikesh Adventure Escape",
+    slug: "rishikesh-adventure-2-nights-3-days",
+    destination: "Rishikesh",
+    state: "Uttarakhand",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 2, days: 3 },
+    price: 6499,
+    originalPrice: 8000,
+    rating: 4.7,
+    reviewsCount: 98,
+    image: destRishikesh,
+    badge: "Weekend Pick",
+    discountBadge: "19% Off",
+    includes: ["Camp", "Meals", "Rafting", "Bonfire"],
+    categories: ["adventure", "solo", "weekend"],
+    tags: ["weekend", "trending"],
+    highlights: ["16km Ganga Rafting", "Bungee Jump Option", "Riverside Camp"],
+    season: "September–June",
+    availability: "Available",
+    popularityScore: 92,
+    bookingCount: 445,
+    trending: true,
+    featured: true,
+    seasonalTag: "Weekend Getaway",
+    seatsLeft: 12,
+    lastBookedHours: 3,
+    overview: "The perfect 2-night Rishikesh escape — white-water rafting on the Ganga (16 km, Grade 2–3), a riverside bonfire camp with panoramic mountain views, yoga session, and optional bungee jump at 83m.",
+  },
+  {
+    id: "8",
+    title: "Kashmir Family Discovery",
+    slug: "kashmir-family-7-nights-8-days",
+    destination: "Kashmir",
+    state: "Jammu & Kashmir",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 7, days: 8 },
+    price: 29999,
+    originalPrice: 36000,
+    rating: 4.8,
+    reviewsCount: 72,
+    image: destKashmir,
+    badge: "Family Favourite",
+    discountBadge: "17% Off",
+    includes: ["Hotel", "Houseboat", "Meals", "Cab"],
+    categories: ["family", "luxury"],
+    tags: ["family-friendly"],
+    highlights: ["Dal Lake Houseboat", "Gulmarg Cable Car", "Pahalgam Valley", "Sonamarg Glacier"],
+    season: "April–October",
+    availability: "Available",
+    popularityScore: 87,
+    bookingCount: 143,
+    trending: false,
+    featured: false,
+    overview: "7 nights Kashmir for the entire family — 2 nights on a traditional houseboat on Dal Lake, Gulmarg cable car, Pahalgam and Betaab Valley, and the spectacular Sonamarg glacier day excursion.",
+    inclusions: ["2 nights houseboat", "5 nights hotel", "All meals as itinerary", "Private Tempo Traveller", "Expert guide throughout"],
+    exclusions: ["Airfare", "Gondola/cable car tickets", "Pony rides"],
+  },
+  {
+    id: "9",
+    title: "Ladakh Luxury Expedition",
+    slug: "ladakh-luxury-8-nights-9-days",
+    destination: "Ladakh",
+    state: "Ladakh",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 8, days: 9 },
+    price: 55999,
+    originalPrice: 68000,
+    rating: 4.9,
+    reviewsCount: 38,
+    image: destLadakh,
+    badge: "Premium",
+    discountBadge: "18% Off",
+    includes: ["Luxury Hotel", "All Meals", "Private Cab", "Permits", "Guide"],
+    categories: ["luxury", "adventure"],
+    tags: ["luxury", "premium"],
+    highlights: ["5-star Leh stay", "Tso Moriri extension", "Private vehicle", "Cultural expert guide"],
+    season: "June–September",
+    availability: "Available",
+    popularityScore: 83,
+    bookingCount: 56,
+    trending: false,
+    featured: false,
+    seasonalTag: "Luxury Summer",
+    seatsLeft: 2,
+    lastBookedHours: 12,
+    overview: "The definitive luxury Ladakh experience — 5-star Leh hotel, Land Cruiser throughout, cultural expert guide, private Pangong lake camp, Nubra glamping, Tso Moriri extension, and handcrafted experiences at every stop.",
+    inclusions: ["Luxury hotels + premium camps throughout", "All meals + high tea service", "Toyota Land Cruiser private vehicle", "All permits + oxygen backup", "Cultural expert historian guide"],
+    exclusions: ["Airfare", "Alcoholic beverages", "Personal expenses"],
+  },
+  {
+    id: "10",
+    title: "Char Dham Yatra by Road",
+    slug: "char-dham-yatra-10-nights-11-days",
+    destination: "Char Dham",
+    state: "Uttarakhand",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 10, days: 11 },
+    price: 28999,
+    originalPrice: 35000,
+    rating: 4.8,
+    reviewsCount: 167,
+    image: destKedarnath,
+    badge: "Sacred Journey",
+    discountBadge: "17% Off",
+    includes: ["Hotel", "Meals", "Cab", "Guide", "Registration"],
+    categories: ["pilgrimage"],
+    tags: ["bestseller", "pilgrimage"],
+    highlights: ["All 4 Dhams", "Yatra Registration", "Priority Darshan", "Haridwar Ganga Aarti"],
+    season: "May–October",
+    availability: "Available",
+    popularityScore: 91,
+    bookingCount: 198,
+    trending: false,
+    featured: true,
+    seasonalTag: "Yatra Season",
+    seatsLeft: 7,
+    overview: "The complete Char Dham Yatra — Yamunotri, Gangotri, Kedarnath, and Badrinath — in 10 nights with private vehicle, experienced guide, yatra registration, and priority darshan coordination at all four sacred shrines.",
+    inclusions: ["10-night accommodation", "All meals", "Private cab throughout", "Yatra registration", "Guide + priority darshan coordination", "Pony option at Kedarnath available"],
+    exclusions: ["Helicopter charges (optional)", "Puja and prasad costs", "Personal expenses"],
+  },
+  {
+    id: "11",
+    title: "Kedarnath Helicopter Package",
+    slug: "kedarnath-helicopter-2-nights-3-days",
+    destination: "Kedarnath",
+    state: "Uttarakhand",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 2, days: 3 },
+    price: 22999,
+    originalPrice: 27000,
+    rating: 4.9,
+    reviewsCount: 84,
+    image: destKedarnath,
+    badge: "No Trek Needed",
+    discountBadge: "15% Off",
+    includes: ["Hotel", "Meals", "Helicopter", "Guide"],
+    categories: ["pilgrimage", "luxury"],
+    tags: ["helicopter", "senior-friendly"],
+    highlights: ["Direct helicopter to Kedarnath", "VIP Darshan", "No trek required", "Senior-friendly"],
+    season: "May–October",
+    availability: "Available",
+    popularityScore: 95,
+    bookingCount: 223,
+    trending: true,
+    featured: true,
+    seasonalTag: "Helicopter Special",
+    seatsLeft: 3,
+    lastBookedHours: 4,
+    overview: "Kedarnath darshan without the trek — direct helicopter from Phata helipad to Kedarnath helipad, VIP darshan assistance, luxury guesthouse near the temple, and return by helicopter next morning.",
+    inclusions: ["Return helicopter tickets (Phata ↔ Kedarnath)", "1 night luxury guesthouse near temple", "VIP darshan assistance", "All meals", "Guptkashi–Phata cab"],
+    exclusions: ["Travel to Guptkashi", "Personal expenses", "Temple puja fees"],
+  },
+  {
+    id: "12",
+    title: "Manali Winter Snow Package",
+    slug: "manali-winter-snow-4-nights-5-days",
+    destination: "Manali",
+    state: "Himachal Pradesh",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 4, days: 5 },
+    price: 14999,
+    originalPrice: 18000,
+    rating: 4.7,
+    reviewsCount: 91,
+    image: destManali,
+    badge: "Winter Special",
+    discountBadge: "17% Off",
+    includes: ["Hotel", "Meals", "Cab", "Snow Activities"],
+    categories: ["adventure", "honeymoon", "weekend"],
+    tags: ["winter", "snow", "trending"],
+    highlights: ["Solang Valley Skiing", "Snowboarding", "Hadimba Temple", "Cosy Fireplace Hotel"],
+    season: "December–February",
+    availability: "Available",
+    popularityScore: 90,
+    bookingCount: 176,
+    trending: true,
+    featured: false,
+    seasonalTag: "Winter Snow",
+    discountExpiry: "2025-02-28",
+    seatsLeft: 6,
+    lastBookedHours: 6,
+    overview: "4 nights of pure snow magic in Manali — skiing and snowboarding at Solang Valley (4–8 feet snow), Hadimba Temple in winter silence, Old Manali's cosy cafes, and a heated fireplace hotel.",
+    inclusions: ["4-night hotel with central heating", "Meals as itinerary", "Private cab", "Solang Valley snow activity session", "Ski gear rental (1 day)"],
+    exclusions: ["Travel to/from Manali", "Additional ski lessons", "Personal expenses"],
+  },
+  {
+    id: "13",
+    title: "Kashmir Solo Explorer",
+    slug: "kashmir-solo-4-nights-5-days",
+    destination: "Kashmir",
+    state: "Jammu & Kashmir",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 4, days: 5 },
+    price: 15999,
+    originalPrice: 19500,
+    rating: 4.7,
+    reviewsCount: 54,
+    image: destKashmir,
+    badge: "Solo Friendly",
+    discountBadge: "18% Off",
+    includes: ["Hotel", "Houseboat", "Meals", "Guide"],
+    categories: ["solo", "adventure"],
+    tags: ["solo", "trending"],
+    highlights: ["1 Night Houseboat", "Gulmarg Trek", "Photography Focus", "Flexible Itinerary"],
+    season: "Year-round",
+    availability: "Available",
+    popularityScore: 78,
+    bookingCount: 88,
+    trending: false,
+    featured: false,
+    overview: "4 nights Kashmir designed for solo travellers — a single-supplement-free houseboat night on Dal Lake, Gulmarg meadow photography, and a flexible itinerary that can evolve based on your interests.",
+    inclusions: ["1 night houseboat (no single supplement)", "3 nights hotel single room", "Meals as itinerary", "Local guide", "24/7 WhatsApp support"],
+    exclusions: ["Airfare", "Gondola tickets", "Personal expenses"],
+  },
+  {
+    id: "14",
+    title: "Varanasi & Prayagraj Pilgrimage",
+    slug: "varanasi-prayagraj-4-nights-5-days",
+    destination: "Varanasi",
+    state: "Uttar Pradesh",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 4, days: 5 },
+    price: 11999,
+    originalPrice: 14500,
+    rating: 4.8,
+    reviewsCount: 113,
+    image: destVaranasi,
+    badge: "Spiritual Circuit",
+    discountBadge: "17% Off",
+    includes: ["Hotel", "Meals", "Cab", "Guide", "Boat Ride"],
+    categories: ["pilgrimage", "family"],
+    tags: ["pilgrimage", "bestseller"],
+    highlights: ["Ganga Aarti", "Triveni Sangam Prayagraj", "Sarnath", "Boat Ride"],
+    season: "October–March",
+    availability: "Available",
+    popularityScore: 85,
+    bookingCount: 201,
+    trending: false,
+    featured: false,
+    overview: "5 days covering two of India's holiest cities — Varanasi's 88 ghats, Ganga Aarti, Kashi Vishwanath darshan, Sarnath Buddhist circuit, and a boat ride at the Triveni Sangam of Prayagraj.",
+    inclusions: ["4-night hotel twin-sharing", "All meals", "Private cab (Varanasi ↔ Prayagraj)", "Sunrise boat rides at both cities", "Licensed pilgrimage guide"],
+    exclusions: ["Train/air fare to Varanasi", "Kumbh registration (if applicable)", "Personal expenses"],
+  },
+  {
+    id: "15",
+    title: "Himalayan Grand Circuit",
+    slug: "himalayan-grand-circuit-12-nights-13-days",
+    destination: "Manali",
+    state: "Himachal Pradesh & Ladakh",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 12, days: 13 },
+    price: 42999,
+    originalPrice: 52000,
+    rating: 4.9,
+    reviewsCount: 29,
+    image: destLadakh,
+    badge: "Epic Journey",
+    discountBadge: "17% Off",
+    includes: ["Hotel", "Camp", "All Meals", "Cab", "Permits"],
+    categories: ["adventure", "luxury"],
+    tags: ["epic", "luxury"],
+    highlights: ["Manali → Leh Highway", "Ladakh Grand Tour", "Pangong + Nubra", "Monastery Circuit"],
+    season: "June–September",
+    availability: "Available",
+    popularityScore: 88,
+    bookingCount: 47,
+    trending: false,
+    featured: false,
+    seasonalTag: "Grand Expedition",
+    seatsLeft: 4,
+    overview: "The ultimate Himalayan road adventure — drive the legendary Manali–Leh Highway (2 days, 5 passes), explore all of Ladakh (Nubra, Pangong, Tso Moriri), and return via Srinagar for a Kashmir finale.",
+    inclusions: ["12-night accommodation (hotels + luxury camps)", "All meals throughout", "Private reserved vehicle", "All inner line permits", "Experienced expedition guide"],
+    exclusions: ["Airfare to Manali/from Srinagar", "Alcohol", "Personal expenses"],
   },
 ];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Testimonials (kept here for homepage TestimonialsSection backward compat)
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const testimonials = [
   {
@@ -196,6 +574,7 @@ export const testimonials = [
     tour: "Kedarnath Yatra",
     date: "March 2025",
     rating: 5,
+    initials: "RS",
     text: "The Kedarnath trip was beyond our expectations. Everything was perfectly organised from the hotel stays to the guided treks. The team was available 24/7 and made us feel completely safe throughout the journey.",
   },
   {
@@ -205,7 +584,8 @@ export const testimonials = [
     tour: "Kashmir Honeymoon",
     date: "February 2025",
     rating: 5,
-    text: "Our honeymoon in Kashmir was absolutely magical. The houseboat experience, the Shikara ride on Dal Lake, and the snow in Gulmarg — everything was picture perfect. Thank you MyQuickTrippers!",
+    initials: "PP",
+    text: "Our honeymoon in Kashmir was absolutely magical. The houseboat experience, the Shikara ride on Dal Lake at sunrise, and the snow in Gulmarg — everything was picture perfect. Thank you MyQuickTrippers!",
   },
   {
     id: "3",
@@ -214,9 +594,44 @@ export const testimonials = [
     tour: "Ladakh Adventure",
     date: "July 2024",
     rating: 5,
-    text: "Ladakh was a dream come true! The itinerary was well-planned with proper acclimatization days. Our guide was incredibly knowledgeable about local culture. Highly recommend for adventure seekers.",
+    initials: "AK",
+    text: "Ladakh was a dream come true! The itinerary was well-planned with proper acclimatisation days. Our guide was incredibly knowledgeable about local culture. Highly recommend for adventure seekers.",
+  },
+  {
+    id: "4",
+    name: "Sunita Agarwal",
+    location: "Jaipur",
+    tour: "Char Dham Yatra",
+    date: "June 2024",
+    rating: 5,
+    initials: "SA",
+    text: "Lifelong dream to complete Char Dham before turning 60. MQT made it possible with so much care. Pony arranged at Kedarnath, priority darshan at Badrinath. Felt like family was looking after me.",
+  },
+  {
+    id: "5",
+    name: "Vikram & Ananya",
+    location: "Hyderabad",
+    tour: "Valley of Flowers Trek",
+    date: "August 2024",
+    rating: 5,
+    initials: "VR",
+    text: "Never trekked before and were nervous. Our guide was patient and encouraging. The Valley in peak August bloom was otherworldly — I have no other word for it. Best trip of our lives.",
+  },
+  {
+    id: "6",
+    name: "Kavya Nair",
+    location: "Kochi",
+    tour: "Manali Family Trip",
+    date: "December 2024",
+    rating: 5,
+    initials: "KN",
+    text: "Family of 6 including my 68-year-old mother-in-law and two kids. Team planned everything perfectly. My mother-in-law saw snow for the first time and cried with joy. Priceless memory.",
   },
 ];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Blog Posts (backward compat — full data in blog.ts)
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const blogPosts = [
   {
@@ -236,7 +651,7 @@ export const blogPosts = [
     category: "Trekking Guide",
     date: "March 25, 2025",
     readTime: "8 min read",
-    excerpt: "Everything you need to know before your first trip to Ladakh — permits, acclimatization, packing list, and the best routes to explore.",
+    excerpt: "Everything you need to know before your first trip to Ladakh — permits, acclimatisation, packing list, and the best routes to explore.",
     image: destLadakh,
   },
   {
@@ -250,3 +665,25 @@ export const blogPosts = [
     image: destValleyFlowers,
   },
 ];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Utility functions
+// ─────────────────────────────────────────────────────────────────────────────
+
+export function getPackageBySlug(slug: string): TourPackage | undefined {
+  return tourPackages.find((p) => p.slug === slug);
+}
+
+export function getPackagesByCategory(category: string): TourPackage[] {
+  if (category === "all") return tourPackages;
+  return tourPackages.filter((p) =>
+    p.categories.map((c) => c.toLowerCase()).includes(category.toLowerCase())
+  );
+}
+
+export function getFeaturedPackages(limit = 6): TourPackage[] {
+  return tourPackages
+    .filter((p) => p.featured)
+    .sort((a, b) => b.popularityScore - a.popularityScore)
+    .slice(0, limit);
+}

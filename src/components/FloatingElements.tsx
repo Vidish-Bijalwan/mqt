@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { MessageCircle, ArrowUp, Phone, Mail, Home } from "lucide-react";
+import FloatingWhatsApp from "./FloatingWhatsApp";
 
 const FloatingElements = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setShowScrollTop(window.scrollY > 300);
@@ -11,29 +11,9 @@ const FloatingElements = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShowTooltip(true), 5000);
-    const hideTimer = setTimeout(() => setShowTooltip(false), 10000);
-    return () => { clearTimeout(timer); clearTimeout(hideTimer); };
-  }, []);
-
   return (
     <>
-      {/* WhatsApp Float Button */}
-      <a
-        href="https://wa.me/919876543210?text=Hi!%20I'm%20interested%20in%20booking%20a%20tour.%20Please%20help%20me."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-elevated hover:scale-110 transition-transform animate-pulse-ring group"
-        aria-label="Chat with us on WhatsApp"
-      >
-        <MessageCircle className="h-7 w-7 text-background" />
-        {showTooltip && (
-          <span className="absolute right-16 bg-foreground text-background text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-lg">
-            Chat with us on WhatsApp
-          </span>
-        )}
-      </a>
+      <FloatingWhatsApp />
 
       {/* Scroll to Top */}
       {showScrollTop && (
