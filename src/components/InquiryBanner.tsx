@@ -15,7 +15,7 @@ interface InquiryBannerProps {
 
 const InquiryBanner = ({
   title = "Ready to Plan Your Perfect Trip?",
-  subtitle = "Talk to our Himalayan travel experts — free consultation, personalised itinerary, no advance payment required.",
+  subtitle = "Talk to our India travel experts — free consultation, personalised itinerary, no advance payment required.",
   ctaText = "Get Free Quote",
   urgencyText,
   waMessage = "Hi! I'm interested in planning a trip.",

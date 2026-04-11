@@ -12,7 +12,7 @@ const Footer = () => {
               <Mountain className="h-7 w-7 text-accent" />
               <span className="font-display text-xl font-semibold">MyQuickTrippers</span>
             </Link>
-            <p className="text-sm text-dark-foreground/60 mb-4 italic">"Your Himalayan Journey, Perfectly Crafted"</p>
+            <p className="text-sm text-dark-foreground/60 mb-4 italic">"Your Indian Journey, Perfectly Crafted"</p>
             <div className="space-y-2 text-sm text-dark-foreground/70">
               <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-accent transition-colors">
                 <Phone className="h-3.5 w-3.5" /> +91-9876543210
@@ -101,7 +101,7 @@ const Footer = () => {
       <div className="border-t border-dark-foreground/10">
         <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-dark-foreground/50">
           <span>© 2025 MyQuickTrippers. All Rights Reserved.</span>
-          <span>Designed with ❤ for Himalayan explorers</span>
+          <span>Designed with ❤ for explorers of India</span>
         </div>
       </div>
     </footer>

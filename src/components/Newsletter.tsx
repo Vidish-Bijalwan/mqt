@@ -18,7 +18,7 @@ const Newsletter = () => {
     <section className="gradient-primary py-16 px-4">
       <div className="container mx-auto text-center">
         <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary-foreground mb-3">
-          Get Exclusive Travel Deals & Himalayan Guides
+          Get Exclusive Travel Deals & Insider Guides
         </h2>
         <p className="text-primary-foreground/80 text-sm mb-8">
           Join 5,000+ travellers who receive our monthly newsletter

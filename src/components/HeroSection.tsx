@@ -1,40 +1,61 @@
 import { Search, Calendar, Users, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-kedarnath.jpg";
 import { useNavigate } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { staggerContainer, staggerItem } from "@/lib/motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { useState, useEffect } from "react";
 
-const stats = [
-  { icon: "🏔", label: "200+ Trips Completed" },
-  { icon: "⭐", label: "4.9 Rated" },
-  { icon: "😊", label: "500+ Happy Travellers" },
-  { icon: "📅", label: "5+ Years Experience" },
+const heroSlides = [
+  "https://images.unsplash.com/photo-1599661559684-25befc05586b?auto=format&fit=crop&q=80", // Rajasthan Heritage
+  "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80", // Kerala Backwaters
+  "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80", // Himalayas Nature
+  "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80", // Andaman/Goa Beaches
 ];
 
-const popularTags = ["Kedarnath", "Ladakh", "Valley of Flowers", "Kashmir", "Varanasi"];
+const stats = [
+  { icon: "✨", label: "Curated Pan-India Journeys" },
+  { icon: "⭐", label: "4.9 Rated" },
+  { icon: "😊", label: "10,000+ Happy Travellers" },
+  { icon: "📅", label: "Expert Planners" },
+];
+
+const popularTags = ["Kerala Backwaters", "Rajasthan Heritage", "Goa Beaches", "Andaman Islands", "Himalayan Treks", "Varanasi Spiritual"];
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 1000], [0, 300]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
-      {/* Background with Parallax */}
+      {/* Background Slider with Parallax */}
       <motion.div 
         style={{ y: bgY, scale: 1.1 }}
         className="absolute inset-0 w-full h-full"
       >
-        <img
-          src={heroImage}
-          alt="Majestic Kedarnath Temple with snow-capped Himalayan peaks at sunrise"
-          className="absolute inset-0 w-full h-full object-cover"
-          width={1920}
-          height={1080}
-        />
+        <AnimatePresence mode="popLayout">
+          <motion.img
+            key={currentSlide}
+            src={heroSlides[currentSlide]}
+            alt="Beautiful curated luxury travel destinations across India"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
         <div className="absolute inset-0 gradient-hero" />
       </motion.div>
 
@@ -45,16 +66,16 @@ const HeroSection = () => {
         animate="visible"
         className="relative z-10 container mx-auto px-4 text-center pt-16 pb-32"
       >
-        <motion.p variants={staggerItem} className="text-accent font-body font-medium text-sm md:text-base tracking-widest uppercase mb-4">
-          🏔 Himalayan Travel Experts Since 2019
+        <motion.p variants={staggerItem} className="text-accent font-body font-medium text-sm md:text-base tracking-widest uppercase mb-4 shadow-sm">
+          ✨ Premium India Travel Experiences Since 2019
         </motion.p>
 
         <motion.h1 variants={staggerItem} className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold text-background leading-tight mb-6">
-          Discover the Soul<br className="hidden md:block" /> of the Himalayas
+          Discover the Soul<br className="hidden md:block" /> of Incredible India
         </motion.h1>
 
-        <motion.p variants={staggerItem} className="font-body text-base md:text-lg text-background/70 max-w-2xl mx-auto mb-8">
-          Handcrafted journeys to Kedarnath, Ladakh, Valley of Flowers and beyond — built around you, not a template.
+        <motion.p variants={staggerItem} className="font-body text-base md:text-lg text-background/90 max-w-2xl mx-auto mb-8 font-medium">
+          From spiritual circuits and Himalayan escapes to serene beaches, heritage cities, wildlife retreats, and luxury holidays — every journey is exclusively crafted around your style and schedule.
         </motion.p>
 
         <motion.div variants={staggerItem} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
@@ -99,13 +120,13 @@ const HeroSection = () => {
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <select className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none cursor-pointer hover:border-primary/50">
-                  <option value="">Destination</option>
-                  <option>Kedarnath</option>
-                  <option>Ladakh</option>
+                  <option value="">Destination / State</option>
+                  <option>Kerala</option>
+                  <option>Rajasthan</option>
+                  <option>Goa</option>
+                  <option>Uttarakhand</option>
+                  <option>Andaman</option>
                   <option>Kashmir</option>
-                  <option>Valley of Flowers</option>
-                  <option>Varanasi</option>
-                  <option>Manali</option>
                 </select>
               </div>
               <div className="relative">
@@ -125,11 +146,12 @@ const HeroSection = () => {
               <div className="relative">
                 <select className="w-full px-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none cursor-pointer hover:border-primary/50">
                   <option value="">Tour Type</option>
+                  <option>Luxury Getaway</option>
                   <option>Honeymoon</option>
-                  <option>Family</option>
-                  <option>Adventure</option>
-                  <option>Pilgrimage</option>
-                  <option>Solo</option>
+                  <option>Family Trips</option>
+                  <option>Heritage & Culture</option>
+                  <option>Spiritual / Pilgrimage</option>
+                  <option>Wildlife & Nature</option>
                 </select>
               </div>
               <Button 

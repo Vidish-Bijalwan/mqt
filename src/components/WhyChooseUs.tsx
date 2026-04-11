@@ -2,7 +2,7 @@ import { Mountain, Compass, User, Shield, Wallet, Star } from "lucide-react";
 import travelersImg from "@/assets/travelers-group.jpg";
 
 const features = [
-  { icon: Mountain, title: "Himalayan Specialists", desc: "Deep local knowledge of every route, temple, and trail" },
+  { icon: Compass, title: "Destination Experts Across India", desc: "Deep local knowledge of every route, coast, and trail" },
   { icon: Compass, title: "100% Customised", desc: "No copy-paste itineraries — every trip built from scratch" },
   { icon: User, title: "Expert Trip Advisors", desc: "Real people, not bots — available Mon–Sat 9AM–7PM" },
   { icon: Shield, title: "Safety First", desc: "Verified hotels, vetted guides, emergency support 24/7" },
@@ -37,7 +37,7 @@ const WhyChooseUs = () => {
           <div className="relative">
             <img
               src={travelersImg}
-              alt="Happy group of travellers at a Himalayan destination"
+              alt="Happy group of travellers exploring India"
               className="rounded-xl shadow-card w-full"
               loading="lazy"
               width={800}

@@ -11,7 +11,7 @@ const HowItWorks = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="section-heading">How It Works</h2>
-          <p className="section-subheading mx-auto">Four simple steps to your dream Himalayan journey</p>
+          <p className="section-subheading mx-auto">Four simple steps to your dream journey</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
