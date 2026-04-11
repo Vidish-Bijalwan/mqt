@@ -1,75 +1,107 @@
+import { Link } from "react-router-dom";
+import { Mountain, Phone, Mail, Instagram, Facebook, Youtube, MessageCircle } from "lucide-react";
+
 const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border py-16 px-4 md:px-8">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          <div className="md:col-span-1">
-            <a href="#" className="font-heading text-2xl font-semibold gold-gradient-text">
-              MyQuickTrippers
-            </a>
-            <p className="font-body text-sm text-muted-foreground mt-4 leading-relaxed">
-              Luxury travel experiences across India — from the mighty Himalayas to sacred temples and pristine valleys. Your journey starts here.
-            </p>
+    <footer className="gradient-dark text-dark-foreground">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <Link to="/" className="flex items-center gap-2 mb-4">
+              <Mountain className="h-7 w-7 text-accent" />
+              <span className="font-display text-xl font-semibold">MyQuickTrippers</span>
+            </Link>
+            <p className="text-sm text-dark-foreground/60 mb-4 italic">"Your Himalayan Journey, Perfectly Crafted"</p>
+            <div className="space-y-2 text-sm text-dark-foreground/70">
+              <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-accent transition-colors">
+                <Phone className="h-3.5 w-3.5" /> +91-9876543210
+              </a>
+              <a href="mailto:info@myquicktrippers.com" className="flex items-center gap-2 hover:text-accent transition-colors">
+                <Mail className="h-3.5 w-3.5" /> info@myquicktrippers.com
+              </a>
+            </div>
+            <div className="flex gap-3 mt-4">
+              <a href="#" aria-label="Instagram" className="w-8 h-8 rounded-full bg-dark-foreground/10 flex items-center justify-center hover:bg-accent transition-colors">
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a href="#" aria-label="Facebook" className="w-8 h-8 rounded-full bg-dark-foreground/10 flex items-center justify-center hover:bg-accent transition-colors">
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a href="#" aria-label="YouTube" className="w-8 h-8 rounded-full bg-dark-foreground/10 flex items-center justify-center hover:bg-accent transition-colors">
+                <Youtube className="h-4 w-4" />
+              </a>
+              <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-8 h-8 rounded-full bg-dark-foreground/10 flex items-center justify-center hover:bg-success transition-colors">
+                <MessageCircle className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
+          {/* Destinations */}
           <div>
-            <h4 className="font-heading text-lg text-foreground mb-4">Destinations</h4>
-            <ul className="space-y-2">
-              {["Kedarnath", "Valley of Flowers", "Ladakh", "Varanasi"].map((d) => (
-                <li key={d}>
-                  <a href="#destinations" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {d}
-                  </a>
-                </li>
-              ))}
+            <h4 className="font-body font-semibold text-sm text-dark-foreground mb-4 tracking-wide uppercase">Destinations</h4>
+            <ul className="space-y-2 text-sm text-dark-foreground/60">
+              <li><Link to="/destinations/kedarnath" className="hover:text-accent transition-colors">Kedarnath Yatra</Link></li>
+              <li><Link to="/destinations/ladakh" className="hover:text-accent transition-colors">Ladakh Tour</Link></li>
+              <li><Link to="/destinations/valley-of-flowers" className="hover:text-accent transition-colors">Valley of Flowers</Link></li>
+              <li><Link to="/destinations/kashmir" className="hover:text-accent transition-colors">Kashmir Tour</Link></li>
+              <li><Link to="/destinations/manali" className="hover:text-accent transition-colors">Manali Tour</Link></li>
+              <li><Link to="/destinations/varanasi" className="hover:text-accent transition-colors">Varanasi Tour</Link></li>
+              <li><Link to="/destinations/char-dham" className="hover:text-accent transition-colors">Char Dham Yatra</Link></li>
+              <li><Link to="/destinations" className="text-accent hover:underline">View All →</Link></li>
             </ul>
           </div>
 
+          {/* Tour Types */}
           <div>
-            <h4 className="font-heading text-lg text-foreground mb-4">Company</h4>
-            <ul className="space-y-2">
-              {["About Us", "Our Team", "Careers", "Press"].map((item) => (
-                <li key={item}>
-                  <a href="#about" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
+            <h4 className="font-body font-semibold text-sm text-dark-foreground mb-4 tracking-wide uppercase">Tour Types</h4>
+            <ul className="space-y-2 text-sm text-dark-foreground/60">
+              <li><Link to="/packages/honeymoon" className="hover:text-accent transition-colors">Honeymoon Packages</Link></li>
+              <li><Link to="/packages/family" className="hover:text-accent transition-colors">Family Tour Packages</Link></li>
+              <li><Link to="/packages/adventure" className="hover:text-accent transition-colors">Adventure Packages</Link></li>
+              <li><Link to="/packages/pilgrimage" className="hover:text-accent transition-colors">Pilgrimage Tours</Link></li>
+              <li><Link to="/packages/solo" className="hover:text-accent transition-colors">Solo Travel</Link></li>
+              <li><Link to="/packages/luxury" className="hover:text-accent transition-colors">Luxury Packages</Link></li>
+              <li><Link to="/packages/weekend" className="hover:text-accent transition-colors">Weekend Getaways</Link></li>
             </ul>
           </div>
 
+          {/* Services */}
           <div>
-            <h4 className="font-heading text-lg text-foreground mb-4">Support</h4>
-            <ul className="space-y-2">
-              {["Contact Us", "FAQ", "Privacy Policy", "Terms of Service"].map((item) => (
-                <li key={item}>
-                  <a href="#contact" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
+            <h4 className="font-body font-semibold text-sm text-dark-foreground mb-4 tracking-wide uppercase">Services</h4>
+            <ul className="space-y-2 text-sm text-dark-foreground/60">
+              <li><Link to="/services/custom-itinerary" className="hover:text-accent transition-colors">Custom Itinerary</Link></li>
+              <li><Link to="/services/hotel-booking" className="hover:text-accent transition-colors">Hotel Booking</Link></li>
+              <li><Link to="/services/flight-booking" className="hover:text-accent transition-colors">Flight Booking</Link></li>
+              <li><Link to="/services/cab-booking" className="hover:text-accent transition-colors">Cab Booking</Link></li>
+              <li><Link to="/services/travel-insurance" className="hover:text-accent transition-colors">Travel Insurance</Link></li>
+              <li><Link to="/services/visa-assistance" className="hover:text-accent transition-colors">Visa Assistance</Link></li>
+              <li><Link to="/services/trek-booking" className="hover:text-accent transition-colors">Trek Booking</Link></li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="font-body font-semibold text-sm text-dark-foreground mb-4 tracking-wide uppercase">Company</h4>
+            <ul className="space-y-2 text-sm text-dark-foreground/60">
+              <li><Link to="/about" className="hover:text-accent transition-colors">About Us</Link></li>
+              <li><Link to="/blog" className="hover:text-accent transition-colors">Blog / Journal</Link></li>
+              <li><Link to="/testimonials" className="hover:text-accent transition-colors">Testimonials</Link></li>
+              <li><Link to="/gallery" className="hover:text-accent transition-colors">Gallery</Link></li>
+              <li><Link to="/contact" className="hover:text-accent transition-colors">Contact Us</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms-conditions" className="hover:text-accent transition-colors">Terms & Conditions</Link></li>
+              <li><Link to="/cancellation-policy" className="hover:text-accent transition-colors">Cancellation Policy</Link></li>
             </ul>
           </div>
         </div>
+      </div>
 
-        <div className="h-px w-full bg-border mb-8" />
-
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-xs text-muted-foreground">
-            © {new Date().getFullYear()} MyQuickTrippers. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            {["Instagram", "Twitter", "Facebook"].map((social) => (
-              <a
-                key={social}
-                href="#"
-                className="font-body text-xs text-muted-foreground hover:text-primary transition-colors uppercase tracking-wider"
-                aria-label={`Follow MyQuickTrippers on ${social}`}
-              >
-                {social}
-              </a>
-            ))}
-          </div>
+      {/* Bottom Bar */}
+      <div className="border-t border-dark-foreground/10">
+        <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-dark-foreground/50">
+          <span>© 2025 MyQuickTrippers. All Rights Reserved.</span>
+          <span>Designed with ❤ for Himalayan explorers</span>
         </div>
       </div>
     </footer>

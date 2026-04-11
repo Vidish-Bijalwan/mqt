@@ -1,74 +1,40 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { Star } from "lucide-react";
-
-const testimonials = [
-  {
-    name: "Priya Sharma",
-    location: "Delhi, India",
-    text: "The Kedarnath trek was life-changing. MyQuickTrippers arranged everything from helicopter transfers to luxury camping — absolutely divine experience.",
-    rating: 5,
-  },
-  {
-    name: "Rahul Verma",
-    location: "Bangalore, India",
-    text: "Our Ladakh road trip was seamless. Pangong Lake at sunrise is something words can't describe. The team handled every detail flawlessly.",
-    rating: 5,
-  },
-  {
-    name: "Ananya Iyer",
-    location: "Chennai, India",
-    text: "Varanasi's ghats at dawn, the Ganga Aarti at night — MyQuickTrippers turned a spiritual journey into a luxury retreat. Unforgettable!",
-    rating: 5,
-  },
-];
+import { testimonials } from "@/data/packages";
 
 const TestimonialsSection = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="about" className="section-padding bg-background">
-      <div className="container mx-auto" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <p className="font-body text-xs uppercase tracking-[0.3em] text-primary mb-4">
-            Traveler Stories
-          </p>
-          <h2 className="font-heading text-4xl md:text-6xl text-foreground mb-4">
-            Words From Our Guests
-          </h2>
-          <div className="gold-divider mt-6" />
-        </motion.div>
+    <section className="section-padding bg-surface">
+      <div className="container mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="section-heading">What Our Travellers Say</h2>
+          <div className="flex items-center justify-center gap-2 mt-4">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="h-5 w-5 fill-accent text-accent" />
+            ))}
+            <span className="font-body font-semibold text-foreground ml-2">4.9 out of 5</span>
+          </div>
+          <p className="text-sm text-muted-foreground mt-1">Based on 500+ verified reviews</p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {testimonials.map((t, i) => (
-            <motion.blockquote
-              key={t.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
-              className="glass-card p-8 flex flex-col"
-            >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((t) => (
+            <div key={t.id} className="bg-card rounded-xl p-6 border border-border shadow-soft">
               <div className="flex gap-1 mb-4">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} size={14} className="fill-primary text-primary" />
+                {[...Array(t.rating)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-accent text-accent" />
                 ))}
               </div>
-              <p className="font-body text-sm text-foreground/70 leading-relaxed mb-6 flex-1 italic">
-                "{t.text}"
-              </p>
-              <footer>
-                <p className="font-heading text-lg text-foreground">{t.name}</p>
-                <p className="font-body text-xs text-muted-foreground uppercase tracking-wider">
-                  {t.location}
-                </p>
-              </footer>
-            </motion.blockquote>
+              <p className="text-sm text-foreground leading-relaxed mb-4 italic">"{t.text}"</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-primary-foreground font-semibold text-sm">
+                  {t.name.charAt(0)}
+                </div>
+                <div>
+                  <p className="font-body font-semibold text-sm text-foreground">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.location} · {t.tour} · {t.date}</p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
