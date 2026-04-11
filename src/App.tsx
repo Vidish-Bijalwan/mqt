@@ -38,12 +38,11 @@ import CategoryForm from "./pages/admin/content/CategoryForm.tsx";
 import { AdminFAQs, FAQForm } from "./pages/admin/content/AdminFAQs.tsx";
 import SiteSettings from "./pages/admin/content/SiteSettings.tsx";
 
-// Placeholder stubs for remaining content routes — to be built next
-const Stub = ({ title }: { title: string }) => (
-  <div className="bg-white rounded-2xl border border-dashed border-gray-200 p-12 text-center">
-    <p className="text-gray-400 font-medium">{title} — coming next.</p>
-  </div>
-);
+import { AdminDestinations, DestinationForm } from "./pages/admin/content/AdminDestinations.tsx";
+import { AdminPackages, PackageForm } from "./pages/admin/content/AdminPackages.tsx";
+import { AdminBlog, BlogForm } from "./pages/admin/content/AdminBlog.tsx";
+import { AdminTestimonials, TestimonialForm } from "./pages/admin/content/AdminTestimonials.tsx";
+import AdminHomepage from "./pages/admin/content/AdminHomepage.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -94,30 +93,30 @@ const AnimatedRoutes = () => {
             <Route path="/admin/content/states/new" element={<StateForm />} />
             <Route path="/admin/content/states/:id/edit" element={<StateForm />} />
 
-            {/* Destinations (stubs → full form next) */}
-            <Route path="/admin/content/destinations" element={<Stub title="Destinations" />} />
-            <Route path="/admin/content/destinations/new" element={<Stub title="New Destination Form" />} />
-            <Route path="/admin/content/destinations/:id/edit" element={<Stub title="Edit Destination" />} />
+            {/* Destinations */}
+            <Route path="/admin/content/destinations" element={<AdminDestinations />} />
+            <Route path="/admin/content/destinations/new" element={<DestinationForm />} />
+            <Route path="/admin/content/destinations/:id/edit" element={<DestinationForm />} />
 
             {/* Categories */}
             <Route path="/admin/content/categories" element={<AdminCategories />} />
             <Route path="/admin/content/categories/new" element={<CategoryForm />} />
             <Route path="/admin/content/categories/:id/edit" element={<CategoryForm />} />
 
-            {/* Packages (stubs → full form next) */}
-            <Route path="/admin/content/packages" element={<Stub title="Packages" />} />
-            <Route path="/admin/content/packages/new" element={<Stub title="New Package Form" />} />
-            <Route path="/admin/content/packages/:id/edit" element={<Stub title="Edit Package" />} />
+            {/* Packages */}
+            <Route path="/admin/content/packages" element={<AdminPackages />} />
+            <Route path="/admin/content/packages/new" element={<PackageForm />} />
+            <Route path="/admin/content/packages/:id/edit" element={<PackageForm />} />
 
-            {/* Blog (stubs → full form next) */}
-            <Route path="/admin/content/blog" element={<Stub title="Blog" />} />
-            <Route path="/admin/content/blog/new" element={<Stub title="New Post" />} />
-            <Route path="/admin/content/blog/:id/edit" element={<Stub title="Edit Post" />} />
+            {/* Blog */}
+            <Route path="/admin/content/blog" element={<AdminBlog />} />
+            <Route path="/admin/content/blog/new" element={<BlogForm />} />
+            <Route path="/admin/content/blog/:id/edit" element={<BlogForm />} />
 
-            {/* Testimonials (stubs → full form next) */}
-            <Route path="/admin/content/testimonials" element={<Stub title="Testimonials" />} />
-            <Route path="/admin/content/testimonials/new" element={<Stub title="New Testimonial" />} />
-            <Route path="/admin/content/testimonials/:id/edit" element={<Stub title="Edit Testimonial" />} />
+            {/* Testimonials */}
+            <Route path="/admin/content/testimonials" element={<AdminTestimonials />} />
+            <Route path="/admin/content/testimonials/new" element={<TestimonialForm />} />
+            <Route path="/admin/content/testimonials/:id/edit" element={<TestimonialForm />} />
 
             {/* FAQs */}
             <Route path="/admin/content/faqs" element={<AdminFAQs />} />
@@ -125,7 +124,7 @@ const AnimatedRoutes = () => {
             <Route path="/admin/content/faqs/:id/edit" element={<FAQForm />} />
 
             {/* Homepage & Settings */}
-            <Route path="/admin/content/homepage" element={<Stub title="Homepage Manager" />} />
+            <Route path="/admin/content/homepage" element={<AdminHomepage />} />
             <Route path="/admin/content/site-settings" element={<SiteSettings />} />
 
           </Route>
