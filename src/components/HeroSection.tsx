@@ -43,19 +43,18 @@ const HeroSection = () => {
         style={{ y: bgY, scale: 1.1 }}
         className="absolute inset-0 w-full h-full"
       >
-        <AnimatePresence mode="popLayout">
+        {heroSlides.map((slide, index) => (
           <motion.img
-            key={currentSlide}
-            src={heroSlides[currentSlide]}
-            alt="Beautiful curated luxury travel destinations across India"
+            key={index}
+            src={slide}
+            alt={`Premium Indian travel destination ${index + 1}`}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            animate={{ opacity: currentSlide === index ? 1 : 0 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
             className="absolute inset-0 w-full h-full object-cover"
           />
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+        ))}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] z-0" />
         <div className="absolute inset-0 gradient-hero" />
       </motion.div>
 
