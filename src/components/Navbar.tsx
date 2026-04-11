@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { destinationsData } from "@/data/destinations";
 import { experienceCategories } from "@/data/experiences";
 import DestinationsMegaMenu from "./navigation/DestinationsMegaMenu";
+import TourPackagesMegaMenu from "./navigation/TourPackagesMegaMenu";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn, fadeUp, staggerContainer, staggerItem } from "@/lib/motion";
 
@@ -82,29 +83,7 @@ const Navbar = () => {
             </button>
             <AnimatePresence>
               {activeDropdown === "packages" && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute left-0 top-full pt-2"
-                >
-                  <div className="bg-background rounded-lg shadow-elevated border border-border py-2 min-w-[220px]">
-                    {experienceCategories.map((item) => (
-                      <Link
-                        key={item.slug}
-                        to={`/packages/${item.slug}`}
-                        className="block px-4 py-2 text-sm text-foreground hover:bg-surface hover:text-primary transition-colors"
-                      >
-                        {item.title}
-                      </Link>
-                    ))}
-                    <div className="my-1 border-t border-border"></div>
-                    <Link to="/packages" className="block px-4 py-2 text-sm font-medium text-primary hover:bg-surface transition-colors">
-                      View All Packages
-                    </Link>
-                  </div>
-                </motion.div>
+                <TourPackagesMegaMenu />
               )}
             </AnimatePresence>
           </motion.div>

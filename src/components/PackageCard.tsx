@@ -1,97 +1,88 @@
 import { Link } from "react-router-dom";
-import { Star, Clock, Flame } from "lucide-react";
-import type { TourPackage } from "@/data/packages";
-import { useAnalytics } from "@/hooks/useAnalytics";
+import { Star, Clock, MapPin, Search } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
+import type { FeaturedPackage } from "@/data/packageMenuData";
 
 interface PackageCardProps {
-  pkg: TourPackage;
+  pkg: FeaturedPackage;
+  categoryLabel?: string;
+  categorySlug?: string;
 }
 
-const PackageCard = ({ pkg }: PackageCardProps) => {
-  const { track } = useAnalytics();
-
+const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => {
   return (
-    <TiltCard className="bg-card h-full rounded-xl overflow-hidden border border-border shadow-soft group block">
+    <TiltCard className="bg-white h-full rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow group block">
       <Link
-        to={`/packages/${pkg.categories[0]}/${pkg.slug}`}
-        onClick={() => track("package_click", { slug: pkg.slug, source: "package_card" })}
-        className="block h-full relative border-none outline-none"
+        to={`/packages/${categorySlug || 'tour'}/${pkg.slug}`}
+        className="block h-full relative border-none outline-none flex flex-col"
       >
-        {/* Image */}
-      <div className="relative overflow-hidden aspect-[16/10]">
-        <img
-          src={pkg.image}
-          alt={`${pkg.title} - ${pkg.destination} tour package`}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-          width={400}
-          height={250}
-        />
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5 items-start">
-          {pkg.badge && (
-            <span className="gradient-accent text-accent-foreground text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
-              {pkg.badge}
-            </span>
+        {/* Image Section */}
+        <div className="relative overflow-hidden aspect-[16/10] shrink-0">
+          <img
+            src={pkg.image}
+            alt={`${pkg.title} - ${pkg.destination} tour package`}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80" />
+          
+          {/* Category Badge */}
+          {categoryLabel && (
+            <div className="absolute top-3 left-3">
+              <span className="bg-white/90 backdrop-blur-sm text-gray-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm">
+                {categoryLabel}
+              </span>
+            </div>
           )}
-          {pkg.trending && (
-            <span className="bg-orange-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1">
-              <Flame className="h-3 w-3" /> Trending
-            </span>
-          )}
+
+          <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+            <div className="flex items-center gap-1.5 text-xs font-medium">
+              <MapPin className="w-3.5 h-3.5" />
+              {pkg.destination}
+            </div>
+            <div className="flex flex-col items-end">
+              <div className="flex items-center gap-1 mt-1">
+                 {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 fill-white text-white" />
+                 ))}
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="absolute top-3 right-3 flex flex-col gap-1.5 items-end">
-          {pkg.seatsLeft && pkg.seatsLeft <= 5 && (
-            <span className="bg-foreground/80 backdrop-blur-sm text-background text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
-              Only {pkg.seatsLeft} left!
-            </span>
-          )}
-        </div>
-      </div>
+        {/* Content Section */}
+        <div className="p-5 flex flex-col flex-1">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+            <Clock className="h-3.5 w-3.5" />
+            <span>{pkg.duration}</span>
+          </div>
 
-      {/* Content */}
-      <div className="p-4">
-        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-          <Clock className="h-3.5 w-3.5" />
-          <span>{pkg.duration.nights} Nights · {pkg.duration.days} Days</span>
-        </div>
+          <h3 className="font-display font-bold text-lg text-gray-900 mb-2 leading-snug group-hover:text-primary transition-colors">
+            {pkg.title}
+          </h3>
 
-        <h3 className="font-body font-semibold text-base text-card-foreground mb-2 leading-snug">
-          {pkg.title}
-        </h3>
-
-        <div className="border-t border-border pt-2 mb-2">
-          <p className="text-xs text-muted-foreground line-clamp-1">
-            Includes: {pkg.includes.join(" | ")}
+          <p className="text-sm text-gray-600 mb-4 line-clamp-2 italic">
+            "{pkg.hook}"
           </p>
-        </div>
 
-        <div className="flex items-center gap-1 mb-3">
-          {[...Array(5)].map((_, i) => (
-            <Star
-              key={i}
-              className={`h-3 w-3 ${i < Math.floor(pkg.rating) ? "fill-accent text-accent" : "text-border"}`}
-            />
-          ))}
-          <span className="text-xs text-muted-foreground ml-1 font-medium">{pkg.rating}</span>
-          <span className="text-xs text-muted-foreground">({pkg.reviewsCount})</span>
-        </div>
+          <div className="mt-auto mb-5 space-y-1">
+             {pkg.highlights.map((highlight, idx) => (
+                <div key={idx} className="flex items-start gap-2 text-xs text-gray-600">
+                  <span className="w-1 h-1 rounded-full bg-gray-300 mt-1.5 shrink-0" />
+                  <span className="line-clamp-1">{highlight}</span>
+                </div>
+             ))}
+          </div>
 
-        <div className="mb-4">
-          <p className="text-[13px] text-muted-foreground italic">Pricing shared after enquiry.</p>
+          <div className="grid grid-cols-2 gap-2 mt-auto pt-4 border-t border-gray-100">
+            <span className="flex items-center justify-center py-2.5 rounded-lg border border-gray-200 text-gray-600 text-[11px] font-bold uppercase tracking-wider hover:bg-gray-50 transition-colors">
+               <Search className="w-3.5 h-3.5 mr-1.5" /> Details
+            </span>
+            <span className="flex items-center justify-center py-2.5 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wider shadow-sm transition-transform hover:bg-primary-dark">
+               Get Quote
+            </span>
+          </div>
         </div>
-
-        <div className="flex gap-2">
-          <span className="flex-1 text-center py-2 rounded-md border border-primary text-primary hover:bg-primary hover:text-primary-foreground text-xs font-medium cursor-pointer transition-colors">
-            View Details
-          </span>
-          <span className="flex-1 text-center py-2 rounded-md gradient-primary text-primary-foreground text-xs font-medium cursor-pointer transition-transform hover:scale-[1.02]">
-            Get Custom Quote
-          </span>
-        </div>
-      </div>
       </Link>
     </TiltCard>
   );
