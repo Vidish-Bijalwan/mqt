@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MapPin, Sparkles } from "lucide-react";
 import PackageCard from "./PackageCard";
 import { packageMenuData } from "@/data/packageMenuData";
+import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 
 const PackagesSection = () => {
   // Flatten all categories from the groups for the unified filter row
@@ -155,7 +156,12 @@ const PackagesSection = () => {
            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {allCategories.find(c => c.slug === 'weekend-escapes')?.featuredPackages.slice(0, 4).map(pkg => (
                  <Link key={pkg.slug} to={`/packages/weekend-escapes/${pkg.slug}`} className="group relative h-40 rounded-xl overflow-hidden shadow-sm">
-                   <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                   <ImgWithFallback 
+                     src={pkg.image || ""} 
+                     fallbackSrc="/placeholder.svg" 
+                     alt={pkg.title} 
+                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                   />
                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                    <div className="absolute bottom-3 left-3 right-3 text-white">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-primary-light mb-0.5">{pkg.duration}</p>

@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Clock, Star, MapPin } from "lucide-react";
 import type { TourPackage, Destination } from "@/data/packages";
 import { destinationsData, type DestinationData } from "@/data/destinations";
+import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
+import { getPackageImage, getStateImage } from "@/lib/imageMap";
 
 interface RelatedPackageCardsProps {
   type: "package";
@@ -38,14 +40,17 @@ const RelatedCards = (props: RelatedCardsProps) => {
                 className="group bg-card rounded-xl overflow-hidden border border-border card-hover shadow-soft block"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
-                  <img
-                    src={pkg.image}
-                    alt={pkg.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                    width={400}
-                    height={250}
-                  />
+                  {(() => {
+                    const { src, fallbackSrc } = getPackageImage(pkg.slug, 'card', pkg.image);
+                    return (
+                      <ImgWithFallback
+                        src={src}
+                        fallbackSrc={fallbackSrc}
+                        alt={pkg.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    );
+                  })()}
                   {pkg.badge && (
                     <span className="absolute top-3 left-3 gradient-accent text-accent-foreground text-xs font-semibold px-3 py-1 rounded-full">
                       {pkg.badge}
@@ -90,14 +95,17 @@ const RelatedCards = (props: RelatedCardsProps) => {
                   to={`/destinations/${stateSlug}/${slug}`}
                   className="group relative rounded-xl overflow-hidden aspect-[4/3] block card-hover shadow-soft"
                 >
-                  <img
-                    src={image}
-                    alt={name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                    width={400}
-                    height={300}
-                  />
+                  {(() => {
+                    const { src, fallbackSrc } = getStateImage(slug, 'card', image);
+                    return (
+                      <ImgWithFallback
+                        src={src}
+                        fallbackSrc={fallbackSrc}
+                        alt={name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    );
+                  })()}
                   <div className="absolute inset-0 gradient-hero" />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <h3 className="font-display text-lg font-semibold text-background">{name}</h3>

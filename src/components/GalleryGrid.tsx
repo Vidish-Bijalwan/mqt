@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { X, ZoomIn } from "lucide-react";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 
 export interface GalleryImage {
   src: string;
@@ -49,17 +50,11 @@ const GalleryGrid = ({ images, title = "Photo Gallery", showTitle = true }: Gall
               style={{ aspectRatio: i === 0 ? "4/5" : "4/3" }}
               onClick={() => openLightbox(i)}
             >
-              <img
+              <ImgWithFallback
                 src={img.src}
+                fallbackSrc="/placeholder.svg"
                 alt={img.alt}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-                width={600}
-                height={450}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450' fill='%23e2e8f0'%3E%3Crect width='100%25' height='100%25'/%3E%3C/svg%3E";
-                }}
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
                 <ZoomIn className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -92,8 +87,9 @@ const GalleryGrid = ({ images, title = "Photo Gallery", showTitle = true }: Gall
           </button>
 
           <div onClick={(e) => e.stopPropagation()} className="max-w-4xl max-h-[80vh] relative">
-            <img
+            <ImgWithFallback
               src={images[lightboxIndex].src}
+              fallbackSrc="/placeholder.svg"
               alt={images[lightboxIndex].alt}
               className="max-w-full max-h-[80vh] object-contain rounded-xl"
             />

@@ -6,6 +6,8 @@ import { destinationsData } from "@/data/destinations";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { staggerContainer, staggerItem } from "@/lib/motion";
+import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
+import { getStateImage } from "@/lib/imageMap";
 
 const DestinationExplorer = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -61,13 +63,11 @@ const DestinationExplorer = () => {
                     draggable="false"
                   >
                     <div className="relative rounded-xl overflow-hidden aspect-[3/4] shadow-soft">
-                      <img
-                        src={dest.image}
+                      <ImgWithFallback
+                        src={getStateImage(dest.slug, 'card').src}
+                        fallbackSrc={getStateImage(dest.slug, 'card').fallbackSrc}
                         alt={`${dest.name} travel destination in India`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
-                        loading="lazy"
-                        width={280}
-                        height={373}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent pointer-events-none" />
                       <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
