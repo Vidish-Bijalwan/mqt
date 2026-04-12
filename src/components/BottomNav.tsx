@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, Package, MapPin, Compass, BookOpen } from 'lucide-react';
+import { Home, Package, MapPin, Search, Compass } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTripPlanner } from '@/contexts/TripPlannerContext';
 
@@ -7,8 +7,7 @@ const NAV_ITEMS = [
   { to: '/', label: 'Home', icon: Home, exact: true },
   { to: '/packages', label: 'Packages', icon: Package, exact: false },
   { to: '/destinations', label: 'Explore', icon: MapPin, exact: false },
-  { special: true, label: 'Plan Trip', icon: Compass },
-  { to: '/blog', label: 'Blog', icon: BookOpen, exact: false },
+  { to: '/packages', label: 'Search', icon: Search, exact: false }, // Directing Search to packages page for now
 ];
 
 const BottomNav = () => {
@@ -19,52 +18,37 @@ const BottomNav = () => {
     exact ? location.pathname === to : location.pathname.startsWith(to);
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-[80] bg-background/97 backdrop-blur-xl border-t border-border safe-pb">
-      <div className="flex items-center justify-around px-2 py-2 max-w-lg mx-auto">
-        {NAV_ITEMS.map((item, i) => {
+    <>
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-100 pb-[env(safe-area-inset-bottom,0px)] h-16 flex items-center justify-around shadow-[0_-2px_12px_rgba(0,0,0,0.08)]">
+        {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
-
-          if (item.special) {
-            return (
-              <motion.button
-                key="plan-trip"
-                whileTap={{ scale: 0.92 }}
-                onClick={() => openPlanner(undefined, 'bottom_nav')}
-                className="flex flex-col items-center gap-0.5 relative -mt-4"
-              >
-                <span className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-blue-600 shadow-lg shadow-primary/40 flex items-center justify-center">
-                  <Icon className="w-6 h-6 text-white" />
-                </span>
-                <span className="text-[10px] font-semibold text-primary mt-0.5">Plan Trip</span>
-              </motion.button>
-            );
-          }
-
-          const active = isActive(item.to!, item.exact!);
+          const active = isActive(item.to, item.exact);
 
           return (
             <NavLink
-              key={item.to}
-              to={item.to!}
-              className="flex flex-col items-center gap-0.5 px-3 py-1 relative"
+              key={item.label}
+              to={item.to}
+              className="flex flex-col items-center justify-center gap-1 w-16"
             >
-              <span className="relative">
-                <Icon className={`w-5 h-5 transition-colors ${active ? 'text-primary' : 'text-muted-foreground'}`} />
-                {active && (
-                  <motion.span
-                    layoutId="bottom-nav-dot"
-                    className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"
-                  />
-                )}
-              </span>
-              <span className={`text-[10px] font-medium transition-colors ${active ? 'text-primary' : 'text-muted-foreground'}`}>
+              <Icon className={`w-[22px] h-[22px] transition-colors ${active ? 'text-blue-700' : 'text-gray-400'}`} />
+              <span className={`text-[10px] font-medium transition-colors ${active ? 'text-blue-700' : 'text-gray-500'}`}>
                 {item.label}
               </span>
             </NavLink>
           );
         })}
-      </div>
-    </nav>
+      </nav>
+
+      {/* Floating Action Button (compass) */}
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        onClick={() => openPlanner(undefined, 'fab')}
+        className="lg:hidden fixed bottom-20 right-4 z-40 w-14 h-14 rounded-full bg-blue-700 text-white shadow-lg flex items-center justify-center hover:bg-blue-800 transition-colors"
+        aria-label="Plan Custom Trip"
+      >
+        <Compass size={28} className="animate-pulse-slow" />
+      </motion.button>
+    </>
   );
 };
 

@@ -73,20 +73,20 @@ function resolveLocalFallback(fallbackType: string): string {
 // 1. STATE IMAGE
 // ─────────────────────────────────────────────────────────────────────────────
 export function getStateImage(stateSlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
-  // CMS override
-  if (cmsUrl && cmsUrl.startsWith('http')) {
-    const local = resolveLocal(`../assets/images/states/${stateSlug}/${variant}.webp`);
-    return { src: cmsUrl, fallbackSrc: local || resolveLocalFallback('state') };
-  }
-  // Local first (faster, works offline)
   const localPath = `../assets/images/states/${stateSlug}/${variant}.webp`;
   const local = resolveLocal(localPath);
+  if (local) return { src: local, fallbackSrc: local };
+
+  if (cmsUrl && (cmsUrl.startsWith('http') || cmsUrl.startsWith('/') || cmsUrl.startsWith('data:'))) {
+    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('state') };
+  }
+
   const supabaseSrc = SUPABASE_STORAGE_BASE
     ? `${SUPABASE_STORAGE_BASE}/states/${stateSlug}/${variant}.webp`
     : '';
   return {
-    src: supabaseSrc || local || resolveLocalFallback('state'),
-    fallbackSrc: local || resolveLocalFallback('state'),
+    src: supabaseSrc || resolveLocalFallback('state'),
+    fallbackSrc: resolveLocalFallback('state'),
   };
 }
 
@@ -94,19 +94,21 @@ export function getStateImage(stateSlug: string, variant: ImageVariant = 'hero',
 // 2. CITY IMAGE
 // ─────────────────────────────────────────────────────────────────────────────
 export function getCityImage(stateSlug: string, citySlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
-  if (cmsUrl && cmsUrl.startsWith('http')) {
-    const local = resolveLocal(`../assets/images/cities/${stateSlug}/${citySlug}/${variant}.webp`);
-    return { src: cmsUrl, fallbackSrc: local || resolveLocalFallback('city') };
-  }
   const localPath = `../assets/images/cities/${stateSlug}/${citySlug}/${variant}.webp`;
   const local = resolveLocal(localPath);
   const bundled = BUNDLED_FALLBACKS[citySlug] || BUNDLED_FALLBACKS[stateSlug];
+  if (local) return { src: local, fallbackSrc: local };
+
+  if (cmsUrl && (cmsUrl.startsWith('http') || cmsUrl.startsWith('/') || cmsUrl.startsWith('data:'))) {
+    return { src: cmsUrl, fallbackSrc: bundled || resolveLocalFallback('city') };
+  }
+
   const supabaseSrc = SUPABASE_STORAGE_BASE
     ? `${SUPABASE_STORAGE_BASE}/cities/${stateSlug}/${citySlug}/${variant}.webp`
     : '';
   return {
-    src: supabaseSrc || local || bundled || resolveLocalFallback('city'),
-    fallbackSrc: local || bundled || resolveLocalFallback('city'),
+    src: supabaseSrc || bundled || resolveLocalFallback('city'),
+    fallbackSrc: bundled || resolveLocalFallback('city'),
   };
 }
 
@@ -115,25 +117,26 @@ export function getCityImage(stateSlug: string, citySlug: string, variant: Image
 //    Use this for DestinationExplorer carousel, DestinationDetail gallery, etc.
 // ─────────────────────────────────────────────────────────────────────────────
 export function getDestinationImage(destSlug: string, variant: ImageVariant = 'card', cmsUrl?: string): ImageResolution {
-  if (cmsUrl && cmsUrl.startsWith('http')) {
-    return { src: cmsUrl, fallbackSrc: BUNDLED_FALLBACKS[destSlug] || BRANDED_PLACEHOLDER };
-  }
-
   const stateSlug = getStateSlugForDest(destSlug);
 
   // Priority 1: city-level local asset
   const cityLocal = resolveLocal(`../assets/images/cities/${stateSlug}/${destSlug}/${variant}.webp`);
-  if (cityLocal) return { src: cityLocal, fallbackSrc: BUNDLED_FALLBACKS[destSlug] || BRANDED_PLACEHOLDER };
+  if (cityLocal) return { src: cityLocal, fallbackSrc: cityLocal };
 
   // Priority 2: state-level local asset
   const stateLocal = resolveLocal(`../assets/images/states/${stateSlug}/${variant}.webp`);
-  if (stateLocal) return { src: stateLocal, fallbackSrc: BUNDLED_FALLBACKS[destSlug] || stateLocal };
+  if (stateLocal) return { src: stateLocal, fallbackSrc: stateLocal };
 
-  // Priority 3: bundled legacy import (always works)
+  // Priority 3: CMS URL if provided (and passes validation)
+  if (cmsUrl && (cmsUrl.startsWith('http') || cmsUrl.startsWith('/') || cmsUrl.startsWith('data:'))) {
+    return { src: cmsUrl, fallbackSrc: BUNDLED_FALLBACKS[destSlug] || BRANDED_PLACEHOLDER };
+  }
+
+  // Priority 4: bundled legacy import
   const bundled = BUNDLED_FALLBACKS[destSlug] || BUNDLED_FALLBACKS[stateSlug];
   if (bundled) return { src: bundled, fallbackSrc: bundled };
 
-  // Priority 4: Supabase city path (remote fallback)
+  // Priority 5: Supabase city path
   if (SUPABASE_STORAGE_BASE) {
     const supabaseSrc = `${SUPABASE_STORAGE_BASE}/cities/${stateSlug}/${destSlug}/${variant}.webp`;
     return { src: supabaseSrc, fallbackSrc: BRANDED_PLACEHOLDER };
@@ -146,17 +149,20 @@ export function getDestinationImage(destSlug: string, variant: ImageVariant = 'c
 // 4. POPULAR LOCATION IMAGE
 // ─────────────────────────────────────────────────────────────────────────────
 export function getPopularLocationImage(stateSlug: string, locationSlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
-  if (cmsUrl && cmsUrl.startsWith('http')) {
-    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('location') };
-  }
   const localPath = `../assets/images/popular-locations/${stateSlug}/${locationSlug}/${variant}.webp`;
   const local = resolveLocal(localPath);
+  if (local) return { src: local, fallbackSrc: local };
+
+  if (cmsUrl && (cmsUrl.startsWith('http') || cmsUrl.startsWith('/') || cmsUrl.startsWith('data:'))) {
+    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('location') };
+  }
+
   const supabaseSrc = SUPABASE_STORAGE_BASE
     ? `${SUPABASE_STORAGE_BASE}/popular-locations/${stateSlug}/${locationSlug}/${variant}.webp`
     : '';
   return {
-    src: supabaseSrc || local || resolveLocalFallback('location'),
-    fallbackSrc: local || resolveLocalFallback('location'),
+    src: supabaseSrc || resolveLocalFallback('location'),
+    fallbackSrc: resolveLocalFallback('location'),
   };
 }
 
@@ -164,18 +170,20 @@ export function getPopularLocationImage(stateSlug: string, locationSlug: string,
 // 5. PACKAGE IMAGE
 // ─────────────────────────────────────────────────────────────────────────────
 export function getPackageImage(packageSlug: string, variant: ImageVariant = 'card', cmsUrl?: string): ImageResolution {
-  if (cmsUrl && cmsUrl.startsWith('http')) {
-    const local = resolveLocal(`../assets/images/packages/${packageSlug}/${variant}.webp`);
-    return { src: cmsUrl, fallbackSrc: local || resolveLocalFallback('package') };
-  }
   const localPath = `../assets/images/packages/${packageSlug}/${variant}.webp`;
   const local = resolveLocal(localPath);
+  if (local) return { src: local, fallbackSrc: local };
+
+  if (cmsUrl && (cmsUrl.startsWith('http') || cmsUrl.startsWith('/') || cmsUrl.startsWith('data:'))) {
+    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('package') };
+  }
+
   const supabaseSrc = SUPABASE_STORAGE_BASE
     ? `${SUPABASE_STORAGE_BASE}/packages/${packageSlug}/${variant}.webp`
     : '';
   return {
-    src: supabaseSrc || local || resolveLocalFallback('package'),
-    fallbackSrc: local || resolveLocalFallback('package'),
+    src: supabaseSrc || resolveLocalFallback('package'),
+    fallbackSrc: resolveLocalFallback('package'),
   };
 }
 
@@ -183,17 +191,20 @@ export function getPackageImage(packageSlug: string, variant: ImageVariant = 'ca
 // 6. BLOG IMAGE
 // ─────────────────────────────────────────────────────────────────────────────
 export function getBlogImage(blogSlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
-  if (cmsUrl && cmsUrl.startsWith('http')) {
-    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('blog') };
-  }
   const localPath = `../assets/images/blog/${blogSlug}/${variant}.webp`;
   const local = resolveLocal(localPath);
+  if (local) return { src: local, fallbackSrc: local };
+
+  if (cmsUrl && (cmsUrl.startsWith('http') || cmsUrl.startsWith('/') || cmsUrl.startsWith('data:'))) {
+    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('blog') };
+  }
+
   const supabaseSrc = SUPABASE_STORAGE_BASE
     ? `${SUPABASE_STORAGE_BASE}/blog/${blogSlug}/${variant}.webp`
     : '';
   return {
-    src: supabaseSrc || local || resolveLocalFallback('blog'),
-    fallbackSrc: local || resolveLocalFallback('blog'),
+    src: supabaseSrc || resolveLocalFallback('blog'),
+    fallbackSrc: resolveLocalFallback('blog'),
   };
 }
 
@@ -201,16 +212,19 @@ export function getBlogImage(blogSlug: string, variant: ImageVariant = 'hero', c
 // 7. CATEGORY IMAGE
 // ─────────────────────────────────────────────────────────────────────────────
 export function getCategoryImage(categorySlug: string, cmsUrl?: string): ImageResolution {
-  if (cmsUrl && cmsUrl.startsWith('http')) {
-    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('category') };
-  }
   const localPath = `../assets/images/categories/${categorySlug}/hero.webp`;
   const local = resolveLocal(localPath);
+  if (local) return { src: local, fallbackSrc: local };
+
+  if (cmsUrl && (cmsUrl.startsWith('http') || cmsUrl.startsWith('/') || cmsUrl.startsWith('data:'))) {
+    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('category') };
+  }
+
   const supabaseSrc = SUPABASE_STORAGE_BASE
     ? `${SUPABASE_STORAGE_BASE}/categories/${categorySlug}/hero.webp`
     : '';
   return {
-    src: supabaseSrc || local || resolveLocalFallback('category'),
-    fallbackSrc: local || resolveLocalFallback('category'),
+    src: supabaseSrc || resolveLocalFallback('category'),
+    fallbackSrc: resolveLocalFallback('category'),
   };
 }

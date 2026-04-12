@@ -45,22 +45,20 @@ export function TripPlannerModal() {
   if (!isOpen) return null;
 
   const renderStep = () => {
-    if (hasCompleted || currentStep === 9) return <StepSuccess />;
+    if (hasCompleted || currentStep >= 7) return <StepSuccess />;
     switch (currentStep) {
       case 0: return <StepZeroHook />;
-      case 1: return <StepOneIntent />;
-      case 2: return <StepTwoStyle />;
-      case 3: return <StepThreeDestination />;
-      case 4: return <StepFourDates />;
-      case 5: return <StepFiveGroup />;
-      case 6: return <StepSixPreferences />;
-      case 7: return data.intent_type === 'custom_trip' ? <StepSevenJourneyDetails /> : <StepEightContact />;
-      case 8: return <StepEightContact />;
+      case 1: return <StepThreeDestination />;
+      case 2: return <StepFourDates />;
+      case 3: return <StepFiveGroup />;
+      case 4: return <StepSixPreferences />;
+      case 5: return <StepTwoStyle />;
+      case 6: return <StepEightContact />;
       default: return <StepZeroHook />;
     }
   };
 
-  const totalSteps = data.intent_type === 'custom_trip' ? 8 : 7;
+  const totalSteps = 6;
   const isStepZeroOrSuccess = currentStep === 0 || hasCompleted;
 
   const stepVariants = {
@@ -85,7 +83,7 @@ export function TripPlannerModal() {
       {/* ───────── MOBILE: Full-Screen Bottom Sheet ───────── */}
       <motion.div
         key="mobile-sheet"
-        className="lg:hidden fixed inset-0 z-[101] flex flex-col bg-background"
+        className="lg:hidden fixed inset-x-0 bottom-0 z-[101] flex flex-col bg-background rounded-t-3xl max-h-[90dvh] overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.1)]"
         style={{ y: sheetY }}
         initial={{ y: '100%' }}
         animate={{ y: 0 }}

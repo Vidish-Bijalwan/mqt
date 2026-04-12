@@ -20,7 +20,7 @@ const PackagesSection = () => {
   }, [activeCategorySlug, allCategories]);
 
   return (
-    <section className="py-20 md:py-24 bg-gray-50 relative overflow-hidden">
+    <section className="section-y bg-gray-50 relative overflow-hidden">
       {/* Decorative Blob */}
       <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
@@ -121,7 +121,7 @@ const PackagesSection = () => {
                    </Link>
                  </div>
                  
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                 <div className="grid-cards-3">
                    {activeCategory.featuredPackages.map(pkg => (
                       <PackageCard 
                         key={pkg.slug} 
@@ -144,7 +144,7 @@ const PackagesSection = () => {
         </AnimatePresence>
 
         {/* LAYER 4: Weekend Escapes Compact Strip */}
-        <div className="mt-16 pt-12 border-t border-gray-200 mb-safe">
+        <div className="mt-16 pt-12 border-t border-gray-200 pb-nav">
            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
              <div>
                <h3 className="font-display text-2xl font-bold text-gray-900 mb-1">Quick Weekend Escapes</h3>
@@ -155,7 +155,7 @@ const PackagesSection = () => {
              </Link>
            </div>
 
-           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+           <div className="grid-cards-4">
               {(allCategories.find(c => c.slug === 'weekend-escapes')?.featuredPackages.slice(0, 4) || []).map(pkg => {
                 const { src, fallbackSrc } = getPackageImage(pkg.slug, 'card', pkg.image);
                 return (

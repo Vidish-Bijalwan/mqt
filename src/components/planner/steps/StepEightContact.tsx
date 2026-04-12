@@ -1,12 +1,8 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { useTripPlanner } from '../../../contexts/TripPlannerContext';
-import { Button } from '../../ui/button';
-import { Input } from '../../ui/input';
-import { Label } from '../../ui/label';
-import { Textarea } from '../../ui/textarea';
 import { submitEnquiry } from '../../../services/enquiryService';
 import { toast } from 'sonner';
+import { Phone, User } from 'lucide-react';
 
 export function StepEightContact() {
   const { data, updateData, completePlanner } = useTripPlanner();
@@ -15,8 +11,8 @@ export function StepEightContact() {
 
   const validate = () => {
     let newErrors: any = {};
-    if (!data.contact_name.trim()) newErrors.name = 'Name is required';
-    if (!data.contact_phone.trim()) newErrors.phone = 'Phone number is required';
+    if (!data.contact_name.trim()) newErrors.name = 'Please enter your name';
+    if (!data.contact_phone.trim() || data.contact_phone.length < 10) newErrors.phone = 'Please enter a valid WhatsApp number';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -35,8 +31,8 @@ export function StepEightContact() {
 
       const payload = {
         name: data.contact_name,
-        email: data.contact_email, // Can be empty if we want
         phone: data.contact_phone,
+        email: 'whatsapp-only@mqtravels.com', // Dummy fallback for DB constraints if any
         destination: destinationStr,
         travel_date: data.date_flexibility ? 'Flexible' : data.travel_month,
         adults: data.group_size.adults,
@@ -44,8 +40,7 @@ export function StepEightContact() {
         travellers_count: data.group_size.adults + data.group_size.children + data.group_size.infants,
         tour_type: data.trip_style.join(', '),
         budget_tier: data.budget_preference || undefined,
-        hotel_category_preference: data.stay_preference || undefined,
-        preferred_contact_method: data.preferred_contact_method || undefined,
+        preferred_contact_method: 'whatsapp' as any,
         source_page: data.source_page || undefined,
         cta_label: 'Trip Planner Wizard',
         requirements: `
@@ -56,21 +51,12 @@ Group: ${data.group_size.adults} Adults, ${data.group_size.children} Children, $
 Budget: ${data.budget_preference || 'Any'}
 Stay: ${data.stay_preference || 'Any'}
 Flexibility: ${data.date_flexibility ? 'Flexible' : 'Exact Month: ' + data.travel_month}
-${data.intent_type === 'custom_trip' ? `
---- Custom Journey Details ---
-Departure: ${data.departure_city || 'Not specified'}
-Duration: ${data.trip_duration_days ? data.trip_duration_days + ' days' : 'Not specified'}
-Must Visits: ${data.must_visit_places || 'None'}
-Pace: ${data.travel_pace || 'Not specified'}
-` : ''}
-Special Requirements: ${data.special_requirements || 'None'}
         `.trim()
       };
 
       const { error } = await submitEnquiry(payload, "");
       if (error) throw error;
       
-      // Complete!
       completePlanner();
 
     } catch (e) {
@@ -82,78 +68,64 @@ Special Requirements: ${data.special_requirements || 'None'}
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in zoom-in-95 duration-300">
-      <div className="text-center sm:text-left space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-display font-semibold text-foreground">
-          Where should we send your personalized plan?
+    <div className="space-y-6 animate-in fade-in zoom-in-95 duration-300 max-w-xl mx-auto">
+      <div className="text-center space-y-3 mb-8">
+        <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 text-blue-600 shadow-inner">
+          <Phone className="w-8 h-8" />
+        </div>
+        <h2 className="text-2xl md:text-3xl font-display font-semibold text-gray-900">
+          Where should we send your itinerary?
         </h2>
-        <p className="text-muted-foreground">Almost done. We just need to know how to reach you.</p>
+        <p className="text-gray-500 max-w-sm mx-auto">We'll craft a custom plan and WhatsApp it to you. No spam, just a brilliant trip.</p>
       </div>
 
-      <div className="space-y-5">
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div className="space-y-1.5">
-            <Label htmlFor="name">Full Name <span className="text-red-500">*</span></Label>
-            <Input 
-              id="name"
-              placeholder="e.g. John Doe"
-              value={data.contact_name}
-              onChange={(e) => updateData({ contact_name: e.target.value })}
-              className={errors.name ? 'border-red-500' : ''}
-            />
-            {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
+      <div className="space-y-4">
+        <div className="relative">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+            <User className="w-5 h-5" />
           </div>
+          <input 
+            type="text"
+            placeholder="Your Name"
+            value={data.contact_name}
+            onChange={(e) => updateData({ contact_name: e.target.value })}
+            className={`w-full pl-12 pr-4 py-4 md:py-5 text-base md:text-lg rounded-2xl bg-gray-50 border-2 outline-none transition-colors ${errors.name ? 'border-red-400 focus:border-red-500 bg-red-50/30' : 'border-gray-200 focus:border-blue-500 focus:bg-white'}`}
+          />
+          {errors.name && <p className="text-xs text-red-500 font-medium absolute -bottom-5 left-2">{errors.name}</p>}
+        </div>
 
-          <div className="space-y-1.5">
-            <Label htmlFor="phone">Phone Number <span className="text-red-500">*</span></Label>
-            <Input 
-              id="phone"
-              type="tel"
-              placeholder="e.g. +91 9876543210"
-              value={data.contact_phone}
-              onChange={(e) => updateData({ contact_phone: e.target.value })}
-              className={errors.phone ? 'border-red-500' : ''}
-            />
-            {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
+        <div className="relative mt-6">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+            <Phone className="w-5 h-5" />
           </div>
-        </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor="email">Email Address (Optional)</Label>
-          <Input 
-            id="email"
-            type="email"
-            placeholder="e.g. hello@example.com"
-            value={data.contact_email}
-            onChange={(e) => updateData({ contact_email: e.target.value })}
+          <input 
+            type="tel"
+            placeholder="WhatsApp Number"
+            value={data.contact_phone}
+            onChange={(e) => updateData({ contact_phone: e.target.value })}
+            className={`w-full pl-12 pr-4 py-4 md:py-5 text-base md:text-lg rounded-2xl bg-gray-50 border-2 outline-none transition-colors ${errors.phone ? 'border-red-400 focus:border-red-500 bg-red-50/30' : 'border-gray-200 focus:border-blue-500 focus:bg-white'}`}
           />
+          {errors.phone && <p className="text-xs text-red-500 font-medium absolute -bottom-5 left-2">{errors.phone}</p>}
         </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor="notes">Any Special Requirements? (Optional)</Label>
-          <Textarea 
-            id="notes"
-            placeholder="Dietary preferences, accessibility needs, specific celebrations..."
-            className="resize-none"
-            rows={3}
-            value={data.special_requirements || ''}
-            onChange={(e) => updateData({ special_requirements: e.target.value })}
-          />
-        </div>
-
       </div>
 
-      <div className="flex justify-end pt-6 border-t border-border mt-8">
-        <Button 
+      <div className="flex justify-center pt-8">
+        <button 
           onClick={handleSubmit} 
-          size="lg" 
           disabled={isSubmitting}
-          className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 w-full sm:w-auto"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 lg:py-5 text-lg rounded-2xl font-bold shadow-xl shadow-blue-600/30 transition-transform active:scale-95 disabled:opacity-70 disabled:active:scale-100 flex items-center justify-center gap-2"
         >
-          {isSubmitting ? 'Sending...' : 'Get My Travel Plan'}
-        </Button>
+          {isSubmitting ? (
+            <span className="flex items-center gap-2">
+              <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              Crafting Itinerary...
+            </span>
+          ) : (
+            'Get My Free Plan'
+          )}
+        </button>
       </div>
+      <p className="text-center text-[10px] text-gray-400 mt-4">By continuing, you agree to our privacy policy. Your data is secure.</p>
     </div>
   );
 }

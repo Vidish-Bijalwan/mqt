@@ -76,20 +76,29 @@
     line-height: 1.75;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
   }
 }
 
 @layer components {
-  /* Single source of truth for content width + gutters */
+
+  /* Single source of truth for all page sections */
   .container-page {
     @apply max-w-7xl mx-auto px-4 md:px-6 lg:px-8;
   }
 
-  /* Section vertical rhythm — horizontal padding now matches container-page */
+  /* Legacy section padding alias for backward compatibility */
   .section-padding {
-    @apply px-4 md:px-6 lg:px-8 py-14 md:py-20 lg:py-24;
+    @apply px-4 md:px-6 lg:px-8 py-10 md:py-16 lg:py-20;
+  }
+
+  /* Section vertical spacing */
+  .section-y {
+    @apply py-10 md:py-16 lg:py-20;
   }
 
   .section-heading {
@@ -102,39 +111,89 @@
   }
 
   /* Card grids */
-  .card-grid-3 {
+  .grid-cards-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6;
+  }
+
+  .grid-cards-3 {
     @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
   }
 
+  .grid-cards-4 {
+    @apply grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6;
+  }
+
+  /* Legacy aliases to prevent breakages */
+  .card-grid-3 {
+    @apply grid-cards-3;
+  }
+
   .card-grid-4 {
-    @apply grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6;
+    @apply grid-cards-4;
   }
 
-  /* Aspect ratios */
-  .aspect-card    { @apply aspect-[4/3]; }
-  .aspect-hero    { @apply aspect-[16/9]; }
-  .aspect-portrait { @apply aspect-[3/4]; }
+  /* Scrollable pill/chip rows */
+  .chip-row {
+    @apply flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide;
+    scroll-snap-type: x mandatory;
+  }
 
-  /* Horizontally-scrollable pill row — prevents edge clipping on mobile */
+  .chip-row>* {
+    scroll-snap-align: start;
+  }
+
+  /* Legacy alias */
   .pill-row {
-    @apply flex gap-2 overflow-x-auto -mx-4 px-4 pb-2 scrollbar-hide;
+    @apply chip-row;
   }
 
-  /* Clearance for sticky bottom widgets (WhatsApp, back-to-top) */
-  .mb-safe {
+  /* Standard card aspect ratios */
+  .card-ratio {
+    @apply aspect-[4/3];
+  }
+
+  .hero-ratio {
+    @apply aspect-[16/9];
+  }
+
+  .portrait-ratio {
+    @apply aspect-[3/4];
+  }
+
+  /* Legacy aspect aliases */
+  .aspect-card {
+    @apply card-ratio;
+  }
+
+  .aspect-hero {
+    @apply hero-ratio;
+  }
+
+  .aspect-portrait {
+    @apply portrait-ratio;
+  }
+
+  /* Bottom clearance above sticky nav */
+  .pb-nav {
     @apply pb-24 md:pb-8;
+  }
+
+  /* Legacy alias */
+  .mb-safe {
+    @apply pb-nav;
   }
 
   .card-hover {
     @apply transition-all duration-300 ease-out;
   }
+
   .card-hover:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-elevated);
   }
 
   .gradient-hero {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.6) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.6) 100%);
   }
 
   .gradient-primary {
@@ -173,14 +232,29 @@
 }
 
 @keyframes pulseRing {
-  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
 }
 
 @keyframes floatBob {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 @layer utilities {
@@ -192,6 +266,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -206,7 +281,7 @@
   .shadow-glow {
     box-shadow: 0 0 20px 4px rgba(27, 108, 168, 0.18);
   }
-  
+
   .safe-pb {
     padding-bottom: env(safe-area-inset-bottom, 12px);
   }

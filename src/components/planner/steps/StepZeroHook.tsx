@@ -89,13 +89,13 @@ export function StepZeroHook() {
         transition={{ delay: 0.1 }}
         className="space-y-4"
       >
-        <h2 className="text-3xl md:text-5xl font-display font-semibold tracking-tight text-foreground">
+        <h2 className="text-3xl md:text-5xl font-display font-semibold tracking-tight text-foreground break-words w-full leading-tight">
           Get your perfect India trip in{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
             under 60 seconds
           </span>
         </h2>
-        <p className="text-lg text-muted-foreground max-w-lg mx-auto">
+        <p className="text-lg text-muted-foreground w-full max-w-lg mx-auto break-words px-2">
           Answer a few quick questions, and we'll craft a personalized itinerary just for you.
         </p>
       </motion.div>

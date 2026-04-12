@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTripPlanner } from '../../../contexts/TripPlannerContext';
-import { Button } from '../../ui/button';
-import { Minus, Plus, Users } from 'lucide-react';
+import { Minus, Plus } from 'lucide-react';
 
 export function StepFiveGroup() {
   const { data, updateData, nextStep } = useTripPlanner();
@@ -24,53 +23,52 @@ export function StepFiveGroup() {
   };
 
   const Stepper = ({ label, description, type, value }: any) => (
-    <div className="flex items-center justify-between p-4 bg-card border border-border rounded-xl">
+    <div className="flex items-center justify-between p-4 md:p-5 bg-white border-2 border-gray-100 rounded-2xl shadow-sm hover:border-gray-200 transition-colors">
       <div>
-        <h4 className="font-semibold text-foreground">{label}</h4>
-        <p className="text-sm text-muted-foreground">{description}</p>
+        <h4 className="font-bold text-gray-900 text-lg">{label}</h4>
+        <p className="text-sm text-gray-500 font-medium">{description}</p>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         <button 
           onClick={() => updateCount(type, -1)}
-          className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-muted transition-colors disabled:opacity-50"
+          className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors disabled:opacity-40 disabled:hover:bg-gray-50 border border-gray-200"
           disabled={value <= (type === 'adults' ? 1 : 0)}
         >
-          <Minus className="w-4 h-4" />
+          <Minus className="w-5 h-5" />
         </button>
-        <span className="w-6 text-center font-semibold text-foreground text-lg">{value}</span>
+        <span className="w-8 text-center font-bold text-gray-900 text-xl">{value}</span>
         <button 
           onClick={() => updateCount(type, 1)}
-          className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-muted transition-colors"
+          className="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-100 transition-colors"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-5 h-5" />
         </button>
       </div>
     </div>
   );
 
   return (
-    <div className="space-y-8 animate-in fade-in zoom-in-95 duration-300">
-      <div className="text-center sm:text-left space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-display font-semibold text-foreground">
-          Who's travelling?
+    <div className="space-y-6 animate-in fade-in zoom-in-95 duration-300 max-w-xl mx-auto">
+      <div className="text-center md:text-center space-y-2 mb-6">
+        <h2 className="text-2xl md:text-3xl font-display font-semibold text-gray-900">
+          Who's traveling?
         </h2>
-        <p className="text-muted-foreground">Select the number of people in your group.</p>
+        <p className="text-gray-500">Add the number of people in your party.</p>
       </div>
 
-      <div className="space-y-3 max-w-lg mx-auto sm:mx-0">
+      <div className="space-y-3">
         <Stepper label="Adults" description="Ages 12 or above" type="adults" value={adults} />
         <Stepper label="Children" description="Ages 2 to 11" type="children" value={children} />
         <Stepper label="Infants" description="Under 2 years" type="infants" value={infants} />
       </div>
 
-      <div className="flex justify-end pt-6 border-t border-border mt-8">
-        <Button 
-          onClick={handleNext} 
-          size="lg" 
-          className="bg-primary hover:bg-primary/90 text-primary-foreground px-8"
+      <div className="flex justify-center pt-8">
+        <button 
+          onClick={handleNext}
+          className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl font-bold shadow-lg shadow-blue-600/30 transition-transform active:scale-95"
         >
           Continue
-        </Button>
+        </button>
       </div>
     </div>
   );

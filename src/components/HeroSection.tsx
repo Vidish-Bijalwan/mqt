@@ -1,12 +1,13 @@
 import { Search, Calendar, Users, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { staggerContainer, staggerItem } from "@/lib/motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { useState, useEffect } from "react";
 import { useTripPlanner } from "@/contexts/TripPlannerContext";
+import { HeroSearchBar } from "./HeroSearchBar";
 
 const heroSlides = [
   "https://images.unsplash.com/photo-1599661559684-25befc05586b?auto=format&fit=crop&q=80", // Rajasthan Heritage
@@ -121,66 +122,9 @@ const HeroSection = () => {
       </motion.div>
 
       {/* Search Widget */}
-      <ScrollReveal delay={0.6} className="absolute bottom-0 left-0 right-0 z-20 px-4">
-        <div className="container mx-auto -mb-12">
-          <div className="bg-background rounded-xl shadow-elevated p-4 md:p-6 relative overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3 relative z-10">
-              <div className="relative">
-                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <select className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none cursor-pointer hover:border-primary/50">
-                  <option value="">Destination / State</option>
-                  <option>Kerala</option>
-                  <option>Rajasthan</option>
-                  <option>Goa</option>
-                  <option>Uttarakhand</option>
-                  <option>Andaman</option>
-                  <option>Kashmir</option>
-                </select>
-              </div>
-              <div className="relative">
-                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <input type="date" className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all cursor-pointer hover:border-primary/50" />
-              </div>
-              <div className="relative">
-                <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <select className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none cursor-pointer hover:border-primary/50">
-                  <option value="">Travellers</option>
-                  <option>1 Person</option>
-                  <option>2 People</option>
-                  <option>3–4 People</option>
-                  <option>5+ People</option>
-                </select>
-              </div>
-              <div className="relative">
-                <select className="w-full px-4 py-3 border border-border rounded-lg text-sm font-body bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none cursor-pointer hover:border-primary/50">
-                  <option value="">Tour Type</option>
-                  <option>Luxury Getaway</option>
-                  <option>Honeymoon</option>
-                  <option>Family Trips</option>
-                  <option>Heritage & Culture</option>
-                  <option>Spiritual / Pilgrimage</option>
-                  <option>Wildlife & Nature</option>
-                </select>
-              </div>
-              <Button 
-                onClick={() => navigate("/packages")}
-                className="gradient-primary text-primary-foreground font-semibold py-3 h-auto text-sm transition-transform hover:scale-[1.02] hover:shadow-lg"
-              >
-                <Search className="h-4 w-4 mr-2" /> Search Packages
-              </Button>
-            </div>
-            <div className="flex flex-wrap items-center gap-2 mt-4 relative z-10">
-              <span className="text-xs text-muted-foreground font-medium">Popular:</span>
-              {popularTags.map((tag) => (
-                <button
-                  key={tag}
-                  className="text-xs px-3 py-1 rounded-full bg-surface-2 text-primary hover:bg-primary hover:text-primary-foreground transition-colors font-medium border border-transparent hover:border-primary/20"
-                >
-                  #{tag}
-                </button>
-              ))}
-            </div>
-          </div>
+      <ScrollReveal delay={0.6} className="absolute bottom-4 lg:bottom-0 left-0 right-0 z-20 px-4">
+        <div className="container mx-auto lg:-mb-12">
+          <HeroSearchBar />
         </div>
       </ScrollReveal>
     </section>

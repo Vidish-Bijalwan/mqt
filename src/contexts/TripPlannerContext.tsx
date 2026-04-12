@@ -36,14 +36,12 @@ interface TripPlannerContextType {
 const TripPlannerContext = createContext<TripPlannerContextType | undefined>(undefined);
 
 function detectResumeStep(data: TripPlannerData): number {
-  if (data.contact_name) return 8;
-  if (data.special_requirements !== undefined && data.intent_type === 'custom_trip') return 7;
-  if (data.budget_preference || data.stay_preference) return 6;
-  if (data.group_size.adults > 1 || data.group_size.children > 0) return 5;
-  if (data.travel_month) return 4;
-  if (data.destination_interest || data.state_interest) return 3;
-  if (data.trip_style.length > 0) return 2;
-  if (data.intent_type) return 1;
+  if (data.contact_name) return 6;
+  if (data.trip_style.length > 0) return 5;
+  if (data.budget_preference) return 4;
+  if (data.group_size.adults > 0 || data.group_size.children > 0) return 3;
+  if (data.travel_month) return 2;
+  if (data.destination_interest || data.state_interest) return 1;
   return 0;
 }
 
