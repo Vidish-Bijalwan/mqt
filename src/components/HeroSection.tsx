@@ -45,7 +45,7 @@ const HeroSection = () => {
         style={{ 
           y: bgY, 
           scale: 1.1,
-          backgroundImage: `url('${heroSlides[0]}')`,
+          backgroundImage: `url('/hero-fallback.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
