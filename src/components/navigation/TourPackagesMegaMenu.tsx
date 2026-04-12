@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ArrowRight, MapPin, Compass } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { packageMenuData, PackageCategory } from '@/data/packageMenuData';
+import { ImgWithFallback } from '@/components/ui/ImgWithFallback';
+import { getPackageImage } from '@/lib/imageMap';
 
 export default function TourPackagesMegaMenu() {
   const defaultCategory = packageMenuData[0].categories[0];
@@ -115,29 +117,34 @@ export default function TourPackagesMegaMenu() {
                       <Compass className="w-3.5 h-3.5" />
                       Featured Journey
                     </h5>
-                    {hoveredCategory.featuredPackages.map(pkg => (
-                      <Link 
-                        key={pkg.slug}
-                        to={`/packages/${hoveredCategory.slug}/${pkg.slug}`}
-                        className="group block rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all"
-                      >
-                        <div className="h-24 w-full relative overflow-hidden">
-                           <img 
-                              src={pkg.image || "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80"} 
-                              alt={pkg.title} 
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                           />
-                           <div className="absolute inset-0 bg-black/20" />
-                           <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-background/90 backdrop-blur-sm text-[9px] font-bold text-foreground rounded">
-                             {pkg.duration}
-                           </span>
-                        </div>
-                        <div className="p-3 bg-white">
-                          <h6 className="font-semibold text-sm text-gray-900 leading-tight mb-1 group-hover:text-primary transition-colors line-clamp-1">{pkg.title}</h6>
-                          <p className="text-[10px] text-gray-500 line-clamp-1">{pkg.hook}</p>
-                        </div>
-                      </Link>
-                    ))}
+                    {hoveredCategory.featuredPackages.map(pkg => {
+                      const { src, fallbackSrc } = getPackageImage(pkg.slug, 'card', pkg.image);
+                      return (
+                        <Link 
+                          key={pkg.slug}
+                          to={`/packages/${hoveredCategory.slug}/${pkg.slug}`}
+                          className="group block rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all"
+                        >
+                          <div className="h-24 w-full relative overflow-hidden">
+                             <ImgWithFallback
+                                src={src}
+                                fallbackSrc={fallbackSrc}
+                                alt={pkg.title}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                containerClassName="w-full h-full absolute inset-0"
+                             />
+                             <div className="absolute inset-0 bg-black/20 z-[1]" />
+                             <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-background/90 backdrop-blur-sm text-[9px] font-bold text-foreground rounded z-[2]">
+                               {pkg.duration}
+                             </span>
+                          </div>
+                          <div className="p-3 bg-white">
+                            <h6 className="font-semibold text-sm text-gray-900 leading-tight mb-1 group-hover:text-primary transition-colors line-clamp-1">{pkg.title}</h6>
+                            <p className="text-[10px] text-gray-500 line-clamp-1">{pkg.hook}</p>
+                          </div>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
 
