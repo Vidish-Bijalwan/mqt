@@ -14,17 +14,30 @@ const imageMatrix = {
     'rajasthan': 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1920&q=80',
     'kerala': 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1920&q=80',
     'goa': 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1920&q=80',
-    'andaman': 'https://images.unsplash.com/photo-1589394815804-964ce0fae412?auto=format&fit=crop&w=1920&q=80',
     'uttarakhand': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80',
     'himachal-pradesh': 'https://images.unsplash.com/photo-1605649487212-4dcf3b6f1188?auto=format&fit=crop&w=1920&q=80',
     'jammu-and-kashmir': 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=1920&q=80',
     'ladakh': 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1920&q=80',
+    'kedarnath': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80',
+    'valley-of-flowers': 'https://images.unsplash.com/photo-1605649487212-4dcf3b6f1188?auto=format&fit=crop&w=1920&q=80',
+    'varanasi': 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1920&q=80',
+    'kashmir': 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=1920&q=80',
+    'manali': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80',
+    'rishikesh': 'https://images.unsplash.com/photo-1605649487212-4dcf3b6f1188?auto=format&fit=crop&w=1920&q=80',
+    'char-dham': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80',
   },
   cities: {
     'jaipur': 'https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=1920&q=80',
     'munnar': 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1920&q=80',
     'rishikesh': 'https://images.unsplash.com/photo-1605649487212-4dcf3b6f1188?auto=format&fit=crop&w=1920&q=80',
     'manali': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80',
+    'uttarakhand/kedarnath': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80',
+    'ladakh/ladakh': 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1920&q=80',
+    'uttarakhand/valley-of-flowers': 'https://images.unsplash.com/photo-1605649487212-4dcf3b6f1188?auto=format&fit=crop&w=1920&q=80',
+    'uttar-pradesh/varanasi': 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1920&q=80',
+    'jammu-and-kashmir/kashmir': 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=1920&q=80',
+    'himachal-pradesh/manali': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80',
+    'uttarakhand/rishikesh': 'https://images.unsplash.com/photo-1605649487212-4dcf3b6f1188?auto=format&fit=crop&w=1920&q=80',
   },
   packages: {
     'kedarnath-yatra-5-nights-6-days': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1920&q=80',
@@ -111,12 +124,17 @@ async function run() {
         }
 
         // Save Locally
-        const localFilePath = path.join(rootLocalDir, ...relativeStoragePath.split('/'));
-        const localFileDir = path.dirname(localFilePath);
+        const localFilePathHero = path.join(rootLocalDir, ...relativeStoragePath.split('/'));
+        const localFilePathCard = path.join(rootLocalDir, ...relativeStoragePath.replace('hero.webp', 'card.webp').split('/'));
+        const localFilePathThumbnail = path.join(rootLocalDir, ...relativeStoragePath.replace('hero.webp', 'thumbnail.webp').split('/'));
+        
+        const localFileDir = path.dirname(localFilePathHero);
         if (!fs.existsSync(localFileDir)) fs.mkdirSync(localFileDir, { recursive: true });
         
-        fs.writeFileSync(localFilePath, buffer);
-        console.log(`  -> Saved locally: src/assets/images/${relativeStoragePath}`);
+        fs.writeFileSync(localFilePathHero, buffer);
+        fs.writeFileSync(localFilePathCard, buffer);
+        fs.writeFileSync(localFilePathThumbnail, buffer);
+        console.log(`  -> Saved locally: src/assets/images/${relativeStoragePath.replace('hero', '{hero,card,thumbnail}')}`);
 
         // Upload to Supabase
         if (supabase) {

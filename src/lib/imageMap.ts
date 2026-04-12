@@ -32,7 +32,7 @@ function resolveLocalFallback(path: string, fallbackType: string): string {
   const svgFallback = `../assets/images/placeholders/${fallbackType}-fallback.svg`;
   const genericSvg = `../assets/images/placeholders/generic-fallback.svg`;
 
-  return imageRegistry[webpFallback] || imageRegistry[svgFallback] || imageRegistry[genericSvg] || '/fallback.svg';
+  return imageRegistry[webpFallback] || imageRegistry[svgFallback] || imageRegistry[genericSvg] || '/placeholder.svg';
 }
 
 /** 1. States Map */
