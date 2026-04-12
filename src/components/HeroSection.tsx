@@ -39,10 +39,16 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#1a2540' }}>
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gray-900">
       {/* Background Slider with Parallax */}
       <motion.div 
-        style={{ y: bgY, scale: 1.1 }}
+        style={{ 
+          y: bgY, 
+          scale: 1.1,
+          backgroundImage: `url('${heroSlides[0]}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
         className="absolute inset-0 w-full h-full"
       >
         {heroSlides.map((slide, index) => (
