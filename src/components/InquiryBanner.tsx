@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useTripPlanner } from "@/contexts/TripPlannerContext";
 
 interface InquiryBannerProps {
   title?: string;
@@ -22,6 +23,7 @@ const InquiryBanner = ({
   variant = "primary",
 }: InquiryBannerProps) => {
   const { track } = useAnalytics();
+  const { openPlanner } = useTripPlanner();
 
   const bg = variant === "accent"
     ? "gradient-accent"
@@ -44,14 +46,14 @@ const InquiryBanner = ({
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
-            asChild
             size="lg"
             className="bg-white text-primary hover:bg-white/90 font-semibold px-8 text-base shadow-elevated"
-            onClick={() => track("cta_click", { source: "inquiry_banner", label: ctaText })}
+            onClick={() => {
+              track("cta_click", { source: "inquiry_banner", label: ctaText });
+              openPlanner();
+            }}
           >
-            <Link to="/contact">
-              {ctaText} <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+            {ctaText} <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
 
           <a

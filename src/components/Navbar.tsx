@@ -8,8 +8,10 @@ import DestinationsMegaMenu from "./navigation/DestinationsMegaMenu";
 import TourPackagesMegaMenu from "./navigation/TourPackagesMegaMenu";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn, fadeUp, staggerContainer, staggerItem } from "@/lib/motion";
+import { useTripPlanner } from "@/contexts/TripPlannerContext";
 
 const Navbar = () => {
+  const { openPlanner } = useTripPlanner();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -107,8 +109,8 @@ const Navbar = () => {
 
         {/* Desktop CTAs */}
         <div className="hidden lg:flex items-center gap-3">
-          <Button asChild variant="default" size="sm" className="gradient-primary text-primary-foreground font-medium">
-            <Link to="/contact">Get Free Quote</Link>
+          <Button onClick={() => openPlanner()} variant="default" size="sm" className="gradient-primary text-primary-foreground font-medium">
+            Get Free Quote
           </Button>
           <Button asChild variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
             <a href="tel:+919876543210"><Phone className="h-3.5 w-3.5 mr-1" /> Call Now</a>
@@ -205,8 +207,8 @@ const Navbar = () => {
               <Link to="/contact" className="block py-3 text-foreground font-medium border-b border-border" onClick={() => setMobileOpen(false)}>Contact</Link>
 
               <div className="pt-4 space-y-3">
-                <Button asChild className="w-full gradient-primary text-primary-foreground font-medium" onClick={() => setMobileOpen(false)}>
-                  <Link to="/contact">Get Free Quote</Link>
+                <Button onClick={() => { setMobileOpen(false); openPlanner(); }} className="w-full gradient-primary text-primary-foreground font-medium">
+                  Get Free Quote
                 </Button>
                 <Button asChild variant="outline" className="w-full border-primary text-primary" onClick={() => setMobileOpen(false)}>
                   <a href="tel:+919876543210"><Phone className="h-4 w-4 mr-2" /> Call Now</a>

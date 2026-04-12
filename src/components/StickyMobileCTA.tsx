@@ -1,5 +1,6 @@
-import { MessageCircle, Phone } from "lucide-react";
+import { MessageCircle, Phone, Compass } from "lucide-react";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useTripPlanner } from "@/contexts/TripPlannerContext";
 
 interface StickyMobileCTAProps {
   isEnquiryOnly?: boolean;
@@ -15,6 +16,7 @@ const StickyMobileCTA = ({
   onEnquireClick,
 }: StickyMobileCTAProps) => {
   const { track } = useAnalytics();
+  const { openPlanner } = useTripPlanner();
 
   const handleWhatsApp = () => {
     track("whatsapp_click", { source: "sticky_mobile_cta" });
@@ -22,7 +24,11 @@ const StickyMobileCTA = ({
 
   const handleEnquire = () => {
     track("enquiry_open", { source: "sticky_mobile_cta" });
-    onEnquireClick?.();
+    if (onEnquireClick) {
+      onEnquireClick();
+    } else {
+      openPlanner({}, 'sticky_mobile');
+    }
   };
 
   return (
@@ -52,7 +58,7 @@ const StickyMobileCTA = ({
         onClick={handleEnquire}
         className="flex-1 flex items-center justify-center gap-2 h-11 rounded-xl gradient-accent text-accent-foreground font-body font-semibold text-sm"
       >
-        <Phone className="h-4 w-4" />
+        <Compass className="h-4 w-4" />
         {label}
       </button>
     </div>

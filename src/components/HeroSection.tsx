@@ -6,6 +6,7 @@ import { staggerContainer, staggerItem } from "@/lib/motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { useState, useEffect } from "react";
+import { useTripPlanner } from "@/contexts/TripPlannerContext";
 
 const heroSlides = [
   "https://images.unsplash.com/photo-1599661559684-25befc05586b?auto=format&fit=crop&q=80", // Rajasthan Heritage
@@ -25,6 +26,7 @@ const popularTags = ["Kerala Backwaters", "Rajasthan Heritage", "Goa Beaches", "
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const { openPlanner } = useTripPlanner();
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 1000], [0, 300]);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -90,7 +92,7 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              onClick={() => document.getElementById("enquiry")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => openPlanner({ intent_type: 'custom_trip' }, 'hero_cta')}
               className="bg-transparent border-white text-white hover:bg-white/20 hover:text-white font-medium px-8 text-base shadow-sm backdrop-blur-sm"
             >
               Plan Custom Trip →
