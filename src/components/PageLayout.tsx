@@ -2,6 +2,7 @@ import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
+import BottomNav from "@/components/BottomNav";
 import { motion, useScroll, useSpring } from "framer-motion";
 
 interface PageLayoutProps {
@@ -35,6 +36,7 @@ const PageLayout = ({ children, showTopBar = true }: PageLayoutProps) => {
       <main className="flex-1">{children}</main>
       <Footer />
       <FloatingElements />
+      <BottomNav />
     </motion.div>
   );
 };

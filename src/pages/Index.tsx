@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import TrustStrip from "@/components/TrustStrip";
 import PackagesSection from "@/components/PackagesSection";
 import DestinationExplorer from "@/components/DestinationExplorer";
+import DiscoverySection from "@/components/DiscoverySection";
 import DomesticInternational from "@/components/DomesticInternational";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import HowItWorks from "@/components/HowItWorks";
@@ -13,10 +14,11 @@ import BlogPreview from "@/components/BlogPreview";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
+import BottomNav from "@/components/BottomNav";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col pb-14 lg:pb-0">
+    <div className="min-h-screen flex flex-col pb-16 lg:pb-0">
       <TopBar />
       <Navbar />
       <main>
@@ -24,6 +26,7 @@ const Index = () => {
         <TrustStrip />
         <PackagesSection />
         <DestinationExplorer />
+        <DiscoverySection />
         <DomesticInternational />
         <WhyChooseUs />
         <HowItWorks />
@@ -34,6 +37,7 @@ const Index = () => {
       </main>
       <Footer />
       <FloatingElements />
+      <BottomNav />
     </div>
   );
 };

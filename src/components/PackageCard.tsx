@@ -3,6 +3,7 @@ import { Star, Clock, MapPin, Search } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
 import type { FeaturedPackage } from "@/data/packageMenuData";
 import { getPackageImage } from "@/lib/imageMap";
+import { useTripPlanner } from "@/contexts/TripPlannerContext";
 
 interface PackageCardProps {
   pkg: FeaturedPackage;
@@ -11,6 +12,17 @@ interface PackageCardProps {
 }
 
 const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => {
+  const { openPlanner } = useTripPlanner();
+
+  const handleGetQuote = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    openPlanner(
+      { destination_interest: pkg.destination, trip_style: pkg.categories as any },
+      'package_card'
+    );
+  };
+
   return (
     <TiltCard className="bg-white h-full rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow group block">
       <Link
@@ -79,7 +91,10 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
             <span className="flex items-center justify-center py-2.5 rounded-lg border border-gray-200 text-gray-600 text-[11px] font-bold uppercase tracking-wider hover:bg-gray-50 transition-colors">
                <Search className="w-3.5 h-3.5 mr-1.5" /> Details
             </span>
-            <span className="flex items-center justify-center py-2.5 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wider shadow-sm transition-transform hover:bg-primary-dark">
+            <span
+              onClick={handleGetQuote}
+              className="flex items-center justify-center py-2.5 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wider shadow-sm transition-all hover:bg-primary/90 hover:shadow-md cursor-pointer"
+            >
                Get Quote
             </span>
           </div>

@@ -13,12 +13,15 @@ import { tourPackages } from "@/data/packages";
 import { getSimilarPackages } from "@/lib/recommendations";
 import { addRecentlyViewed } from "@/lib/personalization";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { Check, Star, Download, Map, Calendar, Sun } from "lucide-react";
+import { Check, Star, Download, Map, Calendar, Sun, Zap, ShieldCheck, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTripPlanner } from "@/contexts/TripPlannerContext";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const PackageDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const { track } = useAnalytics();
+  const { openPlanner } = useTripPlanner();
 
   const pkg = useMemo(() => tourPackages.find((p) => p.slug === slug), [slug]);
   const similarPackages = useMemo(() => pkg ? getSimilarPackages(pkg, tourPackages, 3) : [], [pkg]);
@@ -149,11 +152,24 @@ const PackageDetail = () => {
                   </p>
 
                   <div className="space-y-3 mt-4">
+                    {/* Trust strip */}
+                    <div className="flex flex-col gap-1.5 mb-4">
+                      {[
+                        { icon: <Zap className="w-3.5 h-3.5 text-primary" />, text: 'Response within 2 hours' },
+                        { icon: <ShieldCheck className="w-3.5 h-3.5 text-green-600" />, text: 'Free consultation' },
+                        { icon: <MessageCircle className="w-3.5 h-3.5 text-primary" />, text: 'No payment upfront' },
+                      ].map(({ icon, text }) => (
+                        <div key={text} className="flex items-center gap-2 text-xs text-muted-foreground">
+                          {icon} {text}
+                        </div>
+                      ))}
+                    </div>
                     <Button 
-                      className="w-full gradient-primary text-white py-6 h-auto text-base font-semibold transition-transform hover:scale-[1.02]"
-                      onClick={() => {
-                        document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
-                      }}
+                      className="w-full gradient-primary text-white py-6 h-auto text-base font-semibold transition-transform hover:scale-[1.02] shadow-lg shadow-primary/20"
+                      onClick={() => openPlanner(
+                        { destination_interest: pkg.destination, trip_style: pkg.categories as any },
+                        'package_detail_sidebar'
+                      )}
                     >
                       Get Custom Quote
                     </Button>
@@ -199,9 +215,10 @@ const PackageDetail = () => {
         label="Get Custom Quote"
         whatsappText={`Hi! I want details and a quote for the ${pkg.title} package.`}
         isEnquiryOnly={true}
-        onEnquireClick={() => {
-          document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
-        }}
+        onEnquireClick={() => openPlanner(
+          { destination_interest: pkg.destination, trip_style: pkg.categories as any },
+          'package_detail_mobile_cta'
+        )}
       />
     </PageLayout>
   );

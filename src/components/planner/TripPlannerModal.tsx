@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useDragControls, useMotionValue, useTransform } from 'framer-motion';
 import { useTripPlanner } from '../../contexts/TripPlannerContext';
 import { X, ChevronLeft } from 'lucide-react';
 import { PlannerProgressBar } from './PlannerProgressBar';
@@ -17,35 +17,35 @@ import { StepSevenJourneyDetails } from './steps/StepSevenJourneyDetails';
 import { StepEightContact } from './steps/StepEightContact';
 import { StepSuccess } from './steps/StepSuccess';
 
-const TOTAL_STEPS = 8;
-
 export function TripPlannerModal() {
-  const { 
-    isOpen, 
-    closePlanner, 
-    currentStep, 
+  const {
+    isOpen,
+    closePlanner,
+    currentStep,
     prevStep,
     data,
-    hasCompleted
+    hasCompleted,
   } = useTripPlanner();
 
-  // Prevent background scrolling when open
+  const dragControls = useDragControls();
+  const sheetY = useMotionValue(0);
+  const overlayOpacity = useTransform(sheetY, [0, 300], [1, 0]);
+  const dragHandleRef = useRef<HTMLDivElement>(null);
+
+  // Lock body scroll
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    return () => { document.body.style.overflow = 'unset'; };
   }, [isOpen]);
 
   if (!isOpen) return null;
 
   const renderStep = () => {
     if (hasCompleted || currentStep === 9) return <StepSuccess />;
-    
     switch (currentStep) {
       case 0: return <StepZeroHook />;
       case 1: return <StepOneIntent />;
@@ -54,58 +54,144 @@ export function TripPlannerModal() {
       case 4: return <StepFourDates />;
       case 5: return <StepFiveGroup />;
       case 6: return <StepSixPreferences />;
-      case 7: 
-        return data.intent_type === 'custom_trip' ? <StepSevenJourneyDetails /> : <StepEightContact />;
+      case 7: return data.intent_type === 'custom_trip' ? <StepSevenJourneyDetails /> : <StepEightContact />;
       case 8: return <StepEightContact />;
       default: return <StepZeroHook />;
     }
   };
 
-  const getStepDirection = () => {
-    // This could optionally track previous vs next for sliding direction, but a simple fade+scale is cleaner for a wizard
-    return {
-      initial: { opacity: 0, scale: 0.98, x: 10 },
-      animate: { opacity: 1, scale: 1, x: 0 },
-      exit: { opacity: 0, scale: 0.98, x: -10 }
-    };
-  };
+  const totalSteps = data.intent_type === 'custom_trip' ? 8 : 7;
+  const isStepZeroOrSuccess = currentStep === 0 || hasCompleted;
 
-  const variants = getStepDirection();
+  const stepVariants = {
+    initial: { opacity: 0, x: 20, scale: 0.99 },
+    animate: { opacity: 1, x: 0, scale: 1 },
+    exit: { opacity: 0, x: -20, scale: 0.99 },
+  };
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center sm:p-4 md:p-6 lg:p-8">
-        
-        {/* Backdrop */}
-        <motion.div 
-          initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-          animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
-          exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-          onClick={closePlanner}
-          className="absolute inset-0 bg-background/80"
-        />
+      {/* ───────── BACKDROP ───────── */}
+      <motion.div
+        key="backdrop"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        style={{ opacity: overlayOpacity }}
+        onClick={closePlanner}
+        className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm"
+      />
 
-        {/* Modal Container */}
+      {/* ───────── MOBILE: Full-Screen Bottom Sheet ───────── */}
+      <motion.div
+        key="mobile-sheet"
+        className="lg:hidden fixed inset-x-0 bottom-0 z-[101] flex flex-col bg-background rounded-t-[24px] overflow-hidden"
+        style={{
+          y: sheetY,
+          maxHeight: '95dvh',
+          height: '95dvh',
+          boxShadow: '0 -20px 60px -10px rgba(0,0,0,0.25)',
+        }}
+        initial={{ y: '100%' }}
+        animate={{ y: 0 }}
+        exit={{ y: '100%' }}
+        transition={{ type: 'spring', stiffness: 340, damping: 32 }}
+        drag="y"
+        dragControls={dragControls}
+        dragConstraints={{ top: 0, bottom: 0 }}
+        dragElastic={{ top: 0, bottom: 0.4 }}
+        onDragEnd={(_, info) => {
+          if (info.offset.y > 120 || info.velocity.y > 500) {
+            closePlanner();
+          } else {
+            sheetY.set(0);
+          }
+        }}
+      >
+        {/* Drag handle */}
+        <div
+          ref={dragHandleRef}
+          className="flex justify-center py-3 shrink-0 cursor-grab active:cursor-grabbing"
+          onPointerDown={e => dragControls.start(e)}
+        >
+          <div className="w-10 h-1 bg-border rounded-full" />
+        </div>
+
+        {/* Progress bar */}
+        {currentStep > 0 && !hasCompleted && (
+          <div className="shrink-0">
+            <PlannerProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+            <div className="flex justify-between items-center px-4 py-2">
+              <button
+                onClick={prevStep}
+                className="p-2 -ml-1 rounded-full hover:bg-muted text-muted-foreground transition-colors flex items-center gap-1 text-sm font-medium"
+              >
+                <ChevronLeft className="w-5 h-5" />
+                <span>Back</span>
+              </button>
+              <button
+                onClick={closePlanner}
+                className="p-2 -mr-1 rounded-full hover:bg-muted text-muted-foreground transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 0 / Success close button */}
+        {isStepZeroOrSuccess && (
+          <div className="absolute top-3 right-4 z-20">
+            <button
+              onClick={closePlanner}
+              className="p-2 rounded-full hover:bg-muted text-foreground transition-colors bg-muted/50"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        )}
+
+        {/* Scrollable step content */}
+        <div className="flex-1 overflow-y-auto overscroll-contain">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentStep}
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.22 }}
+              className="px-5 py-4 pb-10 min-h-full"
+            >
+              {renderStep()}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </motion.div>
+
+      {/* ───────── DESKTOP: Centered Dialog ───────── */}
+      <div className="hidden lg:flex fixed inset-0 z-[101] items-center justify-center p-6">
         <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
+          key="desktop-modal"
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="relative w-full h-full sm:h-auto sm:max-h-[90vh] max-w-5xl bg-background sm:rounded-2xl shadow-elevated border border-border overflow-hidden flex flex-col"
+          transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+          className="relative w-full max-w-5xl max-h-[90vh] bg-background rounded-2xl shadow-2xl border border-border overflow-hidden flex flex-col"
         >
-          {/* Header Controls */}
+          {/* Progress + nav header */}
           {currentStep > 0 && !hasCompleted && (
             <div className="absolute top-0 left-0 right-0 z-20">
-              <PlannerProgressBar currentStep={currentStep} totalSteps={data.intent_type === 'custom_trip' ? 8 : 7} />
-              <div className="flex justify-between items-center px-4 py-3">
-                <button 
+              <PlannerProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+              <div className="flex justify-between items-center px-6 py-3">
+                <button
                   onClick={prevStep}
                   className="p-2 -ml-2 rounded-full hover:bg-muted text-muted-foreground transition-colors flex items-center gap-1 text-sm font-medium"
                 >
                   <ChevronLeft className="w-5 h-5" />
-                  <span className="hidden sm:inline">Back</span>
+                  <span>Back</span>
                 </button>
-                <button 
+                <button
                   onClick={closePlanner}
                   className="p-2 -mr-2 rounded-full hover:bg-muted text-muted-foreground transition-colors"
                 >
@@ -115,43 +201,38 @@ export function TripPlannerModal() {
             </div>
           )}
 
-          {/* Special Header for Step 0 or Success */}
-          {(currentStep === 0 || hasCompleted) && (
+          {isStepZeroOrSuccess && (
             <div className="absolute top-4 right-4 z-20">
-              <button 
+              <button
                 onClick={closePlanner}
-                className="p-2 rounded-full hover:bg-muted text-foreground transition-colors bg-background/50 backdrop-blur"
+                className="p-2 rounded-full hover:bg-muted text-foreground transition-colors bg-background/60 backdrop-blur"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
           )}
 
-          {/* Main Layout Area */}
+          {/* Split layout */}
           <div className="flex flex-1 overflow-hidden">
-            {/* Form Area */}
             <div className={`flex-1 relative overflow-y-auto ${currentStep > 0 ? 'pt-16' : ''}`}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentStep}
+                  variants={stepVariants}
                   initial="initial"
                   animate="animate"
                   exit="exit"
-                  variants={variants}
                   transition={{ duration: 0.2 }}
-                  className="h-full flex flex-col p-6 md:p-10"
+                  className="h-full flex flex-col p-8 xl:p-12"
                 >
                   <div className="max-w-2xl mx-auto w-full flex-1 flex flex-col justify-center">
-                     {renderStep()}
+                    {renderStep()}
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
-
-            {/* Sidebar (Desktop Only) */}
             <PlannerSummarySidebar />
           </div>
-
         </motion.div>
       </div>
     </AnimatePresence>
