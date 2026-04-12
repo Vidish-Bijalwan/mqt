@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { destinations } from "@/data/packages";
 import { destinationsData } from "@/data/destinations";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
