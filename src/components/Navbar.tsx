@@ -39,7 +39,8 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-2 group">
           <Mountain className="h-8 w-8 text-primary transition-transform group-hover:scale-110" />
           <div>
-            <span className="font-display text-xl font-semibold text-foreground">MyQuickTrippers</span>
+            <span className="font-display text-xl font-semibold text-foreground tracking-tight">MQT</span>
+            <span className="hidden sm:inline text-xs text-muted-foreground font-body ml-1.5">MyQuickTrippers</span>
           </div>
         </Link>
 

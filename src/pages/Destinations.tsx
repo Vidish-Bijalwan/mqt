@@ -22,7 +22,7 @@ const Destinations = () => {
   const [activeRegion, setActiveRegion] = useState<"All" | Region>("All");
   
   useEffect(() => {
-    document.title = "Explore India by Region | MyQuickTrippers";
+    document.title = "Explore India by Region | MQT";
     window.scrollTo(0, 0);
   }, []);
 

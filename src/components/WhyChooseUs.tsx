@@ -17,7 +17,7 @@ const WhyChooseUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left - Content */}
           <div>
-            <h2 className="section-heading mb-8">Why Travellers Trust MyQuickTrippers</h2>
+            <h2 className="section-heading mb-8">Why Travellers Trust <span className="text-primary">MQT</span></h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {features.map((f) => (
                 <div key={f.title} className="flex gap-4 group">

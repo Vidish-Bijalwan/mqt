@@ -44,7 +44,7 @@ export function PlannerTeaser() {
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-            className="lg:hidden fixed bottom-0 left-0 right-0 z-[90] bg-background border-t border-border rounded-t-2xl shadow-elevated"
+            className="lg:hidden fixed bottom-16 left-0 right-0 z-[85] bg-background border-t border-border rounded-t-2xl shadow-2xl"
           >
             {/* Drag handle */}
             <div className="flex justify-center pt-2 pb-1">
@@ -116,8 +116,8 @@ export function PlannerTeaser() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-            className="hidden lg:block fixed bottom-8 right-8 z-[90] w-80 shadow-2xl rounded-2xl overflow-hidden border border-border bg-background/97 backdrop-blur-md"
-            style={{ boxShadow: '0 20px 60px -10px rgba(27,108,168,0.2)' }}
+            className="hidden lg:block fixed bottom-8 right-8 z-[85] w-80 rounded-2xl overflow-hidden border border-border bg-background"
+            style={{ boxShadow: '0 20px 60px -10px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.04)' }}
           >
             {/* Header gradient strip */}
             <div className="h-1.5 bg-gradient-to-r from-primary via-blue-400 to-primary" />

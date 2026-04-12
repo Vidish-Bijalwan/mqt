@@ -7,7 +7,7 @@ import { Check, ShieldCheck, HeartPulse, Trophy } from "lucide-react";
 
 const About = () => {
   useEffect(() => {
-    document.title = "About Us | MyQuickTrippers";
+    document.title = "About Us | MQT";
     window.scrollTo(0, 0);
   }, []);
 

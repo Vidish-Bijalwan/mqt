@@ -79,19 +79,14 @@ export function TripPlannerModal() {
         exit={{ opacity: 0 }}
         style={{ opacity: overlayOpacity }}
         onClick={closePlanner}
-        className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm"
+        className="fixed inset-0 z-[100] bg-black/75"
       />
 
       {/* ───────── MOBILE: Full-Screen Bottom Sheet ───────── */}
       <motion.div
         key="mobile-sheet"
-        className="lg:hidden fixed inset-x-0 bottom-0 z-[101] flex flex-col bg-background rounded-t-[24px] overflow-hidden"
-        style={{
-          y: sheetY,
-          maxHeight: '95dvh',
-          height: '95dvh',
-          boxShadow: '0 -20px 60px -10px rgba(0,0,0,0.25)',
-        }}
+        className="lg:hidden fixed inset-0 z-[101] flex flex-col bg-background"
+        style={{ y: sheetY }}
         initial={{ y: '100%' }}
         animate={{ y: 0 }}
         exit={{ y: '100%' }}
@@ -101,7 +96,7 @@ export function TripPlannerModal() {
         dragConstraints={{ top: 0, bottom: 0 }}
         dragElastic={{ top: 0, bottom: 0.4 }}
         onDragEnd={(_, info) => {
-          if (info.offset.y > 120 || info.velocity.y > 500) {
+          if (info.offset.y > 150 || info.velocity.y > 600) {
             closePlanner();
           } else {
             sheetY.set(0);

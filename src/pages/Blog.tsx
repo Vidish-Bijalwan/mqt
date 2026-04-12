@@ -11,7 +11,7 @@ import blogHero from "@/assets/dest-ladakh.jpg";
 
 const Blog = () => {
   useEffect(() => {
-    document.title = "Travel Blog & Guides | MyQuickTrippers";
+    document.title = "Travel Blog & Guides | MQT";
     window.scrollTo(0, 0);
   }, []);
 

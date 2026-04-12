@@ -39,7 +39,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#1a2540' }}>
       {/* Background Slider with Parallax */}
       <motion.div 
         style={{ y: bgY, scale: 1.1 }}
@@ -50,12 +50,14 @@ const HeroSection = () => {
             key={index}
             src={slide}
             alt="Beautiful curated luxury travel destinations across India"
+            loading={index === 0 ? 'eager' : 'lazy'}
+            fetchPriority={index === 0 ? 'high' : 'auto' as any}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${
               currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           />
         ))}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-20" />
+        <div className="absolute inset-0 bg-black/40 z-20" />
         <div className="absolute inset-0 gradient-hero z-20" />
       </motion.div>
 

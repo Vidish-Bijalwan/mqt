@@ -7,7 +7,7 @@ import contactHero from "@/assets/dest-varanasi.jpg";
 
 const Contact = () => {
   useEffect(() => {
-    document.title = "Contact Us | MyQuickTrippers";
+    document.title = "Contact Us | MQT";
     window.scrollTo(0, 0);
   }, []);
 

@@ -17,7 +17,7 @@ const Packages = () => {
   const [activeCategory, setActiveCategory] = useState(initialCategory);
 
   useEffect(() => {
-    document.title = "Tour Packages | MyQuickTrippers";
+    document.title = "Tour Packages | MQT";
     window.scrollTo(0, 0);
   }, []);
 
