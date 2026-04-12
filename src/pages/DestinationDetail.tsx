@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
-import { getStateImage } from "@/lib/imageMap";
+import { getStateImage, getDestinationImage, getCityImage } from "@/lib/imageMap";
 import EnquirySection from "@/components/EnquirySection";
 import FAQAccordion from "@/components/FAQAccordion";
 import InquiryBanner from "@/components/InquiryBanner";
@@ -39,13 +39,15 @@ const DestinationDetail = () => {
     return <Navigate to="/404" replace />;
   }
 
-  // Generate temporary gallery from main image
+  // Build gallery using real seeded images with variant cascade
+  const heroResolved = getDestinationImage(destination.slug, 'hero');
+  const cardResolved = getDestinationImage(destination.slug, 'card');
   const gallery = [
-    { src: destination.image, alt: destination.name },
-    { src: destination.image, alt: `${destination.name} views` },
-    { src: destination.image, alt: `${destination.name} landscape` },
-    { src: destination.image, alt: `Explore ${destination.name}` },
-    { src: destination.image, alt: `${destination.name} culture` },
+    { src: heroResolved.src,  fallback: heroResolved.fallbackSrc,  alt: `${destination.name} main view` },
+    { src: cardResolved.src,  fallback: cardResolved.fallbackSrc,  alt: `${destination.name} landscape` },
+    { src: heroResolved.src,  fallback: heroResolved.fallbackSrc,  alt: `${destination.name} highlights` },
+    { src: cardResolved.src,  fallback: cardResolved.fallbackSrc,  alt: `Explore ${destination.name}` },
+    { src: heroResolved.src,  fallback: heroResolved.fallbackSrc,  alt: `${destination.name} culture` },
   ];
 
   const quickFacts = [

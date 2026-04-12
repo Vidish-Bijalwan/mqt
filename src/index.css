@@ -82,8 +82,14 @@
 }
 
 @layer components {
+  /* Single source of truth for content width + gutters */
+  .container-page {
+    @apply max-w-7xl mx-auto px-4 md:px-6 lg:px-8;
+  }
+
+  /* Section vertical rhythm — horizontal padding now matches container-page */
   .section-padding {
-    @apply px-4 py-16 md:px-8 lg:px-16 lg:py-24;
+    @apply px-4 md:px-6 lg:px-8 py-14 md:py-20 lg:py-24;
   }
 
   .section-heading {
@@ -93,6 +99,30 @@
 
   .section-subheading {
     @apply text-muted-foreground text-base md:text-lg mt-3 max-w-2xl;
+  }
+
+  /* Card grids */
+  .card-grid-3 {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .card-grid-4 {
+    @apply grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6;
+  }
+
+  /* Aspect ratios */
+  .aspect-card    { @apply aspect-[4/3]; }
+  .aspect-hero    { @apply aspect-[16/9]; }
+  .aspect-portrait { @apply aspect-[3/4]; }
+
+  /* Horizontally-scrollable pill row — prevents edge clipping on mobile */
+  .pill-row {
+    @apply flex gap-2 overflow-x-auto -mx-4 px-4 pb-2 scrollbar-hide;
+  }
+
+  /* Clearance for sticky bottom widgets (WhatsApp, back-to-top) */
+  .mb-safe {
+    @apply pb-24 md:pb-8;
   }
 
   .card-hover {

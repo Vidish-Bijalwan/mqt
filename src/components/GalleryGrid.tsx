@@ -6,6 +6,7 @@ import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 export interface GalleryImage {
   src: string;
   alt: string;
+  fallback?: string;
 }
 
 interface GalleryGridProps {
@@ -52,7 +53,7 @@ const GalleryGrid = ({ images, title = "Photo Gallery", showTitle = true }: Gall
             >
               <ImgWithFallback
                 src={img.src}
-                fallbackSrc="/placeholder.svg"
+                fallbackSrc={img.fallback || "/placeholder.svg"}
                 alt={img.alt}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />

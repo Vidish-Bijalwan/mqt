@@ -8,8 +8,8 @@ interface TripPlannerContextType {
   currentStep: number;
   data: TripPlannerData;
   hasCompleted: boolean;
-  hasResumeData: boolean;     // true if partial data was saved
-  resumeStep: number;         // the step to resume from
+  hasResumeData: boolean;
+  resumeStep: number;
 
   openPlanner: (initialData?: Partial<TripPlannerData>, trigger?: string) => void;
   closePlanner: () => void;
@@ -19,11 +19,18 @@ interface TripPlannerContextType {
   updateData: (updates: Partial<TripPlannerData>) => void;
   completePlanner: () => void;
   resetPlanner: () => void;
-  resumePlanner: () => void;  // jump to saved step
+  resumePlanner: () => void;
 
+  // Teaser popup
   teaserVisible: boolean;
   dismissTeaser: () => void;
   triggerSource: string | null;
+
+  // Resume popup (for returning visitors with partial plan)
+  resumeVisible: boolean;
+  dismissResume: () => void;
+  startFresh: () => void;
+  partialData: Partial<TripPlannerData> | null;
 }
 
 const TripPlannerContext = createContext<TripPlannerContextType | undefined>(undefined);
@@ -47,6 +54,8 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
   const [hasCompleted, setHasCompleted] = useState(false);
   const [hasResumeData, setHasResumeData] = useState(false);
   const [resumeStep, setResumeStep] = useState(0);
+  const [resumeVisible, setResumeVisible] = useState(false);
+  const [partialData, setPartialData] = useState<Partial<TripPlannerData> | null>(null);
 
   const [data, setData] = useState<TripPlannerData>(() => {
     const saved = localStorage.getItem('MQT_PLANNER_DATA');
@@ -67,13 +76,14 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
     { scrollDepthThreshold: 40, timeThreshold: 30, interactionThreshold: 2, packagePageDelay: 10, cooldownHours: 2 }
   );
 
-  // On mount: check completion + detect resume data
+  // On mount: check completion + detect resume data + schedule resume popup
   useEffect(() => {
     if (localStorage.getItem('MQT_PLANNER_COMPLETED') === 'true') {
       setHasCompleted(true);
       return;
     }
     const saved = localStorage.getItem('MQT_PLANNER_DATA');
+    const resumeDismissed = sessionStorage.getItem('mqt_resume_dismissed');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -82,6 +92,14 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
         if (step > 0) {
           setHasResumeData(true);
           setResumeStep(step);
+          setPartialData(merged);
+          // Only show resume popup if not already dismissed this session
+          if (!resumeDismissed) {
+            const timer = setTimeout(() => {
+              setResumeVisible(true);
+            }, 2000);
+            return () => clearTimeout(timer);
+          }
         }
       } catch {}
     }
@@ -118,7 +136,26 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
   const prevStep = () => setCurrentStep(prev => Math.max(0, prev - 1));
 
   const resumePlanner = () => {
+    setResumeVisible(false);
+    setIsOpen(true);
     setCurrentStep(resumeStep);
+    setTeaserVisible(false);
+  };
+
+  const dismissResume = () => {
+    setResumeVisible(false);
+    sessionStorage.setItem('mqt_resume_dismissed', 'true');
+  };
+
+  const startFresh = () => {
+    setResumeVisible(false);
+    sessionStorage.setItem('mqt_resume_dismissed', 'true');
+    resetPlanner();
+    // Open planner at step 0 after a brief pause
+    setTimeout(() => {
+      setIsOpen(true);
+      setTeaserVisible(false);
+    }, 100);
   };
 
   const completePlanner = () => {
@@ -135,6 +172,8 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
     setHasCompleted(false);
     setHasResumeData(false);
     setResumeStep(0);
+    setResumeVisible(false);
+    setPartialData(null);
     localStorage.removeItem('MQT_PLANNER_COMPLETED');
     localStorage.removeItem('MQT_PLANNER_DATA');
   };
@@ -160,6 +199,10 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
         teaserVisible,
         dismissTeaser,
         triggerSource,
+        resumeVisible,
+        dismissResume,
+        startFresh,
+        partialData,
       }}
     >
       {children}

@@ -1,25 +1,23 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { destinations } from "@/data/packages";
 import { destinationsData } from "@/data/destinations";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { staggerContainer, staggerItem } from "@/lib/motion";
 import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
-import { getStateImage } from "@/lib/imageMap";
+import { getDestinationImage } from "@/lib/imageMap";
+import { getStateSlugForDest } from "@/lib/destStateMap";
 
 const DestinationExplorer = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    // Calculate max drag distance
     if (carouselRef.current) {
       setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
     }
-    
-    // Recalculate on resize
     const handleResize = () => {
       if (carouselRef.current) {
         setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
@@ -31,7 +29,7 @@ const DestinationExplorer = () => {
 
   return (
     <section className="section-padding bg-surface overflow-hidden">
-      <ScrollReveal className="container mx-auto">
+      <ScrollReveal className="container-page mx-auto">
         <div className="text-center mb-10">
           <h2 className="section-heading">Explore Our Top Destinations</h2>
           <p className="section-subheading mx-auto">
@@ -50,35 +48,40 @@ const DestinationExplorer = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            className="flex gap-5 pb-8" // Extra padding for shadow/tilt
+            className="flex gap-4 pb-8"
           >
             {destinations.map((dest) => {
-              const stateSlug = destinationsData.find(d => d.slug === dest.slug)?.stateSlug || "india";
+              const stateSlug = destinationsData.find(d => d.slug === dest.slug)?.stateSlug
+                || getStateSlugForDest(dest.slug);
+              const { src, fallbackSrc } = getDestinationImage(dest.slug, 'card');
+
               return (
-              <motion.div key={dest.id} variants={staggerItem} className="flex-shrink-0 w-[240px] md:w-[280px]">
-                <TiltCard className="h-full group">
-                  <Link
-                    to={`/destinations/${stateSlug}/${dest.slug}`}
-                    className="block h-full outline-none"
-                    draggable="false"
-                  >
-                    <div className="relative rounded-xl overflow-hidden aspect-[3/4] shadow-soft">
-                      <ImgWithFallback
-                        src={getStateImage(dest.slug, 'card').src}
-                        fallbackSrc={getStateImage(dest.slug, 'card').fallbackSrc}
-                        alt={`${dest.name} travel destination in India`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
-                        <h3 className="font-body font-semibold text-lg text-background">{dest.name}</h3>
-                        <p className="text-sm text-background/80">{dest.packagesCount} Packages</p>
+                <motion.div key={dest.id} variants={staggerItem} className="flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px]">
+                  <TiltCard className="h-full group">
+                    <Link
+                      to={`/destinations/${stateSlug}/${dest.slug}`}
+                      className="block h-full outline-none"
+                      draggable="false"
+                    >
+                      <div className="relative rounded-xl overflow-hidden aspect-[3/4] shadow-soft">
+                        <ImgWithFallback
+                          src={src}
+                          fallbackSrc={fallbackSrc}
+                          alt={`${dest.name} travel destination in India`}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
+                          containerClassName="w-full h-full absolute inset-0"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/10 to-transparent pointer-events-none" />
+                        <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
+                          <h3 className="font-body font-semibold text-lg text-background">{dest.name}</h3>
+                          <p className="text-sm text-background/80">{dest.packagesCount} Packages</p>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                </TiltCard>
-              </motion.div>
-            )})}
+                    </Link>
+                  </TiltCard>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </ScrollReveal>

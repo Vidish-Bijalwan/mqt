@@ -8,6 +8,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { TripPlannerProvider } from "@/contexts/TripPlannerContext";
 import { TripPlannerModal } from "@/components/planner/TripPlannerModal";
 import { PlannerTeaser } from "@/components/planner/PlannerTeaser";
+import { ResumePlannerPopup } from "@/components/planner/ResumePlannerPopup";
 
 // Public Pages
 import Index from "./pages/Index.tsx";
@@ -151,6 +152,7 @@ const App = () => (
             <AnimatedRoutes />
             <TripPlannerModal />
             <PlannerTeaser />
+            <ResumePlannerPopup />
           </TripPlannerProvider>
         </BrowserRouter>
       </TooltipProvider>

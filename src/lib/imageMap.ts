@@ -1,17 +1,48 @@
 /**
- * MQT Asset Mapping & Resolution Engine
- * 
- * Synchronously maps local images for the React application.
- * Uses Vite's `import.meta.glob` to resolve hashes and verify existence instantly.
- * Any missing image safely trips the fallback logic to prevent UI breakages.
+ * MQT Asset Mapping & Resolution Engine v2.0
+ *
+ * Priority chain: CMS URL → Supabase Storage → Local webp → Branded placeholder
+ * Uses Vite's `import.meta.glob` to eagerly resolve local asset hashes.
+ * Any missing image safely falls through — zero grey boxes, zero broken UI.
  */
 
+import { getStateSlugForDest } from './destStateMap';
+
+// ─── Local Asset Registry ───────────────────────────────────────────────────
 const imageRegistry = import.meta.glob('../assets/images/**/*.{webp,jpg,jpeg,png,svg}', {
   eager: true,
   query: '?url',
-  import: 'default'
+  import: 'default',
 }) as Record<string, string>;
 
+// ─── Direct fallback imports (always available via Vite bundler) ─────────────
+import destKedarnath from '@/assets/dest-kedarnath.jpg';
+import destLadakh from '@/assets/dest-ladakh.jpg';
+import destValleyFlowers from '@/assets/dest-valley-flowers.jpg';
+import destVaranasi from '@/assets/dest-varanasi.jpg';
+import destKashmir from '@/assets/dest-kashmir.jpg';
+import destManali from '@/assets/dest-manali.jpg';
+import destRishikesh from '@/assets/dest-rishikesh.jpg';
+
+const BUNDLED_FALLBACKS: Record<string, string> = {
+  'kedarnath':        destKedarnath,
+  'char-dham':        destKedarnath,
+  'ladakh':           destLadakh,
+  'leh':              destLadakh,
+  'nubra-valley':     destLadakh,
+  'pangong-lake':     destLadakh,
+  'valley-of-flowers':destValleyFlowers,
+  'varanasi':         destVaranasi,
+  'kashmir':          destKashmir,
+  'srinagar':         destKashmir,
+  'gulmarg':          destKashmir,
+  'manali':           destManali,
+  'shimla':           destManali,
+  'rishikesh':        destRishikesh,
+  'haridwar':         destRishikesh,
+};
+
+// ─── Types ──────────────────────────────────────────────────────────────────
 export type ImageVariant = 'hero' | 'card' | 'banner' | 'thumbnail' | 'gallery-1' | 'gallery-2' | 'gallery-3';
 
 export interface ImageResolution {
@@ -19,72 +50,167 @@ export interface ImageResolution {
   fallbackSrc: string;
 }
 
-const SUPABASE_STORAGE_BASE = `${import.meta.env.VITE_SUPABASE_URL || 'https://missing.supabase.co'}/storage/v1/object/public/public-assets`;
+// ─── Supabase Storage Base ───────────────────────────────────────────────────
+const SUPABASE_STORAGE_BASE = `${import.meta.env.VITE_SUPABASE_URL || ''}/storage/v1/object/public/public-assets`;
 
-/** Core Resolver Engine */
-function resolveLocalFallback(path: string, fallbackType: string): string {
-  if (imageRegistry[path]) {
-    return imageRegistry[path];
-  }
-  
-  // Try generic webp fallback if exists, otherwise fallback to our SVG placeholders
-  const webpFallback = `../assets/images/placeholders/${fallbackType}-fallback.webp`;
-  const svgFallback = `../assets/images/placeholders/${fallbackType}-fallback.svg`;
-  const genericSvg = `../assets/images/placeholders/generic-fallback.svg`;
+// ─── Branded gradient placeholder ───────────────────────────────────────────
+// A warm amber SVG — never a grey box
+const BRANDED_PLACEHOLDER = '/placeholder.svg';
 
-  return imageRegistry[webpFallback] || imageRegistry[svgFallback] || imageRegistry[genericSvg] || '/placeholder.svg';
+// ─── Core Local Resolver ─────────────────────────────────────────────────────
+function resolveLocal(localPath: string): string | null {
+  return imageRegistry[localPath] || null;
 }
 
-/** 1. States Map */
+function resolveLocalFallback(fallbackType: string): string {
+  const webp = `../assets/images/placeholders/${fallbackType}-fallback.webp`;
+  const svg = `../assets/images/placeholders/${fallbackType}-fallback.svg`;
+  const generic = `../assets/images/placeholders/generic-fallback.svg`;
+  return imageRegistry[webp] || imageRegistry[svg] || imageRegistry[generic] || BRANDED_PLACEHOLDER;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. STATE IMAGE
+// ─────────────────────────────────────────────────────────────────────────────
 export function getStateImage(stateSlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
+  // CMS override
+  if (cmsUrl && cmsUrl.startsWith('http')) {
+    const local = resolveLocal(`../assets/images/states/${stateSlug}/${variant}.webp`);
+    return { src: cmsUrl, fallbackSrc: local || resolveLocalFallback('state') };
+  }
+  // Local first (faster, works offline)
   const localPath = `../assets/images/states/${stateSlug}/${variant}.webp`;
-  const fallbackSrc = resolveLocalFallback(localPath, 'state');
-  if (cmsUrl && cmsUrl.startsWith('http')) return { src: cmsUrl, fallbackSrc };
-  const src = `${SUPABASE_STORAGE_BASE}/states/${stateSlug}/${variant}.webp`;
-  return { src, fallbackSrc };
+  const local = resolveLocal(localPath);
+  const supabaseSrc = SUPABASE_STORAGE_BASE
+    ? `${SUPABASE_STORAGE_BASE}/states/${stateSlug}/${variant}.webp`
+    : '';
+  return {
+    src: supabaseSrc || local || resolveLocalFallback('state'),
+    fallbackSrc: local || resolveLocalFallback('state'),
+  };
 }
 
-/** 2. Cities Map */
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CITY IMAGE
+// ─────────────────────────────────────────────────────────────────────────────
 export function getCityImage(stateSlug: string, citySlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
+  if (cmsUrl && cmsUrl.startsWith('http')) {
+    const local = resolveLocal(`../assets/images/cities/${stateSlug}/${citySlug}/${variant}.webp`);
+    return { src: cmsUrl, fallbackSrc: local || resolveLocalFallback('city') };
+  }
   const localPath = `../assets/images/cities/${stateSlug}/${citySlug}/${variant}.webp`;
-  const fallbackSrc = resolveLocalFallback(localPath, 'city');
-  if (cmsUrl && cmsUrl.startsWith('http')) return { src: cmsUrl, fallbackSrc };
-  const src = `${SUPABASE_STORAGE_BASE}/cities/${stateSlug}/${citySlug}/${variant}.webp`;
-  return { src, fallbackSrc };
+  const local = resolveLocal(localPath);
+  const bundled = BUNDLED_FALLBACKS[citySlug] || BUNDLED_FALLBACKS[stateSlug];
+  const supabaseSrc = SUPABASE_STORAGE_BASE
+    ? `${SUPABASE_STORAGE_BASE}/cities/${stateSlug}/${citySlug}/${variant}.webp`
+    : '';
+  return {
+    src: supabaseSrc || local || bundled || resolveLocalFallback('city'),
+    fallbackSrc: local || bundled || resolveLocalFallback('city'),
+  };
 }
 
-/** 3. Popular Locations Map */
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. DESTINATION IMAGE (smart cascade: city → state → bundled → placeholder)
+//    Use this for DestinationExplorer carousel, DestinationDetail gallery, etc.
+// ─────────────────────────────────────────────────────────────────────────────
+export function getDestinationImage(destSlug: string, variant: ImageVariant = 'card', cmsUrl?: string): ImageResolution {
+  if (cmsUrl && cmsUrl.startsWith('http')) {
+    return { src: cmsUrl, fallbackSrc: BUNDLED_FALLBACKS[destSlug] || BRANDED_PLACEHOLDER };
+  }
+
+  const stateSlug = getStateSlugForDest(destSlug);
+
+  // Priority 1: city-level local asset
+  const cityLocal = resolveLocal(`../assets/images/cities/${stateSlug}/${destSlug}/${variant}.webp`);
+  if (cityLocal) return { src: cityLocal, fallbackSrc: BUNDLED_FALLBACKS[destSlug] || BRANDED_PLACEHOLDER };
+
+  // Priority 2: state-level local asset
+  const stateLocal = resolveLocal(`../assets/images/states/${stateSlug}/${variant}.webp`);
+  if (stateLocal) return { src: stateLocal, fallbackSrc: BUNDLED_FALLBACKS[destSlug] || stateLocal };
+
+  // Priority 3: bundled legacy import (always works)
+  const bundled = BUNDLED_FALLBACKS[destSlug] || BUNDLED_FALLBACKS[stateSlug];
+  if (bundled) return { src: bundled, fallbackSrc: bundled };
+
+  // Priority 4: Supabase city path (remote fallback)
+  if (SUPABASE_STORAGE_BASE) {
+    const supabaseSrc = `${SUPABASE_STORAGE_BASE}/cities/${stateSlug}/${destSlug}/${variant}.webp`;
+    return { src: supabaseSrc, fallbackSrc: BRANDED_PLACEHOLDER };
+  }
+
+  return { src: BRANDED_PLACEHOLDER, fallbackSrc: BRANDED_PLACEHOLDER };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. POPULAR LOCATION IMAGE
+// ─────────────────────────────────────────────────────────────────────────────
 export function getPopularLocationImage(stateSlug: string, locationSlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
+  if (cmsUrl && cmsUrl.startsWith('http')) {
+    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('location') };
+  }
   const localPath = `../assets/images/popular-locations/${stateSlug}/${locationSlug}/${variant}.webp`;
-  const fallbackSrc = resolveLocalFallback(localPath, 'location');
-  if (cmsUrl && cmsUrl.startsWith('http')) return { src: cmsUrl, fallbackSrc };
-  const src = `${SUPABASE_STORAGE_BASE}/popular-locations/${stateSlug}/${locationSlug}/${variant}.webp`;
-  return { src, fallbackSrc };
+  const local = resolveLocal(localPath);
+  const supabaseSrc = SUPABASE_STORAGE_BASE
+    ? `${SUPABASE_STORAGE_BASE}/popular-locations/${stateSlug}/${locationSlug}/${variant}.webp`
+    : '';
+  return {
+    src: supabaseSrc || local || resolveLocalFallback('location'),
+    fallbackSrc: local || resolveLocalFallback('location'),
+  };
 }
 
-/** 4. Packages Map */
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. PACKAGE IMAGE
+// ─────────────────────────────────────────────────────────────────────────────
 export function getPackageImage(packageSlug: string, variant: ImageVariant = 'card', cmsUrl?: string): ImageResolution {
+  if (cmsUrl && cmsUrl.startsWith('http')) {
+    const local = resolveLocal(`../assets/images/packages/${packageSlug}/${variant}.webp`);
+    return { src: cmsUrl, fallbackSrc: local || resolveLocalFallback('package') };
+  }
   const localPath = `../assets/images/packages/${packageSlug}/${variant}.webp`;
-  const fallbackSrc = resolveLocalFallback(localPath, 'package');
-  if (cmsUrl && cmsUrl.startsWith('http')) return { src: cmsUrl, fallbackSrc };
-  const src = `${SUPABASE_STORAGE_BASE}/packages/${packageSlug}/${variant}.webp`;
-  return { src, fallbackSrc };
+  const local = resolveLocal(localPath);
+  const supabaseSrc = SUPABASE_STORAGE_BASE
+    ? `${SUPABASE_STORAGE_BASE}/packages/${packageSlug}/${variant}.webp`
+    : '';
+  return {
+    src: supabaseSrc || local || resolveLocalFallback('package'),
+    fallbackSrc: local || resolveLocalFallback('package'),
+  };
 }
 
-/** 5. Blogs Map */
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. BLOG IMAGE
+// ─────────────────────────────────────────────────────────────────────────────
 export function getBlogImage(blogSlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
+  if (cmsUrl && cmsUrl.startsWith('http')) {
+    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('blog') };
+  }
   const localPath = `../assets/images/blog/${blogSlug}/${variant}.webp`;
-  const fallbackSrc = resolveLocalFallback(localPath, 'blog');
-  if (cmsUrl && cmsUrl.startsWith('http')) return { src: cmsUrl, fallbackSrc };
-  const src = `${SUPABASE_STORAGE_BASE}/blog/${blogSlug}/${variant}.webp`;
-  return { src, fallbackSrc };
+  const local = resolveLocal(localPath);
+  const supabaseSrc = SUPABASE_STORAGE_BASE
+    ? `${SUPABASE_STORAGE_BASE}/blog/${blogSlug}/${variant}.webp`
+    : '';
+  return {
+    src: supabaseSrc || local || resolveLocalFallback('blog'),
+    fallbackSrc: local || resolveLocalFallback('blog'),
+  };
 }
 
-/** 6. Standard Category Map */
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. CATEGORY IMAGE
+// ─────────────────────────────────────────────────────────────────────────────
 export function getCategoryImage(categorySlug: string, cmsUrl?: string): ImageResolution {
+  if (cmsUrl && cmsUrl.startsWith('http')) {
+    return { src: cmsUrl, fallbackSrc: resolveLocalFallback('category') };
+  }
   const localPath = `../assets/images/categories/${categorySlug}/hero.webp`;
-  const fallbackSrc = resolveLocalFallback(localPath, 'category');
-  if (cmsUrl && cmsUrl.startsWith('http')) return { src: cmsUrl, fallbackSrc };
-  const src = `${SUPABASE_STORAGE_BASE}/categories/${categorySlug}/hero.webp`;
-  return { src, fallbackSrc };
+  const local = resolveLocal(localPath);
+  const supabaseSrc = SUPABASE_STORAGE_BASE
+    ? `${SUPABASE_STORAGE_BASE}/categories/${categorySlug}/hero.webp`
+    : '';
+  return {
+    src: supabaseSrc || local || resolveLocalFallback('category'),
+    fallbackSrc: local || resolveLocalFallback('category'),
+  };
 }
