@@ -9,8 +9,8 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <Mountain className="h-7 w-7 text-accent" />
-              <span className="font-display text-xl font-semibold tracking-tight">MQT</span>
+              <img src="/logo.png" alt="MyQuickTrippers Logo" className="h-8 w-auto object-contain" />
+              <span className="font-display text-xl font-bold tracking-tight">MQT</span>
             </Link>
             <p className="text-sm text-dark-foreground/60 mb-4 italic">"Your Indian Journey, Perfectly Crafted"</p>
             <div className="space-y-2 text-sm text-dark-foreground/70">

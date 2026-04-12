@@ -36,11 +36,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <Mountain className="h-8 w-8 text-primary transition-transform group-hover:scale-110" />
-          <div>
-            <span className="font-display text-xl font-semibold text-foreground tracking-tight">MQT</span>
-            <span className="hidden sm:inline text-xs text-muted-foreground font-body ml-1.5">MyQuickTrippers</span>
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <img src="/logo.png" alt="MyQuickTrippers Logo" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+          <div className="flex flex-col justify-center">
+            <span className="font-display text-xl font-bold text-foreground tracking-tight leading-none">MQT</span>
+            <span className="hidden sm:inline text-[10px] uppercase tracking-widest text-muted-foreground font-body mt-0.5 font-semibold">MyQuickTrippers</span>
           </div>
         </Link>
 

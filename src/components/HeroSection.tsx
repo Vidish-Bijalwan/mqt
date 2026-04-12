@@ -59,9 +59,10 @@ const HeroSection = () => {
             alt="Beautiful curated luxury travel destinations across India"
             loading={index === 0 ? 'eager' : 'lazy'}
             fetchPriority={index === 0 ? 'high' : 'auto' as any}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out ${
               currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
+            style={{ transitionDuration: '2000ms' }}
           />
         ))}
         <div className="absolute inset-0 bg-black/40 z-20" />
