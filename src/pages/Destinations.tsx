@@ -5,6 +5,7 @@ import PageHero from "@/components/PageHero";
 import InquiryBanner from "@/components/InquiryBanner";
 import { indiaStates, getStatesByRegion, Region } from "@/data/india-states";
 import { getStateImage } from "@/lib/imageMap";
+import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 import destHero from "@/assets/dest-ladakh.jpg";
 
 const REGIONS: ("All" | Region)[] = [
@@ -65,12 +66,17 @@ const Destinations = () => {
                 className="group relative bg-card rounded-xl overflow-hidden border border-border card-hover shadow-soft block h-[320px]"
               >
                 <div className="absolute inset-0">
-                  <img
-                    src={getStateImage(state.slug, 'card', state.image)}
-                    alt={state.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
+                  {(() => {
+                    const { src, fallbackSrc } = getStateImage(state.slug, 'card', state.image);
+                    return (
+                      <ImgWithFallback
+                        src={src}
+                        fallbackSrc={fallbackSrc}
+                        alt={state.name}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    );
+                  })()}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 </div>
                 

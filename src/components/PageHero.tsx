@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChevronRight, Home } from "lucide-react";
+import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 
 export interface BreadcrumbItem {
   label: string;
@@ -10,7 +11,7 @@ interface PageHeroProps {
   title: string;
   subtitle?: string;
   breadcrumb?: BreadcrumbItem[];
-  backgroundImage?: string;
+  backgroundImage?: { src: string; fallbackSrc: string } | string;
   /** Optional strip of quick facts displayed below subtitle */
   quickFacts?: { label: string; value: string }[];
   /** Badge text shown above the title (e.g. "Pilgrimage · Uttarakhand") */
@@ -32,14 +33,24 @@ const PageHero = ({
     <section className="relative min-h-[320px] md:min-h-[420px] flex flex-col justify-end overflow-hidden">
       {/* Background */}
       {backgroundImage ? (
-        <img
-          src={backgroundImage}
-          alt={title}
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-          width={1920}
-          height={500}
-        />
+        typeof backgroundImage === 'string' ? (
+          <img
+            src={backgroundImage}
+            alt={title}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            width={1920}
+            height={500}
+          />
+        ) : (
+          <ImgWithFallback
+            src={backgroundImage.src}
+            fallbackSrc={backgroundImage.fallbackSrc}
+            alt={title}
+            className="absolute inset-0 w-full h-full object-cover"
+            lazy={false}
+          />
+        )
       ) : (
         <div className="absolute inset-0 gradient-dark" />
       )}

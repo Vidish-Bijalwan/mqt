@@ -4,6 +4,7 @@ import { TiltCard } from "@/components/ui/TiltCard";
 import type { FeaturedPackage } from "@/data/packageMenuData";
 import { getPackageImage } from "@/lib/imageMap";
 import { useTripPlanner } from "@/contexts/TripPlannerContext";
+import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 
 interface PackageCardProps {
   pkg: FeaturedPackage;
@@ -31,12 +32,18 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
       >
         {/* Image Section */}
         <div className="relative overflow-hidden aspect-[16/10] shrink-0">
-          <img
-            src={getPackageImage(pkg.slug, 'card', pkg.image)}
-            alt={`${pkg.title} - ${pkg.destination} tour package`}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
-          />
+          {(() => {
+            const { src, fallbackSrc } = getPackageImage(pkg.slug, 'card', pkg.image);
+            return (
+              <ImgWithFallback
+                src={src}
+                fallbackSrc={fallbackSrc}
+                alt={`${pkg.title} - ${pkg.destination} tour package`}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                lazy={true}
+              />
+            );
+          })()}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80" />
           
           {/* Category Badge */}

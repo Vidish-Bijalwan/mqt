@@ -4,6 +4,7 @@ import { MapPin, ChevronRight, Compass, ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { megaMenuData, popularDestinationsData, MegaMenuState, MegaMenuRegion } from '@/data/destinationsMegaMenu';
 import { getStateImage, getCityImage } from '@/lib/imageMap';
+import { ImgWithFallback } from '@/components/ui/ImgWithFallback';
 
 export default function DestinationsMegaMenu() {
   const [activeTab, setActiveTab] = useState<"state" | "region" | "popular">("state");
@@ -120,7 +121,10 @@ export default function DestinationsMegaMenu() {
                     {/* Visual Fallback Image Header (Replaces blank empty space) */}
                     {currentHoveredState.image && (
                        <div className="w-full h-32 rounded-xl mb-4 overflow-hidden shadow-sm">
-                         <img src={getStateImage(currentHoveredState.slug, 'thumbnail', currentHoveredState.image)} alt={currentHoveredState.name} className="w-full h-full object-cover" />
+                         {(() => {
+                           const { src, fallbackSrc } = getStateImage(currentHoveredState.slug, 'thumbnail', currentHoveredState.image);
+                           return <ImgWithFallback src={src} fallbackSrc={fallbackSrc} alt={currentHoveredState.name} className="w-full h-full object-cover" />;
+                         })()}
                        </div>
                     )}
                     {!currentHoveredState.image && (
@@ -224,11 +228,19 @@ export default function DestinationsMegaMenu() {
                 <div className="w-[60%] lg:w-2/3 bg-gray-50 flex flex-col relative overflow-y-auto">
                   {/* Rich Image Header */}
                   <div className="h-40 relative w-full overflow-hidden shrink-0">
-                    <img 
-                      src={currentHoveredRegion.image || getStateImage('india-generic', 'hero')} 
-                      alt={currentHoveredRegion.name} 
-                      className="w-full h-full object-cover" 
-                    />
+                    {(() => {
+                      const { src, fallbackSrc } = currentHoveredRegion.image 
+                        ? { src: currentHoveredRegion.image, fallbackSrc: currentHoveredRegion.image } 
+                        : getStateImage('india-generic', 'hero');
+                      return (
+                        <ImgWithFallback 
+                          src={src} 
+                          fallbackSrc={fallbackSrc}
+                          alt={currentHoveredRegion.name} 
+                          className="w-full h-full object-cover" 
+                        />
+                      );
+                    })()}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     <div className="absolute bottom-4 left-6">
                       <span className="inline-block px-2 py-0.5 bg-accent/90 text-accent-foreground text-[10px] font-bold uppercase tracking-wider rounded mb-1">
@@ -333,11 +345,17 @@ export default function DestinationsMegaMenu() {
                         to={`/destinations/${dest.state?.toLowerCase().replace(/\s+/g,'-')}/${dest.slug}`}
                         className="group relative h-28 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                       >
-                        <img 
-                          src={getCityImage(dest.state?.toLowerCase().replace(/\s+/g,'-') || 'unknown', dest.slug, 'thumbnail', dest.image)} 
-                          alt={dest.name} 
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                        />
+                        {(() => {
+                          const { src, fallbackSrc } = getCityImage(dest.state?.toLowerCase().replace(/\s+/g,'-') || 'unknown', dest.slug, 'thumbnail', dest.image);
+                          return (
+                            <ImgWithFallback 
+                              src={src} 
+                              fallbackSrc={fallbackSrc}
+                              alt={dest.name} 
+                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                            />
+                          );
+                        })()}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                         <div className="absolute bottom-2 left-2 right-2">
                           <p className="text-white text-xs font-semibold truncate">{dest.name}</p>

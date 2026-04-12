@@ -6,6 +6,7 @@ import InquiryBanner from "@/components/InquiryBanner";
 import EmptyState from "@/components/EmptyState";
 import { blogPosts } from "@/data/blog";
 import { getBlogImage } from "@/lib/imageMap";
+import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import blogHero from "@/assets/dest-ladakh.jpg";
 
@@ -35,12 +36,17 @@ const Blog = () => {
                   className="group flex flex-col bg-card rounded-2xl overflow-hidden border border-border card-hover shadow-soft"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <img
-                      src={getBlogImage(post.slug, 'card', post.image)}
-                      alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
+                    {(() => {
+                      const { src, fallbackSrc } = getBlogImage(post.slug, 'card', post.image);
+                      return (
+                        <ImgWithFallback
+                          src={src}
+                          fallbackSrc={fallbackSrc}
+                          alt={post.title}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      );
+                    })()}
                     <span className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full shadow-sm">
                       {post.category}
                     </span>
