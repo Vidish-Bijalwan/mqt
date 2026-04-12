@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MapPin, Sparkles } from "lucide-react";
 import PackageCard from "./PackageCard";
+import { ScrollableRow } from "@/components/ui/ScrollableRow";
 import { packageMenuData } from "@/data/packageMenuData";
 import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 import { getPackageImage } from "@/lib/imageMap";
@@ -40,23 +41,21 @@ const PackagesSection = () => {
         </div>
 
         {/* LAYER 1: Category Filter (Pills) — scrollable on mobile without page scroll */}
-        <div className="pill-row mb-10 justify-start lg:justify-center">
-          <div className="flex gap-2 mx-auto">
+        <ScrollableRow className="mb-10 w-full" innerClassName="flex gap-3 px-4 md:px-2 py-4 snap-x snap-mandatory">
              {allCategories.map(cat => (
                 <button
                   key={cat.slug}
                   onClick={() => setActiveCategorySlug(cat.slug)}
-                  className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  className={`snap-start shrink-0 whitespace-nowrap px-6 py-3 rounded-full text-[15px] font-semibold transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                     activeCategorySlug === cat.slug
                       ? "bg-primary text-white shadow-md transform scale-105"
-                      : "bg-white text-gray-600 border border-gray-200 hover:border-primary/50 hover:text-primary hover:bg-gray-50"
+                      : "bg-white text-gray-600 border border-gray-200 hover:border-primary/50 hover:text-primary hover:bg-gray-50 hover:shadow-sm"
                   }`}
                 >
                   {cat.name}
                 </button>
              ))}
-          </div>
-        </div>
+        </ScrollableRow>
 
         <AnimatePresence mode="wait">
            <motion.div

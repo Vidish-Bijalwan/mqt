@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { destinations } from "@/data/packages";
 import { destinationsData } from "@/data/destinations";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ScrollableRow } from "@/components/ui/ScrollableRow";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { staggerContainer, staggerItem } from "@/lib/motion";
 import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
@@ -11,21 +11,7 @@ import { getDestinationImage } from "@/lib/imageMap";
 import { getStateSlugForDest } from "@/lib/destStateMap";
 
 const DestinationExplorer = () => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (carouselRef.current) {
-      setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
-    }
-    const handleResize = () => {
-      if (carouselRef.current) {
-        setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // Scroll tracking handled by ScrollableRow internally
 
   return (
     <section className="section-padding bg-surface overflow-hidden">
@@ -37,18 +23,14 @@ const DestinationExplorer = () => {
           </p>
         </div>
 
-        {/* Drag Carousel */}
-        <div ref={carouselRef} className="cursor-grab active:cursor-grabbing overflow-visible">
+        {/* Horizontal Carousel */}
+        <ScrollableRow innerClassName="flex gap-4 pb-8 px-2 md:px-0 snap-x snap-mandatory">
           <motion.div
-            drag="x"
-            dragConstraints={{ right: 0, left: -width }}
-            dragElastic={0.1}
-            dragTransition={{ bounceStiffness: 400, bounceDamping: 20 }}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            className="flex gap-4 pb-8"
+            className="flex gap-4"
           >
             {destinations.map((dest) => {
               const stateSlug = destinationsData.find(d => d.slug === dest.slug)?.stateSlug
@@ -56,12 +38,11 @@ const DestinationExplorer = () => {
               const { src, fallbackSrc } = getDestinationImage(dest.slug, 'card');
 
               return (
-                <motion.div key={dest.id} variants={staggerItem} className="flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px]">
+                <motion.div key={dest.id} variants={staggerItem} className="snap-start flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px]">
                   <TiltCard className="h-full group">
                     <Link
                       to={`/destinations/${stateSlug}/${dest.slug}`}
-                      className="block h-full outline-none"
-                      draggable="false"
+                      className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
                     >
                       <div className="relative rounded-xl overflow-hidden aspect-[3/4] shadow-soft">
                         <ImgWithFallback
@@ -83,7 +64,7 @@ const DestinationExplorer = () => {
               );
             })}
           </motion.div>
-        </div>
+        </ScrollableRow>
       </ScrollReveal>
     </section>
   );
