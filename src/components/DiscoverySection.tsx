@@ -22,7 +22,7 @@ const VIBES = [
     desc: 'Ladakh, Spiti Valley, Kashmir — epic Himalayan journeys.',
     icon: Mountain,
     gradient: 'from-emerald-600/80 to-teal-700/80',
-    bg: 'https://images.unsplash.com/photo-1513836279014-a89f7d3655f2?auto=format&fit=crop&q=80&w=800',
+    bg: 'https://images.unsplash.com/photo-1518002171953-a080ee817e1f?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 'heritage',

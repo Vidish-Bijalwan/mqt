@@ -10,8 +10,8 @@ const DomesticInternational = () => {
           {/* Domestic — Hampi Virupaksha Temple ruins */}
           <Link to="/packages?type=domestic" className="group relative rounded-xl overflow-hidden aspect-[16/9] min-h-[280px]">
             <ImgWithFallback
-              src="https://images.unsplash.com/photo-1600100399617-a8a25bbd5e2d?auto=format&fit=crop&q=80&w=1200"
-              fallbackSrc="https://images.unsplash.com/photo-1599661559684-25befc05586b?auto=format&fit=crop&q=80&w=800"
+              src="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=1200"
+              fallbackSrc="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=800"
               alt="Hampi Virupaksha Temple ruins with boulder landscape, Karnataka, India — Explore Incredible India"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               lazy={false}

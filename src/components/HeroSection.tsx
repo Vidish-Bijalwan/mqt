@@ -15,7 +15,7 @@ const heroSlides = [
     alt: "Taj Mahal at sunrise with reflection pool mist, Agra, Uttar Pradesh, India",
   },
   {
-    src: "https://images.unsplash.com/photo-1513836279014-a89f7d3655f2?auto=format&fit=crop&q=80&w=1920",
+    src: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=1920",
     alt: "Pangong Tso Lake at sunrise with turquoise water and barren mountains, Ladakh, India",
   },
   {

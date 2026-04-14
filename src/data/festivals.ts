@@ -27,7 +27,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Uttar Pradesh / Rajasthan",
     month: "Oct – Nov",
     description: "Festival of lights — floating diyas on the Ganga in Varanasi and rooftop fireworks over Jaipur forts.",
-    image: "https://images.unsplash.com/photo-1604321432313-1fdb8ceead6b?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=800",
     tag: "India's Biggest",
   },
   {
@@ -57,7 +57,7 @@ export const festivalsData: FestivalCard[] = [
     state: "West Bengal",
     month: "October",
     description: "10-day UNESCO heritage festival — pandal-hopping, goddess idols, and Bengal's greatest cultural spectacle.",
-    image: "https://images.unsplash.com/photo-1605649405098-84610b1d300d?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80&w=800",
     tag: "UNESCO Intangible Heritage",
   },
   {
@@ -67,7 +67,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Maharashtra",
     month: "Aug – Sep",
     description: "10-day festival culminating in Lalbaugcha Raja's grand immersion procession drawing millions.",
-    image: "https://images.unsplash.com/photo-1567449303183-ae0d6ed1498c?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?auto=format&fit=crop&q=80&w=800",
     tag: "Mumbai's Grandest",
   },
   {
@@ -87,7 +87,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Karnataka",
     month: "October",
     description: "100 caparisoned elephants in procession, Mysore Palace illuminated every night for 10 days.",
-    image: "https://images.unsplash.com/photo-1600100399617-a8a25bbd5e2d?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800",
     tag: "State Festival",
   },
   {
@@ -97,7 +97,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Gujarat",
     month: "Nov – Feb",
     description: "Tent city in white salt desert — folk music, dance, handicrafts, and full-moon night magic.",
-    image: "https://images.unsplash.com/photo-1567449303183-ae0d6ed1498c?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?auto=format&fit=crop&q=80&w=800",
     tag: "Desert Festival",
   },
   {
@@ -107,7 +107,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Nagaland",
     month: "December 1–10",
     description: "16 Naga tribes performing together — India's most vibrant tribal cultural showcase.",
-    image: "https://images.unsplash.com/photo-1571984985874-8de8f7cba59a?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?auto=format&fit=crop&q=80&w=800",
     tag: "Tribal Culture",
   },
   {
@@ -117,7 +117,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Ladakh",
     month: "Jun – Jul",
     description: "Largest monastery festival in Ladakh — masked Cham dances, and the rare thangka display.",
-    image: "https://images.unsplash.com/photo-1513836279014-a89f7d3655f2?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80&w=800",
     tag: "Monastery Festival",
   },
   {
@@ -137,7 +137,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Assam",
     month: "April & January",
     description: "Assam's harvest festival — traditional Bihu dance in red-white attire, gateway to Northeast tourism.",
-    image: "https://images.unsplash.com/photo-1624026676760-53603403ac95?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800",
     tag: "Harvest Festival",
   },
   {
@@ -147,7 +147,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Odisha",
     month: "Jun – Jul",
     description: "UNESCO heritage — millions pull 45-foot wooden chariots of Lord Jagannath through Puri's main street.",
-    image: "https://images.unsplash.com/photo-1613424842682-1e02cfb7c7e6?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800",
     tag: "UNESCO Heritage",
   },
   {
