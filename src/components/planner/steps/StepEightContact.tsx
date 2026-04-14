@@ -34,7 +34,7 @@ export function StepEightContact() {
         phone: data.contact_phone,
         email: 'whatsapp-only@mqtravels.com', // Dummy fallback for DB constraints if any
         destination: destinationStr,
-        travel_date: data.date_flexibility ? 'Flexible' : data.travel_month,
+        travel_date: null, // Postgres strictly expects YYYY-MM-DD. We preserve details in requirements text block.
         adults: data.group_size.adults,
         children: data.group_size.children,
         travellers_count: data.group_size.adults + data.group_size.children + data.group_size.infants,
