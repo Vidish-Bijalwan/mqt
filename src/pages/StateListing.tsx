@@ -5,13 +5,23 @@ import PageHero from "@/components/PageHero";
 import EnquirySection from "@/components/EnquirySection";
 import InquiryBanner from "@/components/InquiryBanner";
 import RelatedCards from "@/components/RelatedCards";
+import { getStateImage } from "@/lib/imageMap";
 import { getStateBySlug } from "@/data/india-states";
-import { destinationsData } from "@/data/destinations";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { getDestinations } from "@/services/destinationService";
+import { useQuery } from "@tanstack/react-query";
 
 const StateListing = () => {
   const { stateSlug } = useParams<{ stateSlug: string }>();
   const { track } = useAnalytics();
+
+  const { data: fetchResult, isLoading } = useQuery({
+    queryKey: ["public-destinations"],
+    queryFn: () => getDestinations(),
+    staleTime: 60_000,
+  });
+
+  const allDestinations = fetchResult?.data || [];
 
   const stateData = useMemo(() => {
     return stateSlug ? getStateBySlug(stateSlug) : undefined;
@@ -19,8 +29,12 @@ const StateListing = () => {
 
   const stateDestinations = useMemo(() => {
     if (!stateData) return [];
-    return destinationsData.filter((d) => d.stateSlug === stateData.slug);
-  }, [stateData]);
+    // Fallback static array dest object model mapping has stateSlug vs state
+    return allDestinations.filter((d) => 
+      (d as any).stateSlug === stateData.slug || 
+      d.state?.toLowerCase() === stateData.name.toLowerCase()
+    );
+  }, [stateData, allDestinations]);
 
   useEffect(() => {
     if (stateData) {
@@ -72,7 +86,17 @@ const StateListing = () => {
         </div>
       </section>
 
-      {hasDestinations ? (
+      {isLoading ? (
+        <section className="section-padding bg-background border-b border-border">
+          <div className="container mx-auto">
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="aspect-[3/4] bg-gray-100/50 rounded-2xl animate-pulse" />
+                ))}
+             </div>
+          </div>
+        </section>
+      ) : hasDestinations ? (
         <RelatedCards
           type="destination"
           items={stateDestinations}

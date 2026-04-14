@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { Inbox, MapPin, Package, BookOpen, Globe, HelpCircle, ArrowRight, TrendingUp, Users, CheckCircle, Clock } from "lucide-react";
+import { Inbox, MapPin, Package, BookOpen, Globe, HelpCircle, ArrowRight, TrendingUp, Users, CheckCircle, Clock, Database } from "lucide-react";
 import { getEnquiryStats } from "@/services/adminEnquiryService";
+import { seedDatabaseFromClient } from "@/services/seedService";
 import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 async function fetchDashboardStats() {
   const [enquiryStats, destCount, pkgCount, blogCount, testimonialCount] = await Promise.all([
@@ -10,7 +12,7 @@ async function fetchDashboardStats() {
     supabase.from("destinations").select("*", { count: "exact", head: true }),
     supabase.from("packages").select("*", { count: "exact", head: true }),
     supabase.from("blog_posts").select("*", { count: "exact", head: true }).eq("published", true),
-    supabase.from("testimonials").select("*", { count: "exact", head: true }).eq("approved", true),
+    supabase.from("testimonials").select("*", { count: "exact", head: true }).eq("active", true),
   ]);
   return {
     enquiries: enquiryStats.data ?? { total: 0, newCount: 0, contacted: 0, quoted: 0, converted: 0, closed: 0 },
@@ -67,6 +69,17 @@ export default function AdminDashboard() {
         </div>
       ) : (
         <>
+          {/* Seeding Banner — shown when content counts are 0 */}
+          {!statsLoading && stats?.destinations === 0 && stats?.packages === 0 && (
+            <div className="mb-6 bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-start gap-4">
+              <Database size={20} className="text-amber-500 mt-0.5 shrink-0" />
+              <div className="flex-1">
+                <p className="font-semibold text-amber-800 text-sm">Database is empty — static data not yet migrated</p>
+                <p className="text-amber-700 text-xs mt-1">Click <strong>"Migrate Static Data"</strong> in Quick Actions below to push all packages, destinations, blogs and testimonials into the database in one click. This is a one-time operation.</p>
+              </div>
+            </div>
+          )}
+
           {/* Enquiry Stats */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
             {[
@@ -167,6 +180,23 @@ export default function AdminDashboard() {
                 <ArrowRight size={12} className="ml-auto text-gray-300 group-hover:text-primary" />
               </Link>
             ))}
+            
+            <button
+              onClick={async () => {
+                toast.loading("Seeding Database...");
+                const errors = await seedDatabaseFromClient();
+                if (errors.length > 0) {
+                  toast.error(`Completed with ${errors.length} errors. Check console.`);
+                } else {
+                  toast.success("Database fully seeded from static files!");
+                  setTimeout(() => window.location.reload(), 1500);
+                }
+              }}
+              className="flex w-full items-center gap-3 px-4 py-3 rounded-lg text-sm text-amber-600 bg-amber-50 hover:bg-amber-100 transition-colors group"
+            >
+              <Database size={16} className="text-amber-500" />
+              Migrate Static Data
+            </button>
           </div>
         </div>
       </div>

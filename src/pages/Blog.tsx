@@ -4,8 +4,9 @@ import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import InquiryBanner from "@/components/InquiryBanner";
 import EmptyState from "@/components/EmptyState";
-import { blogPosts } from "@/data/blog";
+import { getBlogPosts } from "@/services/blogService";
 import { getBlogImage } from "@/lib/imageMap";
+import { useQuery } from "@tanstack/react-query";
 import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import blogHero from "@/assets/dest-ladakh.jpg";
@@ -15,6 +16,14 @@ const Blog = () => {
     document.title = "Travel Blog & Guides | MQT";
     window.scrollTo(0, 0);
   }, []);
+
+  const { data: fetchResult, isLoading } = useQuery({
+    queryKey: ["public-blogs"],
+    queryFn: () => getBlogPosts(),
+    staleTime: 60_000,
+  });
+
+  const blogPosts = fetchResult?.data || [];
 
   return (
     <PageLayout>
@@ -27,7 +36,13 @@ const Blog = () => {
 
       <section className="section-padding bg-background">
         <div className="container mx-auto">
-          {blogPosts.length > 0 ? (
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+               {Array.from({ length: 6 }).map((_, i) => (
+                 <div key={i} className="aspect-[16/10] bg-gray-100/50 rounded-2xl animate-pulse" />
+               ))}
+            </div>
+          ) : blogPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post) => (
                 <Link

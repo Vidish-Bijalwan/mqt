@@ -4,7 +4,8 @@ import PageHero from "@/components/PageHero";
 import RelatedCards from "@/components/RelatedCards";
 import EmptyState from "@/components/EmptyState";
 import InquiryBanner from "@/components/InquiryBanner";
-import { tourPackages } from "@/data/packages";
+import { getPackages } from "@/services/packageService";
+import { useQuery } from "@tanstack/react-query";
 import { experienceCategories } from "@/data/experiences";
 import { useLocation } from "react-router-dom";
 import heroImg from "@/assets/dest-kashmir.jpg";
@@ -21,10 +22,18 @@ const Packages = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const { data: fetchResult, isLoading } = useQuery({
+    queryKey: ["public-packages"],
+    queryFn: () => getPackages(),
+    staleTime: 60_000,
+  });
+
+  const tourPackages = fetchResult?.data || [];
+
   const filteredPackages = useMemo(() => {
     if (activeCategory === "all") return tourPackages;
     return tourPackages.filter((pkg) => pkg.categories.includes(activeCategory));
-  }, [activeCategory]);
+  }, [activeCategory, tourPackages]);
 
   return (
     <PageLayout>
@@ -65,7 +74,13 @@ const Packages = () => {
           </div>
 
           {/* Results */}
-          {filteredPackages.length > 0 ? (
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+               {Array.from({ length: 8 }).map((_, i) => (
+                 <div key={i} className="aspect-[16/10] bg-gray-100/50 rounded-2xl animate-pulse" />
+               ))}
+            </div>
+          ) : filteredPackages.length > 0 ? (
             <RelatedCards type="package" items={filteredPackages} />
           ) : (
             <EmptyState 
