@@ -25,7 +25,7 @@ const PageLayout = ({ children, showTopBar = true }: PageLayoutProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -15 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="min-h-screen flex flex-col pb-14 lg:pb-0"
+      className="min-h-screen flex flex-col pb-14 lg:pb-0 relative overflow-x-hidden w-full"
     >
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 origin-left bg-primary z-[100]"

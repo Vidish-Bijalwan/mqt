@@ -83,7 +83,7 @@ export function TripPlannerModal() {
       {/* ───────── MOBILE: Full-Screen Bottom Sheet ───────── */}
       <motion.div
         key="mobile-sheet"
-        className="lg:hidden fixed inset-x-0 bottom-0 z-[101] flex flex-col bg-background rounded-t-3xl max-h-[90dvh] overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.1)]"
+        className="lg:hidden fixed inset-x-0 bottom-0 z-[101] flex flex-col bg-background rounded-t-3xl h-[85vh] overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.1)]"
         style={{ y: sheetY }}
         initial={{ y: '100%' }}
         animate={{ y: 0 }}
@@ -145,7 +145,7 @@ export function TripPlannerModal() {
         )}
 
         {/* Scrollable step content */}
-        <div className="flex-1 overflow-y-auto overscroll-contain">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden overscroll-contain">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
