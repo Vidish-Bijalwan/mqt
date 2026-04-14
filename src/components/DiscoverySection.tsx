@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTripPlanner } from '@/contexts/TripPlannerContext';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
-import { ArrowRight, Waves, Mountain, Landmark } from 'lucide-react';
+import { ArrowRight, Waves, Mountain, Landmark, Flame, Heart } from 'lucide-react';
 
 const VIBES = [
   {
@@ -9,30 +9,50 @@ const VIBES = [
     style: 'beach',
     label: 'Beach Escape',
     tagline: 'Sun, sand & serenity',
-    desc: 'Goa, Andaman, Kerala coast — pristine shores await.',
+    desc: 'Goa, Andaman, Lakshadweep — pristine shores await.',
     icon: Waves,
     gradient: 'from-cyan-500/80 to-blue-600/80',
-    bg: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=800',
+    bg: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 'adventure',
     style: 'adventure',
     label: 'Mountain Adventure',
     tagline: 'Above the clouds',
-    desc: 'Ladakh, Manali, Kashmir — epic Himalayan journeys.',
+    desc: 'Ladakh, Spiti Valley, Kashmir — epic Himalayan journeys.',
     icon: Mountain,
     gradient: 'from-emerald-600/80 to-teal-700/80',
-    bg: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800',
+    bg: 'https://images.unsplash.com/photo-1513836279014-a89f7d3655f2?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 'heritage',
     style: 'heritage',
     label: 'Heritage & Culture',
     tagline: 'Stories carved in stone',
-    desc: 'Rajasthan, Varanasi, Mysore — timeless India unfolds.',
+    desc: 'Rajasthan, Varanasi, Hampi — timeless India unfolds.',
     icon: Landmark,
     gradient: 'from-amber-500/80 to-orange-600/80',
-    bg: 'https://images.unsplash.com/photo-1599661559684-25befc05586b?auto=format&fit=crop&q=80&w=800',
+    bg: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 'pilgrimage',
+    style: 'pilgrimage',
+    label: 'Pilgrimage Tours',
+    tagline: 'Sacred India awaits',
+    desc: 'Kedarnath, Varanasi, Char Dham — devotion & divinity.',
+    icon: Flame,
+    gradient: 'from-rose-500/80 to-red-700/80',
+    bg: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 'honeymoon',
+    style: 'honeymoon',
+    label: 'Honeymoon Journeys',
+    tagline: 'Romance, reimagined',
+    desc: 'Kashmir, Kerala, Udaipur — where love stories are written.',
+    icon: Heart,
+    gradient: 'from-pink-500/80 to-rose-600/80',
+    bg: 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=800',
   },
 ];
 
@@ -50,7 +70,7 @@ const DiscoverySection = () => {
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {VIBES.map((vibe, i) => {
             const Icon = vibe.icon;
             return (

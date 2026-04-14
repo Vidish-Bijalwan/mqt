@@ -55,6 +55,13 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
             </div>
           )}
 
+          {/* Starting price badge */}
+          <div className="absolute top-3 right-3">
+            <span className="bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded shadow-sm backdrop-blur-sm">
+              {pkg.price ? `From ₹${pkg.price.toLocaleString('en-IN')}` : 'Get Quote'}
+            </span>
+          </div>
+
           <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
             <div className="flex items-center gap-1.5 text-xs font-medium">
               <MapPin className="w-3.5 h-3.5" />

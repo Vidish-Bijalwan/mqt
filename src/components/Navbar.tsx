@@ -28,10 +28,8 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={fadeIn}
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/97 shadow-elevated backdrop-blur-xl py-2"
-          : "bg-background py-3"
+      className={`sticky top-0 z-50 transition-all duration-300 navbar-glass ${
+        scrolled ? "scrolled py-2" : "py-3"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4">

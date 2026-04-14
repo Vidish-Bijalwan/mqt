@@ -5,15 +5,27 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { staggerContainer, staggerItem } from "@/lib/motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTripPlanner } from "@/contexts/TripPlannerContext";
 import { HeroSearchBar } from "./HeroSearchBar";
 
 const heroSlides = [
-  "https://images.unsplash.com/photo-1599661559684-25befc05586b?auto=format&fit=crop&q=80", // Rajasthan Heritage
-  "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80", // Kerala Backwaters
-  "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80", // Himalayas Nature
-  "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80", // Andaman/Goa Beaches
+  {
+    src: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80&w=1920",
+    alt: "Taj Mahal at sunrise with reflection pool mist, Agra, Uttar Pradesh, India",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1513836279014-a89f7d3655f2?auto=format&fit=crop&q=80&w=1920",
+    alt: "Pangong Tso Lake at sunrise with turquoise water and barren mountains, Ladakh, India",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=1920",
+    alt: "Ganga Aarti fire ritual at Dashashwamedh Ghat with priests and brass lamps, Varanasi, India",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=1920",
+    alt: "Kerala backwaters houseboat at golden hour with coconut palms and reflections, Alleppey, India",
+  },
 ];
 
 const stats = [
@@ -31,6 +43,20 @@ const HeroSection = () => {
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 1000], [0, 300]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const ctaBtnRef = useRef<HTMLButtonElement>(null);
+
+  // CTA single pulse — fires once after 2s
+  useEffect(() => {
+    const t = setTimeout(() => {
+      if (ctaBtnRef.current) {
+        ctaBtnRef.current.classList.add('animate-cta-pulse');
+        ctaBtnRef.current.addEventListener('animationend', () => {
+          ctaBtnRef.current?.classList.remove('animate-cta-pulse');
+        }, { once: true });
+      }
+    }, 2000);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -46,7 +72,7 @@ const HeroSection = () => {
         style={{ 
           y: bgY, 
           scale: 1.1,
-          backgroundImage: `url('/hero-fallback.jpg')`,
+
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
@@ -55,8 +81,8 @@ const HeroSection = () => {
         {heroSlides.map((slide, index) => (
           <img
             key={index}
-            src={slide}
-            alt="Beautiful curated luxury travel destinations across India"
+            src={slide.src}
+            alt={slide.alt}
             loading={index === 0 ? 'eager' : 'lazy'}
             fetchPriority={index === 0 ? 'high' : 'auto' as any}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out ${
@@ -93,6 +119,7 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               onClick={() => navigate("/packages")}
+              ref={ctaBtnRef}
               className="gradient-accent text-accent-foreground font-semibold px-8 text-base hover:scale-[1.02] transition-transform shadow-lg"
             >
               Explore Packages

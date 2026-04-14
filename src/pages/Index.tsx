@@ -5,7 +5,10 @@ import TrustStrip from "@/components/TrustStrip";
 import PackagesSection from "@/components/PackagesSection";
 import DestinationExplorer from "@/components/DestinationExplorer";
 import DiscoverySection from "@/components/DiscoverySection";
+import TravelRoutes from "@/components/TravelRoutes";
+import FestivalsOfIndia from "@/components/FestivalsOfIndia";
 import DomesticInternational from "@/components/DomesticInternational";
+import TravelExperiences from "@/components/TravelExperiences";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import HowItWorks from "@/components/HowItWorks";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -27,7 +30,13 @@ const Index = () => {
         <PackagesSection />
         <DestinationExplorer />
         <DiscoverySection />
+        {/* Popular itinerary routes — added per Part 4 spec */}
+        <TravelRoutes />
+        {/* Festivals of India — added per Part 5 spec */}
+        <FestivalsOfIndia />
         <DomesticInternational />
+        {/* Curated travel experiences — added per Part 6 spec */}
+        <TravelExperiences />
         <WhyChooseUs />
         <HowItWorks />
         <TestimonialsSection />

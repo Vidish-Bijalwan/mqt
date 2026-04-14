@@ -286,3 +286,108 @@
     padding-bottom: env(safe-area-inset-bottom, 12px);
   }
 }
+
+/* ─── Skeleton shimmer ──────────────────────────────────────────── */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #e8eaf0 25%, #f4f5f8 50%, #e8eaf0 75%);
+  background-size: 200% 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton-shimmer { animation: shimmer 1.5s linear infinite; }
+}
+
+/* ─── Blur-to-sharp image load ──────────────────────────────────── */
+.img-blur-load { filter: blur(8px); transition: filter 0.4s ease-out; }
+.img-blur-load.loaded { filter: blur(0); }
+
+/* ─── Festival card overlay ─────────────────────────────────────── */
+.festival-card .festival-overlay { transform: translateY(100%); }
+@media (prefers-reduced-motion: no-preference) {
+  .festival-card:hover .festival-overlay {
+    transform: translateY(0);
+    transition: transform 0.28s ease-out;
+  }
+}
+
+/* ─── Navbar scroll glass ────────────────────────────────────────── */
+.navbar-glass {
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+.navbar-glass.scrolled {
+  background: rgba(255,255,255,0.93) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+
+/* ─── Nav link underline ─────────────────────────────────────────── */
+.nav-link-underline { position: relative; }
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 2px;
+  background: hsl(var(--primary));
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .nav-link-underline::after { transition: transform 0.18s ease-out; }
+  .nav-link-underline:hover::after { transform: scaleX(1); }
+}
+
+/* ─── CTA single pulse ───────────────────────────────────────────── */
+@keyframes ctaPulse {
+  0%  { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100%{ transform: scale(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .animate-cta-pulse { animation: ctaPulse 0.6s ease-in-out; }
+}
+
+/* ─── Card overlay reveal (CSS-only) ───────────────────────────── */
+.card-overlay-reveal .overlay { transform: translateY(100%); }
+@media (prefers-reduced-motion: no-preference) {
+  .card-overlay-reveal .overlay { transition: transform 0.22s ease-out; }
+  .card-overlay-reveal:hover .overlay { transform: translateY(0); }
+}
+
+/* ─── Mobile swipe snap ──────────────────────────────────────────── */
+.snap-row { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.snap-row > * { scroll-snap-align: start; }
+
+/* ─── Input focus glow ───────────────────────────────────────────── */
+.input-glow:focus {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.15);
+  outline: none;
+}
+
+/* ─── Form error shake ───────────────────────────────────────────── */
+@keyframes formShake {
+  0%,100%{ transform: translateX(0); }
+  15%    { transform: translateX(-6px); }
+  30%    { transform: translateX(6px); }
+  45%    { transform: translateX(-4px); }
+  60%    { transform: translateX(4px); }
+  75%    { transform: translateX(-2px); }
+  90%    { transform: translateX(2px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .field-error { animation: formShake 0.4s ease-out; }
+}
+
+/* ─── Wishlist heart pop ─────────────────────────────────────────── */
+@keyframes heartPop {
+  0%  { transform: scale(0); }
+  70% { transform: scale(1.3); }
+  100%{ transform: scale(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .heart-active { animation: heartPop 0.3s ease-out; fill: #ef4444; }
+}

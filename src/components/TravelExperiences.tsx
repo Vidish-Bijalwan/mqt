@@ -1,0 +1,149 @@
+import { useTripPlanner } from "@/contexts/TripPlannerContext";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ArrowRight, Flame, Music, Leaf, Coffee, Palette, Castle, Binoculars, ChefHat } from "lucide-react";
+
+const experiences = [
+  {
+    id: "e1",
+    icon: Flame,
+    title: "Varanasi Ganga Aarti",
+    location: "Dashashwamedh Ghat, Varanasi",
+    description: "7 priests, large brass lamps, fire rituals at 7 PM daily. Book a boat ride for front-row views.",
+    tag: "Most Photographed",
+    color: "from-orange-500/10 to-amber-500/10",
+    border: "border-orange-200",
+    plannerHint: "varanasi",
+  },
+  {
+    id: "e2",
+    icon: Music,
+    title: "Rajasthan Folk Music",
+    location: "Jaisalmer, Jodhpur & Pushkar",
+    description: "UNESCO heritage Manganiyar musicians and Kalbeliya snake dancers in black swirling skirts.",
+    tag: "UNESCO Heritage",
+    color: "from-red-500/10 to-pink-500/10",
+    border: "border-red-200",
+    plannerHint: "rajasthan",
+  },
+  {
+    id: "e3",
+    icon: Leaf,
+    title: "Yoga & Meditation Retreats",
+    location: "Rishikesh, Dharamsala & Mysore",
+    description: "3-day to 1-month programs. Rishikesh International Yoga Festival in March is unmissable.",
+    tag: "Wellness",
+    color: "from-green-500/10 to-teal-500/10",
+    border: "border-green-200",
+    plannerHint: "rishikesh",
+  },
+  {
+    id: "e4",
+    icon: Coffee,
+    title: "Tea Estate Bungalow Stays",
+    location: "Darjeeling, Munnar & Coorg",
+    description: "Colonial-era planter bungalows inside working estates — morning plucking walks + factory tour.",
+    tag: "Luxury",
+    color: "from-amber-500/10 to-yellow-500/10",
+    border: "border-amber-200",
+    plannerHint: "munnar",
+  },
+  {
+    id: "e5",
+    icon: Palette,
+    title: "Tribal Art Workshops",
+    location: "Bihar, Maharashtra, Odisha & Chhattisgarh",
+    description: "Madhubani, Warli, Pattachitra, Dhokra metal casting — hands-on with master artisans.",
+    tag: "Cultural",
+    color: "from-purple-500/10 to-violet-500/10",
+    border: "border-purple-200",
+    plannerHint: "heritage-tours",
+  },
+  {
+    id: "e6",
+    icon: Castle,
+    title: "Royal Heritage Hotel Stays",
+    location: "Rajasthan & Madhya Pradesh",
+    description: "Sleep inside actual forts. Mehrangarh, Devi Garh, Neemrana, Taj Lake Palace on water.",
+    tag: "Luxury",
+    color: "from-yellow-500/10 to-amber-500/10",
+    border: "border-yellow-200",
+    plannerHint: "luxury-getaways",
+  },
+  {
+    id: "e7",
+    icon: Binoculars,
+    title: "Wildlife Safari Experiences",
+    location: "Ranthambore, Kaziranga & Jim Corbett",
+    description: "Bengal tigers, one-horned rhinos, elephants — jeep, canter, and elephant safaris at dawn.",
+    tag: "Adventure",
+    color: "from-emerald-500/10 to-green-500/10",
+    border: "border-emerald-200",
+    plannerHint: "wildlife-retreats",
+  },
+  {
+    id: "e8",
+    icon: ChefHat,
+    title: "Cooking Class Packages",
+    location: "Jaipur, Kochi, Hyderabad & Goa",
+    description: "Dal baati in a Jaipur haveli, Kerala sadya with 28 dishes, biryani dum cooking class.",
+    tag: "Food & Culture",
+    color: "from-rose-500/10 to-red-500/10",
+    border: "border-rose-200",
+    plannerHint: "heritage-tours",
+  },
+];
+
+const TravelExperiences = () => {
+  const { openPlanner } = useTripPlanner();
+
+  return (
+    <section className="section-y bg-background">
+      <div className="container-page mx-auto">
+        <ScrollReveal className="text-center mb-10">
+          <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+            Go Deeper
+          </span>
+          <h2 className="section-heading">Curated Travel Experiences</h2>
+          <p className="section-subheading mx-auto">
+            Beyond sightseeing — immersive encounters that become the stories you tell for years.
+          </p>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {experiences.map((exp, i) => {
+            const Icon = exp.icon;
+            return (
+              <ScrollReveal key={exp.id} delay={i < 4 ? i * 0.08 : 0}>
+                <button
+                  onClick={() => openPlanner({ destination_interest: exp.plannerHint } as any, "experiences_section")}
+                  className={`group w-full text-left rounded-2xl p-5 border bg-gradient-to-br ${exp.color} ${exp.border} hover:shadow-card hover:-translate-y-1 transition-all duration-300 h-full`}
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-white shadow-soft flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-primary/70 bg-primary/10 px-2 py-0.5 rounded-full">
+                      {exp.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="font-display text-lg font-bold text-foreground mb-1 leading-tight">
+                    {exp.title}
+                  </h3>
+                  <p className="text-xs text-primary font-medium mb-2">{exp.location}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{exp.description}</p>
+
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary group-hover:gap-2.5 transition-all">
+                    Plan this experience <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </button>
+              </ScrollReveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TravelExperiences;

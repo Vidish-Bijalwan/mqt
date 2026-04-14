@@ -15,6 +15,7 @@ export type FeaturedPackage = {
   highlights: string[];
   image?: string;
   categories?: string[];
+  price?: number;
 };
 
 export type PackageCategory = {

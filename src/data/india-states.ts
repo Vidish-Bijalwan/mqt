@@ -1,13 +1,3 @@
-// Fallback images since we don't have dedicated assets for all 36 entities right now.
-// In reality, each state should import its own high-res hero image.
-import destLadakh from "@/assets/dest-ladakh.jpg";
-import destKashmir from "@/assets/dest-kashmir.jpg";
-import destKedarnath from "@/assets/dest-kedarnath.jpg";
-import destRishikesh from "@/assets/dest-rishikesh.jpg";
-import destManali from "@/assets/dest-manali.jpg";
-import destVaranasi from "@/assets/dest-varanasi.jpg";
-import destValleyFlowers from "@/assets/dest-valley-flowers.jpg";
-
 export type Region = "North India" | "South India" | "East India" | "West India" | "Central India" | "North East India" | "Islands & Union Territories";
 
 export interface IndiaStateData {
@@ -25,7 +15,7 @@ export interface IndiaStateData {
     topPlacesCount: number;
     capital: string;
   };
-  famousDestinations: string[]; // slugs mapping to destinations.ts
+  famousDestinations: string[];
 }
 
 export const indiaStates: IndiaStateData[] = [
@@ -36,7 +26,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "uttarakhand",
     type: "State",
     region: "North India",
-    image: destKedarnath, // Fallback
+    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The Land of Gods — home to Himalayan peaks, the sacred Char Dham, and the yoga capital.",
     introOverview: "Devbhoomi Uttarakhand is a mystical realm of sky-piercing peaks, plunging river valleys, and deeply embedded spiritual heritage. From the extreme adventure of white-water rafting in Rishikesh to the intense devotion of the Kedarnath pilgrimage, the state offers unparalleled Himalayan access.",
     quickFacts: {
@@ -53,7 +43,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "himachal-pradesh",
     type: "State",
     region: "North India",
-    image: destManali, // Fallback
+    image: "https://images.unsplash.com/photo-1597050752117-23a9d7fc2440?auto=format&fit=crop&q=80&w=800",
     shortDescription: "Snow-clad summits, lush pine valleys, and ancient Buddhist monasteries.",
     introOverview: "Himachal Pradesh is India's most beloved mountain state. It seamlessly blends raw alpine beauty with vibrant local cultures, offering everything from relaxing family holidays in Shimla to extreme trans-Himalayan adventures in Spiti.",
     quickFacts: {
@@ -70,7 +60,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "uttar-pradesh",
     type: "State",
     region: "North India",
-    image: destVaranasi, // Fallback
+    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The heartland of India, housing the Taj Mahal, Kashi, and the cultural roots of the nation.",
     introOverview: "Uttar Pradesh is defined by its deep historical and spiritual resonance. The holy ghats of Varanasi lie in stark contrast to the magnificent Mughal architecture of Agra, creating a deeply profound travel experience.",
     quickFacts: {
@@ -87,7 +77,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "punjab",
     type: "State",
     region: "North India",
-    image: destRishikesh, // Fallback map
+    image: "https://images.unsplash.com/photo-1609766857932-38c0d1698697?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The land of five rivers, golden wheat fields, and the spectacular Golden Temple.",
     introOverview: "Known for its hearty hospitality, rich culinary heritage, and energetic culture.",
     quickFacts: {
@@ -104,13 +94,13 @@ export const indiaStates: IndiaStateData[] = [
     slug: "haryana",
     type: "State",
     region: "North India",
-    image: destRishikesh,
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800",
     shortDescription: "Ancient historical sites and modern urban landscapes.",
     introOverview: "A blend of ancient civilization roots like Kurukshetra and the modern metropolis of Gurugram.",
     quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage", "Business"], topPlacesCount: 5, capital: "Chandigarh" },
     famousDestinations: ["kurukshetra"],
   },
-  
+
   // --- WEST INDIA ---
   {
     id: "s6",
@@ -118,7 +108,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "rajasthan",
     type: "State",
     region: "West India",
-    image: destVaranasi,
+    image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=800",
     shortDescription: "Grand forts, sprawling deserts, and royal heritage.",
     introOverview: "Rajasthan is India's most colourful state. It is a visual feast of majestic forts, opulent palaces, sprawling desert dunes, and vibrant festivals that keep the Rajput history alive.",
     quickFacts: {
@@ -135,7 +125,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "gujarat",
     type: "State",
     region: "West India",
-    image: destKashmir,
+    image: "https://images.unsplash.com/photo-1567449303183-ae0d6ed1498c?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The vibrant state of the Rann of Kutch, Asiatic lions, and rich textiles.",
     introOverview: "From the blinding white salt desert of Kutch to the home of the last surviving Asiatic lions in Gir, Gujarat offers highly distinct landscapes and cultural deeply rooted in trade and art.",
     quickFacts: {
@@ -152,7 +142,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "maharashtra",
     type: "State",
     region: "West India",
-    image: destLadakh,
+    image: "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The powerhouse of India featuring the Western Ghats, ancient caves, and coastal beauty.",
     introOverview: "Combining the fast-paced life of Mumbai with the ancient, intricately carved caves of Ajanta and Ellora, and the misty monsoon hill stations of the Sahyadris.",
     quickFacts: {
@@ -169,7 +159,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "goa",
     type: "State",
     region: "West India",
-    image: destKashmir,
+    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=800",
     shortDescription: "India's pocket-sized paradise of sun, sand, and Portuguese heritage.",
     introOverview: "Famous globally for its golden beaches, trance parties, and laid-back vibe, Goa also hides beautiful 16th-century churches and dense spice plantations inland.",
     quickFacts: {
@@ -188,7 +178,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "kerala",
     type: "State",
     region: "South India",
-    image: destValleyFlowers,
+    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800",
     shortDescription: "God's Own Country — tranquil backwaters and lush tea gardens.",
     introOverview: "Kerala is a network of glistening backwaters, spice and tea-covered hills of the Western Ghats, and sweeping golden beaches bordering the Arabian Sea.",
     quickFacts: {
@@ -205,7 +195,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "karnataka",
     type: "State",
     region: "South India",
-    image: destRishikesh,
+    image: "https://images.unsplash.com/photo-1600100399617-a8a25bbd5e2d?auto=format&fit=crop&q=80&w=800",
     shortDescription: "A glorious mix of IT hubs, ancient temple ruins, and coffee plantations.",
     introOverview: "From the ruined empire of Hampi to the lush coffee estates of Coorg and the tiger reserves of Kabini, Karnataka is exceptionally diverse.",
     quickFacts: {
@@ -222,7 +212,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "tamil-nadu",
     type: "State",
     region: "South India",
-    image: destVaranasi,
+    image: "https://images.unsplash.com/photo-1626524693025-b9a6b98f3d3f?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The epicentre of Dravidian culture with towering temples and high hill stations.",
     introOverview: "Home to some of the greatest living Chola temples, the colonial charm of Ooty, and the southernmost tip of India at Kanyakumari.",
     quickFacts: {
@@ -239,7 +229,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "andhra-pradesh",
     type: "State",
     region: "South India",
-    image: destKedarnath,
+    image: "https://images.unsplash.com/photo-1599661559684-25befc05586b?auto=format&fit=crop&q=80&w=800",
     shortDescription: "Rich in spiritual wealth and coastal beauty.",
     introOverview: "Home to Tirupati, one of the most visited pilgrimage centers in the world, and scenic valleys like Araku.",
     quickFacts: { bestSeason: "November to February", travelThemes: ["Pilgrimage", "Coastal"], topPlacesCount: 8, capital: "Amaravati" },
@@ -251,7 +241,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "telangana",
     type: "State",
     region: "South India",
-    image: destVaranasi,
+    image: "https://images.unsplash.com/photo-1586189261822-4e1d8b4b1d08?auto=format&fit=crop&q=80&w=800",
     shortDescription: "A fusion of royal Nizami heritage and booming technology.",
     introOverview: "Anchored by Hyderabad's spectacular Golconda Fort and Charminar, blended with mouth-watering cuisine.",
     quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage", "Food", "Urban"], topPlacesCount: 5, capital: "Hyderabad" },
@@ -265,7 +255,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "west-bengal",
     type: "State",
     region: "East India",
-    image: destManali,
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800",
     shortDescription: "From the Himalayas in Darjeeling to the mangrove tigers of Sundarbans.",
     introOverview: "A state defined by its intellectual heritage, the colonial architecture of Kolkata, and the world's largest mangrove forest hosting the Royal Bengal Tiger.",
     quickFacts: {
@@ -282,7 +272,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "odisha",
     type: "State",
     region: "East India",
-    image: destVaranasi,
+    image: "https://images.unsplash.com/photo-1613424842682-1e02cfb7c7e6?auto=format&fit=crop&q=80&w=800",
     shortDescription: "India's best-kept secret of spectacular temples and pristine beaches.",
     introOverview: "Home to the architectural marvel of the Konark Sun Temple and the deeply revered Jagannath Temple in Puri.",
     quickFacts: { bestSeason: "October to March", travelThemes: ["Temples", "Beaches", "Tribal Culture"], topPlacesCount: 8, capital: "Bhubaneswar" },
@@ -294,7 +284,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "bihar",
     type: "State",
     region: "East India",
-    image: destVaranasi,
+    image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The birthplace of Buddhism and Jainism.",
     introOverview: "Steeped in ancient history, it houses the Mahabodhi Temple where the Buddha gained enlightenment, and the ruins of the ancient Nalanda University.",
     quickFacts: { bestSeason: "October to March", travelThemes: ["Pilgrimage", "History"], topPlacesCount: 5, capital: "Patna" },
@@ -306,7 +296,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "jharkhand",
     type: "State",
     region: "East India",
-    image: destValleyFlowers,
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The land of forests, waterfalls, and rich tribal heritage.",
     introOverview: "An offbeat destination for nature lovers to explore raw waterfalls, dense forests, and wildlife sanctuaries.",
     quickFacts: { bestSeason: "October to March", travelThemes: ["Nature", "Waterfalls"], topPlacesCount: 4, capital: "Ranchi" },
@@ -320,7 +310,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "madhya-pradesh",
     type: "State",
     region: "Central India",
-    image: destRishikesh,
+    image: "https://images.unsplash.com/photo-1544989164-37e4e6e9c74b?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The heart of incredible India, unmatched in wildlife and heritage.",
     introOverview: "Features the vast tiger reserves of Bandhavgarh and Kanha, and UNESCO sites like the Khajuraho temples and Sanchi Stupa.",
     quickFacts: {
@@ -337,7 +327,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "chhattisgarh",
     type: "State",
     region: "Central India",
-    image: destValleyFlowers,
+    image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&q=80&w=800",
     shortDescription: "A heavily forested state known for spectacular waterfalls and tribal culture.",
     introOverview: "Largely unexplored, offering the mighty Chitrakote Falls (the Niagara of India) and ancient Bastar tribal traditions.",
     quickFacts: { bestSeason: "October to March", travelThemes: ["Nature", "Tribal", "Waterfalls"], topPlacesCount: 5, capital: "Raipur" },
@@ -351,7 +341,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "assam",
     type: "State",
     region: "North East India",
-    image: destValleyFlowers,
+    image: "https://images.unsplash.com/photo-1624026676760-53603403ac95?auto=format&fit=crop&q=80&w=800",
     shortDescription: "Rolling tea gardens and the stronghold of the one-horned rhinoceros.",
     introOverview: "Divided by the mighty Brahmaputra river, Assam offers Kaziranga National Park and the world's largest river island, Majuli.",
     quickFacts: { bestSeason: "November to April", travelThemes: ["Wildlife", "Nature", "Culture"], topPlacesCount: 8, capital: "Dispur" },
@@ -363,7 +353,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "meghalaya",
     type: "State",
     region: "North East India",
-    image: destValleyFlowers,
+    image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The abode of clouds, living root bridges, and crystal-clear rivers.",
     introOverview: "A stunning canvas of waterfalls, mysterious caves, and the surreal living root bridges crafted by the Khasi tribes.",
     quickFacts: { bestSeason: "October to May", travelThemes: ["Nature", "Adventure", "Monsoon"], topPlacesCount: 6, capital: "Shillong" },
@@ -375,26 +365,81 @@ export const indiaStates: IndiaStateData[] = [
     slug: "sikkim",
     type: "State",
     region: "North East India",
-    image: destLadakh,
+    image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=800",
     shortDescription: "A pristine Himalayan kingdom famous for Kanchenjunga and organic farming.",
     introOverview: "Bordering Tibet, Nepal and Bhutan, Sikkim is a high-altitude sanctuary of Buddhist monasteries and jaw-dropping views of India's highest peak.",
     quickFacts: { bestSeason: "March to May, Oct to Dec", travelThemes: ["Himalayan", "Monasteries", "Nature"], topPlacesCount: 8, capital: "Gangtok" },
     famousDestinations: ["gangtok", "pelling", "nathula-pass", "lachung"],
   },
-  { id: "s24", name: "Arunachal Pradesh", slug: "arunachal-pradesh", type: "State", region: "North East India", image: destManali, shortDescription: "The land of dawn-lit mountains.", introOverview: "Untouched and wild, home to the massive Tawang Monastery.", quickFacts: { bestSeason: "October to April", travelThemes: ["Adventure", "Culture"], topPlacesCount: 4, capital: "Itanagar" }, famousDestinations: ["tawang", "ziro-valley"] },
-  { id: "s25", name: "Nagaland", slug: "nagaland", type: "State", region: "North East India", image: destValleyFlowers, shortDescription: "Fierce tribal culture and the Hornbill festival.", introOverview: "A mountainous state heavily invested in preserving its 16 major indigenous tribes.", quickFacts: { bestSeason: "October to May", travelThemes: ["Festivals", "Tribal"], topPlacesCount: 4, capital: "Kohima" }, famousDestinations: ["kohima", "dzukou-valley", "dimapur"] },
-  { id: "s26", name: "Manipur", slug: "manipur", type: "State", region: "North East India", image: destValleyFlowers, shortDescription: "The jeweled land with floating national parks.", introOverview: "Home to Loktak Lake, the only floating national park in the world.", quickFacts: { bestSeason: "October to March", travelThemes: ["Nature", "Culture"], topPlacesCount: 3, capital: "Imphal" }, famousDestinations: ["imphal", "loktak-lake"] },
-  { id: "s27", name: "Mizoram", slug: "mizoram", type: "State", region: "North East India", image: destValleyFlowers, shortDescription: "The land of the hill people.", introOverview: "Dense bamboo jungles and deeply rooted Mizo culture.", quickFacts: { bestSeason: "November to March", travelThemes: ["Nature"], topPlacesCount: 3, capital: "Aizawl" }, famousDestinations: ["aizawl", "champhai"] },
-  { id: "s28", name: "Tripura", slug: "tripura", type: "State", region: "North East India", image: destVaranasi, shortDescription: "A blend of royal heritage and natural beauty.", introOverview: "Famous for the spectacular Neermahal, a royal palace situated in the middle of a lake.", quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage"], topPlacesCount: 3, capital: "Agartala" }, famousDestinations: ["agartala", "neermahal"] },
+  {
+    id: "s24",
+    name: "Arunachal Pradesh",
+    slug: "arunachal-pradesh",
+    type: "State",
+    region: "North East India",
+    image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&q=80&w=800",
+    shortDescription: "The land of dawn-lit mountains.",
+    introOverview: "Untouched and wild, home to the massive Tawang Monastery.",
+    quickFacts: { bestSeason: "October to April", travelThemes: ["Adventure", "Culture"], topPlacesCount: 4, capital: "Itanagar" },
+    famousDestinations: ["tawang", "ziro-valley"],
+  },
+  {
+    id: "s25",
+    name: "Nagaland",
+    slug: "nagaland",
+    type: "State",
+    region: "North East India",
+    image: "https://images.unsplash.com/photo-1571984985874-8de8f7cba59a?auto=format&fit=crop&q=80&w=800",
+    shortDescription: "Fierce tribal culture and the Hornbill festival.",
+    introOverview: "A mountainous state heavily invested in preserving its 16 major indigenous tribes.",
+    quickFacts: { bestSeason: "October to May", travelThemes: ["Festivals", "Tribal"], topPlacesCount: 4, capital: "Kohima" },
+    famousDestinations: ["kohima", "dzukou-valley", "dimapur"],
+  },
+  {
+    id: "s26",
+    name: "Manipur",
+    slug: "manipur",
+    type: "State",
+    region: "North East India",
+    image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&q=80&w=800",
+    shortDescription: "The jeweled land with floating national parks.",
+    introOverview: "Home to Loktak Lake, the only floating national park in the world.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Nature", "Culture"], topPlacesCount: 3, capital: "Imphal" },
+    famousDestinations: ["imphal", "loktak-lake"],
+  },
+  {
+    id: "s27",
+    name: "Mizoram",
+    slug: "mizoram",
+    type: "State",
+    region: "North East India",
+    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800",
+    shortDescription: "The land of the hill people.",
+    introOverview: "Dense bamboo jungles and deeply rooted Mizo culture.",
+    quickFacts: { bestSeason: "November to March", travelThemes: ["Nature"], topPlacesCount: 3, capital: "Aizawl" },
+    famousDestinations: ["aizawl", "champhai"],
+  },
+  {
+    id: "s28",
+    name: "Tripura",
+    slug: "tripura",
+    type: "State",
+    region: "North East India",
+    image: "https://images.unsplash.com/photo-1590766948512-483664c4020c?auto=format&fit=crop&q=80&w=800",
+    shortDescription: "A blend of royal heritage and natural beauty.",
+    introOverview: "Famous for the spectacular Neermahal, a royal palace situated in the middle of a lake.",
+    quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage"], topPlacesCount: 3, capital: "Agartala" },
+    famousDestinations: ["agartala", "neermahal"],
+  },
 
-  // --- UNION TERRITORIES (Islands & Northern Mountains) ---
+  // --- UNION TERRITORIES ---
   {
     id: "ut1",
     name: "Jammu and Kashmir",
     slug: "jammu-and-kashmir",
     type: "Union Territory",
-    region: "Islands & Union Territories", // Mapped for grouping, but geographically North
-    image: destKashmir,
+    region: "Islands & Union Territories",
+    image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=800",
     shortDescription: "Heaven on Earth — Shikaras, Snow, and Serenity.",
     introOverview: "A visually extraordinary blend of emerald meadows, snow-frosted peaks, and the legendary Dal Lake.",
     quickFacts: {
@@ -411,7 +456,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "ladakh",
     type: "Union Territory",
     region: "Islands & Union Territories",
-    image: destLadakh,
+    image: "https://images.unsplash.com/photo-1513836279014-a89f7d3655f2?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The land of high passes, cold deserts, and turquoise lakes.",
     introOverview: "A high-altitude sanctuary of stark, surreal beauty with ancient monasteries clinging to impossibly steep cliffs.",
     quickFacts: {
@@ -428,7 +473,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "andaman-and-nicobar-islands",
     type: "Union Territory",
     region: "Islands & Union Territories",
-    image: destKashmir, // Fallback
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800",
     shortDescription: "Pristine white sand beaches and tropical coral reefs in the Bay of Bengal.",
     introOverview: "A tropical paradise known for world-class scuba diving, untouched beaches like Radhanagar, and dense tropical rainforests.",
     quickFacts: {
@@ -445,7 +490,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "lakshadweep",
     type: "Union Territory",
     region: "Islands & Union Territories",
-    image: destKashmir,
+    image: "https://images.unsplash.com/photo-1563789031959-4db5d2f2f0b0?auto=format&fit=crop&q=80&w=800",
     shortDescription: "India's own coral atolls in the Arabian Sea.",
     introOverview: "An archipelago of 36 islands offering some of the clearest waters and most secluded beaches in the Indian Ocean.",
     quickFacts: {
@@ -462,7 +507,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "delhi",
     type: "Union Territory",
     region: "Islands & Union Territories",
-    image: destVaranasi,
+    image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&q=80&w=800",
     shortDescription: "The historic capital spanning massive empires.",
     introOverview: "A hyper-energetic metropolis overflowing with Mughal tombs, colonial architecture, and incredible street food.",
     quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage", "Food", "Urban"], topPlacesCount: 15, capital: "New Delhi" },
@@ -474,7 +519,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "chandigarh",
     type: "Union Territory",
     region: "Islands & Union Territories",
-    image: destRishikesh,
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800",
     shortDescription: "India's first planned city.",
     introOverview: "Designed by Le Corbusier, known for its grid layout, modernist architecture, and the famous Rock Garden.",
     quickFacts: { bestSeason: "August to November", travelThemes: ["Urban Planning", "Gardens"], topPlacesCount: 3, capital: "Chandigarh" },
@@ -486,7 +531,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "puducherry",
     type: "Union Territory",
     region: "Islands & Union Territories",
-    image: destVaranasi,
+    image: "https://images.unsplash.com/photo-1584181796748-cc4e07476bce?auto=format&fit=crop&q=80&w=800",
     shortDescription: "A charming slice of France on the Coromandel Coast.",
     introOverview: "Featuring mustard-yellow colonial villas, chic cafes, and the experimental township of Auroville.",
     quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage", "Spiritual", "Beaches"], topPlacesCount: 4, capital: "Puducherry" },
@@ -498,7 +543,7 @@ export const indiaStates: IndiaStateData[] = [
     slug: "dadra-nagar-haveli-daman-diu",
     type: "Union Territory",
     region: "Islands & Union Territories",
-    image: destKashmir,
+    image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=800",
     shortDescription: "Portuguese forts, quiet beaches, and tribal life.",
     introOverview: "Formed by merging two previous UTs, offering colonial heritage alongside lush green forestry.",
     quickFacts: { bestSeason: "October to March", travelThemes: ["Heritage", "Beaches"], topPlacesCount: 4, capital: "Daman" },

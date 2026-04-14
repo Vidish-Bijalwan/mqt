@@ -68,7 +68,19 @@ export const destinations: Destination[] = [
   { id: "5", name: "Kashmir", slug: "kashmir", image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=600", packagesCount: 18 },
   { id: "6", name: "Manali", slug: "manali", image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=600", packagesCount: 14 },
   { id: "7", name: "Rishikesh", slug: "rishikesh", image: "https://images.unsplash.com/photo-1590050752117-23a9d7fc2440?auto=format&fit=crop&q=80&w=600", packagesCount: 9 },
-  { id: "8", name: "Char Dham", slug: "char-dham", image: "https://images.unsplash.com/photo-1619120238346-978e07731e77?auto=format&fit=crop&q=80&w=600", packagesCount: 6 },
+  { id: "8",  name: "Char Dham",       slug: "char-dham",       image: "https://images.unsplash.com/photo-1619120238346-978e07731e77?auto=format&fit=crop&q=80&w=600", packagesCount: 6  },
+  { id: "9",  name: "Spiti Valley",    slug: "spiti-valley",    image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&q=80&w=600", packagesCount: 7  },
+  { id: "10", name: "Meghalaya",       slug: "meghalaya",       image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&q=80&w=600", packagesCount: 5  },
+  { id: "11", name: "Lakshadweep",     slug: "lakshadweep",     image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600", packagesCount: 4  },
+  { id: "12", name: "Hampi",           slug: "hampi",           image: "https://images.unsplash.com/photo-1600100399617-a8a25bbd5e2d?auto=format&fit=crop&q=80&w=600", packagesCount: 6  },
+  { id: "13", name: "Pondicherry",     slug: "pondicherry",     image: "https://images.unsplash.com/photo-1584181796748-cc4e07476bce?auto=format&fit=crop&q=80&w=600", packagesCount: 5  },
+  { id: "14", name: "Rann of Kutch",   slug: "rann-of-kutch",   image: "https://images.unsplash.com/photo-1567449303183-ae0d6ed1498c?auto=format&fit=crop&q=80&w=600", packagesCount: 4  },
+  { id: "15", name: "Jodhpur",         slug: "jodhpur",         image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=600", packagesCount: 8  },
+  { id: "16", name: "Darjeeling",      slug: "darjeeling",      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=600", packagesCount: 7  },
+  { id: "17", name: "Coorg",           slug: "coorg",           image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&q=80&w=600", packagesCount: 6  },
+  { id: "18", name: "Sundarbans",      slug: "sundarbans",      image: "https://images.unsplash.com/photo-1544989164-37e4e6e9c74b?auto=format&fit=crop&q=80&w=600", packagesCount: 4  },
+  { id: "19", name: "Ziro Valley",     slug: "ziro-valley",     image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&q=80&w=600", packagesCount: 3  },
+  { id: "20", name: "Andaman Islands", slug: "andaman",         image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600", packagesCount: 10 },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
