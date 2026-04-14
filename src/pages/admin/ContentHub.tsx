@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Globe, MapPin, Package, BookOpen, MessageSquare, HelpCircle, Home, Settings, Map, Plus, ArrowRight, Compass, Flower2 } from "lucide-react";
+import { Globe, MapPin, Package, BookOpen, MessageSquare, HelpCircle, Home, Settings, Map, Plus, ArrowRight, Compass, Flower2, Waves, Flag, Lightbulb, Smile, ScrollText, Mail, HelpingHand } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 async function fetchContentCounts() {
-  const [states, destinations, categories, packages, blogs, testimonials, faqs, travelRoutes, festivals] = await Promise.all([
+  const [states, destinations, categories, packages, blogs, testimonials, faqs, travelRoutes, festivals, discoveryVibes, domesticIntl, travelExperiences, whyChooseUs, howItWorks] = await Promise.all([
     supabase.from("states_uts").select("*", { count: "exact", head: true }),
     supabase.from("destinations").select("*", { count: "exact", head: true }),
     supabase.from("package_categories").select("*", { count: "exact", head: true }),
@@ -14,6 +14,11 @@ async function fetchContentCounts() {
     supabase.from("faqs").select("*", { count: "exact", head: true }),
     supabase.from("travel_routes").select("*", { count: "exact", head: true }),
     supabase.from("festivals").select("*", { count: "exact", head: true }),
+    supabase.from("discovery_vibes").select("*", { count: "exact", head: true }),
+    supabase.from("domestic_international").select("*", { count: "exact", head: true }),
+    supabase.from("travel_experiences").select("*", { count: "exact", head: true }),
+    supabase.from("why_choose_us").select("*", { count: "exact", head: true }),
+    supabase.from("how_it_works").select("*", { count: "exact", head: true }),
   ]);
   return {
     states: states.count ?? 0,
@@ -25,6 +30,11 @@ async function fetchContentCounts() {
     faqs: faqs.count ?? 0,
     travelRoutes: travelRoutes.count ?? 0,
     festivals: festivals.count ?? 0,
+    discoveryVibes: discoveryVibes.count ?? 0,
+    domesticIntl: domesticIntl.count ?? 0,
+    travelExperiences: travelExperiences.count ?? 0,
+    whyChooseUs: whyChooseUs.count ?? 0,
+    howItWorks: howItWorks.count ?? 0,
   };
 }
 
@@ -110,6 +120,69 @@ const contentModules = (counts: Record<string, number>) => [
     count: counts.festivals,
     color: "bg-rose-50 text-rose-600",
   },
+    {
+      label: "Discovery Vibes",
+      icon: Waves,
+      description: "Manage travel vibes and journey categories for the discovery section.",
+      path: "/admin/content/discovery-vibes",
+      newPath: "/admin/content/discovery-vibes/new",
+      count: counts.discoveryVibes,
+      color: "bg-blue-50 text-blue-600",
+    },
+    {
+      label: "Domestic/International",
+      icon: Flag,
+      description: "Manage domestic and international tour section tiles and CTAs.",
+      path: "/admin/content/domestic-international",
+      newPath: "/admin/content/domestic-international/new",
+      count: counts.domesticIntl,
+      color: "bg-purple-50 text-purple-600",
+    },
+    {
+      label: "Travel Experiences",
+      icon: Lightbulb,
+      description: "Curate immersive travel experiences and activities featured on the site.",
+      path: "/admin/content/travel-experiences",
+      newPath: "/admin/content/travel-experiences/new",
+      count: counts.travelExperiences,
+      color: "bg-amber-50 text-amber-600",
+    },
+    {
+      label: "Why Choose Us",
+      icon: Smile,
+      description: "Manage trust features and selling points that build traveller confidence.",
+      path: "/admin/content/why-choose-us",
+      newPath: "/admin/content/why-choose-us/new",
+      count: counts.whyChooseUs,
+      color: "bg-green-50 text-green-600",
+    },
+    {
+      label: "How It Works",
+      icon: ScrollText,
+      description: "Configure the booking process steps and journey flow.",
+      path: "/admin/content/how-it-works",
+      newPath: "/admin/content/how-it-works/new",
+      count: counts.howItWorks,
+      color: "bg-orange-50 text-orange-600",
+    },
+    {
+      label: "Newsletter",
+      icon: Mail,
+      description: "Manage newsletter headline, benefits, and subscriber settings.",
+      path: "/admin/content/newsletter",
+      newPath: null,
+      count: null,
+      color: "bg-pink-50 text-pink-600",
+    },
+    {
+      label: "Trust Strip",
+      icon: HelpingHand,
+      description: "Manage trust badges and confidence indicators shown to visitors.",
+      path: "/admin/content/trust-strip",
+      newPath: "/admin/content/trust-strip/new",
+      count: null,
+      color: "bg-lime-50 text-lime-600",
+    },
   {
     label: "Homepage",
     icon: Home,
@@ -137,7 +210,7 @@ export default function ContentHub() {
     staleTime: 60_000,
   });
 
-  const modules = contentModules(counts ?? { states: 0, destinations: 0, categories: 0, packages: 0, blogs: 0, testimonials: 0, faqs: 0, travelRoutes: 0, festivals: 0 });
+    const modules = contentModules(counts ?? { states: 0, destinations: 0, categories: 0, packages: 0, blogs: 0, testimonials: 0, faqs: 0, travelRoutes: 0, festivals: 0, discoveryVibes: 0, domesticIntl: 0, travelExperiences: 0, whyChooseUs: 0, howItWorks: 0 });
 
   return (
     <div>

@@ -65,13 +65,12 @@ export function TravelRouteForm() {
   const mutation = useMutation({
     mutationFn: async (data: any) => {
       if (id) {
-        const { error } = await supabase
-          .from("travel_routes")
+        const { error } = await (supabase.from("travel_routes") as any)
           .update(data)
           .eq("id", id);
         if (error) throw error;
       } else {
-        const { error } = await supabase.from("travel_routes").insert([data]);
+        const { error } = await (supabase.from("travel_routes") as any).insert([data]);
         if (error) throw error;
       }
     },

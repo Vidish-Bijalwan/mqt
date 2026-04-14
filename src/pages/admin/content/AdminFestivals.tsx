@@ -30,16 +30,14 @@ async function deleteFestival(id: string) {
 }
 
 async function toggleFeature(id: string, featured: boolean) {
-  const { error } = await supabase
-    .from("festivals")
+  const { error } = await (supabase.from("festivals") as any)
     .update({ featured: !featured })
     .eq("id", id);
   if (error) throw error;
 }
 
 async function toggleActive(id: string, active: boolean) {
-  const { error } = await supabase
-    .from("festivals")
+  const { error } = await (supabase.from("festivals") as any)
     .update({ active: !active })
     .eq("id", id);
   if (error) throw error;

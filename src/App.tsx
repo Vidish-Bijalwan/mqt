@@ -53,6 +53,18 @@ import { AdminTravelRoutes } from "./pages/admin/content/AdminTravelRoutes.tsx";
 import { TravelRouteForm } from "./pages/admin/content/TravelRouteForm.tsx";
 import { AdminFestivals } from "./pages/admin/content/AdminFestivals.tsx";
 import { FestivalForm } from "./pages/admin/content/FestivalForm.tsx";
+import { AdminDiscoveryVibes } from "./pages/admin/content/AdminDiscoveryVibes.tsx";
+import { DiscoveryVibeForm } from "./pages/admin/content/DiscoveryVibeForm.tsx";
+import { AdminDomesticInternational } from "./pages/admin/content/AdminDomesticInternational.tsx";
+import { DomesticInternationalForm } from "./pages/admin/content/DomesticInternationalForm.tsx";
+import { AdminTravelExperiences } from "./pages/admin/content/AdminTravelExperiences.tsx";
+import { TravelExperienceForm } from "./pages/admin/content/TravelExperienceForm.tsx";
+import { AdminWhyChooseUs } from "./pages/admin/content/AdminWhyChooseUs.tsx";
+import { WhyChooseUsForm } from "./pages/admin/content/WhyChooseUsForm.tsx";
+import { AdminHowItWorks } from "./pages/admin/content/AdminHowItWorks.tsx";
+import { HowItWorksForm } from "./pages/admin/content/HowItWorksForm.tsx";
+import { AdminNewsletter } from "./pages/admin/content/AdminNewsletter.tsx";
+import { AdminTrustStrip } from "./pages/admin/content/AdminTrustStrip.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -146,6 +158,37 @@ const AnimatedRoutes = () => {
             <Route path="/admin/content/festivals" element={<AdminFestivals />} />
             <Route path="/admin/content/festivals/new" element={<FestivalForm />} />
             <Route path="/admin/content/festivals/:id/edit" element={<FestivalForm />} />
+
+            {/* Discovery Vibes */}
+            <Route path="/admin/content/discovery-vibes" element={<AdminDiscoveryVibes />} />
+            <Route path="/admin/content/discovery-vibes/new" element={<DiscoveryVibeForm />} />
+            <Route path="/admin/content/discovery-vibes/:id/edit" element={<DiscoveryVibeForm />} />
+
+            {/* Domestic & International */}
+            <Route path="/admin/content/domestic-international" element={<AdminDomesticInternational />} />
+            <Route path="/admin/content/domestic-international/new" element={<DomesticInternationalForm />} />
+            <Route path="/admin/content/domestic-international/:id/edit" element={<DomesticInternationalForm />} />
+
+            {/* Travel Experiences */}
+            <Route path="/admin/content/travel-experiences" element={<AdminTravelExperiences />} />
+            <Route path="/admin/content/travel-experiences/new" element={<TravelExperienceForm />} />
+            <Route path="/admin/content/travel-experiences/:id/edit" element={<TravelExperienceForm />} />
+
+            {/* Why Choose Us */}
+            <Route path="/admin/content/why-choose-us" element={<AdminWhyChooseUs />} />
+            <Route path="/admin/content/why-choose-us/new" element={<WhyChooseUsForm />} />
+            <Route path="/admin/content/why-choose-us/:id/edit" element={<WhyChooseUsForm />} />
+
+            {/* How It Works */}
+            <Route path="/admin/content/how-it-works" element={<AdminHowItWorks />} />
+            <Route path="/admin/content/how-it-works/new" element={<HowItWorksForm />} />
+            <Route path="/admin/content/how-it-works/:id/edit" element={<HowItWorksForm />} />
+
+            {/* Newsletter */}
+            <Route path="/admin/content/newsletter" element={<AdminNewsletter />} />
+
+            {/* Trust Strip */}
+            <Route path="/admin/content/trust-strip" element={<AdminTrustStrip />} />
 
           </Route>
         </Route>

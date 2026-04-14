@@ -63,13 +63,12 @@ export function FestivalForm() {
   const mutation = useMutation({
     mutationFn: async (data: any) => {
       if (id) {
-        const { error } = await (supabase
-          .from("festivals")
+        const { error } = await (supabase.from("festivals") as any)
           .update(data)
-          .eq("id", id) as any);
+          .eq("id", id);
         if (error) throw error;
       } else {
-        const { error } = await (supabase.from("festivals").insert([data]) as any);
+        const { error } = await (supabase.from("festivals") as any).insert([data]);
         if (error) throw error;
       }
     },

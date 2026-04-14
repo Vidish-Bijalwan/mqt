@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Inbox, Image as ImageIcon, LogOut,
   Globe, Package, MapPin, BookOpen, MessageSquare, HelpCircle,
-  Home, Settings, Map, ChevronRight, Menu, X, Flag, Compass, Flower2, Grid3x3, Lightbulb, HelpingHand, Mail
+  Home, Settings, Map, ChevronRight, Menu, X, Flag, Compass, Flower2, Grid3x3, Lightbulb, HelpingHand, Mail, Waves, Smile, ScrollText
 } from "lucide-react";
 
 const sidebarGroups = [
@@ -33,6 +33,13 @@ const sidebarGroups = [
       { label: "FAQs", path: "/admin/content/faqs", icon: HelpCircle },
       { label: "Travel Routes", path: "/admin/content/travel-routes", icon: Compass },
       { label: "Festivals", path: "/admin/content/festivals", icon: Flower2 },
+      { label: "Discovery Vibes", path: "/admin/content/discovery-vibes", icon: Waves },
+      { label: "Domestic/International", path: "/admin/content/domestic-international", icon: Flag },
+      { label: "Travel Experiences", path: "/admin/content/travel-experiences", icon: Lightbulb },
+      { label: "Why Choose Us", path: "/admin/content/why-choose-us", icon: Smile },
+      { label: "How It Works", path: "/admin/content/how-it-works", icon: ScrollText },
+      { label: "Newsletter", path: "/admin/content/newsletter", icon: Mail },
+      { label: "Trust Strip", path: "/admin/content/trust-strip", icon: HelpingHand },
       { label: "Homepage", path: "/admin/content/homepage", icon: Home },
       { label: "Site Settings", path: "/admin/content/site-settings", icon: Settings },
     ],
