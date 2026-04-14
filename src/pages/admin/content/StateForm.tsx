@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { ArrowLeft, Save } from "lucide-react";
 import { getStateById, createState, updateState, type StateUTInsert } from "@/services/stateService";
+import { MediaInput } from "@/components/admin/MediaInput";
 
 const REGIONS = ["North India", "South India", "East India", "West India", "Central India", "North East India", "Island Territories"];
 
@@ -127,7 +128,7 @@ export default function StateForm() {
             </Field>
 
             <Field label="Hero Image URL">
-              <input type="text" value={form.image_url ?? ""} onChange={e => set("image_url", e.target.value)} placeholder="e.g. states/rajasthan/hero.webp" className={inputCls} />
+              <MediaInput value={form.image_url ?? ""} onChange={v => set("image_url", v)} defaultBucket="destination-images" placeholder="e.g. destinations/rajasthan.webp" />
             </Field>
 
             <Field label="Sort Order">

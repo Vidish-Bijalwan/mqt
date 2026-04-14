@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { supabase } from "@/lib/supabase";
 import { useState } from "react";
+import { MediaInput } from "@/components/admin/MediaInput";
 
 async function fetchVibe(id: string) {
   const { data, error } = await (supabase
@@ -137,11 +138,11 @@ export function DiscoveryVibeForm() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Background Image URL</label>
-          <input
-            type="url"
+          <MediaInput
             value={form.background_image_url}
-            onChange={(e) => setForm({ ...form, background_image_url: e.target.value })}
-            placeholder="https://..."
+            onChange={(v) => setForm({ ...form, background_image_url: v })}
+            defaultBucket="site-assets"
+            placeholder="e.g. discovery-vibes/beach.webp"
             className="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>

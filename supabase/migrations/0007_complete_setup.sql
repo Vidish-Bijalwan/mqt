@@ -106,7 +106,8 @@ ALTER TABLE public.packages
   ADD COLUMN IF NOT EXISTS sort_order SMALLINT DEFAULT 0;
 
 -- A5. Recreate public_packages view with new columns
-CREATE OR REPLACE VIEW public.public_packages AS
+DROP VIEW IF EXISTS public.public_packages;
+CREATE VIEW public.public_packages AS
 SELECT
     id, slug, title, destination, state, country, type,
     duration_nights, duration_days, duration_label,

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
-import { MediaPicker } from "@/components/admin/MediaPicker";
+import { MediaInput } from "@/components/admin/MediaInput";
 
 interface FestivalFormData {
   name?: string;
@@ -39,7 +39,6 @@ export function FestivalForm() {
   const navigate = useNavigate();
   const [form, setForm] = useState<FestivalFormData>(initialForm);
   const [traditionInput, setTraditionInput] = useState("");
-  const [mediaPickerOpen, setMediaPickerOpen] = useState(false);
 
   const { data: festival, isLoading } = useQuery({
     queryKey: ["festival", id],
@@ -140,28 +139,13 @@ export function FestivalForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">Image</label>
-          <div className="flex gap-2">
-            {form.image_url && (
-              <div className="relative w-24 h-24 rounded-lg overflow-hidden border border-gray-300">
-                <img src={form.image_url} alt="Preview" className="w-full h-full object-cover" />
-              </div>
-            )}
-            <button
-              type="button"
-              onClick={() => setMediaPickerOpen(true)}
-              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-            >
-              {form.image_url ? "Change Image" : "Select Image"}
-            </button>
-          </div>
-          <MediaPicker
-            open={mediaPickerOpen}
-            onOpenChange={setMediaPickerOpen}
-            onSelect={(url) => {
-              setForm({ ...form, image_url: url });
-              setMediaPickerOpen(false);
-            }}
+          <label className="block text-sm font-semibold text-gray-700 mb-2">Image URL</label>
+          <MediaInput 
+            value={form.image_url || ""} 
+            onChange={(url) => setForm({ ...form, image_url: url })} 
+            defaultBucket="site-assets" 
+            placeholder="e.g. site-assets/holi.webp" 
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
           />
         </div>
 

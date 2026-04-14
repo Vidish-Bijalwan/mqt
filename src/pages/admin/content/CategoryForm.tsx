@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { ArrowLeft, Save, Plus, Trash2 } from "lucide-react";
 import { getCategoryById, createCategory, updateCategory, type CategoryInsert } from "@/services/categoryService";
+import { MediaInput } from "@/components/admin/MediaInput";
 
 const defaultForm: CategoryInsert = {
   name: "", slug: "", summary: "", best_for: [], hero_image_url: "",
@@ -116,7 +117,7 @@ export default function CategoryForm() {
             </div>
             <div>
               <label className="block text-xs font-semibold text-gray-500 mb-1.5">Hero Image Path</label>
-              <input type="text" value={form.hero_image_url ?? ""} onChange={e => set("hero_image_url", e.target.value)} placeholder="categories/heritage-trails/hero.webp" className={inputCls} />
+              <MediaInput value={form.hero_image_url ?? ""} onChange={e => set("hero_image_url", e)} defaultBucket="site-assets" placeholder="e.g. categories/heritage-trails/hero.webp" />
             </div>
           </section>
           <section className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
