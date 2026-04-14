@@ -1,100 +1,86 @@
 import { useTripPlanner } from "@/contexts/TripPlannerContext";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { ArrowRight, Flame, Music, Leaf, Coffee, Palette, Castle, Binoculars, ChefHat } from "lucide-react";
+import { ArrowRight, Flame, Music, Leaf, Coffee, Palette, Castle, Binoculars, ChefHat, CheckCircle } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
 
-const experiences = [
+const fetchTravelExperiences = async () => {
+  const { data, error } = await supabase
+    .from("travel_experiences")
+    .select("*")
+    .eq("active", true)
+    .order("sort_order", { ascending: true });
+  if (error) throw error;
+  return data;
+};
+
+const iconMap: Record<string, any> = {
+  Flame,
+  Music,
+  Leaf,
+  Coffee,
+  Palette,
+  Castle,
+  Binoculars,
+  ChefHat,
+  CheckCircle
+};
+
+const defaultExperiences = [
   {
     id: "e1",
-    icon: Flame,
+    icon_name: "Flame",
     title: "Varanasi Ganga Aarti",
     location: "Dashashwamedh Ghat, Varanasi",
     description: "7 priests, large brass lamps, fire rituals at 7 PM daily. Book a boat ride for front-row views.",
     tag: "Most Photographed",
-    color: "from-orange-500/10 to-amber-500/10",
-    border: "border-orange-200",
-    plannerHint: "varanasi",
+    color_gradient: "from-orange-500/10 to-amber-500/10",
+    border_color: "border-orange-200",
+    planner_hint: "varanasi",
   },
   {
     id: "e2",
-    icon: Music,
+    icon_name: "Music",
     title: "Rajasthan Folk Music",
     location: "Jaisalmer, Jodhpur & Pushkar",
     description: "UNESCO heritage Manganiyar musicians and Kalbeliya snake dancers in black swirling skirts.",
     tag: "UNESCO Heritage",
-    color: "from-red-500/10 to-pink-500/10",
-    border: "border-red-200",
-    plannerHint: "rajasthan",
+    color_gradient: "from-red-500/10 to-pink-500/10",
+    border_color: "border-red-200",
+    planner_hint: "rajasthan",
   },
   {
     id: "e3",
-    icon: Leaf,
+    icon_name: "Leaf",
     title: "Yoga & Meditation Retreats",
     location: "Rishikesh, Dharamsala & Mysore",
     description: "3-day to 1-month programs. Rishikesh International Yoga Festival in March is unmissable.",
     tag: "Wellness",
-    color: "from-green-500/10 to-teal-500/10",
-    border: "border-green-200",
-    plannerHint: "rishikesh",
+    color_gradient: "from-green-500/10 to-teal-500/10",
+    border_color: "border-green-200",
+    planner_hint: "rishikesh",
   },
   {
     id: "e4",
-    icon: Coffee,
+    icon_name: "Coffee",
     title: "Tea Estate Bungalow Stays",
     location: "Darjeeling, Munnar & Coorg",
     description: "Colonial-era planter bungalows inside working estates — morning plucking walks + factory tour.",
     tag: "Luxury",
-    color: "from-amber-500/10 to-yellow-500/10",
-    border: "border-amber-200",
-    plannerHint: "munnar",
-  },
-  {
-    id: "e5",
-    icon: Palette,
-    title: "Tribal Art Workshops",
-    location: "Bihar, Maharashtra, Odisha & Chhattisgarh",
-    description: "Madhubani, Warli, Pattachitra, Dhokra metal casting — hands-on with master artisans.",
-    tag: "Cultural",
-    color: "from-purple-500/10 to-violet-500/10",
-    border: "border-purple-200",
-    plannerHint: "heritage-tours",
-  },
-  {
-    id: "e6",
-    icon: Castle,
-    title: "Royal Heritage Hotel Stays",
-    location: "Rajasthan & Madhya Pradesh",
-    description: "Sleep inside actual forts. Mehrangarh, Devi Garh, Neemrana, Taj Lake Palace on water.",
-    tag: "Luxury",
-    color: "from-yellow-500/10 to-amber-500/10",
-    border: "border-yellow-200",
-    plannerHint: "luxury-getaways",
-  },
-  {
-    id: "e7",
-    icon: Binoculars,
-    title: "Wildlife Safari Experiences",
-    location: "Ranthambore, Kaziranga & Jim Corbett",
-    description: "Bengal tigers, one-horned rhinos, elephants — jeep, canter, and elephant safaris at dawn.",
-    tag: "Adventure",
-    color: "from-emerald-500/10 to-green-500/10",
-    border: "border-emerald-200",
-    plannerHint: "wildlife-retreats",
-  },
-  {
-    id: "e8",
-    icon: ChefHat,
-    title: "Cooking Class Packages",
-    location: "Jaipur, Kochi, Hyderabad & Goa",
-    description: "Dal baati in a Jaipur haveli, Kerala sadya with 28 dishes, biryani dum cooking class.",
-    tag: "Food & Culture",
-    color: "from-rose-500/10 to-red-500/10",
-    border: "border-rose-200",
-    plannerHint: "heritage-tours",
+    color_gradient: "from-amber-500/10 to-yellow-500/10",
+    border_color: "border-amber-200",
+    planner_hint: "munnar",
   },
 ];
 
 const TravelExperiences = () => {
   const { openPlanner } = useTripPlanner();
+  const { data } = useQuery({
+    queryKey: ["public-travel-experiences"],
+    queryFn: fetchTravelExperiences,
+  });
+
+  const displayExperiences = data && data.length > 0 ? data : defaultExperiences;
 
   return (
     <section className="section-y bg-background">
@@ -110,20 +96,20 @@ const TravelExperiences = () => {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-          {experiences.map((exp, i) => {
-            const Icon = exp.icon;
+          {displayExperiences.map((exp: any, i: number) => {
+            const Icon = iconMap[exp.icon_name || "CheckCircle"] || CheckCircle;
             return (
               <ScrollReveal key={exp.id} delay={i < 4 ? i * 0.08 : 0}>
                 <button
-                  onClick={() => openPlanner({ destination_interest: exp.plannerHint } as any, "experiences_section")}
-                  className={`group w-full text-left rounded-2xl p-5 border bg-gradient-to-br ${exp.color} ${exp.border} hover:shadow-card hover:-translate-y-1 transition-all duration-300 h-full`}
+                  onClick={() => openPlanner({ destination_interest: exp.planner_hint } as any, "experiences_section")}
+                  className={`group w-full text-left rounded-2xl p-5 border bg-gradient-to-br ${exp.color_gradient || "from-primary/5 to-surface-2"} ${exp.border_color || "border-border"} hover:shadow-card hover:-translate-y-1 transition-all duration-300 h-full`}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="w-10 h-10 rounded-xl bg-white shadow-soft flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5 text-primary" />
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-primary/70 bg-primary/10 px-2 py-0.5 rounded-full">
-                      {exp.tag}
+                      {exp.tag || "Experience"}
                     </span>
                   </div>
 

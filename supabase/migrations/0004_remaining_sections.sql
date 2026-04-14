@@ -3,6 +3,14 @@
 -- ─────────────────────────────────────────────────────────
 -- This migration adds tables for remaining website sections
 
+DROP TABLE IF EXISTS public.discovery_vibes CASCADE;
+DROP TABLE IF EXISTS public.domestic_international CASCADE;
+DROP TABLE IF EXISTS public.travel_experiences CASCADE;
+DROP TABLE IF EXISTS public.why_choose_us CASCADE;
+DROP TABLE IF EXISTS public.how_it_works CASCADE;
+DROP TABLE IF EXISTS public.newsletter_settings CASCADE;
+DROP TABLE IF EXISTS public.trust_strip CASCADE;
+
 -- ─────────────────────────────────────────────────────────
 -- 1. discovery_vibes - Travel vibes/categories for discovery
 -- ─────────────────────────────────────────────────────────

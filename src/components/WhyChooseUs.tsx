@@ -1,16 +1,42 @@
-import { Mountain, Compass, User, Shield, Wallet, Star } from "lucide-react";
+import { User, Shield, Wallet, Star, Compass, CheckCircle } from "lucide-react";
 import travelersImg from "@/assets/travelers-group.jpg";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
 
-const features = [
-  { icon: Compass, title: "Destination Experts Across India", desc: "Deep local knowledge of every route, coast, and trail" },
-  { icon: Compass, title: "100% Customised", desc: "No copy-paste itineraries — every trip built from scratch" },
-  { icon: User, title: "Expert Trip Advisors", desc: "Real people, not bots — available Mon–Sat 9AM–7PM" },
-  { icon: Shield, title: "Safety First", desc: "Verified hotels, vetted guides, emergency support 24/7" },
-  { icon: Wallet, title: "Price Transparency", desc: "No hidden charges — full breakdown before you pay" },
-  { icon: Star, title: "Rated 4.9/5", desc: "500+ verified reviews from real travellers" },
-];
+const iconMap: Record<string, any> = {
+  Compass,
+  User,
+  Shield,
+  Wallet,
+  Star,
+  CheckCircle,
+};
+
+const fetchWhyChooseUs = async () => {
+  const { data, error } = await supabase
+    .from("why_choose_us")
+    .select("*")
+    .eq("active", true)
+    .order("sort_order", { ascending: true });
+  if (error) throw error;
+  return data;
+};
 
 const WhyChooseUs = () => {
+  const { data: features } = useQuery({
+    queryKey: ["public-why-choose-us"],
+    queryFn: fetchWhyChooseUs,
+  });
+
+  const displayFeatures = features || [
+    { icon_name: "Compass", title: "Destination Experts Across India", description: "Deep local knowledge of every route, coast, and trail" },
+    { icon_name: "Compass", title: "100% Customised", description: "No copy-paste itineraries — every trip built from scratch" },
+    { icon_name: "User", title: "Expert Trip Advisors", description: "Real people, not bots — available Mon–Sat 9AM–7PM" },
+    { icon_name: "Shield", title: "Safety First", description: "Verified hotels, vetted guides, emergency support 24/7" },
+    { icon_name: "Wallet", title: "Price Transparency", description: "No hidden charges — full breakdown before you pay" },
+    { icon_name: "Star", title: "Rated 4.9/5", description: "500+ verified reviews from real travellers" },
+  ];
+
   return (
     <section className="section-padding bg-surface">
       <div className="container mx-auto">
@@ -19,17 +45,20 @@ const WhyChooseUs = () => {
           <div>
             <h2 className="section-heading mb-8">Why Travellers Trust <span className="text-primary">MQT</span></h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {features.map((f) => (
-                <div key={f.title} className="flex gap-4 group">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors">
-                    <f.icon className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors" />
+              {displayFeatures.map((f: any) => {
+                const IconComponent = iconMap[f.icon_name || "CheckCircle"] || CheckCircle;
+                return (
+                  <div key={f.title} className="flex gap-4 group">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors">
+                      <IconComponent className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors" />
+                    </div>
+                    <div>
+                      <h3 className="font-body font-semibold text-foreground text-sm">{f.title}</h3>
+                      <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{f.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-body font-semibold text-foreground text-sm">{f.title}</h3>
-                    <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{f.desc}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
