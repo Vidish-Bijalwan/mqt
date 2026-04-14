@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Globe, MapPin, Package, BookOpen, MessageSquare, HelpCircle, Home, Settings, Map, Plus, ArrowRight } from "lucide-react";
+import { Globe, MapPin, Package, BookOpen, MessageSquare, HelpCircle, Home, Settings, Map, Plus, ArrowRight, Compass, Flower2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 async function fetchContentCounts() {
-  const [states, destinations, categories, packages, blogs, testimonials, faqs] = await Promise.all([
+  const [states, destinations, categories, packages, blogs, testimonials, faqs, travelRoutes, festivals] = await Promise.all([
     supabase.from("states_uts").select("*", { count: "exact", head: true }),
     supabase.from("destinations").select("*", { count: "exact", head: true }),
     supabase.from("package_categories").select("*", { count: "exact", head: true }),
@@ -12,6 +12,8 @@ async function fetchContentCounts() {
     supabase.from("blog_posts").select("*", { count: "exact", head: true }),
     supabase.from("testimonials").select("*", { count: "exact", head: true }),
     supabase.from("faqs").select("*", { count: "exact", head: true }),
+    supabase.from("travel_routes").select("*", { count: "exact", head: true }),
+    supabase.from("festivals").select("*", { count: "exact", head: true }),
   ]);
   return {
     states: states.count ?? 0,
@@ -21,6 +23,8 @@ async function fetchContentCounts() {
     blogs: blogs.count ?? 0,
     testimonials: testimonials.count ?? 0,
     faqs: faqs.count ?? 0,
+    travelRoutes: travelRoutes.count ?? 0,
+    festivals: festivals.count ?? 0,
   };
 }
 
@@ -89,6 +93,24 @@ const contentModules = (counts: Record<string, number>) => [
     color: "bg-cyan-50 text-cyan-600",
   },
   {
+    label: "Travel Routes",
+    icon: Compass,
+    description: "Manage popular itinerary routes and travel paths featured on the homepage.",
+    path: "/admin/content/travel-routes",
+    newPath: "/admin/content/travel-routes/new",
+    count: counts.travelRoutes,
+    color: "bg-indigo-50 text-indigo-600",
+  },
+  {
+    label: "Festivals",
+    icon: Flower2,
+    description: "Manage Indian festivals and celebrations throughout the year.",
+    path: "/admin/content/festivals",
+    newPath: "/admin/content/festivals/new",
+    count: counts.festivals,
+    color: "bg-rose-50 text-rose-600",
+  },
+  {
     label: "Homepage",
     icon: Home,
     description: "Control hero content, featured blocks, and section visibility.",
@@ -115,7 +137,7 @@ export default function ContentHub() {
     staleTime: 60_000,
   });
 
-  const modules = contentModules(counts ?? { states: 0, destinations: 0, categories: 0, packages: 0, blogs: 0, testimonials: 0, faqs: 0 });
+  const modules = contentModules(counts ?? { states: 0, destinations: 0, categories: 0, packages: 0, blogs: 0, testimonials: 0, faqs: 0, travelRoutes: 0, festivals: 0 });
 
   return (
     <div>

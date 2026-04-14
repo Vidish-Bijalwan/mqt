@@ -48,6 +48,12 @@ import { AdminBlog, BlogForm } from "./pages/admin/content/AdminBlog.tsx";
 import { AdminTestimonials, TestimonialForm } from "./pages/admin/content/AdminTestimonials.tsx";
 import AdminHomepage from "./pages/admin/content/AdminHomepage.tsx";
 
+// Section Management Imports
+import { AdminTravelRoutes } from "./pages/admin/content/AdminTravelRoutes.tsx";
+import { TravelRouteForm } from "./pages/admin/content/TravelRouteForm.tsx";
+import { AdminFestivals } from "./pages/admin/content/AdminFestivals.tsx";
+import { FestivalForm } from "./pages/admin/content/FestivalForm.tsx";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -130,6 +136,16 @@ const AnimatedRoutes = () => {
             {/* Homepage & Settings */}
             <Route path="/admin/content/homepage" element={<AdminHomepage />} />
             <Route path="/admin/content/site-settings" element={<SiteSettings />} />
+
+            {/* Travel Routes */}
+            <Route path="/admin/content/travel-routes" element={<AdminTravelRoutes />} />
+            <Route path="/admin/content/travel-routes/new" element={<TravelRouteForm />} />
+            <Route path="/admin/content/travel-routes/:id/edit" element={<TravelRouteForm />} />
+
+            {/* Festivals */}
+            <Route path="/admin/content/festivals" element={<AdminFestivals />} />
+            <Route path="/admin/content/festivals/new" element={<FestivalForm />} />
+            <Route path="/admin/content/festivals/:id/edit" element={<FestivalForm />} />
 
           </Route>
         </Route>

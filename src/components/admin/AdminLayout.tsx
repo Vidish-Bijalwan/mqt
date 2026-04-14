@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Inbox, Image as ImageIcon, LogOut,
   Globe, Package, MapPin, BookOpen, MessageSquare, HelpCircle,
-  Home, Settings, Map, ChevronRight, Menu, X, Flag
+  Home, Settings, Map, ChevronRight, Menu, X, Flag, Compass, Flower2, Grid3x3, Lightbulb, HelpingHand, Mail
 } from "lucide-react";
 
 const sidebarGroups = [
@@ -31,6 +31,8 @@ const sidebarGroups = [
       { label: "Blog", path: "/admin/content/blog", icon: BookOpen },
       { label: "Testimonials", path: "/admin/content/testimonials", icon: MessageSquare },
       { label: "FAQs", path: "/admin/content/faqs", icon: HelpCircle },
+      { label: "Travel Routes", path: "/admin/content/travel-routes", icon: Compass },
+      { label: "Festivals", path: "/admin/content/festivals", icon: Flower2 },
       { label: "Homepage", path: "/admin/content/homepage", icon: Home },
       { label: "Site Settings", path: "/admin/content/site-settings", icon: Settings },
     ],
