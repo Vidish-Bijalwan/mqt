@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 import { useTripPlanner } from "@/contexts/TripPlannerContext";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
+import { SEO } from "@/components/SEO";
+
 const PackageDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const { track } = useAnalytics();
@@ -28,7 +30,6 @@ const PackageDetail = () => {
 
   useEffect(() => {
     if (pkg) {
-      document.title = `${pkg.title} | MyQuickTrippers`;
       window.scrollTo(0, 0);
       addRecentlyViewed(pkg.slug);
       track("page_view", { type: "package", slug: pkg.slug });
@@ -45,8 +46,34 @@ const PackageDetail = () => {
     { src: pkg.image, alt: `${pkg.destination} experiences` },
   ];
 
+  const schema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "TourPackage",
+    "name": pkg.title,
+    "description": pkg.overview || "Experience an unforgettable journey.",
+    "offers": {
+      "@type": "Offer",
+      "price": pkg.internalBasePrice || 10000,
+      "priceCurrency": "INR"
+    },
+    "url": `https://www.myquicktrippers.com/packages/${pkg.categories[0] || 'all'}/${pkg.slug}`,
+    "image": pkg.image,
+    "provider": {
+      "@type": "Organization",
+      "name": "MyQuickTrippers"
+    },
+    "duration": `P${pkg.duration?.days || 1}D`,
+    "touristType": pkg.categories
+  });
+
   return (
     <PageLayout>
+      <SEO 
+        title={pkg.seoTitle || `${pkg.title} 2026 | MyQuickTrippers`}
+        description={pkg.seoDescription || `Book ${pkg.title} packages. Includes ${pkg.highlights?.slice(0, 2).join(', ')}. Get free quote today.`}
+        url={`/packages/${pkg.categories[0] || 'all'}/${pkg.slug}`}
+        schema={schema}
+      />
       <PageHero
         title={pkg.title}
         backgroundImage={pkg.image}

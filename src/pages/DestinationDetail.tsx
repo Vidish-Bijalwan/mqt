@@ -17,6 +17,7 @@ import { setLastDestination } from "@/lib/personalization";
 import { MapPin, Thermometer, CloudRain, CalendarDays } from "lucide-react";
 
 import { getStateBySlug } from "@/data/india-states";
+import { SEO } from "@/components/SEO";
 
 const DestinationDetail = () => {
   const { stateSlug, slug } = useParams<{ stateSlug: string, slug: string }>();
@@ -24,20 +25,38 @@ const DestinationDetail = () => {
 
   const destination = useMemo(() => destinationsData.find((d) => d.slug === slug), [slug]);
   const stateData = useMemo(() => stateSlug ? getStateBySlug(stateSlug) : undefined, [stateSlug]);
-  const relatedPackages = useMemo(() => destination ? getTopPackagesForDestination(destination.slug, tourPackages, 6) : [], [destination]);
 
   useEffect(() => {
     if (destination && stateData) {
-      document.title = `${destination.name}, ${stateData.name} Tour Packages & Guide | MyQuickTrippers`;
+      document.title = `${destination.name} Tour Packages | MyQuickTrippers`;
+      track('destination_view', { 
+        destination: destination.name,
+        state: stateData.name
+      });
+      setLastDestination(destination.slug);
       window.scrollTo(0, 0);
-      setLastDestination(destination.name);
-      track("page_view", { type: "destination", slug: destination.slug, state: stateData.slug });
     }
   }, [destination, stateData, track]);
 
-  if (!destination) {
-    return <Navigate to="/404" replace />;
+  if (!destination || !stateData) {
+    return <Navigate to="/destinations" replace />;
   }
+
+  const relatedPackages = getTopPackagesForDestination(destination.slug, tourPackages, 6);
+
+  const seoTitle = `${destination.name} Tour Packages - Travel Guide & Itineraries`;
+  const seoDesc = `Explore ${destination.name} in ${stateData.name} with MyQuickTrippers. Discover top attractions, best time to visit, and customizable tour packages.`;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "name": destination.name,
+    "description": destination.overview?.[0] || seoDesc,
+    "touristType": [
+      "Sightseeing",
+      "Nature",
+      "Culture"
+    ]
+  };
 
   // Build gallery using real seeded images with variant cascade
   const heroResolved = getDestinationImage(destination.slug, 'hero');
@@ -57,9 +76,15 @@ const DestinationDetail = () => {
 
   return (
     <PageLayout>
-      <PageHero
+      <SEO 
+        title={seoTitle}
+        description={seoDesc}
+        canonical={`/destinations/${stateData.slug}/${destination.slug}`}
+        schema={schema}
+      />
+      <PageHero 
         title={destination.name}
-        subtitle={destination.overview[0]}
+        subtitle={`Discover the beauty of ${destination.name}, ${stateData.name}`}
         backgroundImage={getStateImage(destination.slug, 'hero', destination.image)}
         badge={destination.tagline}
         quickFacts={quickFacts}

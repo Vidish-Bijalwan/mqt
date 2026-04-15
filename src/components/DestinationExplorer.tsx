@@ -36,7 +36,7 @@ const DestinationExplorer = () => {
             {destinations.map((dest) => {
               const stateSlug = destinationsData.find(d => d.slug === dest.slug)?.stateSlug
                 || getStateSlugForDest(dest.slug);
-              const { src, fallbackSrc } = getDestinationImage(dest.slug, 'card');
+              const { src, fallbackSrc } = getDestinationImage(dest.slug, 'card', dest.image);
 
               return (
                 <motion.div key={dest.id} variants={staggerItem} className="snap-start flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px]">

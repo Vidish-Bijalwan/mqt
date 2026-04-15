@@ -7,6 +7,7 @@ import InquiryBanner from "@/components/InquiryBanner";
 import RelatedCards from "@/components/RelatedCards";
 import { getStateImage } from "@/lib/imageMap";
 import { getStateBySlug } from "@/data/india-states";
+import { SEO } from "@/components/SEO";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { getDestinations } from "@/services/destinationService";
 import { useQuery } from "@tanstack/react-query";
@@ -36,27 +37,46 @@ const StateListing = () => {
     );
   }, [stateData, allDestinations]);
 
+  const hasDestinations = stateDestinations.length > 0;
+
   useEffect(() => {
     if (stateData) {
-      document.title = `Explore ${stateData.name} | MyQuickTrippers`;
+      document.title = `${stateData.name} Tour Packages | Travel Guide by MyQuickTrippers`;
+      track('state_view', { state: stateData.name });
       window.scrollTo(0, 0);
-      track("page_view", { type: "state_listing", slug: stateData.slug });
     }
   }, [stateData, track]);
 
   if (!stateData) {
-    return <Navigate to="/404" replace />;
+    return <Navigate to="/destinations" replace />;
   }
 
-  // If there are no configured destinations yet, that's fine, we will show an empty message
-  const hasDestinations = stateDestinations.length > 0;
+  const seoTitle = `Best ${stateData.name} Tour Packages & Itineraries - MyQuickTrippers`;
+  const seoDesc = `Book customized ${stateData.name} tour packages. Find expert travel itineraries, top attractions, and holiday deals in ${stateData.name} with MyQuickTrippers.`;
+  
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "AdministrativeArea",
+    "name": stateData.name,
+    "description": seoDesc,
+    "containedInPlace": {
+      "@type": "Country",
+      "name": "India"
+    }
+  };
 
   return (
     <PageLayout>
-      <PageHero
-        title={`Explore ${stateData.name}`}
-        subtitle={stateData.introOverview}
-        backgroundImage={stateData.image}
+      <SEO 
+        title={seoTitle}
+        description={seoDesc}
+        canonical={`/destinations/${stateData.slug}`}
+        schema={schema}
+      />
+      <PageHero 
+        title={`${stateData.name} Tour Packages`}
+        subtitle={`Explore the wonders of ${stateData.name} with our curated travel packages. From hill stations to cultural heritage sites.`}
+        backgroundImage={getStateImage(stateData.slug)}
         breadcrumb={[
           { label: "Destinations", href: "/destinations" },
           { label: stateData.name }

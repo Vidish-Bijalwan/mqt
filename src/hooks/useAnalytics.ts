@@ -9,6 +9,7 @@ export type AnalyticsEventName =
   | "package_click"
   | "package_view"
   | "destination_view"
+  | "state_view"
   | "destination_click"
   | "enquiry_open"
   | "enquiry_submit"

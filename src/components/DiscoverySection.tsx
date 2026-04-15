@@ -111,7 +111,7 @@ const DiscoverySection = () => {
                 >
                   {/* BG Image */}
                   <img
-                    src={vibe.bg_image_url || 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=800'}
+                    src={vibe.bg_image_url || vibe.background_image_url || defaultVibes.find(v => v.style_id === vibe.style)?.bg_image_url || defaultVibes.find(v => v.id === vibe.id)?.bg_image_url || 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=800'}
                     alt={vibe.label}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
