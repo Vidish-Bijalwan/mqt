@@ -1,5 +1,7 @@
+import React, { Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { AnimatePresence } from "framer-motion";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -12,59 +14,64 @@ import { ResumePlannerPopup } from "@/components/planner/ResumePlannerPopup";
 
 // Public Pages
 import Index from "./pages/Index.tsx";
-import Destinations from "./pages/Destinations.tsx";
-import StateListing from "./pages/StateListing.tsx";
-import DestinationDetail from "./pages/DestinationDetail.tsx";
-import Packages from "./pages/Packages.tsx";
-import PackageDetail from "./pages/PackageDetail.tsx";
-import About from "./pages/About.tsx";
-import Contact from "./pages/Contact.tsx";
-import Blog from "./pages/Blog.tsx";
-import BlogDetail from "./pages/BlogDetail.tsx";
-import NotFound from "./pages/NotFound.tsx";
+const Destinations = React.lazy(() => import('./pages/Destinations.tsx'));
+const StateListing = React.lazy(() => import('./pages/StateListing.tsx'));
+const DestinationDetail = React.lazy(() => import('./pages/DestinationDetail.tsx'));
+const Packages = React.lazy(() => import('./pages/Packages.tsx'));
+const PackageDetail = React.lazy(() => import('./pages/PackageDetail.tsx'));
+const About = React.lazy(() => import('./pages/About.tsx'));
+const Contact = React.lazy(() => import('./pages/Contact.tsx'));
+const Blog = React.lazy(() => import('./pages/Blog.tsx'));
+const BlogDetail = React.lazy(() => import('./pages/BlogDetail.tsx'));
+const NotFound = React.lazy(() => import('./pages/NotFound.tsx'));
 
 // Admin Infrastructure
-import { ProtectedRoute } from "./components/admin/ProtectedRoute.tsx";
-import { AdminLayout } from "./components/admin/AdminLayout.tsx";
+const ProtectedRoute = React.lazy(() => import('./components/admin/ProtectedRoute.tsx').then(module => ({ default: module.ProtectedRoute })));
+const AdminLayout = React.lazy(() => import('./components/admin/AdminLayout.tsx').then(module => ({ default: module.AdminLayout })));
 
 // Admin Pages — Core
-import AdminLogin from "./pages/admin/AdminLogin.tsx";
-import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
-import AdminEnquiries from "./pages/admin/AdminEnquiries.tsx";
-import AdminMedia from "./pages/admin/AdminMedia.tsx";
-import ContentHub from "./pages/admin/ContentHub.tsx";
+const AdminLogin = React.lazy(() => import('./pages/admin/AdminLogin.tsx'));
+const AdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard.tsx'));
+const AdminEnquiries = React.lazy(() => import('./pages/admin/AdminEnquiries.tsx'));
+const AdminMedia = React.lazy(() => import('./pages/admin/AdminMedia.tsx'));
+const ContentHub = React.lazy(() => import('./pages/admin/ContentHub.tsx'));
 
 // Admin Pages — Content CRUD
-import AdminStates from "./pages/admin/content/AdminStates.tsx";
-import StateForm from "./pages/admin/content/StateForm.tsx";
-import AdminCategories from "./pages/admin/content/AdminCategories.tsx";
-import CategoryForm from "./pages/admin/content/CategoryForm.tsx";
-import { AdminFAQs, FAQForm } from "./pages/admin/content/AdminFAQs.tsx";
-import SiteSettings from "./pages/admin/content/SiteSettings.tsx";
+const AdminStates = React.lazy(() => import('./pages/admin/content/AdminStates.tsx'));
+const StateForm = React.lazy(() => import('./pages/admin/content/StateForm.tsx'));
+const AdminCategories = React.lazy(() => import('./pages/admin/content/AdminCategories.tsx'));
+const CategoryForm = React.lazy(() => import('./pages/admin/content/CategoryForm.tsx'));
+const AdminFAQs = React.lazy(() => import('./pages/admin/content/AdminFAQs.tsx').then(module => ({ default: module.AdminFAQs })));
+const FAQForm = React.lazy(() => import('./pages/admin/content/AdminFAQs.tsx').then(module => ({ default: module.FAQForm })));
+const SiteSettings = React.lazy(() => import('./pages/admin/content/SiteSettings.tsx'));
 
-import { AdminDestinations, DestinationForm } from "./pages/admin/content/AdminDestinations.tsx";
-import { AdminPackages, PackageForm } from "./pages/admin/content/AdminPackages.tsx";
-import { AdminBlog, BlogForm } from "./pages/admin/content/AdminBlog.tsx";
-import { AdminTestimonials, TestimonialForm } from "./pages/admin/content/AdminTestimonials.tsx";
-import AdminHomepage from "./pages/admin/content/AdminHomepage.tsx";
+const AdminDestinations = React.lazy(() => import('./pages/admin/content/AdminDestinations.tsx').then(module => ({ default: module.AdminDestinations })));
+const DestinationForm = React.lazy(() => import('./pages/admin/content/AdminDestinations.tsx').then(module => ({ default: module.DestinationForm })));
+const AdminPackages = React.lazy(() => import('./pages/admin/content/AdminPackages.tsx').then(module => ({ default: module.AdminPackages })));
+const PackageForm = React.lazy(() => import('./pages/admin/content/AdminPackages.tsx').then(module => ({ default: module.PackageForm })));
+const AdminBlog = React.lazy(() => import('./pages/admin/content/AdminBlog.tsx').then(module => ({ default: module.AdminBlog })));
+const BlogForm = React.lazy(() => import('./pages/admin/content/AdminBlog.tsx').then(module => ({ default: module.BlogForm })));
+const AdminTestimonials = React.lazy(() => import('./pages/admin/content/AdminTestimonials.tsx').then(module => ({ default: module.AdminTestimonials })));
+const TestimonialForm = React.lazy(() => import('./pages/admin/content/AdminTestimonials.tsx').then(module => ({ default: module.TestimonialForm })));
+const AdminHomepage = React.lazy(() => import('./pages/admin/content/AdminHomepage.tsx'));
 
 // Section Management Imports
-import { AdminTravelRoutes } from "./pages/admin/content/AdminTravelRoutes.tsx";
-import { TravelRouteForm } from "./pages/admin/content/TravelRouteForm.tsx";
-import { AdminFestivals } from "./pages/admin/content/AdminFestivals.tsx";
-import { FestivalForm } from "./pages/admin/content/FestivalForm.tsx";
-import { AdminDiscoveryVibes } from "./pages/admin/content/AdminDiscoveryVibes.tsx";
-import { DiscoveryVibeForm } from "./pages/admin/content/DiscoveryVibeForm.tsx";
-import { AdminDomesticInternational } from "./pages/admin/content/AdminDomesticInternational.tsx";
-import { DomesticInternationalForm } from "./pages/admin/content/DomesticInternationalForm.tsx";
-import { AdminTravelExperiences } from "./pages/admin/content/AdminTravelExperiences.tsx";
-import { TravelExperienceForm } from "./pages/admin/content/TravelExperienceForm.tsx";
-import { AdminWhyChooseUs } from "./pages/admin/content/AdminWhyChooseUs.tsx";
-import { WhyChooseUsForm } from "./pages/admin/content/WhyChooseUsForm.tsx";
-import { AdminHowItWorks } from "./pages/admin/content/AdminHowItWorks.tsx";
-import { HowItWorksForm } from "./pages/admin/content/HowItWorksForm.tsx";
-import { AdminNewsletter } from "./pages/admin/content/AdminNewsletter.tsx";
-import { AdminTrustStrip } from "./pages/admin/content/AdminTrustStrip.tsx";
+const AdminTravelRoutes = React.lazy(() => import('./pages/admin/content/AdminTravelRoutes.tsx').then(module => ({ default: module.AdminTravelRoutes })));
+const TravelRouteForm = React.lazy(() => import('./pages/admin/content/TravelRouteForm.tsx').then(module => ({ default: module.TravelRouteForm })));
+const AdminFestivals = React.lazy(() => import('./pages/admin/content/AdminFestivals.tsx').then(module => ({ default: module.AdminFestivals })));
+const FestivalForm = React.lazy(() => import('./pages/admin/content/FestivalForm.tsx').then(module => ({ default: module.FestivalForm })));
+const AdminDiscoveryVibes = React.lazy(() => import('./pages/admin/content/AdminDiscoveryVibes.tsx').then(module => ({ default: module.AdminDiscoveryVibes })));
+const DiscoveryVibeForm = React.lazy(() => import('./pages/admin/content/DiscoveryVibeForm.tsx').then(module => ({ default: module.DiscoveryVibeForm })));
+const AdminDomesticInternational = React.lazy(() => import('./pages/admin/content/AdminDomesticInternational.tsx').then(module => ({ default: module.AdminDomesticInternational })));
+const DomesticInternationalForm = React.lazy(() => import('./pages/admin/content/DomesticInternationalForm.tsx').then(module => ({ default: module.DomesticInternationalForm })));
+const AdminTravelExperiences = React.lazy(() => import('./pages/admin/content/AdminTravelExperiences.tsx').then(module => ({ default: module.AdminTravelExperiences })));
+const TravelExperienceForm = React.lazy(() => import('./pages/admin/content/TravelExperienceForm.tsx').then(module => ({ default: module.TravelExperienceForm })));
+const AdminWhyChooseUs = React.lazy(() => import('./pages/admin/content/AdminWhyChooseUs.tsx').then(module => ({ default: module.AdminWhyChooseUs })));
+const WhyChooseUsForm = React.lazy(() => import('./pages/admin/content/WhyChooseUsForm.tsx').then(module => ({ default: module.WhyChooseUsForm })));
+const AdminHowItWorks = React.lazy(() => import('./pages/admin/content/AdminHowItWorks.tsx').then(module => ({ default: module.AdminHowItWorks })));
+const HowItWorksForm = React.lazy(() => import('./pages/admin/content/HowItWorksForm.tsx').then(module => ({ default: module.HowItWorksForm })));
+const AdminNewsletter = React.lazy(() => import('./pages/admin/content/AdminNewsletter.tsx').then(module => ({ default: module.AdminNewsletter })));
+const AdminTrustStrip = React.lazy(() => import('./pages/admin/content/AdminTrustStrip.tsx').then(module => ({ default: module.AdminTrustStrip })));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -79,7 +86,8 @@ const AnimatedRoutes = () => {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
+      <Suspense fallback={<div className="h-screen w-full flex items-center justify-center p-4"><div className="w-8 h-8 rounded-full border-4 border-primary/30 border-t-primary animate-spin"></div></div>}>
+        <Routes location={location} key={location.pathname}>
         {/* ── Public Routes ── */}
         <Route path="/" element={<Index />} />
         <Route path="/destinations" element={<Destinations />} />
@@ -196,11 +204,13 @@ const AnimatedRoutes = () => {
         {/* Catch-all */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Suspense>
     </AnimatePresence>
   );
 };
 
 const App = () => (
+  <HelmetProvider>
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <TooltipProvider>
@@ -217,6 +227,7 @@ const App = () => (
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

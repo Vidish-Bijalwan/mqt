@@ -19,9 +19,44 @@ import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 import BottomNav from "@/components/BottomNav";
 
+import { SEO } from "@/components/SEO";
+
 const Index = () => {
+  const schema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "MyQuickTrippers",
+    "url": "https://www.myquicktrippers.com",
+    "logo": "https://www.myquicktrippers.com/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-7668741373",
+      "contactType": "customer service"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Meerut",
+      "addressRegion": "Uttar Pradesh",
+      "addressCountry": "IN"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "500",
+      "bestRating": "5"
+    },
+    "priceRange": "₹₹",
+    "openingHours": "Mo,Tu,We,Th,Fr,Sa 09:00-19:00"
+  });
+
   return (
     <div className="min-h-screen flex flex-col pb-16 lg:pb-0">
+      <SEO 
+        title="Premium India Tour Packages 2026 | MyQuickTrippers Meerut" 
+        description="Book curated India tour packages for Kedarnath, Ladakh, Kashmir, Kerala & more. Expert guides, best prices, free quotes. Trusted by 500+ travellers. Call now."
+        url=""
+        schema={schema}
+      />
       <TopBar />
       <Navbar />
       <main>
