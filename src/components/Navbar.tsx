@@ -112,7 +112,7 @@ const Navbar = () => {
             Get Free Quote
           </Button>
           <Button asChild variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-            <a href="tel:+919876543210"><Phone className="h-3.5 w-3.5 mr-1" /> Call Now</a>
+            <a href="tel:+917668741373"><Phone className="h-3.5 w-3.5 mr-1" /> Call Now</a>
           </Button>
         </div>
 
@@ -210,7 +210,7 @@ const Navbar = () => {
                   Get Free Quote
                 </Button>
                 <Button asChild variant="outline" className="w-full border-primary text-primary" onClick={() => setMobileOpen(false)}>
-                  <a href="tel:+919876543210"><Phone className="h-4 w-4 mr-2" /> Call Now</a>
+                  <a href="tel:+917668741373"><Phone className="h-4 w-4 mr-2" /> Call Now</a>
                 </Button>
               </div>
             </div>

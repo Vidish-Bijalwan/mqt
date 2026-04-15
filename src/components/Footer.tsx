@@ -14,11 +14,11 @@ const Footer = () => {
             </Link>
             <p className="text-sm text-dark-foreground/60 mb-4 italic">"Your Indian Journey, Perfectly Crafted"</p>
             <div className="space-y-2 text-sm text-dark-foreground/70">
-              <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-accent transition-colors">
-                <Phone className="h-3.5 w-3.5" /> +91-9876543210
+              <a href="tel:+917668741373" className="flex items-center gap-2 hover:text-accent transition-colors">
+                <Phone className="h-3.5 w-3.5" /> +91-7668741373
               </a>
-              <a href="mailto:info@myquicktrippers.com" className="flex items-center gap-2 hover:text-accent transition-colors">
-                <Mail className="h-3.5 w-3.5" /> info@myquicktrippers.com
+              <a href="mailto:myquicktrippers@gmail.com" className="flex items-center gap-2 hover:text-accent transition-colors">
+                <Mail className="h-3.5 w-3.5" /> myquicktrippers@gmail.com
               </a>
             </div>
             <div className="flex gap-3 mt-4">
@@ -31,7 +31,7 @@ const Footer = () => {
               <a href="#" aria-label="YouTube" className="w-8 h-8 rounded-full bg-dark-foreground/10 flex items-center justify-center hover:bg-accent transition-colors">
                 <Youtube className="h-4 w-4" />
               </a>
-              <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-8 h-8 rounded-full bg-dark-foreground/10 flex items-center justify-center hover:bg-success transition-colors">
+              <a href="https://wa.me/917668741373" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-8 h-8 rounded-full bg-dark-foreground/10 flex items-center justify-center hover:bg-success transition-colors">
                 <MessageCircle className="h-4 w-4" />
               </a>
             </div>

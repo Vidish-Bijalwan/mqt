@@ -176,7 +176,7 @@ const PackageDetail = () => {
                     <Button 
                       variant="outline" 
                       className="w-full py-6 h-auto text-base font-medium border-border"
-                      onClick={() => window.open(`https://wa.me/919876543210?text=${encodeURIComponent(`Hi! I am interested in the ${pkg.title} trip. Please share itinerary options and pricing details.`)}`, "_blank")}
+                      onClick={() => window.open(`https://wa.me/917668741373?text=${encodeURIComponent(`Hi! I am interested in the ${pkg.title} trip. Please share itinerary options and pricing details.`)}`, "_blank")}
                     >
                       WhatsApp Expert
                     </Button>

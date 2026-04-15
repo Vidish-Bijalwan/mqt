@@ -57,7 +57,7 @@ const InquiryBanner = ({
           </Button>
 
           <a
-            href={`https://wa.me/919876543210?text=${encodeURIComponent(waMessage)}`}
+            href={`https://wa.me/917668741373?text=${encodeURIComponent(waMessage)}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("whatsapp_click", { source: "inquiry_banner" })}

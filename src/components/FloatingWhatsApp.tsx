@@ -74,7 +74,7 @@ const FloatingWhatsApp = () => {
 
           {/* Button */}
           <motion.a
-            href="https://wa.me/919876543210?text=Hi!%20I'm%20exploring%20MyQuickTrippers%20and%20need%20some%20help."
+            href="https://wa.me/917668741373?text=Hi!%20I'm%20exploring%20MyQuickTrippers%20and%20need%20some%20help."
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("whatsapp_click", { source: "floating_widget" })}

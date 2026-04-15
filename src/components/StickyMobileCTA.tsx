@@ -43,7 +43,7 @@ const StickyMobileCTA = ({
 
       {/* WhatsApp */}
       <a
-        href={`https://wa.me/919876543210?text=${encodeURIComponent(whatsappText)}`}
+        href={`https://wa.me/917668741373?text=${encodeURIComponent(whatsappText)}`}
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleWhatsApp}

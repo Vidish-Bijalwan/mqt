@@ -60,7 +60,7 @@ const EnquirySection = () => {
             <p className="text-sm text-muted-foreground">Prefer to talk directly?</p>
             <div className="flex items-center gap-3">
               <a
-                href="https://wa.me/919876543210?text=Hi!%20I'm%20interested%20in%20planning%20a%20trip."
+                href="https://wa.me/917668741373?text=Hi!%20I'm%20interested%20in%20planning%20a%20trip."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] text-white text-sm font-semibold hover:bg-[#128C7E] transition-colors shadow-sm"
@@ -68,7 +68,7 @@ const EnquirySection = () => {
                 <MessageCircle className="w-4 h-4" /> WhatsApp Us
               </a>
               <a
-                href="tel:+919876543210"
+                href="tel:+917668741373"
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-foreground text-sm font-medium hover:bg-muted/50 transition-colors"
               >
                 <Phone className="w-4 h-4" /> Call Now
