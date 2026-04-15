@@ -37,10 +37,9 @@ function fire(name: AnalyticsEventName, props?: AnalyticsEventProps): void {
     console.log(`[Analytics] ${name}`, props ?? {});
   }
   // ── Production swap ──────────────────────────────────────────────────────
-  // Uncomment and fill your GA4 measurement ID in index.html, then:
-  // if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
-  //   (window as any).gtag("event", name, props);
-  // }
+  if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+    (window as any).gtag("event", name, props);
+  }
   // ────────────────────────────────────────────────────────────────────────
 }
 
