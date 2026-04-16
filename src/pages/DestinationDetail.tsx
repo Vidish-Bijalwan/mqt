@@ -18,6 +18,7 @@ import { MapPin, Thermometer, CloudRain, CalendarDays } from "lucide-react";
 
 import { getStateBySlug } from "@/data/india-states";
 import { SEO } from "@/components/SEO";
+import DestinationReviews from "@/components/DestinationReviews";
 
 const DestinationDetail = () => {
   const { stateSlug, slug } = useParams<{ stateSlug: string, slug: string }>();
@@ -137,6 +138,10 @@ const DestinationDetail = () => {
         images={gallery} 
         title={`Capturing ${destination.name}`} 
       />
+
+      <section className="container mx-auto px-4 py-8">
+        <DestinationReviews destinationSlug={destination.slug} />
+      </section>
 
       {/* FAQs */}
       {destination.faqs && destination.faqs.length > 0 && (
