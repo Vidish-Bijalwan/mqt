@@ -72,7 +72,8 @@ const PackageDetail = () => {
       <SEO 
         title={pkg.seoTitle || `${pkg.title} 2026 | MyQuickTrippers`}
         description={pkg.seoDescription || `Book ${pkg.title} packages. Includes ${pkg.highlights?.slice(0, 2).join(', ')}. Get free quote today.`}
-        url={`/packages/${pkg.categories[0] || 'all'}/${pkg.slug}`}
+        canonical={`/packages/${pkg.categories[0] || 'all'}/${pkg.slug}`}
+        image={pkg.image}
         schema={schema}
       />
       <PageHero

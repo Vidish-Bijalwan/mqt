@@ -80,6 +80,7 @@ const DestinationDetail = () => {
         title={seoTitle}
         description={seoDesc}
         canonical={`/destinations/${stateData.slug}/${destination.slug}`}
+        image={destination.image}
         schema={schema}
       />
       <PageHero

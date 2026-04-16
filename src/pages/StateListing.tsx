@@ -71,6 +71,7 @@ const StateListing = () => {
         title={seoTitle}
         description={seoDesc}
         canonical={`/destinations/${stateData.slug}`}
+        image={getStateImage(stateData.slug, 'hero', stateData.image).src}
         schema={schema}
       />
       <PageHero 

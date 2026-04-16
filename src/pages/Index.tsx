@@ -54,7 +54,8 @@ const Index = () => {
       <SEO 
         title="Premium India Tour Packages 2026 | MyQuickTrippers Meerut" 
         description="Book curated India tour packages for Kedarnath, Ladakh, Kashmir, Kerala & more. Expert guides, best prices, free quotes. Trusted by 500+ travellers. Call now."
-        url=""
+        canonical=""
+        image="/og-image.jpg"
         schema={schema}
       />
       <TopBar />
