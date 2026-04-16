@@ -26,6 +26,8 @@ const Contact = React.lazy(() => import('./pages/Contact.tsx'));
 const Blog = React.lazy(() => import('./pages/Blog.tsx'));
 const BlogDetail = React.lazy(() => import('./pages/BlogDetail.tsx'));
 const NotFound = React.lazy(() => import('./pages/NotFound.tsx'));
+const CancellationPolicy = React.lazy(() => import("./pages/CancellationPolicy.tsx"));
+const ServiceDetail = React.lazy(() => import("./pages/ServiceDetail.tsx"));
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy.tsx'));
 const TermsOfService = React.lazy(() => import('./pages/TermsOfService.tsx'));
 const UserProfile = React.lazy(() => import('./pages/UserProfile.tsx'));
