@@ -59,8 +59,8 @@ const DestinationDetail = () => {
   };
 
   // Build gallery using real seeded images with variant cascade
-  const heroResolved = getDestinationImage(destination.slug, 'hero');
-  const cardResolved = getDestinationImage(destination.slug, 'card');
+  const heroResolved = getDestinationImage(destination.slug, 'hero', destination.heroImage);
+  const cardResolved = getDestinationImage(destination.slug, 'card', destination.image);
   const gallery = [
     { src: heroResolved.src,  fallback: heroResolved.fallbackSrc,  alt: `${destination.name} main view` },
     { src: cardResolved.src,  fallback: cardResolved.fallbackSrc,  alt: `${destination.name} landscape` },
@@ -82,10 +82,10 @@ const DestinationDetail = () => {
         canonical={`/destinations/${stateData.slug}/${destination.slug}`}
         schema={schema}
       />
-      <PageHero 
+      <PageHero
         title={destination.name}
         subtitle={`Discover the beauty of ${destination.name}, ${stateData.name}`}
-        backgroundImage={getStateImage(destination.slug, 'hero', destination.image)}
+        backgroundImage={getStateImage(destination.slug, 'hero', destination.heroImage || destination.image).src}
         badge={destination.tagline}
         quickFacts={quickFacts}
         breadcrumb={[
@@ -93,9 +93,7 @@ const DestinationDetail = () => {
           ...(stateData ? [{ label: stateData.name, href: `/destinations/${stateData.slug}` }] : []),
           { label: destination.name }
         ]}
-      />
-
-      {/* About & Weather Section */}
+      />      {/* About & Weather Section */}
       <section className="section-padding bg-background">
         <div className="container mx-auto max-w-4xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

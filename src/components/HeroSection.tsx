@@ -7,7 +7,7 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { useState, useEffect, useRef } from "react";
 import { useTripPlanner } from "@/contexts/TripPlannerContext";
-import { HeroSearchBar } from "./HeroSearchBar";
+import SemanticSearchBar from "./SemanticSearchBar";
 
 const heroSlides = [
   {
@@ -150,9 +150,11 @@ const HeroSection = () => {
       </motion.div>
 
       {/* Search Widget */}
-      <ScrollReveal delay={0.6} className="absolute bottom-4 lg:bottom-0 left-0 right-0 z-20 px-4">
-        <div className="container mx-auto lg:-mb-12">
-          <HeroSearchBar />
+      <ScrollReveal delay={0.6} className="absolute bottom-8 lg:bottom-12 left-0 right-0 z-20 px-4">
+        <div className="container mx-auto flex flex-col gap-4 relative">
+          <div className="w-full max-w-2xl mx-auto bg-white/20 backdrop-blur-md p-2 rounded-[2rem] border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+            <SemanticSearchBar />
+          </div>
         </div>
       </ScrollReveal>
     </section>

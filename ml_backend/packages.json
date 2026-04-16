@@ -1,0 +1,9 @@
+[
+  { "id": "mpt-001", "name": "Kedarnath Yatra", "destination": "Kedarnath", "category": "spiritual", "duration_days": 4, "budget_inr": 14500 },
+  { "id": "mpt-002", "name": "Leh Ladakh Bike Trip", "destination": "Leh", "category": "adventure", "duration_days": 9, "budget_inr": 35000 },
+  { "id": "mpt-003", "name": "Valley of Flowers Trek", "destination": "Uttarakhand", "category": "adventure", "duration_days": 6, "budget_inr": 16500 },
+  { "id": "mpt-004", "name": "Varanasi Spiritual Tour", "destination": "Varanasi", "category": "spiritual", "duration_days": 3, "budget_inr": 12000 },
+  { "id": "mpt-005", "name": "Kashmir Paradise", "destination": "Srinagar", "category": "honeymoon", "duration_days": 6, "budget_inr": 45000 },
+  { "id": "mpt-006", "name": "Manali Snow Adventure", "destination": "Manali", "category": "adventure", "duration_days": 5, "budget_inr": 18000 },
+  { "id": "mpt-007", "name": "Rishikesh Yoga Retreat", "destination": "Rishikesh", "category": "spiritual", "duration_days": 3, "budget_inr": 8500 }
+]

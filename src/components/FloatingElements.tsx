@@ -26,7 +26,7 @@ const FloatingElements = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="fixed bottom-36 right-4 lg:bottom-12 lg:right-6 z-40 w-10 h-10 rounded-full gradient-primary text-primary-foreground flex items-center justify-center shadow-card"
+            className="fixed bottom-36 right-4 lg:bottom-28 lg:right-6 z-40 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors"
             aria-label="Scroll to top"
           >
             <ArrowUp className="h-5 w-5" />

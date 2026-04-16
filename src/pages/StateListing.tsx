@@ -76,7 +76,7 @@ const StateListing = () => {
       <PageHero 
         title={`${stateData.name} Tour Packages`}
         subtitle={`Explore the wonders of ${stateData.name} with our curated travel packages. From hill stations to cultural heritage sites.`}
-        backgroundImage={getStateImage(stateData.slug)}
+        backgroundImage={getStateImage(stateData.slug, 'hero', stateData.image).src}
         breadcrumb={[
           { label: "Destinations", href: "/destinations" },
           { label: stateData.name }

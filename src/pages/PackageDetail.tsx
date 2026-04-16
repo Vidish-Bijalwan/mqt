@@ -9,6 +9,7 @@ import TrendingBadge from "@/components/TrendingBadge";
 import GalleryGrid from "@/components/GalleryGrid";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import YouMayAlsoLike from "@/components/YouMayAlsoLike";
+import PackageRecommendations from "@/components/PackageRecommendations";
 import { tourPackages } from "@/data/packages";
 import { getSimilarPackages } from "@/lib/recommendations";
 import { addRecentlyViewed } from "@/lib/personalization";
@@ -227,8 +228,8 @@ const PackageDetail = () => {
 
       <GalleryGrid images={gallery} title="Tour Gallery" />
 
-      {/* Cross-Sell & Upsell Funnel Elements */}
-      <YouMayAlsoLike packages={similarPackages} title="Similar Packages" />
+      {/* Cross-Sell & Upsell Funnel Elements ML powered */}
+      <PackageRecommendations packageId={pkg.id} topN={4} />
       <RecentlyViewed excludeSlug={pkg.slug} />
 
       <EnquirySection />

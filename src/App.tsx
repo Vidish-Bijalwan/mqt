@@ -11,6 +11,8 @@ import { TripPlannerProvider } from "@/contexts/TripPlannerContext";
 import { TripPlannerModal } from "@/components/planner/TripPlannerModal";
 import { PlannerTeaser } from "@/components/planner/PlannerTeaser";
 import { ResumePlannerPopup } from "@/components/planner/ResumePlannerPopup";
+import RetentionNudge from "@/components/RetentionNudge";
+import CookieConsent from "@/components/CookieConsent";
 
 // Public Pages
 import Index from "./pages/Index.tsx";
@@ -24,6 +26,8 @@ const Contact = React.lazy(() => import('./pages/Contact.tsx'));
 const Blog = React.lazy(() => import('./pages/Blog.tsx'));
 const BlogDetail = React.lazy(() => import('./pages/BlogDetail.tsx'));
 const NotFound = React.lazy(() => import('./pages/NotFound.tsx'));
+const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy.tsx'));
+const TermsOfService = React.lazy(() => import('./pages/TermsOfService.tsx'));
 
 // Admin Infrastructure
 const ProtectedRoute = React.lazy(() => import('./components/admin/ProtectedRoute.tsx').then(module => ({ default: module.ProtectedRoute })));
@@ -100,9 +104,11 @@ const AnimatedRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogDetail />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/services/*" element={<NotFound />} />
-        <Route path="/terms" element={<NotFound />} />
-        <Route path="/privacy" element={<NotFound />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/refund" element={<NotFound />} />
 
         {/* ── Admin: Public ── */}
@@ -218,6 +224,8 @@ const App = () => (
           <TripPlannerProvider>
             <Toaster />
             <Sonner />
+            <RetentionNudge />
+            <CookieConsent />
             <AnimatedRoutes />
             <TripPlannerModal />
             <PlannerTeaser />

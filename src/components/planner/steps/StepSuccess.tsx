@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, RotateCcw } from 'lucide-react';
 import { useTripPlanner } from '../../../contexts/TripPlannerContext';
 
 export function StepSuccess() {
-  const { data } = useTripPlanner();
+  const { data, resetPlanner, closePlanner } = useTripPlanner();
 
   // Simple confetti effect could go here
   
@@ -52,6 +52,19 @@ export function StepSuccess() {
         </ul>
       </div>
 
+      <motion.button
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+        onClick={() => {
+          resetPlanner();
+          closePlanner();
+        }}
+        className="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-muted-foreground w-full max-w-sm p-3 rounded-xl border border-border hover:bg-muted dark:hover:bg-muted/50 hover:text-foreground transition-all"
+      >
+        <RotateCcw className="w-4 h-4" />
+        <span>Plan Another Trip</span>
+      </motion.button>
     </div>
   );
 }

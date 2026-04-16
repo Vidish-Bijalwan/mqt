@@ -6,12 +6,12 @@ import { ImgWithFallback } from '../../ui/ImgWithFallback';
 import { getDestinationImage } from '../../../lib/imageMap';
 
 const TOP_DESTINATIONS = [
-  { name: 'Kerala', slug: 'kerala' },
-  { name: 'Rajasthan', slug: 'rajasthan' },
-  { name: 'Goa', slug: 'goa' },
-  { name: 'Andaman', slug: 'andaman' },
-  { name: 'Himachal', slug: 'shimla' }, // using shimla for himachal image
-  { name: 'Uttarakhand', slug: 'rishikesh' }, // using rishikesh for uttarakhand
+  { name: 'Kerala', slug: 'kerala', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=600' },
+  { name: 'Rajasthan', slug: 'rajasthan', image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=600' },
+  { name: 'Goa', slug: 'goa', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=600' },
+  { name: 'Andaman', slug: 'andaman', image: 'https://images.unsplash.com/photo-1589394815804-964ce0ff96f8?auto=format&fit=crop&q=80&w=600' },
+  { name: 'Himachal', slug: 'shimla', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=600' },
+  { name: 'Uttarakhand', slug: 'rishikesh', image: 'https://images.unsplash.com/photo-1582662993077-ca3594b9ea6e?auto=format&fit=crop&q=80&w=600' },
 ];
 
 export function StepThreeDestination() {
@@ -53,7 +53,6 @@ export function StepThreeDestination() {
       <div className="space-y-3">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 max-w-2xl">
           {TOP_DESTINATIONS.map((dest) => {
-            const { src, fallbackSrc } = getDestinationImage(dest.slug, 'card');
             const isSelected = (data.destination_interest || '').toLowerCase() === dest.name.toLowerCase();
             return (
               <motion.button
@@ -63,8 +62,8 @@ export function StepThreeDestination() {
                 className={`group relative h-28 md:h-32 w-full rounded-2xl overflow-hidden border-2 text-left ${isSelected ? 'border-blue-600 shadow-md ring-4 ring-blue-600/20' : 'border-transparent'}`}
               >
                 <ImgWithFallback 
-                  src={src} 
-                  fallbackSrc={fallbackSrc} 
+                  src={dest.image} 
+                  fallbackSrc={getDestinationImage(dest.slug, 'card').fallbackSrc} 
                   alt={dest.name} 
                   className={`w-full h-full object-cover transition-transform duration-700 ${isSelected ? '' : 'group-hover:scale-110'}`}
                   containerClassName="w-full h-full absolute inset-0"
