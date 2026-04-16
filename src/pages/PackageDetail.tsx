@@ -10,6 +10,7 @@ import GalleryGrid from "@/components/GalleryGrid";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import YouMayAlsoLike from "@/components/YouMayAlsoLike";
 import PackageRecommendations from "@/components/PackageRecommendations";
+import PackageReviews from "@/components/PackageReviews";
 import { tourPackages } from "@/data/packages";
 import { getSimilarPackages } from "@/lib/recommendations";
 import { addRecentlyViewed } from "@/lib/personalization";
@@ -228,6 +229,10 @@ const PackageDetail = () => {
       </section>
 
       <GalleryGrid images={gallery} title="Tour Gallery" />
+
+      <section className="container mx-auto px-4 py-8">
+        <PackageReviews packageSlug={pkg.slug} />
+      </section>
 
       {/* Cross-Sell & Upsell Funnel Elements ML powered */}
       <PackageRecommendations packageId={pkg.id} topN={4} />
