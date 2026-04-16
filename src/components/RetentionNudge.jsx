@@ -80,7 +80,7 @@ const RetentionNudge = () => {
             Our travel experts can help you customize the perfect itinerary based on your budget.
           </p>
           <div style={styles.btnRow}>
-            <button style={styles.primaryBtn} onClick={() => alert("Open Chat/Form!")}>
+            <button style={styles.primaryBtn} onClick={() => window.open(`https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent("Hi! I'm planning a trip and need some help customizing an itinerary.")}`, "_blank")}>
               Chat with an Expert
             </button>
             <button style={styles.secondaryBtn} onClick={() => {

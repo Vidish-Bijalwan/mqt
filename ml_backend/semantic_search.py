@@ -25,9 +25,15 @@ class SemanticSearcher:
         #    'all-MiniLM-L6-v2' is perfect for this. It downloads automatically the first time.
         self.model = SentenceTransformer('all-MiniLM-L6-v2')
         
-        # 3. Pre-compute the mathematically embedded vectors for all packages.
-        #    (In a massive app, you'd store this in a Vector DB like Pinecone/Faiss)
-        self.embeddings = self.model.encode(self.df["synthetic_text"].tolist())
+        # 3. Pre-compute or load mathematically embedded vectors for all packages.
+        import os
+        embeddings_path = packages_filepath + ".npy"
+        
+        if os.path.exists(embeddings_path):
+            self.embeddings = np.load(embeddings_path)
+        else:
+            self.embeddings = self.model.encode(self.df["synthetic_text"].tolist())
+            np.save(embeddings_path, self.embeddings)
 
     def search(self, query: str, top_n: int = 5) -> list[dict]:
         # Embed the user's natural language query
