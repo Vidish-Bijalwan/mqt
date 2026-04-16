@@ -19,6 +19,7 @@ const sidebarGroups = [
     label: "Sales",
     items: [
       { label: "Enquiries", path: "/admin/enquiries", icon: Inbox },
+      { label: "Reviews", path: "/admin/reviews", icon: Star },
     ],
   },
   {

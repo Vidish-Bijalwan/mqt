@@ -40,6 +40,7 @@ const AdminLogin = React.lazy(() => import('./pages/admin/AdminLogin.tsx'));
 const AdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard.tsx'));
 const AdminEnquiries = React.lazy(() => import('./pages/admin/AdminEnquiries.tsx'));
 const AdminMedia = React.lazy(() => import('./pages/admin/AdminMedia.tsx'));
+const AdminReviews = React.lazy(() => import('./pages/admin/content/AdminReviews.tsx'));
 const ContentHub = React.lazy(() => import('./pages/admin/ContentHub.tsx'));
 
 // Admin Pages — Content CRUD
@@ -126,6 +127,7 @@ const AnimatedRoutes = () => {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/enquiries" element={<AdminEnquiries />} />
             <Route path="/admin/media" element={<AdminMedia />} />
+            <Route path="/admin/reviews" element={<AdminReviews />} />
             <Route path="/admin/content" element={<ContentHub />} />
 
             {/* States & UTs */}
