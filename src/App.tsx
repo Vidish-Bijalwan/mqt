@@ -111,7 +111,9 @@ const AnimatedRoutes = () => {
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/services/*" element={<NotFound />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
+        <Route path="/cancellation-policy" element={<CancellationPolicy />} />
+        <Route path="/terms-conditions" element={<TermsOfService />} />
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/refund" element={<NotFound />} />
