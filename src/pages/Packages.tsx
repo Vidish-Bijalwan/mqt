@@ -4,6 +4,7 @@ import PageHero from "@/components/PageHero";
 import RelatedCards from "@/components/RelatedCards";
 import EmptyState from "@/components/EmptyState";
 import InquiryBanner from "@/components/InquiryBanner";
+import SkeletonCard from "@/components/SkeletonCard";
 import { getPackages } from "@/services/packageService";
 import { useQuery } from "@tanstack/react-query";
 import { experienceCategories } from "@/data/experiences";
@@ -77,7 +78,7 @@ const Packages = () => {
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                {Array.from({ length: 8 }).map((_, i) => (
-                 <div key={i} className="aspect-[16/10] bg-gray-100/50 rounded-2xl animate-pulse" />
+                 <SkeletonCard key={i} />
                ))}
             </div>
           ) : filteredPackages.length > 0 ? (
