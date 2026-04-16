@@ -19,8 +19,8 @@ export default function PrivacyPolicy() {
             We collect personal information that you voluntarily provide to us when you register on the website, express an interest in obtaining information about us or our products and services, or otherwise when you contact us.
           </p>
           <ul>
-            <li><strong>Personal Information Provided by You:</strong> We collect names; phone numbers; email addresses; and other similar information.</li>
-            <li><strong>Data collected automatically:</strong> We automatically collect certain information like IP addresses, browser and device characteristics, operating systems, and page views, to improve our app performance and run our Machine Learning personalization engines.</li>
+            <li><strong>Personal Information Provided by You:</strong> We collect names, phone numbers, email addresses, and other similar information when explicitly entered through our contact forms.</li>
+            <li><strong>Data collected automatically:</strong> We ONLY collect website-specific interactions such as on-site page views, time spent per page on MyQuickTrippers.com, and clicks made strictly within our application. We DO NOT request, access, or track any information from other applications, your physical device sensors, or your cross-site browsing history. Our machine learning personalization engines run securely and operate exclusively on the data you generate while actively browsing MyQuickTrippers.</li>
           </ul>
 
           <h2>3. How We Use Your Information</h2>
