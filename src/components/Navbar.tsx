@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone, Mountain } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Mountain, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { destinationsData } from "@/data/destinations";
 import { experienceCategories } from "@/data/experiences";
@@ -114,6 +114,11 @@ const Navbar = () => {
           <Button asChild variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
             <a href="tel:+917668741373"><Phone className="h-3.5 w-3.5 mr-1" /> Call Now</a>
           </Button>
+          <Button asChild variant="secondary" size="icon" className="rounded-full ml-1 bg-muted/50 hover:bg-muted border border-border">
+            <Link to="/profile" aria-label="My Account">
+              <User className="h-4 w-4 text-foreground/80" />
+            </Link>
+          </Button>
         </div>
 
         {/* Mobile Hamburger */}
@@ -204,6 +209,9 @@ const Navbar = () => {
               <Link to="/about" className="block py-3 text-foreground font-medium border-b border-border" onClick={() => setMobileOpen(false)}>About Us</Link>
               <Link to="/blog" className="block py-3 text-foreground font-medium border-b border-border" onClick={() => setMobileOpen(false)}>Blog</Link>
               <Link to="/contact" className="block py-3 text-foreground font-medium border-b border-border" onClick={() => setMobileOpen(false)}>Contact</Link>
+              <Link to="/profile" className="block py-3 text-primary font-medium border-b border-border flex items-center" onClick={() => setMobileOpen(false)}>
+                <User className="mr-2 h-4 w-4" /> My Account / Reviews
+              </Link>
 
               <div className="pt-4 space-y-3">
                 <Button onClick={() => { setMobileOpen(false); openPlanner(); }} className="w-full gradient-primary text-primary-foreground font-medium">

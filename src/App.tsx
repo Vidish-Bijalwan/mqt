@@ -28,6 +28,8 @@ const BlogDetail = React.lazy(() => import('./pages/BlogDetail.tsx'));
 const NotFound = React.lazy(() => import('./pages/NotFound.tsx'));
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy.tsx'));
 const TermsOfService = React.lazy(() => import('./pages/TermsOfService.tsx'));
+const UserProfile = React.lazy(() => import('./pages/UserProfile.tsx'));
+const Login = React.lazy(() => import('./pages/Login.tsx'));
 
 // Admin Infrastructure
 const ProtectedRoute = React.lazy(() => import('./components/admin/ProtectedRoute.tsx').then(module => ({ default: module.ProtectedRoute })));
@@ -106,6 +108,8 @@ const AnimatedRoutes = () => {
         <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/profile" element={<UserProfile />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/services/*" element={<NotFound />} />
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
