@@ -18,7 +18,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Uttar Pradesh",
     month: "March",
     description: "World's most colourful festival — powder-drenched celebrations at the birthplace of Lord Krishna.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Colorful_Holi.jpg/1280px-Colorful_Holi.jpg",
+    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&q=80&w=1280",
     tag: "UNESCO Cultural",
     colorHex: "#f97316"
   },
@@ -29,7 +29,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Uttar Pradesh",
     month: "Oct – Nov",
     description: "Festival of lights — floating diyas on the Ganga in Varanasi ghats.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dev_Deepawali_at_Varanasi.jpg/1280px-Dev_Deepawali_at_Varanasi.jpg",
+    image: "https://images.unsplash.com/photo-1511216113906-8f56bbce1661?auto=format&fit=crop&q=80&w=1280",
     tag: "India's Biggest",
     colorHex: "#eab308"
   },
@@ -40,7 +40,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Rajasthan",
     month: "November",
     description: "World's largest camel fair — 200,000+ attendees, camel races, traditional folk performances.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pushkar_camel_fair.jpg/1280px-Pushkar_camel_fair.jpg",
+    image: "https://images.unsplash.com/photo-1560935105-ff34d5885060?auto=format&fit=crop&q=80&w=1280",
     tag: "National Geographic List",
     colorHex: "#d97706"
   },
@@ -51,7 +51,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Uttar Pradesh",
     month: "Jan – Mar (every 12 yr)",
     description: "World's largest human gathering — millions take a sacred dip at the Sangam confluence.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Kumbh_Mela_Allahabad.jpg/1280px-Kumbh_Mela_Allahabad.jpg",
+    image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=1280",
     tag: "UNESCO Listed",
     colorHex: "#3b82f6"
   },
@@ -62,7 +62,7 @@ export const festivalsData: FestivalCard[] = [
     state: "West Bengal",
     month: "October",
     description: "10-day UNESCO heritage festival — pandal-hopping, goddess idols, and Bengal's greatest spectacle.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Durga_Puja_Kolkata_2019.jpg/1280px-Durga_Puja_Kolkata_2019.jpg",
+    image: "https://images.unsplash.com/photo-1605273516104-58bcac4c03b8?auto=format&fit=crop&q=80&w=1280",
     tag: "UNESCO Intangible Heritage",
     colorHex: "#7e22ce"
   },
@@ -73,7 +73,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Maharashtra",
     month: "Aug – Sep",
     description: "10-day festival culminating in grand immersion processions drawing millions to the sea.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ganesh_Visarjan_in_Mumbai.jpg/1280px-Ganesh_Visarjan_in_Mumbai.jpg",
+    image: "https://images.unsplash.com/photo-1600021677610-d01c0cb0a08e?auto=format&fit=crop&q=80&w=1280",
     tag: "Mumbai's Grandest",
     colorHex: "#ea580c"
   },
@@ -84,7 +84,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Kerala",
     month: "Aug – Sep",
     description: "Snake boat races with 100 rowers, Pookalam flower carpets, and the legendary 28-dish feast.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Aranmula_Vallamkali.jpg/1280px-Aranmula_Vallamkali.jpg",
+    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=1280",
     tag: "Harvest Festival",
     colorHex: "#10b981"
   },
@@ -95,7 +95,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Karnataka",
     month: "October",
     description: "100 caparisoned elephants in procession, Mysore Palace illuminated every night for 10 days.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Mysore_Palace_Illumination.jpg/1280px-Mysore_Palace_Illumination.jpg",
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f7415e?auto=format&fit=crop&q=80&w=1280",
     tag: "State Festival",
     colorHex: "#eab308"
   },
@@ -106,7 +106,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Gujarat",
     month: "Nov – Feb",
     description: "Tent city in white salt desert — folk music, dance, handicrafts, and full-moon night magic.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/White_Desert_of_Kutch.jpg/1280px-White_Desert_of_Kutch.jpg",
+    image: "https://images.unsplash.com/photo-1577789467770-5b7fb749c952?auto=format&fit=crop&q=80&w=1280",
     tag: "Desert Festival",
     colorHex: "#334155"
   },
@@ -117,7 +117,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Nagaland",
     month: "December",
     description: "16 Naga tribes performing together — India's most vibrant tribal cultural showcase.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Hornbill_festival_nagaland.jpg/1280px-Hornbill_festival_nagaland.jpg",
+    image: "https://images.unsplash.com/photo-1601614777595-5db4f3f4c6aa?auto=format&fit=crop&q=80&w=1280",
     tag: "Tribal Culture",
     colorHex: "#b91c1c"
   },
@@ -128,7 +128,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Ladakh",
     month: "Jun – Jul",
     description: "Largest monastery festival in Ladakh — masked Cham dances, and the rare thangka display.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Hemis_monastery_Cham_dance.jpg/1280px-Hemis_monastery_Cham_dance.jpg",
+    image: "https://images.unsplash.com/photo-1610486058097-cdddbda24c74?auto=format&fit=crop&q=80&w=1280",
     tag: "Monastery Festival",
     colorHex: "#c2410c"
   },
@@ -139,7 +139,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Kerala",
     month: "Apr – May",
     description: "Grandest temple festival — 100 caparisoned elephants, parasol competition, and orchestra.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Thrissur_Pooram_Elephants.jpg/1280px-Thrissur_Pooram_Elephants.jpg",
+    image: "https://images.unsplash.com/photo-1536697246787-1f7ae568d89a?auto=format&fit=crop&q=80&w=1280",
     tag: "Temple Festival",
     colorHex: "#f59e0b"
   }
