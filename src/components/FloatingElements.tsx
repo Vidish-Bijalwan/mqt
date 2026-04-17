@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
 import FloatingWhatsApp from "./FloatingWhatsApp";
+import { FloatingContactBar } from "./FloatingContactBar";
 import { motion, AnimatePresence } from "framer-motion";
 
 const FloatingElements = () => {
@@ -14,7 +15,7 @@ const FloatingElements = () => {
 
   return (
     <>
-      <FloatingWhatsApp />
+      <FloatingContactBar />
 
       {/* Scroll to Top */}
       <AnimatePresence>

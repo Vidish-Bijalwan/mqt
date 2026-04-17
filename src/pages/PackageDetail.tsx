@@ -19,6 +19,10 @@ import { Check, Star, Download, Map, Calendar, Sun, Zap, ShieldCheck, MessageCir
 import { Button } from "@/components/ui/button";
 import { useTripPlanner } from "@/contexts/TripPlannerContext";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { JourneyVisualizer, TransportType } from "@/components/JourneyVisualizer";
+import { AlertBadge } from "@/components/AlertBadge";
+import { LiveCountdownTimer } from "@/components/LiveCountdownTimer";
+import { getPackageWhatsAppUrl } from "@/lib/contact";
 
 import { SEO } from "@/components/SEO";
 
@@ -68,6 +72,16 @@ const PackageDetail = () => {
     "touristType": pkg.categories
   });
 
+  const visualizerStops = pkg.itineraryHighlights?.map((day, i) => ({
+    id: `day-${i}`,
+    day: i + 1,
+    location: pkg.destination,
+    title: day,
+    description: "Enjoy this part of the journey carefully curated by MQT.",
+    imageUrl: gallery[i % gallery.length]?.src || pkg.image,
+    transportToNext: (i % 2 === 0 ? "car" : "trek") as TransportType
+  })) || [];
+
   return (
     <PageLayout>
       <SEO 
@@ -97,10 +111,32 @@ const PackageDetail = () => {
               {/* Overview */}
               <div>
                 <div className="flex items-center gap-4 mb-4 flex-wrap">
-                  {pkg.trending && <TrendingBadge type="trending" />}
-                  {pkg.seatsLeft && pkg.seatsLeft <= 5 && <TrendingBadge type="limited" value={pkg.seatsLeft} />}
-                  {pkg.discountExpiry && <TrendingBadge type="expiry" value={pkg.discountExpiry} />}
+                  {pkg.alertBadgeType && <AlertBadge type={pkg.alertBadgeType as any} seatsLeft={pkg.seatsLeft} />}
+                  {pkg.trending && !pkg.isAlertPackage && <TrendingBadge type="trending" />}
+                  {pkg.seatsLeft && pkg.seatsLeft <= 5 && !pkg.isAlertPackage && <TrendingBadge type="limited" value={pkg.seatsLeft} />}
+                  {pkg.discountExpiry && !pkg.isAlertPackage && <TrendingBadge type="expiry" value={pkg.discountExpiry} />}
                 </div>
+
+                {pkg.requiresIlp && (
+                  <div className="bg-[#111827] border-l-4 border-[#F59E0B] p-4 rounded-r-xl mb-8 shadow-sm">
+                    <p className="text-[#F59E0B] font-bold uppercase text-[11px] tracking-widest mb-1.5 flex items-center gap-2">
+                       <ShieldCheck className="w-4 h-4" /> Inner Line Permit Required
+                    </p>
+                    <p className="text-white text-sm leading-relaxed">
+                      IMPORTANT: {pkg.destination} is a restricted area. Only Indian nationals holding valid government-issued photo ID are permitted entry. Entry is strictly 9 AM to 5 PM. MQT arranges your ILP as part of this package.
+                    </p>
+                  </div>
+                )}
+
+                {pkg.seasonCloseDate && pkg.isAlertPackage && (
+                  <div className="mb-8 p-6 bg-slate-50 border border-slate-100 rounded-2xl flex flex-col items-center sm:flex-row justify-between gap-6">
+                    <div>
+                      <h4 className="font-bold text-slate-900">Booking Season Ending Soon</h4>
+                      <p className="text-sm text-slate-500 mt-1">Due to weather operations, this package closes shortly.</p>
+                    </div>
+                    <LiveCountdownTimer targetDate={pkg.seasonCloseDate} />
+                  </div>
+                )}
 
                 <h2 className="text-3xl font-display font-semibold mb-4">Tour Overview</h2>
                 <div className="flex items-center gap-6 text-sm text-muted-foreground font-body mb-6 pb-6 border-b border-border">
@@ -147,6 +183,13 @@ const PackageDetail = () => {
                 </div>
               </div>
               
+              {/* Journey Visualizer */}
+              {visualizerStops.length > 0 && (
+                <div className="pt-4">
+                  <JourneyVisualizer stops={visualizerStops} />
+                </div>
+              )}
+              
               {/* Itinerary */}
               {pkg.itineraryHighlights && (
                 <div>
@@ -171,10 +214,46 @@ const PackageDetail = () => {
             <div className="lg:col-span-1">
               <div className="sticky top-28 bg-background border border-border rounded-xl shadow-elevated overflow-hidden">
                 <div className="p-6">
-                  <div className="flex justify-between items-center mb-6">
-                    <span className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Trip Customization</span>
-                    <span className="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded">AVAILABLE</span>
-                  </div>
+                  {pkg.isAlertPackage ? (
+                    <>
+                      <div className="flex justify-between items-center mb-6">
+                        <span className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Limited Seats</span>
+                        <span className="bg-red-100 text-red-600 text-[10px] font-bold px-2 py-1 rounded">HIGH DEMAND</span>
+                      </div>
+                      
+                      <h3 className="font-display text-xl font-bold mb-3 leading-tight">{pkg.title}</h3>
+                      <p className="text-sm text-muted-foreground mb-6">
+                        {pkg.dayTrip ? 'Prices for guided day excursion including permits.' : 'Select your preferred accommodation tier for the full package.'}
+                      </p>
+
+                      <div className="space-y-4 mt-4">
+                        {/* Removed Pricing Blocks per requirements. Showing value props instead, tailored for Exclusive packages */}
+                        <div className="border border-slate-200 rounded-xl p-4">
+                            <h4 className="font-bold text-slate-800 text-sm">Bespoke Guidance</h4>
+                            <p className="text-[12px] text-slate-500 mt-0.5">All our restricted zone packages include specialized transport, permits, and expert guides.</p>
+                        </div>
+                        <div className="border border-[#F59E0B] bg-amber-50/50 rounded-xl p-4 shadow-sm relative">
+                            <div className="absolute -top-2.5 right-3 bg-[#F59E0B] text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Dynamic Pricing</div>
+                            <h4 className="font-bold text-slate-800 text-sm">Custom Quote Required</h4>
+                            <p className="text-[12px] text-slate-500 mt-0.5">Due to the exclusive nature of this package, pricing is provided upon consultation via WhatsApp to match your exact group size and travel dates.</p>
+                        </div>
+                      </div>
+
+                      <div className="mt-6">
+                        <Button 
+                          className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-6 h-auto text-base font-semibold transition-transform hover:scale-[1.02] shadow-lg shadow-green-600/20"
+                          onClick={() => window.open(getPackageWhatsAppUrl(pkg.title), "_blank")}
+                        >
+                          Check Availability on WhatsApp
+                        </Button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex justify-between items-center mb-6">
+                        <span className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Trip Customization</span>
+                        <span className="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded">AVAILABLE</span>
+                      </div>
                   
                   <h3 className="font-display text-xl font-bold mb-3 leading-tight">{pkg.title}</h3>
                   <p className="text-sm text-muted-foreground mb-6">
@@ -194,27 +273,29 @@ const PackageDetail = () => {
                         </div>
                       ))}
                     </div>
-                    <Button 
-                      className="w-full gradient-primary text-white py-6 h-auto text-base font-semibold transition-transform hover:scale-[1.02] shadow-lg shadow-primary/20"
-                      onClick={() => openPlanner(
-                        { destination_interest: pkg.destination, trip_style: pkg.categories as any },
-                        'package_detail_sidebar'
-                      )}
-                    >
-                      Get Custom Quote
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      className="w-full py-6 h-auto text-base font-medium border-border"
-                      onClick={() => window.open(`https://wa.me/917668741373?text=${encodeURIComponent(`Hi! I am interested in the ${pkg.title} trip. Please share itinerary options and pricing details.`)}`, "_blank")}
-                    >
-                      WhatsApp Expert
-                    </Button>
-                  </div>
+                        <Button 
+                          className="w-full gradient-primary text-white py-6 h-auto text-base font-semibold transition-transform hover:scale-[1.02] shadow-lg shadow-primary/20"
+                          onClick={() => openPlanner(
+                            { destination_interest: pkg.destination, trip_style: pkg.categories as any },
+                            'package_detail_sidebar'
+                          )}
+                        >
+                          Get Custom Quote
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="w-full py-6 h-auto text-base font-medium border-border hover:bg-[#25D366] hover:text-white transition-colors hover:border-[#25D366]"
+                          onClick={() => window.open(getPackageWhatsAppUrl(pkg.title), "_blank")}
+                        >
+                          WhatsApp Expert
+                        </Button>
+                      </div>
 
-                  <p className="text-xs text-center text-muted-foreground mt-4">
-                    Response usually within 2 hours.
-                  </p>
+                      <p className="text-xs text-center text-muted-foreground mt-4">
+                        Response usually within 2 hours.
+                      </p>
+                    </>
+                  )}
                 </div>
                 <div className="bg-surface p-4 border-t border-border flex items-center justify-between">
                   <div className="flex items-center gap-2 text-sm font-medium">
@@ -246,13 +327,19 @@ const PackageDetail = () => {
       />
 
       <StickyMobileCTA 
-        label="Get Custom Quote"
+        label={pkg.isAlertPackage ? "Check WhatsApp" : "Get Custom Quote"}
         whatsappText={`Hi! I want details and a quote for the ${pkg.title} package.`}
-        isEnquiryOnly={true}
-        onEnquireClick={() => openPlanner(
-          { destination_interest: pkg.destination, trip_style: pkg.categories as any },
-          'package_detail_mobile_cta'
-        )}
+        isEnquiryOnly={pkg.isAlertPackage ? false : true}
+        onEnquireClick={() => {
+          if (pkg.isAlertPackage) {
+            window.open(getPackageWhatsAppUrl(pkg.title), "_blank");
+          } else {
+            openPlanner(
+              { destination_interest: pkg.destination, trip_style: pkg.categories as any },
+              'package_detail_mobile_cta'
+            );
+          }
+        }}
       />
     </PageLayout>
   );

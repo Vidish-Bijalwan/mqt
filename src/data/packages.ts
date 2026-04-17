@@ -41,6 +41,13 @@ export interface TourPackage {
   discountExpiry?: string;
   seatsLeft?: number;
   lastBookedHours?: number;
+  // Alert Package specific fields
+  isAlertPackage?: boolean;
+  requiresIlp?: boolean;
+  nationalsOnly?: boolean;
+  dayTrip?: boolean;
+  alertBadgeType?: 'seats-filling' | 'exclusive' | 'ilp' | 'day-trip';
+  seasonCloseDate?: string;
   // Rich content for detail pages
   overview?: string;
   itineraryHighlights?: string[];
@@ -88,6 +95,160 @@ export const destinations: Destination[] = [
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const tourPackages: TourPackage[] = [
+  {
+    id: "ex-1",
+    title: "Harshil Valley 4-Day Exclusive Ecosystem Expedition",
+    slug: "harshil-valley-4-day-package",
+    destination: "Harshil Valley",
+    state: "Uttarakhand",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 3, days: 4 },
+    price: 0,
+    originalPrice: 0,
+    rating: 4.9,
+    reviewsCount: 12,
+    image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=1280",
+    includes: ["Accommodation", "Meals", "Transport", "Guide"],
+    categories: ["exclusive"],
+    tags: ["nature", "exclusive"],
+    highlights: ["Bhagirathi River", "Deodar Forests", "Apple Orchards", "Dharali Village"],
+    season: "May to November",
+    availability: "Limited Seats",
+    popularityScore: 99,
+    bookingCount: 45,
+    trending: true,
+    featured: true,
+    seatsLeft: 8,
+    isAlertPackage: true,
+    alertBadgeType: "seats-filling",
+    seasonCloseDate: "2026-11-30",
+    overview: "Embark on an immersive, 4-day ecological and cultural expedition into the heart of Harshil Valley. Often referred to as the 'Hidden Jewel of Uttarakhand,' Harshil is situated at an altitude of 2,620 meters along the banks of the pristine Bhagirathi River. Here, dense forests of Deodar and Pine create a dramatic canopy over ancient trails, while sprawling apple orchards—first introduced by British settler 'Pahari' Wilson in the 19th century—blanket the valley floor. \n\nOur exclusive itinerary delves deep into the valley's biome. You will interact with the local Bhotiya tribal communities in the surrounding villages of Mukhba and Dharali, exploring their traditional wooden architecture and handloom cottage industries. \n\n*Sources: Uttarakhand Tourism Development Board (UTDB) District Profiles; 'The Himalayan Gazetteer' by E.T. Atkinson for historical context on early settlement and flora.*",
+    itineraryHighlights: [
+      "Day 1: Arrival & Acclimatization — Scenic drive from Dehradun, tracing the Bhagirathi river gorge. Check-in at an eco-heritage lodge.",
+      "Day 2: Historical Dharali & Apple Orchards — A guided interpretive walk through the famous apple orchards, studying local horticulture techniques, followed by a visit to the ancient Shiva temple in Dharali.",
+      "Day 3: The Forest Biome Walk — A guided trek through the dense Deodar forests to pristine hidden waterfalls, focusing on Himalayan avian identification and high-altitude flora.",
+      "Day 4: Departure — Morning meditation by the riverbanks, traditional Garhwali breakfast, and return journey."
+    ]
+  },
+  {
+    id: "ex-2",
+    title: "Gangotri 4-Day High-Altitude Pilgrimage",
+    slug: "gangotri-4-day-package",
+    destination: "Gangotri",
+    state: "Uttarakhand",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 3, days: 4 },
+    price: 0,
+    originalPrice: 0,
+    rating: 5.0,
+    reviewsCount: 88,
+    image: "https://images.unsplash.com/photo-1605640840605-14ac1855827b?auto=format&fit=crop&q=80&w=1280",
+    includes: ["Accommodation", "Meals", "Transport", "Darshan"],
+    categories: ["exclusive", "pilgrimage"],
+    tags: ["spiritual", "exclusive"],
+    highlights: ["Gangotri Dham", "Suraj Kund", "Bhairav Ghati", "Ganga Aarti"],
+    season: "May to November",
+    availability: "Limited Slots",
+    popularityScore: 98,
+    bookingCount: 120,
+    trending: true,
+    featured: true,
+    seatsLeft: 12,
+    isAlertPackage: true,
+    alertBadgeType: "exclusive",
+    seasonCloseDate: "2026-11-05",
+    overview: "Journey to the spiritual source of the Ganges. Set at an elevation of 3,100 meters in the Greater Himalayas, Gangotri is not just one of the Char Dham pilgrimage sites, but a testament to immense geological and spiritual power. According to Hindu mythology, this is where Goddess Ganga descended when Lord Shiva released the mighty river from his locks.\n\nThis meticulously planned pilgrimage takes you beyond standard tourism. Witness the furious cascade of the river at Suraj Kund, traverse the dramatic gorge of Bhairav Ghati, and participate in the highly exclusive evening Ganga Aarti at the main temple. We emphasize sustainable pilgrimage practices, ensuring minimal ecological footprint in this highly sensitive alpine zone.\n\n*Sources: Ministry of Tourism (Govt. of India) Char Dham Guidelines; Wadia Institute of Himalayan Geology publications on the Bhagirathi basin.*",
+    itineraryHighlights: [
+      "Day 1: Transit to the Highlands — Drive from Dehradun through the winding roads of Uttarkashi. Evening briefing on high-altitude safety.",
+      "Day 2: The Temple & The Gorge — Arrival in Gangotri. Witness the geological marvel of Suraj Kund and participate in the evening Temple Aarti.",
+      "Day 3: Bhairav Ghati & Mythological Trails — Explore the dramatically steep pine-forested Bhairav Ghati leading up to the shrine. Optional short acclimatization hikes.",
+      "Day 4: Final Blessings & Descent — Early morning Darshan, breakfast by the roaring river, and safe descent back to the plains."
+    ]
+  },
+  {
+    id: "ex-3",
+    title: "Nelang Valley: The Forbidden Frontier (ILP Required)",
+    slug: "nelang-valley-day-trip",
+    destination: "Nelang Valley",
+    state: "Uttarakhand",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 0, days: 1 },
+    price: 0,
+    originalPrice: 0,
+    rating: 4.8,
+    reviewsCount: 15,
+    image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&q=80&w=1280",
+    includes: ["Inner Line Permit", "Transport", "Guide", "Packed Lunch"],
+    categories: ["exclusive"],
+    tags: ["restricted", "exclusive"],
+    highlights: ["Jadh Ganga Valley", "Abandoned Villages", "Military Road", "ILP Included"],
+    season: "May to October",
+    availability: "Extremely Limited",
+    popularityScore: 100,
+    bookingCount: 22,
+    trending: true,
+    featured: true,
+    seatsLeft: 4,
+    isAlertPackage: true,
+    requiresIlp: true,
+    nationalsOnly: true,
+    dayTrip: true,
+    alertBadgeType: "ilp",
+    seasonCloseDate: "2026-10-31",
+    overview: "Venture into the stark, high-altitude desert of Nelang Valley, located in the Gangotri National Park mere kilometers from the Indo-China border. Often compared to the landscapes of Spiti and Tibet, Nelang was closed to civilians after the 1962 conflict and only recently reopened under stringent military oversight.\n\nThis is a high-security zone. Visitors will travel on the legendary, spine-chilling Gartang Gali wooden skywalk and observe the abandoned trading posts of the Jadhs, a nomadic tribe that once facilitated the India-Tibet salt trade. The geography is characterized by deep gorges cut by the Jadh Ganga river and barren, towering peaks.\n\n*Sources: Forest Department of Uttarakhand (Gangotri National Park division); Indo-Tibetan Border Police (ITBP) public domain historical records.*",
+    itineraryHighlights: [
+      "05:30 AM — Dawn Departure: Begin the journey from Gangotri base in specialized 4x4 vehicles.",
+      "06:30 AM — Military Checkpoint: Stop at the Bhairav Ghati/Harsil checkpost for rigorous Inner Line Permit (ILP) verification.",
+      "09:00 AM — Entering the Void: Cross into the Restricted Zone. Experience the sudden shift from green forests to cold desert.",
+      "10:00 AM — Historical Exploration: Visit the haunting remains of the abandoned Nelang village structures and understand the legacy of the India-Tibet trade route.",
+      "01:30 PM — Landscape Photography & Lunch: Partake in a packed lunch while overlooking the dramatic Jadh Ganga gorge.",
+      "05:00 PM — Mandatory Exit: Strict compliance with military law requiring all civilian vehicles to exit the valley before sunset."
+    ]
+  },
+  {
+    id: "ex-4",
+    title: "Darang Village & Borderlands Expedition",
+    slug: "darang-village-day-trip",
+    destination: "Darang Village",
+    state: "Uttarakhand",
+    country: "India",
+    type: "domestic",
+    duration: { nights: 0, days: 1 },
+    price: 0,
+    originalPrice: 0,
+    rating: 4.7,
+    reviewsCount: 8,
+    image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&q=80&w=1280",
+    includes: ["Inner Line Permit", "Transport", "Guide", "Packed Lunch"],
+    categories: ["exclusive"],
+    tags: ["restricted", "exclusive"],
+    highlights: ["Darang Village", "Military Zone", "Himalayan Views", "ILP Included"],
+    season: "May to October",
+    availability: "Extremely Limited",
+    popularityScore: 97,
+    bookingCount: 14,
+    trending: true,
+    featured: false,
+    seatsLeft: 6,
+    isAlertPackage: true,
+    requiresIlp: true,
+    nationalsOnly: true,
+    dayTrip: true,
+    alertBadgeType: "day-trip",
+    seasonCloseDate: "2026-10-31",
+    overview: "Journey into absolute solitude. Darang is one of India's most secluded border outposts. Access is incredibly restricted, heavily monitored, and promises an unparalleled view of the raw, untamed Himalayan frontiers. \n\nThis expedition focuses on the sheer isolation and strategic significance of the region. You will traverse terrain marked by glaciers, alpine tundra, and military-engineered mountain roads that defy standard civil engineering. It is an exploration meant for those who seek to respectfully understand the harsh realities and majestic beauty of India's furthest boundaries.\n\n*Sources: Border Roads Organisation (BRO) project archives; regional anthropological surveys of high-altitude borders.*",
+    itineraryHighlights: [
+      "06:00 AM — Departure: Leave baseline accommodation in specialized, permit-holding vehicles.",
+      "08:00 AM — Security Clearance: Extensive documentation matching at the primary ITBP military checkpoint.",
+      "10:00 AM — Ascent to Darang: Navigate the treacherous and awe-inspiring hairpin bends engineered by the BRO.",
+      "12:00 PM — Frontier Views: Observe the massive glaciated peaks that demarcate international borders.",
+      "01:30 PM — Alpine Lunch: Enjoy a field-packed lunch in complete silence at 3,500+ meters.",
+      "05:00 PM — Safe Return: Mandatory sunset clearance out of the military zone."
+    ]
+  },
   {
     id: "1",
     title: "Kedarnath Yatra Package",

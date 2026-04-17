@@ -18,6 +18,8 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 import BottomNav from "@/components/BottomNav";
+import { AlertBanner } from "@/components/AlertBanner";
+import { ExclusiveAlertModal } from "@/components/ExclusiveAlertModal";
 
 import { SEO } from "@/components/SEO";
 
@@ -58,8 +60,10 @@ const Index = () => {
         image="/og-image.jpg"
         schema={schema}
       />
+      <ExclusiveAlertModal />
       <TopBar />
       <Navbar />
+      <AlertBanner />
       <main>
         <HeroSection />
         <TrustStrip />

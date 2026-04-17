@@ -7,6 +7,7 @@ export interface FestivalCard {
   description: string;
   image: string;
   tag: string;
+  colorHex?: string; // Fallback gradient hex
 }
 
 export const festivalsData: FestivalCard[] = [
@@ -17,18 +18,20 @@ export const festivalsData: FestivalCard[] = [
     state: "Uttar Pradesh",
     month: "March",
     description: "World's most colourful festival — powder-drenched celebrations at the birthplace of Lord Krishna.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Colorful_Holi.jpg/1280px-Colorful_Holi.jpg",
     tag: "UNESCO Cultural",
+    colorHex: "#f97316"
   },
   {
     id: "f2",
     name: "Diwali",
-    city: "Varanasi & Jaipur",
-    state: "Uttar Pradesh / Rajasthan",
+    city: "Varanasi",
+    state: "Uttar Pradesh",
     month: "Oct – Nov",
-    description: "Festival of lights — floating diyas on the Ganga in Varanasi and rooftop fireworks over Jaipur forts.",
-    image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=800",
+    description: "Festival of lights — floating diyas on the Ganga in Varanasi ghats.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dev_Deepawali_at_Varanasi.jpg/1280px-Dev_Deepawali_at_Varanasi.jpg",
     tag: "India's Biggest",
+    colorHex: "#eab308"
   },
   {
     id: "f3",
@@ -37,8 +40,9 @@ export const festivalsData: FestivalCard[] = [
     state: "Rajasthan",
     month: "November",
     description: "World's largest camel fair — 200,000+ attendees, camel races, traditional folk performances.",
-    image: "https://images.unsplash.com/photo-1518002054494-3a6f94352e9d?auto=format&fit=crop&q=80&w=800",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pushkar_camel_fair.jpg/1280px-Pushkar_camel_fair.jpg",
     tag: "National Geographic List",
+    colorHex: "#d97706"
   },
   {
     id: "f4",
@@ -47,8 +51,9 @@ export const festivalsData: FestivalCard[] = [
     state: "Uttar Pradesh",
     month: "Jan – Mar (every 12 yr)",
     description: "World's largest human gathering — millions take a sacred dip at the Sangam confluence.",
-    image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Kumbh_Mela_Allahabad.jpg/1280px-Kumbh_Mela_Allahabad.jpg",
     tag: "UNESCO Listed",
+    colorHex: "#3b82f6"
   },
   {
     id: "f5",
@@ -56,29 +61,32 @@ export const festivalsData: FestivalCard[] = [
     city: "Kolkata",
     state: "West Bengal",
     month: "October",
-    description: "10-day UNESCO heritage festival — pandal-hopping, goddess idols, and Bengal's greatest cultural spectacle.",
-    image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80&w=800",
+    description: "10-day UNESCO heritage festival — pandal-hopping, goddess idols, and Bengal's greatest spectacle.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Durga_Puja_Kolkata_2019.jpg/1280px-Durga_Puja_Kolkata_2019.jpg",
     tag: "UNESCO Intangible Heritage",
+    colorHex: "#7e22ce"
   },
   {
     id: "f6",
     name: "Ganesh Chaturthi",
-    city: "Mumbai & Pune",
+    city: "Mumbai",
     state: "Maharashtra",
     month: "Aug – Sep",
-    description: "10-day festival culminating in Lalbaugcha Raja's grand immersion procession drawing millions.",
-    image: "https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?auto=format&fit=crop&q=80&w=800",
+    description: "10-day festival culminating in grand immersion processions drawing millions to the sea.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ganesh_Visarjan_in_Mumbai.jpg/1280px-Ganesh_Visarjan_in_Mumbai.jpg",
     tag: "Mumbai's Grandest",
+    colorHex: "#ea580c"
   },
   {
     id: "f7",
     name: "Onam",
-    city: "Alleppey & Thrissur",
+    city: "Alleppey",
     state: "Kerala",
     month: "Aug – Sep",
-    description: "Snake boat races with 100 rowers, Pookalam flower carpets, and the legendary 28-dish Onam Sadhya feast.",
-    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800",
+    description: "Snake boat races with 100 rowers, Pookalam flower carpets, and the legendary 28-dish feast.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Aranmula_Vallamkali.jpg/1280px-Aranmula_Vallamkali.jpg",
     tag: "Harvest Festival",
+    colorHex: "#10b981"
   },
   {
     id: "f8",
@@ -87,8 +95,9 @@ export const festivalsData: FestivalCard[] = [
     state: "Karnataka",
     month: "October",
     description: "100 caparisoned elephants in procession, Mysore Palace illuminated every night for 10 days.",
-    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Mysore_Palace_Illumination.jpg/1280px-Mysore_Palace_Illumination.jpg",
     tag: "State Festival",
+    colorHex: "#eab308"
   },
   {
     id: "f9",
@@ -97,28 +106,31 @@ export const festivalsData: FestivalCard[] = [
     state: "Gujarat",
     month: "Nov – Feb",
     description: "Tent city in white salt desert — folk music, dance, handicrafts, and full-moon night magic.",
-    image: "https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?auto=format&fit=crop&q=80&w=800",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/White_Desert_of_Kutch.jpg/1280px-White_Desert_of_Kutch.jpg",
     tag: "Desert Festival",
+    colorHex: "#334155"
   },
   {
     id: "f10",
     name: "Hornbill Festival",
-    city: "Kisama Heritage Village",
+    city: "Kisama",
     state: "Nagaland",
-    month: "December 1–10",
+    month: "December",
     description: "16 Naga tribes performing together — India's most vibrant tribal cultural showcase.",
-    image: "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?auto=format&fit=crop&q=80&w=800",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Hornbill_festival_nagaland.jpg/1280px-Hornbill_festival_nagaland.jpg",
     tag: "Tribal Culture",
+    colorHex: "#b91c1c"
   },
   {
     id: "f11",
     name: "Hemis Festival",
-    city: "Hemis Monastery, Leh",
+    city: "Leh",
     state: "Ladakh",
     month: "Jun – Jul",
     description: "Largest monastery festival in Ladakh — masked Cham dances, and the rare thangka display.",
-    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80&w=800",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Hemis_monastery_Cham_dance.jpg/1280px-Hemis_monastery_Cham_dance.jpg",
     tag: "Monastery Festival",
+    colorHex: "#c2410c"
   },
   {
     id: "f12",
@@ -126,38 +138,9 @@ export const festivalsData: FestivalCard[] = [
     city: "Thrissur",
     state: "Kerala",
     month: "Apr – May",
-    description: "Grandest temple festival — 100 caparisoned elephants, parasol competition, and percussive orchestra.",
-    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=800",
+    description: "Grandest temple festival — 100 caparisoned elephants, parasol competition, and orchestra.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Thrissur_Pooram_Elephants.jpg/1280px-Thrissur_Pooram_Elephants.jpg",
     tag: "Temple Festival",
-  },
-  {
-    id: "f13",
-    name: "Bihu",
-    city: "Guwahati & Across Assam",
-    state: "Assam",
-    month: "April & January",
-    description: "Assam's harvest festival — traditional Bihu dance in red-white attire, gateway to Northeast tourism.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800",
-    tag: "Harvest Festival",
-  },
-  {
-    id: "f14",
-    name: "Rath Yatra",
-    city: "Puri",
-    state: "Odisha",
-    month: "Jun – Jul",
-    description: "UNESCO heritage — millions pull 45-foot wooden chariots of Lord Jagannath through Puri's main street.",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800",
-    tag: "UNESCO Heritage",
-  },
-  {
-    id: "f15",
-    name: "Surajkund Mela",
-    city: "Faridabad",
-    state: "Haryana",
-    month: "February",
-    description: "India's largest international crafts fair — 30+ countries, artisans, folk performances, perfect Delhi add-on.",
-    image: "https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=800",
-    tag: "Crafts Fair",
-  },
+    colorHex: "#f59e0b"
+  }
 ];

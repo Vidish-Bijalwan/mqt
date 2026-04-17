@@ -21,6 +21,7 @@ const StateListing = React.lazy(() => import('./pages/StateListing.tsx'));
 const DestinationDetail = React.lazy(() => import('./pages/DestinationDetail.tsx'));
 const Packages = React.lazy(() => import('./pages/Packages.tsx'));
 const PackageDetail = React.lazy(() => import('./pages/PackageDetail.tsx'));
+const HelicopterPackages = React.lazy(() => import('./pages/HelicopterPackages.tsx'));
 const About = React.lazy(() => import('./pages/About.tsx'));
 const Contact = React.lazy(() => import('./pages/Contact.tsx'));
 const Blog = React.lazy(() => import('./pages/Blog.tsx'));
@@ -103,6 +104,7 @@ const AnimatedRoutes = () => {
         <Route path="/destinations/:stateSlug" element={<StateListing />} />
         <Route path="/destinations/:stateSlug/:slug" element={<DestinationDetail />} />
         <Route path="/packages" element={<Packages />} />
+        <Route path="/packages/helicopter" element={<HelicopterPackages />} />
         <Route path="/packages/:category" element={<Packages />} />
         <Route path="/packages/:category/:slug" element={<PackageDetail />} />
         <Route path="/about" element={<About />} />
