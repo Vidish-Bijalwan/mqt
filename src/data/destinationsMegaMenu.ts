@@ -60,7 +60,7 @@ export const megaMenuData: MegaMenuRegion[] = [
         type: "state",
         region: "North India",
         summary: "Sacred circuits, Himalayan escapes, spiritual towns, and high-altitude adventures.",
-        image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80",
+        image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
         topDestinations: [
           { name: "Kedarnath", slug: "kedarnath" },
           { name: "Rishikesh", slug: "rishikesh" },

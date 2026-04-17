@@ -56,7 +56,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "Palaces, bazaars, and sunset boat rides.",
             highlights: ["Amber Fort jeep ride", "City Palace tour", "Udaipur lake boat"],
-            image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
           },
           {
             title: "Kerala Family Escape",
@@ -66,7 +66,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "7 Days / 6 Nights",
             hook: "Backwaters, tea estates, and elephant sanctuaries.",
             highlights: ["Houseboat on backwaters", "Periyar wildlife cruise", "Kochi heritage walk"],
-            image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
           },
           {
             title: "Kashmir Family Retreat",
@@ -76,7 +76,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "8 Days / 7 Nights",
             hook: "Houseboat life, snowy peaks, and valley drives.",
             highlights: ["Dal Lake houseboat", "Gulmarg cable car", "Pahalgam horse ride"],
-            image: "https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg",
           },
           {
             title: "Goa Family Beach Break",
@@ -86,7 +86,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "5 Days / 4 Nights",
             hook: "Beaches, heritage churches, and seafood feasts.",
             highlights: ["North Goa beaches", "Old Goa churches", "Dudhsagar waterfalls excursion"],
-            image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
           },
           {
             title: "Andaman Family Adventure",
@@ -96,7 +96,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "Crystal-clear water, coral reefs, and island sunsets.",
             highlights: ["Radhanagar Beach", "Glass-bottom boat ride", "Cellular Jail light show"],
-            image: "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?w=800&q=80",
+            image: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg",
           },
           {
             title: "Ooty & Coorg Family Journey",
@@ -106,7 +106,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "Misty hills, toy trains, and coffee estate walks.",
             highlights: ["Nilgiri Mountain Railway", "Ooty Botanical Gardens", "Coorg coffee estate"],
-            image: "https://images.unsplash.com/photo-1600100397608-4657e9b4f03d?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg",
           },
           {
             title: "Shimla & Manali Family Vacation",
@@ -116,7 +116,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "7 Days / 6 Nights",
             hook: "Timber cottages, snow play, and mountain sunsets.",
             highlights: ["Mall Road Shimla", "Solang Valley snow", "Hadimba Temple"],
-            image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg",
           },
           {
             title: "Darjeeling Family Tea Trail",
@@ -126,7 +126,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "Toy trains, tea gardens, and Kanchenjunga views.",
             highlights: ["Darjeeling Himalayan Railway", "Tea estate walk", "Tiger Hill sunrise"],
-            image: "https://images.unsplash.com/photo-1558431382-27e303142255?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/025_happy-valley-tea-estate-darjeeling-west_bengal-1-h_govt.jpg",
           },
         ],
       },
@@ -150,7 +150,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "5 Days / 4 Nights",
             hook: "Private houseboats and misty tea estates.",
             highlights: ["Candlelight dinner on houseboat", "Tea estate walk at sunrise", "Ayurvedic couple spa"],
-            image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
           },
           {
             title: "Kashmir Honeymoon Special",
@@ -160,7 +160,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "Shikara rides, saffron fields, and snowy gondola.",
             highlights: ["Dal Lake houseboat", "Gulmarg Gondola", "Pahalgam meadow walk"],
-            image: "https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg",
           },
           {
             title: "Udaipur Couple Retreat",
@@ -170,7 +170,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Candlelit lake palaces and cultural evenings.",
             highlights: ["Lake Pichola sunset cruise", "City Palace rooftop dinner", "Monsoon Palace view"],
-            image: "https://images.unsplash.com/photo-1617958258591-55a8d3e93f1d?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
           },
           {
             title: "Andaman Honeymoon Journey",
@@ -180,7 +180,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "World-class beaches and bioluminescent nights.",
             highlights: ["Radhanagar Beach sunset", "Scuba diving together", "Beach candlelight dinner"],
-            image: "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?w=800&q=80",
+            image: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg",
           },
           {
             title: "Coorg Coffee Romance",
@@ -190,7 +190,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Misty coffee estates and private forest walks.",
             highlights: ["Private estate villa", "Abbey Falls visit", "Sunrise plantation walk"],
-            image: "https://images.unsplash.com/photo-1600100397608-4657e9b4f03d?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg",
           },
           {
             title: "Goa Romantic Escape",
@@ -200,7 +200,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "5 Days / 4 Nights",
             hook: "Quiet beaches, beach shacks, and starlit nights.",
             highlights: ["Palolem sunset cruise", "Private beach dinner", "Heritage Panjim walk"],
-            image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
           },
           {
             title: "Darjeeling Tea Romance",
@@ -210,7 +210,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "5 Days / 4 Nights",
             hook: "Misty mornings and mountain magic.",
             highlights: ["Tiger Hill sunrise", "Tea estate guided walk", "Himalayan mountain views"],
-            image: "https://images.unsplash.com/photo-1558431382-27e303142255?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/025_happy-valley-tea-estate-darjeeling-west_bengal-1-h_govt.jpg",
           },
           {
             title: "Udaipur Palace Experience",
@@ -220,7 +220,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Live like modern royalty.",
             highlights: ["Taj Lake Palace stay", "Private yacht dinner", "Vintage car heritage tour"],
-            image: "https://images.unsplash.com/photo-1617958258591-55a8d3e93f1d?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
           },
         ],
       },
@@ -244,7 +244,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "8 Days / 7 Nights",
             hook: "Conquer the highest motorable passes on earth.",
             highlights: ["Royal Enfield riding", "Khardung La pass (5,359m)", "Nubra Valley camp"],
-            image: "https://images.unsplash.com/photo-1609766418204-e4e2af49769a?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg",
           },
           {
             title: "Rishikesh Adventure Escape",
@@ -254,7 +254,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "White-water rafting, bungee, and riverside camps.",
             highlights: ["16km Ganga rafting", "Bungee jumping (83m)", "Cliff jumping"],
-            image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Spiti Valley Escape",
@@ -264,7 +264,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "8 Days / 7 Nights",
             hook: "Remote Buddhist villages and high-altitude deserts.",
             highlights: ["Key Monastery", "Kaza market", "Pin Valley trek"],
-            image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg",
           },
           {
             title: "Bir Billing Paragliding Break",
@@ -274,7 +274,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "World's second-best paragliding site.",
             highlights: ["30-minute tandem paragliding", "Mountain camp", "Tibetan settlement visit"],
-            image: "https://images.unsplash.com/photo-1606298855672-3efb63017be8?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg",
           },
           {
             title: "Auli Snow Expedition",
@@ -284,7 +284,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Skiing at 2,519m with Nanda Devi views.",
             highlights: ["Skiing & snowboarding", "Gorson Bugyal trek", "Joshimath cable car"],
-            image: "https://images.unsplash.com/photo-1606298855672-3efb63017be8?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Valley of Flowers Trek",
@@ -294,7 +294,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "7 Days / 6 Nights",
             hook: "500+ wildflower species in a UNESCO valley.",
             highlights: ["Valley of Flowers day trek", "Hemkund Sahib pilgrimage", "Alpine meadow camp"],
-            image: "https://images.unsplash.com/photo-1606298855672-3efb63017be8?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
         ],
       },
@@ -318,7 +318,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Live like modern royalty.",
             highlights: ["Taj Lake Palace stay", "Private yacht transfer", "Royal dinner setup"],
-            image: "https://images.unsplash.com/photo-1617958258591-55a8d3e93f1d?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
           },
           {
             title: "Kerala Premium Escape",
@@ -328,7 +328,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "Private houseboat, premium ayurveda, and jungle villa.",
             highlights: ["Premium houseboat (AC)", "Kalari Kovilakom Ayurveda", "Periyar boat safari"],
-            image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
           },
           {
             title: "Goa Luxury Getaway",
@@ -338,7 +338,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "5 Days / 4 Nights",
             hook: "5-star beachfront villas and private pool suites.",
             highlights: ["Taj Exotica or Leela stay", "Sunset yacht cruise", "Private beach cabana"],
-            image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
           },
           {
             title: "Rajasthan Palace Retreat",
@@ -348,7 +348,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "7 Days / 6 Nights",
             hook: "Stay inside living heritage palaces.",
             highlights: ["Samode Palace", "Umaid Bhawan suite", "Camel polo match"],
-            image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
           },
           {
             title: "Ladakh Luxury Expedition",
@@ -358,7 +358,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "9 Days / 8 Nights",
             hook: "Land Cruiser, private camp, cultural expert guide.",
             highlights: ["5-star Leh hotel", "Pangong luxury camp", "Cultural historian guide"],
-            image: "https://images.unsplash.com/photo-1609766418204-e4e2af49769a?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg",
           },
           {
             title: "Andaman Luxury Retreat",
@@ -368,7 +368,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "Barefoot luxury on a pristine island.",
             highlights: ["Taj Exotica beach resort", "Private snorkeling", "Sunset boat"],
-            image: "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?w=800&q=80",
+            image: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg",
           },
         ],
       },
@@ -397,7 +397,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "11 Days / 10 Nights",
             hook: "The ultimate Himalayan spiritual circuit.",
             highlights: ["Helicopter transfers available", "VIP Darshan coordination", "All 4 Dhams"],
-            image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Kedarnath Yatra Package",
@@ -407,7 +407,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "Sacred pilgrimage to Lord Shiva's abode at 3,583m.",
             highlights: ["Trek or helicopter option", "Haridwar Ganga Aarti", "Expert pilgrimage guide"],
-            image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Varanasi Spiritual Journey",
@@ -417,7 +417,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Sunrise boats on the Ganga, Ganga Aarti, Sarnath.",
             highlights: ["Ganga Aarti ceremony", "Sunrise boat ride 88 ghats", "Kashi Vishwanath darshan"],
-            image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Ayodhya Pilgrimage",
@@ -427,7 +427,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Ram Mandir darshan and Triveni Sangam boat.",
             highlights: ["Ram Mandir new temple", "Hanuman Garhi", "Triveni Sangam Prayagraj"],
-            image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Rameswaram Temple Trail",
@@ -437,7 +437,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "5 Days / 4 Nights",
             hook: "India's southernmost pilgrimage circuit.",
             highlights: ["Ramanathaswamy Temple", "Pamban Bridge crossing", "Meenakshi Temple Madurai"],
-            image: "https://images.unsplash.com/photo-1582972236019-ea4af5ffe587?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/038_1-rameswaram-temple-rameswaram-tamilnadu-hero_govt.jpg",
           },
           {
             title: "Tirupati Darshan Trip",
@@ -447,7 +447,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "World's richest temple — VIP darshan arranged.",
             highlights: ["VIP Darshan tickets", "Govindharaja Swamy temple", "Srinivasa Mangapuram"],
-            image: "https://images.unsplash.com/photo-1582972236019-ea4af5ffe587?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/037_2-sri-venkateswara-swamy-vaari-temple-2-attr-hero_govt.jpg",
           },
           {
             title: "Mathura & Vrindavan Yatra",
@@ -457,7 +457,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "The land of Lord Krishna — temples and ghats.",
             highlights: ["Banke Bihari Temple", "ISKCON Vrindavan", "Yamuna Aarti"],
-            image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Kedarnath Helicopter Package",
@@ -467,7 +467,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "No trek needed — direct helicopter darshan.",
             highlights: ["Return helicopter (Phata ↔ Kedarnath)", "VIP Darshan assistance", "Senior-friendly"],
-            image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
         ],
       },
@@ -491,7 +491,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "Scuba dive into pristine coral reefs.",
             highlights: ["Scuba certification option", "Beachfront resort stay", "Radhanagar Beach"],
-            image: "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?w=800&q=80",
+            image: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg",
           },
           {
             title: "Goa Beach Escape",
@@ -501,7 +501,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "5 Days / 4 Nights",
             hook: "Sunset cruises, beach parties, and heritage cafés.",
             highlights: ["Baga & Calangute beaches", "Dudhsagar Falls", "Portuguese Old Goa"],
-            image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
           },
           {
             title: "Kovalam Coastal Holiday",
@@ -511,7 +511,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "5 Days / 4 Nights",
             hook: "Lighthouse beaches and cliff-top ayurveda retreats.",
             highlights: ["Lighthouse Beach", "Varkala cliff walk", "Ayurvedic massage by the sea"],
-            image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
           },
           {
             title: "Gokarna Beach Break",
@@ -531,7 +531,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "India's most exclusive coral atoll getaway.",
             highlights: ["Snorkeling on coral reefs", "Lagoon kayaking", "Uninhabited island picnic"],
-            image: "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/036_kalpeni-kavaratti-lakshwadeep-3-musthead-hero_govt.jpg",
           },
           {
             title: "Puducherry Weekend Escape",
@@ -541,7 +541,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "French promenades, ashram calm, and beach cafés.",
             highlights: ["White Town cycle tour", "Auroville golden dome", "Paradise Beach"],
-            image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/039_auroville-puducherry_govt.jpg",
           },
         ],
       },
@@ -565,7 +565,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "The quintessential Indian heritage circuit.",
             highlights: ["Taj Mahal sunrise tour", "Amber Fort jeep ride", "Qutub Minar Delhi"],
-            image: "https://images.unsplash.com/photo-1564507592228-00569727dc02?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
           },
           {
             title: "Royal Rajasthan Heritage Trail",
@@ -575,7 +575,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "8 Days / 7 Nights",
             hook: "Forts, palaces, and desert glamping.",
             highlights: ["Mehrangarh Fort", "Sam Sand Dunes camel ride", "Jaisalmer fort stay"],
-            image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
           },
           {
             title: "Hampi Heritage Trail",
@@ -585,7 +585,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Ruins of the Vijayanagara Empire at golden hour.",
             highlights: ["Virupaksha Temple", "Vittala Temple chariot", "Tungabhadra boat ride"],
-            image: "https://images.unsplash.com/photo-1590123715937-5bdbeda57b01?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg",
           },
           {
             title: "Varanasi Cultural Journey",
@@ -595,7 +595,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "5 Days / 4 Nights",
             hook: "World's oldest living city — ghats, silk, and history.",
             highlights: ["Ghat walking tour", "Silk weaving workshop", "Sarnath Buddhist stupa"],
-            image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Khajuraho Temple Circuit",
@@ -605,7 +605,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "UNESCO temples and Bundelkhand's hidden gems.",
             highlights: ["Western temple group dawn", "Orchha cenotaphs", "Panna National Park excursion"],
-            image: "https://images.unsplash.com/photo-1590123715937-5bdbeda57b01?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/031_rajwada-indore-mp-city-hero_govt.jpg",
           },
           {
             title: "Mahabalipuram Shore Trail",
@@ -615,7 +615,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "7th-century rock-cut shore temples by the Bay of Bengal.",
             highlights: ["Shore Temple sunrise", "Arjuna's Penance bas-relief", "Silk saree weaving"],
-            image: "https://images.unsplash.com/photo-1582972236019-ea4af5ffe587?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/038_1-rameswaram-temple-rameswaram-tamilnadu-hero_govt.jpg",
           },
         ],
       },
@@ -639,7 +639,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Track the elusive Bengal Tiger in the wild.",
             highlights: ["Open Jeep safaris", "Luxury jungle lodge", "Naturalist guide"],
-            image: "https://images.unsplash.com/photo-1545249390-b2b2bdb76d44?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/031_rajwada-indore-mp-city-hero_govt.jpg",
           },
           {
             title: "Jim Corbett Safari",
@@ -649,7 +649,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "India's oldest national park and tiger fortress.",
             highlights: ["Bijrani zone jeep safari", "Elephant safari", "River-bed walk"],
-            image: "https://images.unsplash.com/photo-1545249390-b2b2bdb76d44?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Ranthambore Wildlife Tour",
@@ -659,7 +659,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Tigers near Ranthambore Fort — India's most photogenic park.",
             highlights: ["Canter & Jeep safaris", "Ranthambore Fort", "Birding at Rajbagh Lake"],
-            image: "https://images.unsplash.com/photo-1545249390-b2b2bdb76d44?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
           },
           {
             title: "Kaziranga Nature Escape",
@@ -679,7 +679,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "The inspiration for The Jungle Book.",
             highlights: ["Tiger zone safaris", "Barasingha spotting", "Tribal village walk"],
-            image: "https://images.unsplash.com/photo-1545249390-b2b2bdb76d44?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/031_rajwada-indore-mp-city-hero_govt.jpg",
           },
           {
             title: "Kabini Jungle Escape",
@@ -718,7 +718,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "Queen of Hills — mall road walks and valley views.",
             highlights: ["Kempty Falls", "Gun Hill cable car", "Landour heritage walk"],
-            image: "https://images.unsplash.com/photo-1606298855672-3efb63017be8?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Jaipur Weekend Escape",
@@ -728,7 +728,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "Pink City palaces, bazaars, and Rajasthani thali.",
             highlights: ["Hawa Mahal sunrise photo", "Amber Fort", "Johari Bazaar shopping"],
-            image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
           },
           {
             title: "Lonavala Quick Break",
@@ -738,7 +738,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "2 Days / 1 Night",
             hook: "Misty Western Ghats, waterfalls, and chiki fudge.",
             highlights: ["Bhushi Dam", "Tiger's Leap viewpoint", "Pawna Lake sunrise"],
-            image: "https://images.unsplash.com/photo-1600100397608-4657e9b4f03d?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/028_Mumbai_skyline_Bandra_-_Worli_Sea_Link_bridge_with_govt.jpg",
           },
           {
             title: "Rishikesh Weekend Trip",
@@ -748,7 +748,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "Yoga, rafting, and Ganga Aarti in one weekend.",
             highlights: ["Ganga Aarti at Ram Jhula", "Bungee or rafting", "Beatles Ashram visit"],
-            image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
           },
           {
             title: "Pondicherry Weekend Escape",
@@ -758,7 +758,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "French quarters, ashram serenity, and sea breeze.",
             highlights: ["White Town cycle tour", "Auroville Matrimandir", "Seafood by Promenade"],
-            image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/039_auroville-puducherry_govt.jpg",
           },
           {
             title: "Kasol Trek Weekend",
@@ -768,7 +768,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "Mountain village cafés and a hot spring trek.",
             highlights: ["Kheerganga hot spring trek (13km)", "Parvati Valley walk", "Israeli café culture"],
-            image: "https://images.unsplash.com/photo-1606298855672-3efb63017be8?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg",
           },
           {
             title: "Coorg Weekend Getaway",
@@ -778,7 +778,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "Coffee estate homestays and waterfall hikes.",
             highlights: ["Abbey Falls", "Estate plantation walk", "Raja's Seat sunset"],
-            image: "https://images.unsplash.com/photo-1600100397608-4657e9b4f03d?w=800&q=80",
+            image: "/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg",
           },
           {
             title: "Gokarna Beach Weekend",
