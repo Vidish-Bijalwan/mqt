@@ -72,7 +72,7 @@ export const ExclusiveAlertModal = () => {
 
           <div className="relative h-[200px] w-full shrink-0">
             <img 
-              src="https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=1280" 
+              src="/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg" 
               alt="Exclusive Mountain Destination" 
               className="w-full h-full object-cover"
               onError={(e) => { e.currentTarget.src = ''; e.currentTarget.className="w-full h-full bg-gradient-to-b from-gray-800 to-[#0F172A]" }}

@@ -32,7 +32,7 @@ export const experienceCategories: ExperienceCategory[] = [
     slug: "honeymoon",
     title: "Honeymoon Journeys",
     tagline: "Begin Your Forever Story in Incredible India",
-    heroImage: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80",
+    heroImage: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
     description: [
       "Your honeymoon deserves more than a package tour — it deserves a story. At MyQuickTrippers, we design honeymoon journeys where every moment is curated for romance, privacy, and unforgettable memories. From a moonlit shikara ride on Dal Lake to a tropical villa in the Andamans, every detail is meticulously planned.",
       "Our honeymoon packages span India's most romantic destinations — Kerala's serene backwaters, the pristine beaches of Goa and Lakshadweep, the regal palaces of Rajasthan, and the snowy peaks of Kashmir. We handle all logistics so you can focus entirely on each other."
@@ -64,7 +64,7 @@ export const experienceCategories: ExperienceCategory[] = [
     slug: "family",
     title: "Family Holidays",
     tagline: "Memories That Your Family Will Talk About for Years",
-    heroImage: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80",
+    heroImage: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
     description: [
       "Family holidays should create stories that are retold at dining tables for decades. Our family tour packages are designed to balance what everyone wants — adventure for the kids, culture and leisure for parents, and comfortable pacing for grandparents.",
       "We have extensive experience planning multi-generational family trips across India. Whether it's exploring the heritage of Rajasthan, cruising the backwaters of Kerala, or enjoying the cool climes of Ooty and Munnar, we ensure seamless execution."
@@ -91,7 +91,7 @@ export const experienceCategories: ExperienceCategory[] = [
     slug: "beach-escapes",
     title: "Beach Escapes",
     tagline: "Sun, Sand, and Serenity Across India's Coastlines",
-    heroImage: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80",
+    heroImage: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
     description: [
       "From the vibrant beach shacks of North Goa to the secluded white sands of the Andaman and Nicobar Islands, India's coastline offers unparalleled tropical escapes. We curate beach holidays focusing on relaxation, water sports, and seaside luxury.",
       "Whether you want a private snorkeling expedition in Lakshadweep or a lively sunset cruise in Goa, our coastal packages guarantee the perfect maritime getaway."
@@ -118,7 +118,7 @@ export const experienceCategories: ExperienceCategory[] = [
     slug: "heritage-trails",
     title: "Heritage Trails",
     tagline: "Step Back in Time and Experience India's Royal Legacy",
-    heroImage: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80",
+    heroImage: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
     description: [
       "India's history is written in its grand forts, magnificent palaces, and ancient temple cities. Our Heritage Trails take you through the architectural marvels of Rajasthan, the Mughal grandeur of Agra, and the Dravidian temple complexes of South India.",
       "Experience royal hospitality by staying in authentic converted palaces and taking guided tours with expert local historians who bring centuries-old stories to life."
@@ -145,7 +145,7 @@ export const experienceCategories: ExperienceCategory[] = [
     slug: "wildlife-retreats",
     title: "Wildlife Retreats",
     tagline: "Into the Wild: Tigers, Elephants, and Incredible Biodiversity",
-    heroImage: "https://images.unsplash.com/photo-1588863024976-11b3329ccae7?auto=format&fit=crop&q=80", // Jungle safari
+    heroImage: "/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg", // Jungle safari
     description: [
       "India is home to some of the world's most spectacular wildlife. From tracing the Bengal Tiger in Ranthambore and Bandhavgarh to witnessing the one-horned rhinoceros in Kaziranga, our wildlife retreats immerse you deep in nature safely and comfortably.",
       "We partner with eco-conscious safari lodges and experienced naturalists to ensure every game drive is educational, respectful of the ecosystem, and completely unforgettable."
@@ -172,7 +172,7 @@ export const experienceCategories: ExperienceCategory[] = [
     slug: "luxury",
     title: "Luxury Getaways",
     tagline: "Uncompromised Elegance and Bespoke Service Across India",
-    heroImage: "https://images.unsplash.com/photo-1542314831-c6a4d14d8c53?auto=format&fit=crop&q=80", // Luxury pool/hotel
+    heroImage: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg", // Luxury pool/hotel
     description: [
       "For those who demand the absolute best, our luxury travel packages offer elite experiences across India's most prestigious properties. We manage every detail seamlessly, leaving you to experience pure relaxation.",
       "From a chartered houseboat in Kerala to a private villa overlooking the Aravalli hills, we provide VIP fast-track transfers, exclusive dining, and uncompromising comfort at every step."
@@ -199,7 +199,7 @@ export const experienceCategories: ExperienceCategory[] = [
     slug: "pilgrimage",
     title: "Pilgrimage Tours",
     tagline: "Sacred Journeys and Spiritual Connections",
-    heroImage: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80", // Varanasi
+    heroImage: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", // Varanasi
     description: [
       "India is the spiritual heart of the world. Our pilgrimage tours handle all the complex logistics of visiting major shrines, allowing you and your elders to focus entirely on devotion.",
       "From the high-altitude Kedarnath yatra to the serene aartis of Varanasi, from Tirupati darshans to the ancient circuits of South India, we ensure comfortable stays, VIP darshan passes, and verified guides."
@@ -226,7 +226,7 @@ export const experienceCategories: ExperienceCategory[] = [
     slug: "adventure",
     title: "Adventure Tours",
     tagline: "Thrilling Expeditions Across India's Dramatic Landscapes",
-    heroImage: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80", // Mountains/Adventure
+    heroImage: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", // Mountains/Adventure
     description: [
       "For the adrenaline seekers, India offers extraordinary experiences — from crossing high-altitude passes in Ladakh to surfing the waves in Goa, and white-water rafting in Rishikesh.",
       "We believe adventure should be challenging but never compromised on safety. Every adventure package includes proper risk assessment, certified guides, high-quality gear, and strict emergency protocols."

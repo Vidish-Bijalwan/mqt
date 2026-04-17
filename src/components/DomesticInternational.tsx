@@ -33,8 +33,8 @@ const DomesticInternational = () => {
           {sections.map((section: any) => (
             <Link key={section.id} to={section.cta_link || "/packages"} className="group relative rounded-xl overflow-hidden aspect-[16/9] min-h-[280px]">
               <ImgWithFallback
-                src={section.image_url || `https://images.unsplash.com/photo-${section.type === 'international' ? '1544735716-392fe2489ffa' : '1444858291040-58f756a3bdd6'}?auto=format&fit=crop&q=80&w=1200`}
-                fallbackSrc="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=800"
+                src={section.image_url || `/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg === 'international' ? '1544735716-392fe2489ffa' : '1444858291040-58f756a3bdd6'}?auto=format&fit=crop&q=80&w=1200`}
+                fallbackSrc="/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg"
                 alt={section.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 lazy={false}

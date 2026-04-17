@@ -49,7 +49,7 @@ const HelicopterPackages = () => {
       
       <div className="relative pt-32 pb-20 bg-[#0F172A] text-white overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Gangotri_Temple_1.jpg/1280px-Gangotri_Temple_1.jpg" alt="Helicopter" className="w-full h-full object-cover opacity-30 mix-blend-overlay" />
+          <img src="/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg" alt="Helicopter" className="w-full h-full object-cover opacity-30 mix-blend-overlay" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] to-transparent" />
         </div>
         

@@ -8,49 +8,49 @@ const serviceData: Record<string, any> = {
   'custom-itinerary': {
     icon: Navigation,
     title: 'Custom Itinerary',
-    image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2000&auto=format&fit=crop',
+    image: '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
     description: 'We craft entirely bespoke journeys tailored to your specific interests, pace, and preferences. No cookie-cutter tours—just your dream trip brought to life.',
     features: ['1-on-1 Consultation', 'Personalized Routing', 'Exclusive Experiences', 'Flexible Pacing']
   },
   'hotel-booking': {
     icon: Hotel,
     title: 'Hotel Booking',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2000&auto=format&fit=crop',
+    image: '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
     description: 'Unlock exclusive rates and VIP perks at handpicked luxury, boutique, and heritage properties across India and globally.',
     features: ['Best Rate Guarantee', 'Complimentary Upgrades', 'Carefully Vetted Properties', '24/7 Check-in Support']
   },
   'flight-booking': {
     icon: Plane,
     title: 'Flight Booking',
-    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2000&auto=format&fit=crop',
+    image: '/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg',
     description: 'Seamless domestic and international flight ticketing round the clock. We manage changes, delays, and special requests so you never have to wait on hold.',
     features: ['Global Network Support', 'Baggage Allowances Handled', 'Swift Cancellations', 'Corporate Rates']
   },
   'cab-booking': {
     icon: MapPin,
     title: 'Cab Booking',
-    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2000&auto=format&fit=crop',
+    image: '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg',
     description: 'Reliable, premium chauffeur-driven vehicles for airport transfers, city tours, or multi-day intercity travels with verified professional drivers.',
     features: ['Premium Fleet', 'Verified Drivers', 'Sanitized Vehicles', 'GPS Tracking']
   },
   'travel-insurance': {
     icon: Shield,
     title: 'Travel Insurance',
-    image: 'https://images.unsplash.com/photo-1603796846097-bee99e4a601f?q=80&w=2000&auto=format&fit=crop',
+    image: '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg',
     description: 'Comprehensive coverage shielding you from medical emergencies, trip cancellations, lost baggage, and unexpected delays. Travel with absolute peace of mind.',
     features: ['Medical Coverage', 'Lost Baggage Claim', 'Trip Cancellation', 'Instant Policy Delivery']
   },
   'visa-assistance': {
     icon: Award,
     title: 'Visa Assistance',
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2000&auto=format&fit=crop',
+    image: '/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg',
     description: 'End-to-end support for business and tourist visas. Our experts painstakingly verify your documents to ensure the highest approval success rates.',
     features: ['Document Verification', 'Form Filling Assistance', 'Interview Prep', 'Real-time Tracking']
   },
   'trek-booking': {
     icon: Navigation,
     title: 'Trek Booking',
-    image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2000&auto=format&fit=crop',
+    image: '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
     description: 'Expert-led trekking expeditions through the Himalayas and Western Ghats. We provide top-tier equipment, safety protocols, and certified mountain guides.',
     features: ['Certified Guides', 'High-altitude Safety', 'Premium Equipment Provided', 'Eco-friendly Camps']
   }
@@ -67,7 +67,7 @@ export default function ServiceDetail() {
     return {
       icon: Navigation,
       title: rawTitle.charAt(0).toUpperCase() + rawTitle.slice(1),
-      image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2000&auto=format&fit=crop',
+      image: '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
       description: 'At MyQuickTrippers, we pride ourselves on offering seamless services designed exactly for your journey. Explore the world with complete confidence.',
       features: ['24/7 Support', 'Best Prices', 'Dedicated Advisor', 'Premium Quality']
     };

@@ -33,7 +33,7 @@ const defaultVibes = [
     description: 'Goa, Andaman, Lakshadweep — pristine shores await.',
     icon_name: "Waves",
     gradient_classes: 'from-cyan-500/80 to-blue-600/80',
-    bg_image_url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800',
+    bg_image_url: '/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg',
   },
   {
     id: 'adventure',
@@ -43,7 +43,7 @@ const defaultVibes = [
     description: 'Ladakh, Spiti Valley, Kashmir — epic Himalayan journeys.',
     icon_name: "Mountain",
     gradient_classes: 'from-emerald-600/80 to-teal-700/80',
-    bg_image_url: 'https://images.unsplash.com/photo-1518002171953-a080ee817e1f?auto=format&fit=crop&q=80&w=800',
+    bg_image_url: '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
   },
   {
     id: 'heritage',
@@ -53,7 +53,7 @@ const defaultVibes = [
     description: 'Rajasthan, Varanasi, Hampi — timeless India unfolds.',
     icon_name: "Landmark",
     gradient_classes: 'from-amber-500/80 to-orange-600/80',
-    bg_image_url: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=800',
+    bg_image_url: '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg',
   },
   {
     id: 'pilgrimage',
@@ -63,7 +63,7 @@ const defaultVibes = [
     description: 'Kedarnath, Varanasi, Char Dham — devotion & divinity.',
     icon_name: "Flame",
     gradient_classes: 'from-rose-500/80 to-red-700/80',
-    bg_image_url: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800',
+    bg_image_url: '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
   },
   {
     id: 'honeymoon',
@@ -73,7 +73,7 @@ const defaultVibes = [
     description: 'Kashmir, Kerala, Udaipur — where love stories are written.',
     icon_name: "Heart",
     gradient_classes: 'from-pink-500/80 to-rose-600/80',
-    bg_image_url: 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=800',
+    bg_image_url: '/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg',
   },
 ];
 
@@ -111,7 +111,7 @@ const DiscoverySection = () => {
                 >
                   {/* BG Image */}
                   <img
-                    src={vibe.bg_image_url || vibe.background_image_url || defaultVibes.find(v => v.style_id === vibe.style)?.bg_image_url || defaultVibes.find(v => v.id === vibe.id)?.bg_image_url || 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=800'}
+                    src={vibe.bg_image_url || vibe.background_image_url || defaultVibes.find(v => v.style_id === vibe.style)?.bg_image_url || defaultVibes.find(v => v.id === vibe.id)?.bg_image_url || '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg'}
                     alt={vibe.label}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"

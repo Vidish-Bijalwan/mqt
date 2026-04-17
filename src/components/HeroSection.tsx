@@ -11,19 +11,19 @@ import SemanticSearchBar from "./SemanticSearchBar";
 
 const heroSlides = [
   {
-    src: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80&w=1920",
+    src: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg",
     alt: "Taj Mahal at sunrise with reflection pool mist, Agra, Uttar Pradesh, India",
   },
   {
-    src: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=1920",
+    src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
     alt: "Pangong Tso Lake at sunrise with turquoise water and barren mountains, Ladakh, India",
   },
   {
-    src: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=1920",
+    src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     alt: "Ganga Aarti fire ritual at Dashashwamedh Ghat with priests and brass lamps, Varanasi, India",
   },
   {
-    src: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=1920",
+    src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
     alt: "Kerala backwaters houseboat at golden hour with coconut palms and reflections, Alleppey, India",
   },
 ];

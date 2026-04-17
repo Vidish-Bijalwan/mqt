@@ -68,26 +68,26 @@ export interface Destination {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const destinations: Destination[] = [
-  { id: "1", name: "Kedarnath", slug: "kedarnath", image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=600", packagesCount: 15 },
-  { id: "2", name: "Ladakh", slug: "ladakh", image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=600", packagesCount: 12 },
-  { id: "3", name: "Valley of Flowers", slug: "valley-of-flowers", image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&q=80&w=600", packagesCount: 8 },
-  { id: "4", name: "Varanasi", slug: "varanasi", image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=600", packagesCount: 10 },
-  { id: "5", name: "Kashmir", slug: "kashmir", image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=600", packagesCount: 18 },
-  { id: "6", name: "Manali", slug: "manali", image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=600", packagesCount: 14 },
-  { id: "7", name: "Rishikesh", slug: "rishikesh", image: "https://images.unsplash.com/photo-1606298855672-3efb63017be8?auto=format&fit=crop&q=80&w=600", packagesCount: 9 },
-  { id: "8",  name: "Char Dham",       slug: "char-dham",       image: "https://images.unsplash.com/photo-1619120238346-978e07731e77?auto=format&fit=crop&q=80&w=600", packagesCount: 6  },
-  { id: "9",  name: "Spiti Valley",    slug: "spiti-valley",    image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&q=80&w=600", packagesCount: 7  },
-  { id: "10", name: "Meghalaya",       slug: "meghalaya",       image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&q=80&w=600", packagesCount: 5  },
-  { id: "11", name: "Lakshadweep",     slug: "lakshadweep",     image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600", packagesCount: 4  },
-  { id: "12", name: "Hampi",           slug: "hampi",           image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=600", packagesCount: 6  },
-  { id: "13", name: "Pondicherry",     slug: "pondicherry",     image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=600", packagesCount: 5  },
-  { id: "14", name: "Rann of Kutch",   slug: "rann-of-kutch",   image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=600", packagesCount: 4  },
-  { id: "15", name: "Jodhpur",         slug: "jodhpur",         image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=600", packagesCount: 8  },
-  { id: "16", name: "Darjeeling",      slug: "darjeeling",      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=600", packagesCount: 7  },
-  { id: "17", name: "Coorg",           slug: "coorg",           image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&q=80&w=600", packagesCount: 6  },
-  { id: "18", name: "Sundarbans",      slug: "sundarbans",      image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&q=80&w=600", packagesCount: 4  },
-  { id: "19", name: "Ziro Valley",     slug: "ziro-valley",     image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&q=80&w=600", packagesCount: 3  },
-  { id: "20", name: "Andaman Islands", slug: "andaman",         image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600", packagesCount: 10 },
+  { id: "1", name: "Kedarnath", slug: "kedarnath", image: "/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg", packagesCount: 15 },
+  { id: "2", name: "Ladakh", slug: "ladakh", image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 12 },
+  { id: "3", name: "Valley of Flowers", slug: "valley-of-flowers", image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 8 },
+  { id: "4", name: "Varanasi", slug: "varanasi", image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 10 },
+  { id: "5", name: "Kashmir", slug: "kashmir", image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 18 },
+  { id: "6", name: "Manali", slug: "manali", image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 14 },
+  { id: "7", name: "Rishikesh", slug: "rishikesh", image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 9 },
+  { id: "8",  name: "Char Dham",       slug: "char-dham",       image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 6  },
+  { id: "9",  name: "Spiti Valley",    slug: "spiti-valley",    image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 7  },
+  { id: "10", name: "Meghalaya",       slug: "meghalaya",       image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 5  },
+  { id: "11", name: "Lakshadweep",     slug: "lakshadweep",     image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 4  },
+  { id: "12", name: "Hampi",           slug: "hampi",           image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 6  },
+  { id: "13", name: "Pondicherry",     slug: "pondicherry",     image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 5  },
+  { id: "14", name: "Rann of Kutch",   slug: "rann-of-kutch",   image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 4  },
+  { id: "15", name: "Jodhpur",         slug: "jodhpur",         image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 8  },
+  { id: "16", name: "Darjeeling",      slug: "darjeeling",      image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 7  },
+  { id: "17", name: "Coorg",           slug: "coorg",           image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 6  },
+  { id: "18", name: "Sundarbans",      slug: "sundarbans",      image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 4  },
+  { id: "19", name: "Ziro Valley",     slug: "ziro-valley",     image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", packagesCount: 3  },
+  { id: "20", name: "Andaman Islands", slug: "andaman",         image: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", packagesCount: 10 },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -815,7 +815,7 @@ export const blogPosts = [
     date: "April 10, 2025",
     readTime: "6 min read",
     excerpt: "Planning your Kedarnath yatra? Discover the ideal months, weather conditions, and insider tips to make your pilgrimage unforgettable.",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg",
   },
   {
     id: "2",
@@ -825,7 +825,7 @@ export const blogPosts = [
     date: "March 25, 2025",
     readTime: "8 min read",
     excerpt: "Everything you need to know before your first trip to Ladakh — permits, acclimatisation, packing list, and the best routes to explore.",
-    image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg",
   },
   {
     id: "3",
@@ -835,7 +835,7 @@ export const blogPosts = [
     date: "March 15, 2025",
     readTime: "7 min read",
     excerpt: "A UNESCO World Heritage Site nestled in the Himalayas, the Valley of Flowers is a once-in-a-lifetime trekking experience. Here's how to plan it.",
-    image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg",
   },
 ];
 

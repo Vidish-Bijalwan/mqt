@@ -42,7 +42,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Arjun Negi", role: "Kedarnath Specialist", initials: "AN" },
     date: "April 10, 2025",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     excerpt: "Planning your Kedarnath yatra? Discover the ideal months, weather conditions, and insider tips to make your pilgrimage unforgettable.",
     featured: true,
     content: [
@@ -74,7 +74,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Rohan Kapoor", role: "Ladakh Adventure Specialist", initials: "RK" },
     date: "March 25, 2025",
     readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg",
     excerpt: "Everything you need to know before your first trip to Ladakh — permits, acclimatisation, packing list, and the best routes to explore.",
     featured: false,
     content: [
@@ -106,7 +106,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Priya Thakur", role: "Trek & Nature Specialist", initials: "PT" },
     date: "March 15, 2025",
     readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1624026676760-53603403ac95?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     excerpt: "A UNESCO World Heritage Site nestled in the Himalayas, the Valley of Flowers is a once-in-a-lifetime trekking experience. Here's how to plan it.",
     featured: false,
     content: [
@@ -136,7 +136,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Sakshi Mehra", role: "Destination Wedding & Honeymoon Specialist", initials: "SM" },
     date: "February 20, 2025",
     readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg",
     excerpt: "Kashmir honeymoon trip complete guide — houseboat selection, Gulmarg gondola, Pahalgam valleys, and the most romantic experiences in the Valley.",
     featured: true,
     content: [
@@ -164,7 +164,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Arjun Negi", role: "Char Dham Yatra Specialist", initials: "AN" },
     date: "February 5, 2025",
     readTime: "9 min read",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     excerpt: "Complete guide to planning the 2025 Char Dham Yatra: opening dates, registration, itinerary, helicopter options, and insider tips for a spiritual Himalayan journey.",
     featured: false,
     content: [
@@ -192,7 +192,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Rohan Kapoor", role: "Himachal Pradesh Expert", initials: "RK" },
     date: "January 10, 2025",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg",
     excerpt: "Is Manali worth visiting in December? Honest breakdown of what to expect — snow, roads, prices, and the best activities for a winter trip.",
     featured: false,
     content: [
@@ -220,7 +220,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Vikram Singh", role: "Adventure Sports Coordinator", initials: "VS" },
     date: "December 22, 2024",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1590050752117-23a9d7fc2440?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     excerpt: "Everything you need to know about adventure activities in Rishikesh — rafting routes, bungee details, prices, and which activities to book vs walk-in.",
     featured: false,
     content: [
@@ -248,7 +248,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Meera Joshi", role: "Spiritual Travel Consultant", initials: "MJ" },
     date: "November 30, 2024",
     readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     excerpt: "Step-by-step guide to planning your Kedarnath and Badrinath pilgrimage — route, registration, accommodation, packing, and how to combine both shrines efficiently.",
     featured: false,
     content: [
@@ -275,7 +275,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Priya Thakur", role: "Trek & Nature Specialist", initials: "PT" },
     date: "October 15, 2024",
     readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1624026676760-53603403ac95?auto=format&fit=crop&q=80&w=800",
+    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     excerpt: "The best Himalayan treks for first-time trekkers — from easy 1-day escapes to 6-day beginner-friendly trail experiences, ranked by difficulty and experience quality.",
     featured: false,
     content: [

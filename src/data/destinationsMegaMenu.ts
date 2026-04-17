@@ -45,7 +45,7 @@ export const megaMenuData: MegaMenuRegion[] = [
     slug: "north-india",
     description: "The crown of India, defined by the towering Himalayas, sacred rivers, and deep spiritual heritage.",
     bestFor: "Adventure, Spirituality, Snowscapes, Himalayan Escapes",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80",
+    image: "/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg",
     featuredDestinations: [
       { name: "Kedarnath", slug: "kedarnath", state: "Uttarakhand" },
       { name: "Manali", slug: "manali", state: "Himachal Pradesh" },
@@ -138,7 +138,7 @@ export const megaMenuData: MegaMenuRegion[] = [
     slug: "west-india",
     description: "Where vast deserts meet endless coastlines, royal heritage, and bustling metropolises.",
     bestFor: "Heritage Architecture, Beaches, Deserts, Nightlife",
-    image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80",
+    image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg",
     featuredDestinations: [
       { name: "Jaipur", slug: "jaipur", state: "Rajasthan" },
       { name: "North Goa", slug: "north-goa", state: "Goa" },
@@ -204,7 +204,7 @@ export const megaMenuData: MegaMenuRegion[] = [
     slug: "south-india",
     description: "Tropical landscapes draped in greenery, ancient Dravidian temples, and tranquil backwaters.",
     bestFor: "Lush Nature, Ayurveda, Backwaters, Coffee Estates",
-    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80",
+    image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
     featuredDestinations: [
       { name: "Munnar", slug: "munnar", state: "Kerala" },
       { name: "Alleppey", slug: "alleppey", state: "Kerala" },
@@ -282,7 +282,7 @@ export const megaMenuData: MegaMenuRegion[] = [
     slug: "east-india",
     description: "Deep historical roots featuring colonial architecture, massive tea gardens, and ancient temples.",
     bestFor: "Culture, Tea Estates, Temples, Diverse Wildlife",
-    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80",
+    image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
     featuredDestinations: [
       { name: "Darjeeling", slug: "darjeeling", state: "West Bengal" },
       { name: "Puri", slug: "puri", state: "Odisha" },
@@ -345,7 +345,7 @@ export const megaMenuData: MegaMenuRegion[] = [
     slug: "central-india",
     description: "The verdant heart of India known for prime tiger reserves and iconic cultural landmarks.",
     bestFor: "Tiger Safaris, Cave Art, Mughal Architecture",
-    image: "https://images.unsplash.com/photo-1588863024976-11b3329ccae7?auto=format&fit=crop&q=80",
+    image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
     featuredDestinations: [
       { name: "Varanasi", slug: "varanasi", state: "Uttar Pradesh" },
       { name: "Bandhavgarh", slug: "bandhavgarh", state: "Madhya Pradesh" },
@@ -398,7 +398,7 @@ export const megaMenuData: MegaMenuRegion[] = [
     slug: "north-east-india",
     description: "Undiscovered frontiers boasting immense biodiversity, living root bridges, and rolling tea estates.",
     bestFor: "Offbeat Exploration, Monasteries, Wildlife",
-    image: "https://images.unsplash.com/photo-1589394815804-964ce0fae412?auto=format&fit=crop&q=80",
+    image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
     featuredDestinations: [
       { name: "Shillong", slug: "shillong", state: "Meghalaya" },
       { name: "Kaziranga", slug: "kaziranga", state: "Assam" },
@@ -461,7 +461,7 @@ export const megaMenuData: MegaMenuRegion[] = [
     slug: "islands-and-uts",
     description: "From crystalline equatorial waters to modern urban territories, discovering India's exceptional frontiers.",
     bestFor: "Scuba Diving, Luxury Resorts, Secluded Beaches",
-    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80",
+    image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
     featuredDestinations: [
       { name: "Havelock Island", slug: "havelock-island", state: "Andaman & Nicobar" },
       { name: "Agatti", slug: "agatti", state: "Lakshadweep" },
@@ -531,12 +531,12 @@ export const megaMenuData: MegaMenuRegion[] = [
 
 export const popularDestinationsData: PopularSection = {
   trending: [
-    { name: "Kedarnath", slug: "kedarnath", state: "Uttarakhand", image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80" },
-    { name: "Jaipur", slug: "jaipur", state: "Rajasthan", image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80" },
-    { name: "Munnar", slug: "munnar", state: "Kerala", image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80" },
-    { name: "Goa", slug: "goa", state: "Goa", image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80" },
-    { name: "Andaman", slug: "andaman-and-nicobar-islands", state: "Andaman", image: "https://images.unsplash.com/photo-1589394815804-964ce0fae412?auto=format&fit=crop&q=80" },
-    { name: "Varanasi", slug: "varanasi", state: "Uttar Pradesh", image: "https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&q=80" }
+    { name: "Kedarnath", slug: "kedarnath", state: "Uttarakhand", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" },
+    { name: "Jaipur", slug: "jaipur", state: "Rajasthan", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" },
+    { name: "Munnar", slug: "munnar", state: "Kerala", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" },
+    { name: "Goa", slug: "goa", state: "Goa", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" },
+    { name: "Andaman", slug: "andaman-and-nicobar-islands", state: "Andaman", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" },
+    { name: "Varanasi", slug: "varanasi", state: "Uttar Pradesh", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" }
   ],
   categories: [
     {

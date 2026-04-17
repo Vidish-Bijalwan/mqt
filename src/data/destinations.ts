@@ -77,7 +77,7 @@ export const destinationsData: DestinationData[] = [
     state: "Rajasthan",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1599661046289-e31887846eac?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg",
     bestSeason: "October–March",
     idealDuration: "3-4 Days",
     difficulty: "Easy",
@@ -94,10 +94,10 @@ export const destinationsData: DestinationData[] = [
     travelTips: [],
     faqs: [],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1599661046289-e31887846eac?auto=format&fit=crop&q=80&w=800", alt: "Hawa Mahal - The Palace of Winds" },
-      { src: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80&w=800", alt: "Amer Fort reflection in Maota Lake" },
-      { src: "https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?auto=format&fit=crop&q=80&w=800", alt: "City Palace courtyard" },
-      { src: "https://images.unsplash.com/photo-1606132474149-16027a0082f9?auto=format&fit=crop&q=80&w=800", alt: "Jantar Mantar astronomical observatory" }
+      { src: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg", alt: "Hawa Mahal - The Palace of Winds" },
+      { src: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg", alt: "Amer Fort reflection in Maota Lake" },
+      { src: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg", alt: "City Palace courtyard" },
+      { src: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg", alt: "Jantar Mantar astronomical observatory" }
     ],
     relatedDestinations: [],
     relatedPackageSlugs: [],
@@ -112,7 +112,7 @@ export const destinationsData: DestinationData[] = [
     state: "Kerala",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1590496793907-4277b22416f0?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
     bestSeason: "September–March",
     idealDuration: "3-4 Days",
     difficulty: "Easy",
@@ -129,10 +129,10 @@ export const destinationsData: DestinationData[] = [
     travelTips: [],
     faqs: [],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1590496793907-4277b22416f0?auto=format&fit=crop&q=80&w=800", alt: "Lush tea plantations of Munnar" },
-      { src: "https://images.unsplash.com/photo-1597583681729-278631ca7389?auto=format&fit=crop&q=80&w=800", alt: "Foggy morning in Munnar hills" },
-      { src: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800", alt: "Tea picker in the estates" },
-      { src: "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?auto=format&fit=crop&q=80&w=800", alt: "Mattupetty Dam lake view" }
+      { src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg", alt: "Lush tea plantations of Munnar" },
+      { src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg", alt: "Foggy morning in Munnar hills" },
+      { src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg", alt: "Tea picker in the estates" },
+      { src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg", alt: "Mattupetty Dam lake view" }
     ],
     relatedDestinations: [],
     relatedPackageSlugs: [],
@@ -147,7 +147,7 @@ export const destinationsData: DestinationData[] = [
     state: "Goa",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
     bestSeason: "November–February",
     idealDuration: "4-5 Days",
     difficulty: "Easy",
@@ -164,10 +164,10 @@ export const destinationsData: DestinationData[] = [
     travelTips: [],
     faqs: [],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=800", alt: "North Goa beach at sunset" },
-      { src: "https://images.unsplash.com/photo-1473081556163-2a17de81fc97?auto=format&fit=crop&q=80&w=800", alt: "Palm trees on a tropical beach" },
-      { src: "https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&q=80&w=800", alt: "Old Goa Portuguese church" },
-      { src: "https://images.unsplash.com/photo-1647895055375-39d7fc243452?auto=format&fit=crop&q=80&w=800", alt: "Colorful street in Fontainhas" }
+      { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "North Goa beach at sunset" },
+      { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "Palm trees on a tropical beach" },
+      { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "Old Goa Portuguese church" },
+      { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "Colorful street in Fontainhas" }
     ],
     relatedDestinations: [],
     relatedPackageSlugs: [],
@@ -182,7 +182,7 @@ export const destinationsData: DestinationData[] = [
     state: "Andaman and Nicobar",
     country: "India",
     image: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1589136140034-7935cf97f5ef?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg",
     bestSeason: "October–May",
     idealDuration: "6-7 Days",
     difficulty: "Easy",
@@ -199,10 +199,10 @@ export const destinationsData: DestinationData[] = [
     travelTips: [],
     faqs: [],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1589136140034-7935cf97f5ef?auto=format&fit=crop&q=80&w=800", alt: "Radhanagar Beach crystal waters" },
-      { src: "https://images.unsplash.com/photo-1621213340539-75618fce71e0?auto=format&fit=crop&q=80&w=800", alt: "Scuba diving in coral reefs" },
-      { src: "https://images.unsplash.com/photo-1605436247078-f0ef43ee8d5c?auto=format&fit=crop&q=80&w=800", alt: "Cellular Jail national memorial" },
-      { src: "https://images.unsplash.com/photo-1579737482598-f2b1c4e7240c?auto=format&fit=crop&q=80&w=800", alt: "Sunset at Neil Island" }
+      { src: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", alt: "Radhanagar Beach crystal waters" },
+      { src: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", alt: "Scuba diving in coral reefs" },
+      { src: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", alt: "Cellular Jail national memorial" },
+      { src: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", alt: "Sunset at Neil Island" }
     ],
     relatedDestinations: [],
     relatedPackageSlugs: [],
@@ -217,7 +217,7 @@ export const destinationsData: DestinationData[] = [
     state: "Uttarakhand",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     altitude: "3,583 m",
     bestSeason: "May–June, September–October",
     idealDuration: "5–7 Days",
@@ -346,10 +346,10 @@ export const destinationsData: DestinationData[] = [
       },
     ],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800", alt: "Kedarnath Temple at sunrise with snow-capped peak" },
-      { src: "https://images.unsplash.com/photo-1616190419596-e2839e955d0a?auto=format&fit=crop&q=80&w=800", alt: "Pilgrims trekking the Gaurikund trail" },
-      { src: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&q=80&w=800", alt: "Kedarnath valley in morning mist" },
-      { src: "https://images.unsplash.com/photo-1512100356956-c17101daec70?auto=format&fit=crop&q=80&w=800", alt: "Aerial view of Kedarnath temple" }
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Kedarnath Temple at sunrise with snow-capped peak" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Pilgrims trekking the Gaurikund trail" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Kedarnath valley in morning mist" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Aerial view of Kedarnath temple" }
     ],
     relatedDestinations: ["char-dham", "rishikesh", "manali"],
     relatedPackageSlugs: ["kedarnath-yatra-5-nights-6-days"],
@@ -364,7 +364,7 @@ export const destinationsData: DestinationData[] = [
     state: "Ladakh (UT)",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg",
     altitude: "3,524 m (Leh city)",
     bestSeason: "June–September",
     idealDuration: "7–10 Days",
@@ -509,10 +509,10 @@ export const destinationsData: DestinationData[] = [
       },
     ],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=800", alt: "Pangong Lake reflecting snow-capped Himalayan peaks" },
-      { src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800", alt: "Khardung La Pass with prayer flags" },
-      { src: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=800", alt: "Bactrian camels at Hunder sand dunes, Nubra Valley" },
-      { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800", alt: "Thiksey Monastery perched on a hilltop" }
+      { src: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", alt: "Pangong Lake reflecting snow-capped Himalayan peaks" },
+      { src: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", alt: "Khardung La Pass with prayer flags" },
+      { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "Bactrian camels at Hunder sand dunes, Nubra Valley" },
+      { src: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", alt: "Thiksey Monastery perched on a hilltop" }
     ],
     relatedDestinations: ["kashmir", "manali", "rishikesh"],
     relatedPackageSlugs: ["ladakh-adventure-7-nights-8-days"],
@@ -527,7 +527,7 @@ export const destinationsData: DestinationData[] = [
     state: "Jammu & Kashmir (UT)",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg",
     altitude: "1,585 m (Srinagar)",
     bestSeason: "April–October",
     idealDuration: "5–7 Days",
@@ -652,10 +652,10 @@ export const destinationsData: DestinationData[] = [
       },
     ],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=800", alt: "Traditional shikara on Dal Lake at sunset" },
-      { src: "https://images.unsplash.com/photo-1512100356956-c17101daec70?auto=format&fit=crop&q=80&w=800", alt: "Gulmarg meadows with snow-capped peaks in background" },
-      { src: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&q=80&w=800", alt: "Traditional Kashmir houseboat moored on Dal Lake" },
-      { src: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=800", alt: "Indira Gandhi Tulip Garden in full bloom" }
+      { src: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg", alt: "Traditional shikara on Dal Lake at sunset" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Gulmarg meadows with snow-capped peaks in background" },
+      { src: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg", alt: "Traditional Kashmir houseboat moored on Dal Lake" },
+      { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "Indira Gandhi Tulip Garden in full bloom" }
     ],
     relatedDestinations: ["ladakh", "manali", "kedarnath"],
     relatedPackageSlugs: ["kashmir-honeymoon-5-nights-6-days"],
@@ -670,7 +670,7 @@ export const destinationsData: DestinationData[] = [
     state: "Uttarakhand",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1624026676760-53603403ac95?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     altitude: "3,658 m",
     bestSeason: "July–September",
     idealDuration: "6–8 Days",
@@ -803,10 +803,10 @@ export const destinationsData: DestinationData[] = [
       },
     ],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1624026676760-53603403ac95?auto=format&fit=crop&q=80&w=800", alt: "Valley of Flowers in peak bloom — carpet of wildflowers" },
-      { src: "https://images.unsplash.com/photo-1616190419596-e2839e955d0a?auto=format&fit=crop&q=80&w=800", alt: "Brahma Kamal in its natural habitat" },
-      { src: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&q=80&w=800", alt: "Hemkund Sahib sacred lake in the Himalayas" },
-      { src: "https://images.unsplash.com/photo-1512100356956-c17101daec70?auto=format&fit=crop&q=80&w=800", alt: "Pushpawati River flowing through the valley" }
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Valley of Flowers in peak bloom — carpet of wildflowers" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Brahma Kamal in its natural habitat" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Hemkund Sahib sacred lake in the Himalayas" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Pushpawati River flowing through the valley" }
     ],
     relatedDestinations: ["kedarnath", "rishikesh", "char-dham"],
     relatedPackageSlugs: ["valley-of-flowers-trek-6-nights-7-days"],
@@ -821,7 +821,7 @@ export const destinationsData: DestinationData[] = [
     state: "Uttar Pradesh",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     altitude: "80 m",
     bestSeason: "October–March",
     idealDuration: "3–4 Days",
@@ -928,10 +928,10 @@ export const destinationsData: DestinationData[] = [
       },
     ],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800", alt: "Evening Ganga Aarti at Dashashwamedh Ghat, Varanasi" },
-      { src: "https://images.unsplash.com/photo-1554522432-68a52e92c2b7?auto=format&fit=crop&q=80&w=800", alt: "Sunrise boat ride past the 88 ghats of Varanasi" },
-      { src: "https://images.unsplash.com/photo-1590766948512-483664c4020c?auto=format&fit=crop&q=80&w=800", alt: "Kashi Vishwanath Temple Corridor, Varanasi" },
-      { src: "https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=800", alt: "The narrow ancient lanes of old Varanasi" }
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Evening Ganga Aarti at Dashashwamedh Ghat, Varanasi" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Sunrise boat ride past the 88 ghats of Varanasi" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Kashi Vishwanath Temple Corridor, Varanasi" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "The narrow ancient lanes of old Varanasi" }
     ],
     relatedDestinations: ["kedarnath", "rishikesh", "char-dham"],
     relatedPackageSlugs: ["varanasi-spiritual-3-nights-4-days"],
@@ -946,7 +946,7 @@ export const destinationsData: DestinationData[] = [
     state: "Himachal Pradesh",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     altitude: "2,050 m",
     bestSeason: "Year-round",
     idealDuration: "4–6 Days",
@@ -1062,10 +1062,10 @@ export const destinationsData: DestinationData[] = [
       },
     ],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800", alt: "Solang Valley snowfields in winter with skiers" },
-      { src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800", alt: "Rohtang Pass panorama with Lahaul Valley" },
-      { src: "https://images.unsplash.com/photo-1597059914078-4c663360b943?auto=format&fit=crop&q=80&w=800", alt: "Hadimba Devi Temple surrouned by cedar forests" },
-      { src: "https://images.unsplash.com/photo-1605649405098-84610b1d300d?auto=format&fit=crop&q=80&w=800", alt: "Beas River with snow-capped peaks in background" }
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Solang Valley snowfields in winter with skiers" },
+      { src: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg", alt: "Rohtang Pass panorama with Lahaul Valley" },
+      { src: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg", alt: "Hadimba Devi Temple surrouned by cedar forests" },
+      { src: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg", alt: "Beas River with snow-capped peaks in background" }
     ],
     relatedDestinations: ["ladakh", "kashmir", "rishikesh"],
     relatedPackageSlugs: ["manali-family-4-nights-5-days"],
@@ -1080,7 +1080,7 @@ export const destinationsData: DestinationData[] = [
     state: "Uttarakhand",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1590050752117-23a9d7fc2440?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     altitude: "372 m",
     bestSeason: "October–June",
     idealDuration: "3–4 Days",
@@ -1188,10 +1188,10 @@ export const destinationsData: DestinationData[] = [
       },
     ],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1590050752117-23a9d7fc2440?auto=format&fit=crop&q=80&w=800", alt: "White water rafting on the Ganga near Rishikesh" },
-      { src: "https://images.unsplash.com/photo-1581451012111-a864d47918ca?auto=format&fit=crop&q=80&w=800", alt: "Laxman Jhula suspension bridge at sunset" },
-      { src: "https://images.unsplash.com/photo-1590050752117-23a9d7fc2440?auto=format&fit=crop&q=80&w=800", alt: "Triveni Ghat Ganga Aarti in Rishikesh" },
-      { src: "https://images.unsplash.com/photo-1506190500382-706788805562?auto=format&fit=crop&q=80&w=800", alt: "Yoga class at a Rishikesh ashram at sunrise" }
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "White water rafting on the Ganga near Rishikesh" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Laxman Jhula suspension bridge at sunset" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Triveni Ghat Ganga Aarti in Rishikesh" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Yoga class at a Rishikesh ashram at sunrise" }
     ],
     relatedDestinations: ["kedarnath", "manali", "valley-of-flowers"],
     relatedPackageSlugs: [],
@@ -1206,7 +1206,7 @@ export const destinationsData: DestinationData[] = [
     state: "Uttarakhand",
     country: "India",
     image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
-    heroImage: "https://images.unsplash.com/photo-1619120238346-978e07731e77?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     altitude: "3,583 m (Kedarnath)",
     bestSeason: "May–June, September–October",
     idealDuration: "10–12 Days",
@@ -1342,10 +1342,10 @@ export const destinationsData: DestinationData[] = [
       },
     ],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1619120238346-978e07731e77?auto=format&fit=crop&q=80&w=800", alt: "Kedarnath Temple — the jewel of Char Dham yatra" },
-      { src: "https://images.unsplash.com/photo-1617653202545-931490e8d0e7?auto=format&fit=crop&q=80&w=800", alt: "Badrinath Temple façade painted in bright colours" },
-      { src: "https://images.unsplash.com/photo-1619120238346-978e07731e77?auto=format&fit=crop&q=80&w=800", alt: "Pilgrims trekking the route to Kedarnath" },
-      { src: "https://images.unsplash.com/photo-1606820854416-439b3305ff39?auto=format&fit=crop&q=80&w=800", alt: "Gangotri Temple with the Bhagirathi River" }
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Kedarnath Temple — the jewel of Char Dham yatra" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Badrinath Temple façade painted in bright colours" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Pilgrims trekking the route to Kedarnath" },
+      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Gangotri Temple with the Bhagirathi River" }
     ],
     relatedDestinations: ["kedarnath", "rishikesh", "varanasi"],
     relatedPackageSlugs: [],

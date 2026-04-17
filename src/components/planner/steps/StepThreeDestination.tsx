@@ -6,12 +6,12 @@ import { ImgWithFallback } from '../../ui/ImgWithFallback';
 import { getDestinationImage } from '../../../lib/imageMap';
 
 const TOP_DESTINATIONS = [
-  { name: 'Kerala', slug: 'kerala', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=600' },
-  { name: 'Rajasthan', slug: 'rajasthan', image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=600' },
-  { name: 'Goa', slug: 'goa', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=600' },
-  { name: 'Andaman', slug: 'andaman', image: 'https://images.unsplash.com/photo-1589394815804-964ce0ff96f8?auto=format&fit=crop&q=80&w=600' },
-  { name: 'Himachal', slug: 'shimla', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=600' },
-  { name: 'Uttarakhand', slug: 'rishikesh', image: 'https://images.unsplash.com/photo-1582662993077-ca3594b9ea6e?auto=format&fit=crop&q=80&w=600' },
+  { name: 'Kerala', slug: 'kerala', image: '/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg' },
+  { name: 'Rajasthan', slug: 'rajasthan', image: '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg' },
+  { name: 'Goa', slug: 'goa', image: '/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg' },
+  { name: 'Andaman', slug: 'andaman', image: '/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg' },
+  { name: 'Himachal', slug: 'shimla', image: '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg' },
+  { name: 'Uttarakhand', slug: 'rishikesh', image: '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg' },
 ];
 
 export function StepThreeDestination() {
