@@ -8,7 +8,7 @@ const serviceData: Record<string, any> = {
   'custom-itinerary': {
     icon: Navigation,
     title: 'Custom Itinerary',
-    image: 'https://images.unsplash.com/photo-1502920958656-14d5d309204c?q=80&w=2000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2000&auto=format&fit=crop',
     description: 'We craft entirely bespoke journeys tailored to your specific interests, pace, and preferences. No cookie-cutter tours—just your dream trip brought to life.',
     features: ['1-on-1 Consultation', 'Personalized Routing', 'Exclusive Experiences', 'Flexible Pacing']
   },
@@ -29,7 +29,7 @@ const serviceData: Record<string, any> = {
   'cab-booking': {
     icon: MapPin,
     title: 'Cab Booking',
-    image: 'https://images.unsplash.com/photo-1549315024-52d0fa5ecbf7?q=80&w=2000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2000&auto=format&fit=crop',
     description: 'Reliable, premium chauffeur-driven vehicles for airport transfers, city tours, or multi-day intercity travels with verified professional drivers.',
     features: ['Premium Fleet', 'Verified Drivers', 'Sanitized Vehicles', 'GPS Tracking']
   },
@@ -67,7 +67,7 @@ export default function ServiceDetail() {
     return {
       icon: Navigation,
       title: rawTitle.charAt(0).toUpperCase() + rawTitle.slice(1),
-      image: 'https://images.unsplash.com/photo-1502920958656-14d5d309204c?q=80&w=2000&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2000&auto=format&fit=crop',
       description: 'At MyQuickTrippers, we pride ourselves on offering seamless services designed exactly for your journey. Explore the world with complete confidence.',
       features: ['24/7 Support', 'Best Prices', 'Dedicated Advisor', 'Premium Quality']
     };
@@ -117,15 +117,15 @@ export default function ServiceDetail() {
           
           {/* Features Left Column */}
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl font-display font-bold text-dark-foreground mb-6">Why Choose Our {service.title}?</h2>
-            <p className="text-dark-foreground/70 mb-8 leading-relaxed">
+            <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-gray-100 mb-6">Why Choose Our {service.title}?</h2>
+            <p className="text-slate-900 dark:text-gray-100/70 mb-8 leading-relaxed">
               When it comes to your travel arrangements, precision and reliability aren't just preferences—they are absolute necessities. By booking your {service.title.toLowerCase()} through MyQuickTrippers, you unlock unparalleled value, bypassing hidden fees and unreliable operators.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {service.features.map((feature: string, idx: number) => (
                 <div key={idx} className="flex items-start gap-3 bg-muted/30 p-4 rounded-xl border border-border">
                   <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-dark-foreground/80 font-medium">{feature}</span>
+                  <span className="text-slate-900 dark:text-gray-100/80 font-medium">{feature}</span>
                 </div>
               ))}
             </div>
@@ -138,8 +138,8 @@ export default function ServiceDetail() {
                 <Clock className="w-6 h-6 text-accent" />
               </div>
               <div>
-                <h3 className="font-bold text-dark-foreground text-lg mb-2">Round-the-clock Support</h3>
-                <p className="text-dark-foreground/70 text-sm">We don't operate 9-to-5. Travel emergencies happen anytime, and our dedicated agents are always on standby.</p>
+                <h3 className="font-bold text-slate-900 dark:text-gray-100 text-lg mb-2">Round-the-clock Support</h3>
+                <p className="text-slate-900 dark:text-gray-100/70 text-sm">We don't operate 9-to-5. Travel emergencies happen anytime, and our dedicated agents are always on standby.</p>
               </div>
             </div>
 
@@ -148,8 +148,8 @@ export default function ServiceDetail() {
                 <Star className="w-6 h-6 text-accent" />
               </div>
               <div>
-                <h3 className="font-bold text-dark-foreground text-lg mb-2">Premium Network</h3>
-                <p className="text-dark-foreground/70 text-sm">Through our extensive network of B2B providers, our rates and quality standard strictly outmatch public booking platforms.</p>
+                <h3 className="font-bold text-slate-900 dark:text-gray-100 text-lg mb-2">Premium Network</h3>
+                <p className="text-slate-900 dark:text-gray-100/70 text-sm">Through our extensive network of B2B providers, our rates and quality standard strictly outmatch public booking platforms.</p>
               </div>
             </div>
           </motion.div>
@@ -161,7 +161,7 @@ export default function ServiceDetail() {
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }}
-          className="mt-24 p-10 md:p-14 bg-dark text-white rounded-3xl relative overflow-hidden"
+          className="mt-24 p-10 md:p-14 bg-slate-900 dark:bg-slate-950 text-white rounded-3xl relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
           <div className="relative z-10 text-center max-w-2xl mx-auto">
