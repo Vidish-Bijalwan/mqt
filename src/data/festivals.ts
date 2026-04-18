@@ -7,7 +7,7 @@ export interface FestivalCard {
   description: string;
   image: string;
   tag: string;
-  colorHex?: string; // Fallback gradient hex
+  colorHex?: string;
 }
 
 export const festivalsData: FestivalCard[] = [
@@ -18,7 +18,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Uttar Pradesh",
     month: "March",
     description: "World's most colourful festival — powder-drenched celebrations at the birthplace of Lord Krishna.",
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/assets/festivals/holi.jpg",
     tag: "UNESCO Cultural",
     colorHex: "#f97316"
   },
@@ -29,7 +29,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Uttar Pradesh",
     month: "Oct – Nov",
     description: "Festival of lights — floating diyas on the Ganga in Varanasi ghats.",
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/assets/festivals/diwali.jpg",
     tag: "India's Biggest",
     colorHex: "#eab308"
   },
@@ -51,7 +51,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Uttar Pradesh",
     month: "Jan – Mar (every 12 yr)",
     description: "World's largest human gathering — millions take a sacred dip at the Sangam confluence.",
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/assets/festivals/kumbh-mela.jpg",
     tag: "UNESCO Listed",
     colorHex: "#3b82f6"
   },
@@ -106,7 +106,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Gujarat",
     month: "Nov – Feb",
     description: "Tent city in white salt desert — folk music, dance, handicrafts, and full-moon night magic.",
-    image: "/tourism/Gujarat/Ahmedabad/001_image_govt.png",
+    image: "/tourism/Gujarat/Ahmedabad/002_Sabarmati_Ashram_govt.jpg",
     tag: "Desert Festival",
     colorHex: "#334155"
   },
@@ -117,7 +117,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Nagaland",
     month: "December",
     description: "16 Naga tribes performing together — India's most vibrant tribal cultural showcase.",
-    image: "/tourism/Manipur/Screen_Reader_Access/002_image_govt.png",
+    image: "/assets/festivals/hornbill.jpg",
     tag: "Tribal Culture",
     colorHex: "#b91c1c"
   },
@@ -139,7 +139,7 @@ export const festivalsData: FestivalCard[] = [
     state: "Kerala",
     month: "Apr – May",
     description: "Grandest temple festival — 100 caparisoned elephants, parasol competition, and orchestra.",
-    image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
+    image: "/assets/festivals/thrissur-pooram.jpg",
     tag: "Temple Festival",
     colorHex: "#f59e0b"
   }

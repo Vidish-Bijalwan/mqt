@@ -398,3 +398,13 @@
 @media (prefers-reduced-motion: no-preference) {
   .heart-active { animation: heartPop 0.3s ease-out; fill: #ef4444; }
 }
+
+/* ─── Image Quality Fixes ───────────────────────────────────────── */
+img {
+  object-fit: cover;
+  max-width: 100%;
+}
+.card-image {
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}

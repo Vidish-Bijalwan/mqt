@@ -130,9 +130,9 @@ export const destinationsData: DestinationData[] = [
     faqs: [],
     gallery: [
       { src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg", alt: "Lush tea plantations of Munnar" },
-      { src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg", alt: "Foggy morning in Munnar hills" },
-      { src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg", alt: "Tea picker in the estates" },
-      { src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg", alt: "Mattupetty Dam lake view" }
+      { src: "/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg", alt: "Foggy morning in Munnar hills" },
+      { src: "/tourism/India_Central/Incredible_India/025_happy-valley-tea-estate-darjeeling-west_bengal-1-h_govt.jpg", alt: "Tea picker in the estates" },
+      { src: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", alt: "Mattupetty Dam lake view" }
     ],
     relatedDestinations: [],
     relatedPackageSlugs: [],
@@ -165,9 +165,9 @@ export const destinationsData: DestinationData[] = [
     faqs: [],
     gallery: [
       { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "North Goa beach at sunset" },
-      { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "Palm trees on a tropical beach" },
-      { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "Old Goa Portuguese church" },
-      { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "Colorful street in Fontainhas" }
+      { src: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", alt: "Palm trees on a tropical beach" },
+      { src: "/tourism/India_Central/Incredible_India/039_auroville-puducherry_govt.jpg", alt: "Old Goa Portuguese church" },
+      { src: "/tourism/Gujarat/Ahmedabad/002_Sabarmati_Ashram_govt.jpg", alt: "Colorful street in Fontainhas" }
     ],
     relatedDestinations: [],
     relatedPackageSlugs: [],
@@ -200,9 +200,9 @@ export const destinationsData: DestinationData[] = [
     faqs: [],
     gallery: [
       { src: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", alt: "Radhanagar Beach crystal waters" },
-      { src: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", alt: "Scuba diving in coral reefs" },
-      { src: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", alt: "Cellular Jail national memorial" },
-      { src: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg", alt: "Sunset at Neil Island" }
+      { src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg", alt: "Scuba diving in coral reefs" },
+      { src: "/tourism/India_Central/Incredible_India/036_kalpeni-kavaratti-lakshwadeep-3-musthead-hero_govt.jpg", alt: "Cellular Jail national memorial" },
+      { src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg", alt: "Sunset at Neil Island" }
     ],
     relatedDestinations: [],
     relatedPackageSlugs: [],
@@ -347,9 +347,9 @@ export const destinationsData: DestinationData[] = [
     ],
     gallery: [
       { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Kedarnath Temple at sunrise with snow-capped peak" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Pilgrims trekking the Gaurikund trail" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Kedarnath valley in morning mist" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Aerial view of Kedarnath temple" }
+      { src: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg", alt: "Pilgrims trekking the Gaurikund trail" },
+      { src: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg", alt: "Kedarnath valley in morning mist" },
+      { src: "/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg", alt: "Aerial view of Kedarnath temple" }
     ],
     relatedDestinations: ["char-dham", "rishikesh", "manali"],
     relatedPackageSlugs: ["kedarnath-yatra-5-nights-6-days"],
@@ -803,9 +803,9 @@ export const destinationsData: DestinationData[] = [
       },
     ],
     gallery: [
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Valley of Flowers in peak bloom — carpet of wildflowers" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Brahma Kamal in its natural habitat" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Hemkund Sahib sacred lake in the Himalayas" },
+      { src: "/tourism/valley_of_flowers.jpg", alt: "Valley of Flowers in peak bloom — carpet of wildflowers" },
+      { src: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg", alt: "Brahma Kamal in its natural habitat" },
+      { src: "/tourism/India_Central/Incredible_India/025_happy-valley-tea-estate-darjeeling-west_bengal-1-h_govt.jpg", alt: "Hemkund Sahib sacred lake in the Himalayas" },
       { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Pushpawati River flowing through the valley" }
     ],
     relatedDestinations: ["kedarnath", "rishikesh", "char-dham"],
@@ -929,9 +929,9 @@ export const destinationsData: DestinationData[] = [
     ],
     gallery: [
       { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Evening Ganga Aarti at Dashashwamedh Ghat, Varanasi" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Sunrise boat ride past the 88 ghats of Varanasi" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Kashi Vishwanath Temple Corridor, Varanasi" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "The narrow ancient lanes of old Varanasi" }
+      { src: "/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg", alt: "Sunrise boat ride past the 88 ghats of Varanasi" },
+      { src: "/tourism/India_Central/Incredible_India/037_2-sri-venkateswara-swamy-vaari-temple-2-attr-hero_govt.jpg", alt: "Kashi Vishwanath Temple Corridor, Varanasi" },
+      { src: "/tourism/Gujarat/Ahmedabad/002_Sabarmati_Ashram_govt.jpg", alt: "The narrow ancient lanes of old Varanasi" }
     ],
     relatedDestinations: ["kedarnath", "rishikesh", "char-dham"],
     relatedPackageSlugs: ["varanasi-spiritual-3-nights-4-days"],
@@ -1189,9 +1189,9 @@ export const destinationsData: DestinationData[] = [
     ],
     gallery: [
       { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "White water rafting on the Ganga near Rishikesh" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Laxman Jhula suspension bridge at sunset" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Triveni Ghat Ganga Aarti in Rishikesh" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Yoga class at a Rishikesh ashram at sunrise" }
+      { src: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg", alt: "Laxman Jhula suspension bridge at sunset" },
+      { src: "/tourism/India_Central/Incredible_India/039_auroville-puducherry_govt.jpg", alt: "Triveni Ghat Ganga Aarti in Rishikesh" },
+      { src: "/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg", alt: "Yoga class at a Rishikesh ashram at sunrise" }
     ],
     relatedDestinations: ["kedarnath", "manali", "valley-of-flowers"],
     relatedPackageSlugs: [],
@@ -1343,9 +1343,9 @@ export const destinationsData: DestinationData[] = [
     ],
     gallery: [
       { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Kedarnath Temple — the jewel of Char Dham yatra" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Badrinath Temple façade painted in bright colours" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Pilgrims trekking the route to Kedarnath" },
-      { src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", alt: "Gangotri Temple with the Bhagirathi River" }
+      { src: "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg", alt: "Badrinath Temple façade painted in bright colours" },
+      { src: "/tourism/India_Central/Incredible_India/038_1-rameswaram-temple-rameswaram-tamilnadu-hero_govt.jpg", alt: "Pilgrims trekking the route to Kedarnath" },
+      { src: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg", alt: "Gangotri Temple with the Bhagirathi River" }
     ],
     relatedDestinations: ["kedarnath", "rishikesh", "varanasi"],
     relatedPackageSlugs: [],

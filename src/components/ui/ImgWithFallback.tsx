@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 
 interface ImgWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   fallbackSrc: string;
   alt: string;
   /**
-   * className applied to the wrapper <span>. Use this ONLY to set
+   * className applied to the wrapper div. Use this ONLY to set
    * display/positioning when the caller already owns the size context.
    * The wrapper is `contents` by default so it disappears from layout.
    */
   containerClassName?: string;
   lazy?: boolean;
+  /**
+   * Hex colour used to generate a themed gradient placeholder when both
+   * `src` and `fallbackSrc` fail. Matches the `colorHex` field in
+   * festivals.ts and other data files.
+   */
+  fallbackColor?: string;
+}
+
+/** Build a CSS gradient string from a brand hex colour */
+function buildGradient(hex: string): string {
+  // Darken slightly for the gradient end by mixing with black
+  return `linear-gradient(135deg, ${hex}ee 0%, ${hex}99 50%, ${hex}44 100%)`;
 }
 
 export function ImgWithFallback({
@@ -21,86 +32,110 @@ export function ImgWithFallback({
   className = '',
   containerClassName = '',
   lazy = true,
+  fallbackColor,
   ...props
 }: ImgWithFallbackProps) {
-  const [imgSrc, setImgSrc] = useState<string>(src);
-  const [hasError, setHasError] = useState(false);
+  const [imgSrc, setImgSrc] = useState<string>(src || '/placeholder.svg');
+  const [failedCount, setFailedCount] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setImgSrc(src);
-    setHasError(false);
-    setIsLoaded(false);
-  }, [src]);
+  const imgRef = React.useRef<HTMLImageElement>(null);
 
   const handleError = () => {
-    if (!hasError) {
+    if (failedCount === 0 && fallbackSrc && fallbackSrc !== imgSrc && fallbackSrc !== '/placeholder.svg') {
       setImgSrc(fallbackSrc);
-      setHasError(true);
+      setFailedCount(1);
+    } else if (failedCount <= 1) {
+      // Signal total failure — use colour gradient
+      setImgSrc('');
+      setFailedCount(2);
     }
   };
 
+  useEffect(() => {
+    setImgSrc(src || '/placeholder.svg');
+    setFailedCount(0);
+    setIsLoaded(false);
+  }, [src]);
+
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete) {
+      if (imgRef.current.naturalWidth > 0) {
+        setIsLoaded(true);
+      } else {
+        handleError();
+      }
+    }
+  }, [imgSrc]);
+
   const handleLoad = () => setIsLoaded(true);
 
-  const showPlaceholder =
-    !imgSrc ||
-    imgSrc === '/placeholder.svg' ||
-    (hasError && (imgSrc === '/placeholder.svg' || !imgSrc));
+  // Total failure — show coloured gradient or branded placeholder
+  const showGradient = failedCount >= 2 || (!imgSrc || imgSrc === '/placeholder.svg');
 
-  // If containerClassName is supplied, the caller wants a sized wrapper
-  // (e.g. "absolute inset-0" or "w-full h-full"). We honour it exactly,
-  // without injecting our own `relative` which would fight against it.
   const Wrapper = containerClassName
     ? ({ children }: { children: React.ReactNode }) => (
-        <div className={`overflow-hidden bg-gray-100 ${containerClassName}`}>
+        <div className={`overflow-hidden ${containerClassName}`}>
           {children}
         </div>
       )
     : React.Fragment;
 
-  return (
-    <Wrapper>
-      {/* Shimmer skeleton while loading */}
-      {!isLoaded && !showPlaceholder && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-      )}
+  if (showGradient) {
+    const gradient = fallbackColor
+      ? buildGradient(fallbackColor)
+      : 'linear-gradient(135deg, #1e3a5f 0%, #0f2744 60%, #0a1e38 100%)';
 
-      {showPlaceholder ? (
+    return (
+      <Wrapper>
         <div
-          className={`flex flex-col items-center justify-center p-4 bg-gradient-to-br from-blue-50 to-amber-50 w-full h-full ${className}`}
+          className={`flex flex-col items-center justify-center ${className}`}
+          style={{ background: gradient, width: '100%', height: '100%', minHeight: 80 }}
+          aria-label={alt}
+          role="img"
         >
-          <div className="w-10 h-10 rounded-full bg-white/60 backdrop-blur shadow-sm flex items-center justify-center mb-1.5">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-blue-400"
-            >
-              <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-            </svg>
-          </div>
-          <span className="text-[9px] font-bold uppercase tracking-wider text-blue-300">
+          {/* Subtle MQT watermark */}
+          <span
+            style={{
+              fontSize: '10px',
+              fontWeight: 700,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.35)',
+              fontFamily: 'sans-serif',
+              userSelect: 'none',
+            }}
+          >
             MyQuickTrippers
           </span>
         </div>
-      ) : (
-        <img
-          src={imgSrc}
-          alt={alt}
-          className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
-          onError={handleError}
-          onLoad={handleLoad}
-          loading={lazy ? 'lazy' : 'eager'}
-          decoding={lazy ? 'async' : 'auto'}
-          {...props}
+      </Wrapper>
+    );
+  }
+
+  return (
+    <Wrapper>
+      {/* Shimmer skeleton while loading */}
+      {!isLoaded && (
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(90deg, #1E293B 25%, #293548 50%, #1E293B 75%)',
+            backgroundSize: '200% 100%',
+            animation: 'shimmer 1.5s infinite linear',
+          }}
         />
       )}
+      <img
+        ref={imgRef}
+        src={imgSrc}
+        alt={alt}
+        className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
+        onError={handleError}
+        onLoad={handleLoad}
+        loading={lazy ? 'lazy' : 'eager'}
+        decoding={lazy ? 'async' : 'auto'}
+        {...props}
+      />
     </Wrapper>
   );
 }
