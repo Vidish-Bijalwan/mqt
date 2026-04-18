@@ -106,7 +106,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Priya Thakur", role: "Trek & Nature Specialist", initials: "PT" },
     date: "March 15, 2025",
     readTime: "7 min read",
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/tourism/valley_of_flowers.jpg",
     excerpt: "A UNESCO World Heritage Site nestled in the Himalayas, the Valley of Flowers is a once-in-a-lifetime trekking experience. Here's how to plan it.",
     featured: false,
     content: [

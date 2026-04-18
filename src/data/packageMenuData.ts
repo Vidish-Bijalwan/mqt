@@ -294,7 +294,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "7 Days / 6 Nights",
             hook: "500+ wildflower species in a UNESCO valley.",
             highlights: ["Valley of Flowers day trek", "Hemkund Sahib pilgrimage", "Alpine meadow camp"],
-            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+            image: "/tourism/valley_of_flowers.jpg",
           },
         ],
       },

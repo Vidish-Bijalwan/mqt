@@ -669,7 +669,7 @@ export const destinationsData: DestinationData[] = [
     tagline: "A UNESCO World Heritage Trek Through Alpine Blooms",
     state: "Uttarakhand",
     country: "India",
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/tourism/valley_of_flowers.jpg",
     heroImage: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
     altitude: "3,658 m",
     bestSeason: "July–September",
