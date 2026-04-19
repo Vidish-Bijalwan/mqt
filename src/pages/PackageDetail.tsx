@@ -72,15 +72,25 @@ const PackageDetail = () => {
     "touristType": pkg.categories
   });
 
-  const visualizerStops = pkg.itineraryHighlights?.map((day, i) => ({
+  const baseItinerary = pkg.itineraryHighlights?.length 
+    ? pkg.itineraryHighlights 
+    : Array.from({ length: pkg.duration?.days || 3 }).map((_, i) => 
+        i === 0 ? `Day 1: Arrival in ${pkg.destination} & Check-in` :
+        i === (pkg.duration?.days || 3) - 1 ? `Day ${i + 1}: Departure from ${pkg.destination}` :
+        `Day ${i + 1}: Immersive Guided Tour of ${pkg.destination} Highlights`
+      );
+
+  const visualizerStops = baseItinerary.map((day, i) => ({
     id: `day-${i}`,
     day: i + 1,
     location: pkg.destination,
     title: day,
-    description: "Enjoy this part of the journey carefully curated by MQT.",
+    description: i === 0 ? "Arrive at your premium accommodation and acclimatize to the surroundings. Our representative will assist with seamless check-in." : 
+                 i === (pkg.duration?.days || 3) - 1 ? "Enjoy a final authentic breakfast before your private transfer to the airport or station." :
+                 "Enjoy this part of the journey carefully curated by MQT.",
     imageUrl: gallery[i % gallery.length]?.src || pkg.image,
     transportToNext: (i % 2 === 0 ? "car" : "trek") as TransportType
-  })) || [];
+  }));
 
   return (
     <PageLayout>
