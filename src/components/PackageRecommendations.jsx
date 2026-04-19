@@ -93,7 +93,7 @@ const PackageRecommendations = ({ packageId, topN = 4 }) => {
   if (!loading && !error && recommendations.length === 0) return null;
 
   return (
-    <section style={styles.section}>
+    <section style={styles.section} className="container mx-auto px-4">
       <h3 style={styles.heading}>✨ You might also love</h3>
       <p style={styles.subheading}>Packages similar to the one you're viewing</p>
       <div style={styles.grid}>
@@ -106,7 +106,8 @@ const PackageRecommendations = ({ packageId, topN = 4 }) => {
                   key={pkg.id}
                   pkg={pkg}
                   onSelect={(id) => {
-                    window.location.href = `/packages/${id}`;
+                    const categorySlug = pkg.category || 'all';
+                    window.location.href = `/packages/${categorySlug}/${id}`;
                   }}
                 />
               ))

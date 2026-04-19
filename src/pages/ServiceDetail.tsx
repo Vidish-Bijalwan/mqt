@@ -60,17 +60,25 @@ export default function ServiceDetail() {
   const { slug } = useParams();
   
   const service = useMemo(() => {
+    let serviceItem;
     if (slug && serviceData[slug]) {
-      return serviceData[slug];
+      serviceItem = serviceData[slug];
+    } else {
+      const rawTitle = slug?.replace(/-/g, ' ') || 'Service';
+      serviceItem = {
+        icon: Navigation,
+        title: rawTitle.charAt(0).toUpperCase() + rawTitle.slice(1),
+        image: '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+        description: 'At MyQuickTrippers, we pride ourselves on offering seamless services designed exactly for your journey. Explore the world with complete confidence.',
+        features: ['24/7 Support', 'Best Prices', 'Dedicated Advisor', 'Premium Quality']
+      };
     }
-    const rawTitle = slug?.replace(/-/g, ' ') || 'Service';
-    return {
-      icon: Navigation,
-      title: rawTitle.charAt(0).toUpperCase() + rawTitle.slice(1),
-      image: '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
-      description: 'At MyQuickTrippers, we pride ourselves on offering seamless services designed exactly for your journey. Explore the world with complete confidence.',
-      features: ['24/7 Support', 'Best Prices', 'Dedicated Advisor', 'Premium Quality']
-    };
+    
+    if (serviceItem.image && serviceItem.image.startsWith('india_tourism')) {
+      serviceItem.image = `/tourism/${serviceItem.image}`;
+    }
+
+    return serviceItem;
   }, [slug]);
 
   const Icon = service.icon;
@@ -80,7 +88,7 @@ export default function ServiceDetail() {
       {/* Dynamic Hero Section */}
       <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0">
-          <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+          <img src={service.image.startsWith('india_tourism') ? `/tourism/${service.image.split('/').slice(1).join('/')}` : service.image} alt={service.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">

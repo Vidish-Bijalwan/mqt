@@ -7,77 +7,89 @@ import { getFestivalWhatsAppUrl } from "@/lib/contact";
 
 const FestivalsOfIndia = () => {
   return (
-    <section className="section-y bg-background overflow-hidden">
+    <section className="py-20 bg-background overflow-hidden relative">
       <div className="container-page mx-auto">
         {/* Header */}
-        <ScrollReveal className="text-center mb-10">
-          <span className="inline-block py-1 px-3 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider mb-4">
+        <ScrollReveal className="text-center mb-16">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider mb-4">
             Celebrate India
           </span>
-          <h2 className="section-heading">Festivals of Incredible India</h2>
-          <p className="section-subheading mx-auto">
-            Time your journey to coincide with one of India's spectacular festivals — 15 unmissable celebrations across the nation.
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground mb-4">
+            Festivals of Incredible India
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Time your journey to coincide with one of India's spectacular festivals.
+            Discover vibrant traditions and unforgettable celebrations across the nation.
           </p>
         </ScrollReveal>
 
-        {/* Scrollable card row — snap on mobile, 3-col grid on desktop per spec */}
-        <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 scrollbar-hide snap-x snap-mandatory md:snap-none">
+        {/* 1-col mobile, 2-col tablet, 3-col desktop grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 px-4 md:px-0">
           {festivalsData.map((festival, i) => (
             <ScrollReveal
               key={festival.id}
-              delay={i < 6 ? i * 0.08 : 0}
-              className="snap-start shrink-0 w-[85vw] sm:w-[60vw] md:w-auto"
+              delay={i < 6 ? i * 0.1 : 0}
+              className="h-full"
             >
-              <div className="group relative rounded-2xl overflow-hidden shadow-card border border-border aspect-video cursor-default festival-card bg-[#0F172A]">
-                {/* Background image with color fallback */}
+              <div className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border bg-gray-200 flex flex-col h-[400px]">
+                
+                {/* Background image */}
                 <ImgWithFallback
                   src={festival.image}
                   alt={`${festival.name} festival in ${festival.city}, ${festival.state}, India`}
                   fallbackSrc=""
                   fallbackColor={festival.colorHex}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.05]"
                 />
 
-                {/* Permanent dark gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                {/* Soft dark gradient everywhere to ensure text is readable, gets darker on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 transition-opacity duration-300 group-hover:opacity-90 z-10" />
 
-                {/* Hover overlay — slides up */}
-                <div className="festival-overlay absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 to-black/60 p-5 translate-y-full group-hover:translate-y-0 transition-all duration-300 ease-out flex flex-col justify-end h-full opacity-0 group-hover:opacity-100">
-                  <div className="mb-auto" />
-                  <p className="text-[13px] text-gray-300 leading-relaxed mb-4">{festival.description}</p>
-                  <a
-                    href={getFestivalWhatsAppUrl(festival.name, festival.city)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-md border border-[#F59E0B] text-[#F59E0B] px-4 py-2 text-sm font-semibold hover:bg-[#F59E0B] hover:text-white transition-all duration-200"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Plan a Trip <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
-
-                {/* Tag pill */}
-                <div className="absolute top-3 left-3">
-                  <span className="bg-accent/90 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm backdrop-blur-sm">
+                {/* Badges */}
+                <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
+                  <span className="bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md">
                     {festival.tag}
                   </span>
-                </div>
-
-                {/* Bottom info — always visible initially */}
-                <div className="absolute bottom-4 left-4 right-4 group-hover:opacity-0 transition-opacity duration-200 z-10">
-                  <h3 className="font-display text-[18px] font-bold text-white mb-1 leading-tight">{festival.name}</h3>
-                  <div className="flex items-center justify-between text-white/90 text-xs">
-                    <span className="text-[#F59E0B] font-medium">
-                      {festival.city}, {festival.state}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Top Right Month Badge */}
-                <div className="absolute top-3 right-3 z-10">
-                  <span className="bg-black/50 backdrop-blur text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/10">
+                  <span className="bg-black/40 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full border border-white/20 shadow-sm flex items-center gap-1.5">
+                    <Calendar className="w-3 h-3" />
                     {festival.month}
                   </span>
+                </div>
+
+                {/* Content Container (Bottom Aligned) */}
+                <div className="relative z-20 mt-auto p-5 flex flex-col justify-end h-full">
+                  
+                  {/* Title & Location (Always Visible) */}
+                  <div className="transform transition-transform duration-300 group-hover:-translate-y-2">
+                    <h3 className="font-display text-2xl font-bold text-white mb-2 leading-tight drop-shadow-md">
+                      {festival.name}
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-2 text-white/90 text-sm mb-4">
+                      <MapPin className="w-4 h-4 text-accent" />
+                      <span className="font-medium text-gray-100">
+                        {festival.city}, <span className="text-gray-300">{festival.state}</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description & Button (Revealed on Hover) */}
+                  <div className="grid grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                    <div className="overflow-hidden">
+                      <p className="text-sm text-gray-200 line-clamp-3 mb-5 leading-relaxed">
+                        {festival.description}
+                      </p>
+                      <a
+                        href={getFestivalWhatsAppUrl(festival.name, festival.city)}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent text-white px-4 py-2.5 text-sm font-semibold hover:bg-accent/90 transition-colors shadow-md"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Plan Your Trip <ArrowRight className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </ScrollReveal>
@@ -85,14 +97,16 @@ const FestivalsOfIndia = () => {
         </div>
 
         {/* CTA row */}
-        <ScrollReveal className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground mb-3">Want to experience a festival firsthand?</p>
-          <Link
-            to="/packages"
-            className="inline-flex items-center gap-2 rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-semibold hover:bg-primary hover:text-white transition-all duration-200"
-          >
-            Browse Festival-Themed Packages <ArrowRight className="w-4 h-4" />
-          </Link>
+        <ScrollReveal className="mt-16 text-center">
+          <div className="inline-flex flex-col items-center p-8 rounded-3xl bg-secondary/30 border border-border">
+            <p className="text-foreground font-medium mb-4 text-lg">Ready to experience India's vibrant culture?</p>
+            <Link
+              to="/packages"
+              className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-8 py-3.5 text-base font-semibold hover:opacity-90 transition-opacity shadow-lg"
+            >
+              Browse Festival Packages <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
         </ScrollReveal>
       </div>
     </section>

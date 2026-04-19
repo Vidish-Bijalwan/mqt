@@ -32,7 +32,7 @@ const StickyMobileCTA = ({
   };
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-t border-border shadow-elevated flex items-center gap-2 px-4 py-3">
+    <div className="lg:hidden fixed bottom-16 left-0 right-0 z-40 bg-background border-t border-border shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex items-center gap-2 px-4 py-3 pb-[calc(12px+env(safe-area-inset-bottom,0px))]">
       {/* Info Block */}
       <div className="flex-1 min-w-0">
         <p className="font-body font-bold text-accent text-[15px] leading-tight">

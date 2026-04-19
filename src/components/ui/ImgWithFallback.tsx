@@ -83,7 +83,7 @@ export function ImgWithFallback({
   if (showGradient) {
     const gradient = fallbackColor
       ? buildGradient(fallbackColor)
-      : 'linear-gradient(135deg, #1e3a5f 0%, #0f2744 60%, #0a1e38 100%)';
+      : 'linear-gradient(135deg, #e8f0fe 0%, #dce8fa 60%, #c7d9f5 100%)';
 
     return (
       <Wrapper>
@@ -119,7 +119,7 @@ export function ImgWithFallback({
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(90deg, #1E293B 25%, #293548 50%, #1E293B 75%)',
+            background: 'linear-gradient(90deg, #f3f4f6 25%, #e9ecef 50%, #f3f4f6 75%)',
             backgroundSize: '200% 100%',
             animation: 'shimmer 1.5s infinite linear',
           }}

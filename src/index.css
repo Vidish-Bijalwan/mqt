@@ -408,3 +408,29 @@ img {
   aspect-ratio: 16/10;
   object-fit: cover;
 }
+
+@keyframes imageShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(245,158,11,0.4); }
+  50% { transform: scale(1.04); box-shadow: 0 6px 20px rgba(245,158,11,0.6); }
+}
+
+@keyframes pinGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes pinFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* State map hover elevation */
+.state-map-path:hover {
+  filter: brightness(1.3) drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+}
+

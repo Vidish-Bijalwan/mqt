@@ -33,7 +33,7 @@ const DomesticInternational = () => {
           {sections.map((section: any) => (
             <Link key={section.id} to={section.cta_link || "/packages"} className="group relative rounded-xl overflow-hidden aspect-[16/9] min-h-[280px]">
               <ImgWithFallback
-                src={section.image_url || `/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg === 'international' ? '1544735716-392fe2489ffa' : '1444858291040-58f756a3bdd6'}?auto=format&fit=crop&q=80&w=1200`}
+                src={section.image_url || (section.type === 'international' ? '/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg' : '/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg')}
                 fallbackSrc="/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg"
                 alt={section.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

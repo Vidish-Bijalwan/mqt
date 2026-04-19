@@ -159,7 +159,9 @@ function MediaBrowser({ bucket, folder, search, onSearchChange, onSelect, select
                 <div key={file.id} className="group relative bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:border-blue-200 transition-all flex flex-col">
                   <div className="aspect-[4/3] bg-gray-50 flex items-center justify-center relative overflow-hidden">
                      {file.type.startsWith('image/') ? (
-                       <img src={file.url} alt={file.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                       <div className="aspect-w-1 aspect-h-1">
+                       <img src={file.url.startsWith('india_tourism') ? `/tourism/${file.url.split('/').slice(1).join('/')}` : file.url} alt={file.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                       </div>
                      ) : (
                        <ImageIcon size={32} className="text-gray-300" />
                      )}

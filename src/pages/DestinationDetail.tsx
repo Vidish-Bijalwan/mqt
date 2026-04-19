@@ -1,169 +1,174 @@
 import { useEffect, useMemo } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
-import { getStateImage, getDestinationImage, getCityImage } from "@/lib/imageMap";
-import EnquirySection from "@/components/EnquirySection";
-import FAQAccordion from "@/components/FAQAccordion";
 import InquiryBanner from "@/components/InquiryBanner";
-import StickyMobileCTA from "@/components/StickyMobileCTA";
-import GalleryGrid from "@/components/GalleryGrid";
-import RelatedCards from "@/components/RelatedCards";
+import EnquirySection from "@/components/EnquirySection";
+import { GalleryComponent } from "@/components/ui/Explore/GalleryComponent";
 import { destinationsData } from "@/data/destinations";
-import { getTopPackagesForDestination } from "@/lib/recommendations";
-import { tourPackages } from "@/data/packages";
-import { useAnalytics } from "@/hooks/useAnalytics";
-import { setLastDestination } from "@/lib/personalization";
-import { MapPin, Thermometer, CloudRain, CalendarDays } from "lucide-react";
-
 import { getStateBySlug } from "@/data/india-states";
-import { SEO } from "@/components/SEO";
-import DestinationReviews from "@/components/DestinationReviews";
+import { Helmet } from "react-helmet-async";
+import { MapPin, Calendar, CreditCard, Tag } from "lucide-react";
+import { SmartImage } from "@/components/ui/SmartImage";
 
 const DestinationDetail = () => {
-  const { stateSlug, slug } = useParams<{ stateSlug: string, slug: string }>();
-  const { track } = useAnalytics();
+  const { stateSlug, slug } = useParams<{ stateSlug: string; slug: string }>();
 
-  const destination = useMemo(() => destinationsData.find((d) => d.slug === slug), [slug]);
-  const stateData = useMemo(() => stateSlug ? getStateBySlug(stateSlug) : undefined, [stateSlug]);
+  const destination = useMemo(() => {
+    return destinationsData.find((d) => d.slug === slug && d.stateSlug === stateSlug);
+  }, [slug, stateSlug]);
+
+  const stateData = useMemo(() => {
+    return stateSlug ? getStateBySlug(stateSlug) : undefined;
+  }, [stateSlug]);
 
   useEffect(() => {
-    if (destination && stateData) {
-      document.title = `${destination.name} Tour Packages | MyQuickTrippers`;
-      track('destination_view', { 
-        destination: destination.name,
-        state: stateData.name
-      });
-      setLastDestination(destination.slug);
-      window.scrollTo(0, 0);
-    }
-  }, [destination, stateData, track]);
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!destination || !stateData) {
     return <Navigate to="/destinations" replace />;
   }
 
-  const relatedPackages = getTopPackagesForDestination(destination.slug, tourPackages, 6);
-
-  const seoTitle = `${destination.name} Tour Packages - Travel Guide & Itineraries`;
-  const seoDesc = `Explore ${destination.name} in ${stateData.name} with MyQuickTrippers. Discover top attractions, best time to visit, and customizable tour packages.`;
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "TouristDestination",
-    "name": destination.name,
-    "description": destination.overview?.[0] || seoDesc,
-    "touristType": [
-      "Sightseeing",
-      "Nature",
-      "Culture"
-    ]
-  };
-
-  // Build gallery using real seeded images with variant cascade
-  const heroResolved = getDestinationImage(destination.slug, 'hero', destination.heroImage);
-  const cardResolved = getDestinationImage(destination.slug, 'card', destination.image);
-  const gallery = [
-    { src: heroResolved.src,  fallback: heroResolved.fallbackSrc,  alt: `${destination.name} main view` },
-    { src: cardResolved.src,  fallback: cardResolved.fallbackSrc,  alt: `${destination.name} landscape` },
-    { src: heroResolved.src,  fallback: heroResolved.fallbackSrc,  alt: `${destination.name} highlights` },
-    { src: cardResolved.src,  fallback: cardResolved.fallbackSrc,  alt: `Explore ${destination.name}` },
-    { src: heroResolved.src,  fallback: heroResolved.fallbackSrc,  alt: `${destination.name} culture` },
-  ];
-
   const quickFacts = [
-    { label: "Altitude", value: destination.altitude || "N/A" },
-    { label: "Best Season", value: destination.bestSeason },
+    { label: "State", value: stateData.name },
+    { label: "Best Season", value: destination.bestSeasons.join(", ") },
+    { label: "Budget", value: destination.budget },
   ];
+
+  const galleryImages = destination.gallery.map(url => ({
+    src: url,
+    alt: `${destination.name} scenery`
+  }));
 
   return (
     <PageLayout>
-      <SEO 
-        title={seoTitle}
-        description={seoDesc}
-        canonical={`/destinations/${stateData.slug}/${destination.slug}`}
-        image={destination.image}
-        schema={schema}
-      />
+      <Helmet>
+        <title>{destination.seo.title}</title>
+        <meta name="description" content={destination.seo.description} />
+        <meta name="keywords" content={destination.seo.keywords.join(", ")} />
+      </Helmet>
+
       <PageHero
         title={destination.name}
-        subtitle={`Discover the beauty of ${destination.name}, ${stateData.name}`}
-        backgroundImage={getStateImage(destination.slug, 'hero', destination.heroImage || destination.image).src}
-        badge={destination.tagline}
-        quickFacts={quickFacts}
+        subtitle={destination.shortDescription}
+        backgroundImage={destination.image}
         breadcrumb={[
           { label: "Destinations", href: "/destinations" },
-          ...(stateData ? [{ label: stateData.name, href: `/destinations/${stateData.slug}` }] : []),
+          { label: stateData.name, href: `/destinations/${stateData.slug}` },
           { label: destination.name }
         ]}
-      />      {/* About & Weather Section */}
+        quickFacts={quickFacts}
+      />
+
       <section className="section-padding bg-background">
-        <div className="container mx-auto max-w-4xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div>
-              <h2 className="section-heading text-left mb-4">About {destination.name}</h2>
-              <p className="text-muted-foreground font-body leading-relaxed">
-                {destination.overview[0]} Explore our curated packages to experience the best of what {destination.name} has to offer.
-              </p>
-            </div>
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             
-            <div className="bg-surface rounded-xl p-6 border border-border">
-              <h3 className="font-display font-semibold text-xl mb-4">Travel Information</h3>
-              <div className="space-y-4">
-                {destination.bestTimeToVisit.slice(0, 3).map((season, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <CalendarDays className="w-5 h-5 text-primary shrink-0" />
+            {/* Left Content */}
+            <div className="lg:col-span-2 space-y-12">
+              <div>
+                <h2 className="font-display text-3xl font-bold mb-6 flex items-center gap-3">
+                  <span className="w-1.5 h-8 bg-primary rounded-full" />
+                  Overview
+                </h2>
+                <div className="prose prose-slate max-w-none">
+                  <p className="text-muted-foreground text-lg leading-relaxed whitespace-pre-line">
+                    {destination.fullDescription}
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h2 className="font-display text-3xl font-bold mb-6 flex items-center gap-3">
+                  <span className="w-1.5 h-8 bg-primary rounded-full" />
+                  Highlights
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {(destination.highlights || destination.travelTips || []).map((h, i) => (
+                    <div key={i} className="flex items-center gap-4 p-4 bg-surface border border-border/50 rounded-xl hover:bg-primary/5 transition-colors">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <Tag className="w-5 h-5" />
+                      </div>
+                      <span className="font-medium text-foreground">{h}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {galleryImages.length > 0 && (
+                <div>
+                   <h2 className="font-display text-3xl font-bold mb-6 flex items-center gap-3">
+                    <span className="w-1.5 h-8 bg-primary rounded-full" />
+                    Capturing {destination.name}
+                  </h2>
+                  <GalleryComponent images={destination.galleryImages || destination.gallery?.map((url: string) => ({ url, alt: destination.name, credit: 'MQT', license: '' })) || []} destinationName={destination.name} />
+                </div>
+              )}
+            </div>
+
+            {/* Right Sidebar */}
+            <div className="space-y-8">
+              <div className="bg-surface border border-border/50 rounded-3xl p-8 sticky top-24 shadow-sm">
+                <h3 className="font-display text-2xl font-bold mb-6">Quick Details</h3>
+                
+                <div className="space-y-6">
+                   <div className="flex items-start gap-4">
+                    <MapPin className="w-6 h-6 text-primary shrink-0" />
                     <div>
-                      <p className="font-body font-medium text-sm">{season.month}</p>
-                      <p className="text-xs text-muted-foreground">{season.weather} • {season.crowd} Crowd</p>
+                      <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Location</p>
+                      <p className="font-semibold text-foreground">{stateData.name}, India</p>
                     </div>
                   </div>
-                ))}
+
+                  <div className="flex items-start gap-4">
+                    <Calendar className="w-6 h-6 text-primary shrink-0" />
+                    <div>
+                      <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Best Time to Visit</p>
+                      <p className="font-semibold text-foreground">{destination.bestSeasons.join(", ")}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <CreditCard className="w-6 h-6 text-primary shrink-0" />
+                    <div>
+                      <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Trip Budget</p>
+                      <p className="font-semibold text-foreground">{destination.budget} Class</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <Tag className="w-6 h-6 text-primary shrink-0" />
+                    <div>
+                      <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Trip Vibe</p>
+                      <p className="font-semibold text-foreground">{destination.categories.join(" • ")}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-10 pt-8 border-t border-border/50">
+                  <button 
+                    onClick={() => document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-bold text-sm uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  >
+                    Check Availability
+                  </button>
+                  <p className="text-center text-[10px] text-muted-foreground mt-4 font-medium italic">
+                    * Guaranteed best price for custom group tours
+                  </p>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* Packages Section */}
-      {relatedPackages.length > 0 && (
-        <RelatedCards
-          type="package"
-          items={relatedPackages}
-          title={`${destination.name} Tour Packages`}
-        />
-      )}
-
-      {/* Gallery Section */}
-      <GalleryGrid 
-        images={gallery} 
-        title={`Capturing ${destination.name}`} 
-      />
-
-      <section className="container mx-auto px-4 py-8">
-        <DestinationReviews destinationSlug={destination.slug} />
-      </section>
-
-      {/* FAQs */}
-      {destination.faqs && destination.faqs.length > 0 && (
-        <FAQAccordion 
-          faqs={destination.faqs} 
-          title={`FAQs about ${destination.name}`} 
-        />
-      )}
-
       <EnquirySection />
 
-      <InquiryBanner 
-        title={`Ready to explore ${destination.name}?`}
-        waMessage={`Hi! I'm interested in booking a trip to ${destination.name}.`}
-      />
-
-      <StickyMobileCTA 
-        label="Enquire Now" 
-        whatsappText={`Hi! I want to plan a trip to ${destination.name}.`}
-        onEnquireClick={() => {
-          document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
-        }}
+      <InquiryBanner
+        title={`Custom tour to ${destination.name}?`}
+        subtitle="Book now and get exclusive airport transfers and local guide support included."
       />
     </PageLayout>
   );

@@ -45,9 +45,10 @@ export default function UserProfile() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     
+    // @ts-ignore
     await supabase.from('profiles').update({
-        full_name: formData.get('full_name'),
-        phone_number: formData.get('phone_number')
+        full_name: formData.get('full_name') as string,
+        phone_number: formData.get('phone_number') as string
     }).eq('id', user.id);
     
     setProfile({...profile, full_name: formData.get('full_name'), phone_number: formData.get('phone_number')});

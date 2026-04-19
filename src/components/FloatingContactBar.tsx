@@ -50,14 +50,14 @@ export const FloatingContactBar = () => {
 
   return (
     <div 
-      className={`fixed z-[100] ${
+      className={`fixed z-50 ${
         isMobile 
-          ? "bottom-4 left-0 right-0 flex justify-center w-full px-4" 
+          ? "bottom-24 left-4 flex flex-col gap-3" 
           : "right-4 top-1/2 -translate-y-1/2 flex flex-col gap-4"
       }`}
     >
       <div 
-        className={`flex ${isMobile ? "flex-row gap-4 bg-white/80 backdrop-blur-md p-3 rounded-full shadow-2xl border border-white/40" : "flex-col gap-4"}`}
+        className="flex flex-col gap-3"
       >
         {contacts.map((contact) => (
           <a
@@ -74,7 +74,7 @@ export const FloatingContactBar = () => {
             <span 
               className={`absolute whitespace-nowrap bg-gray-900 text-white text-xs font-bold px-3 py-1.5 rounded pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${
                 isMobile 
-                  ? "bottom-full mb-3 left-1/2 -translate-x-1/2" 
+                  ? "left-full ml-4 top-1/2 -translate-y-1/2" 
                   : "right-full mr-4 top-1/2 -translate-y-1/2"
               }`}
             >
@@ -83,7 +83,7 @@ export const FloatingContactBar = () => {
               <div 
                 className={`absolute w-2 h-2 bg-gray-900 transform rotate-45 ${
                   isMobile 
-                    ? "-bottom-1 left-1/2 -translate-x-1/2" 
+                    ? "-left-1 top-1/2 -translate-y-1/2" 
                     : "-right-1 top-1/2 -translate-y-1/2"
                 }`}
               />

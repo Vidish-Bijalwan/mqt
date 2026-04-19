@@ -41,19 +41,19 @@ export default function DestinationReviews({ destinationSlug }: { destinationSlu
           .eq("slug", destinationSlug)
           .single();
 
-        if (destError) {
+        if (destError || !destData) {
           console.error("Destination not found in DB yet:", destError);
           setIsLoading(false);
           return;
         }
 
-        setDestinationId(destData.id);
+        setDestinationId((destData as any).id);
 
         // 2. Get approved reviews
         const { data: reviewData, error: reviewError } = await supabase
           .from("reviews")
           .select("id, rating, title, content, created_at, profiles(full_name, avatar_url)")
-          .eq("destination_id", destData.id)
+          .eq("destination_id", (destData as any).id)
           .eq("status", "approved")
           .order("created_at", { ascending: false });
 
@@ -82,7 +82,7 @@ export default function DestinationReviews({ destinationSlug }: { destinationSlu
         title,
         content,
         status: "pending",
-      });
+      } as any);
 
       if (error) throw error;
 

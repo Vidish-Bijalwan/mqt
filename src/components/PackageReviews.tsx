@@ -41,19 +41,19 @@ export default function PackageReviews({ packageSlug }: { packageSlug: string })
           .eq("slug", packageSlug)
           .single();
 
-        if (pkgError) {
+        if (pkgError || !pkgData) {
           console.error("Package not found in DB yet:", pkgError);
           setIsLoading(false);
           return;
         }
 
-        setPackageId(pkgData.id);
+        setPackageId((pkgData as any).id);
 
         // 2. Get approved reviews
         const { data: reviewData, error: reviewError } = await supabase
           .from("reviews")
           .select("id, rating, title, content, created_at, profiles(full_name, avatar_url)")
-          .eq("package_id", pkgData.id)
+          .eq("package_id", (pkgData as any).id)
           .eq("status", "approved")
           .order("created_at", { ascending: false });
 
@@ -82,7 +82,7 @@ export default function PackageReviews({ packageSlug }: { packageSlug: string })
         title,
         content,
         status: "pending",
-      });
+      } as any);
 
       if (error) throw error;
 

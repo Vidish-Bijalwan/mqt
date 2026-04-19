@@ -101,6 +101,22 @@ const DiscoverySection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {vibes.map((vibe: any, i: number) => {
             const Icon = iconMap[vibe.icon_name || "Compass"] || Compass;
+            
+            const matchedDefault = defaultVibes.find(
+              (v) => v.id === vibe.id || v.id === vibe.style || v.style_id === vibe.style_id || v.style_id === vibe.style
+            );
+
+            let finalImageUrl = vibe.bg_image_url || 
+                                vibe.background_image_url ||
+                                matchedDefault?.bg_image_url ||
+                                '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg';
+
+            if (finalImageUrl.startsWith('india_tourism')) {
+              finalImageUrl = `/tourism/${finalImageUrl.split('/').slice(1).join('/')}`;
+            } else if (finalImageUrl.startsWith('unsplash')) {
+              finalImageUrl = '/logo.png';
+            }
+
             return (
               <ScrollReveal key={vibe.id} delay={i * 0.12}>
                 <motion.button
@@ -111,7 +127,7 @@ const DiscoverySection = () => {
                 >
                   {/* BG Image */}
                   <img
-                    src={vibe.bg_image_url || vibe.background_image_url || defaultVibes.find(v => v.style_id === vibe.style)?.bg_image_url || defaultVibes.find(v => v.id === vibe.id)?.bg_image_url || '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg'}
+                    src={finalImageUrl}
                     alt={vibe.label}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
