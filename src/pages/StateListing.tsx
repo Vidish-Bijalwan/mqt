@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet-async";
 import { StateDestinationMap } from "@/components/ui/Map/StateDestinationMap";
 import { StateGallery } from "@/components/ui/StateGallery";
 import { getStateImage } from "@/lib/imageMap";
+import { stateImagesMap } from "@/data/stateImagesMap";
 import { Category, Season, BudgetTier } from "@/types/models";
 
 const StateListing = () => {
@@ -60,7 +61,28 @@ const StateListing = () => {
     return <Navigate to="/destinations" replace />;
   }
 
-  const { src: heroImg } = getStateImage(stateData.slug, 'hero', stateData.image);
+  // ── Hero image: use resolved TOURISM_FALLBACKS path (ignores broken /india_tourism/ CMS data)
+  const heroResolved = getStateImage(stateData.slug, 'hero');
+  const heroImg = heroResolved;
+
+  // ── Gallery: build from stateImagesMap which has confirmed-working local paths.
+  //    If the state has entries in stateImagesMap, use those;
+  //    otherwise fall back to the single hero image repeated with different captions.
+  const confirmedImages: { url: string; alt: string }[] = useMemo(() => {
+    const rawPaths = stateImagesMap[stateData.slug];
+    if (rawPaths && rawPaths.length > 0) {
+      return rawPaths.map((url, i) => ({
+        url,
+        alt: `${stateData.name} — Scene ${i + 1}`,
+      }));
+    }
+    // No specific gallery for this state — use hero image + related regional fallbacks
+    return [
+      { url: heroResolved.src, alt: `${stateData.name} — Featured` },
+      { url: heroResolved.fallbackSrc, alt: `${stateData.name} — Landscape` },
+    ].filter((img, idx, arr) => arr.findIndex(a => a.url === img.url) === idx);
+  }, [stateData.slug, heroResolved.src]);
+
 
   return (
     <PageLayout>
@@ -127,10 +149,10 @@ const StateListing = () => {
         </div>
       </section>
 
-      {/* ── State Photo Gallery ── */}
+      {/* ── State Photo Gallery — use confirmed stateImagesMap paths ── */}
       <StateGallery
         stateName={stateData.name}
-        images={stateData.galleryImages || []}
+        images={confirmedImages}
         stateColor={stateData.colorPrimary}
       />
 

@@ -99,7 +99,7 @@ const AnimatedRoutes = () => {
   React.useEffect(() => {
     if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
       (window as any).gtag("config", "G-G5MVEVQJPP", {
-         page_path: location.pathname + location.search
+        page_path: location.pathname + location.search
       });
     }
   }, [location]);
@@ -108,130 +108,130 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Suspense fallback={<div className="h-screen w-full flex items-center justify-center p-4"><div className="w-8 h-8 rounded-full border-4 border-primary/30 border-t-primary animate-spin"></div></div>}>
         <Routes location={location} key={location.pathname}>
-        {/* ── Public Routes ── */}
-        <Route path="/" element={<Index />} />
-        <Route path="/destinations" element={<Destinations />} />
-        <Route path="/destinations/:stateSlug" element={<StateListing />} />
-        <Route path="/destinations/:stateSlug/:slug" element={<DestinationDetail />} />
-        <Route path="/packages" element={<Packages />} />
-        <Route path="/packages/helicopter" element={<HelicopterPackages />} />
-        <Route path="/packages/:category" element={<Packages />} />
-        <Route path="/packages/:category/:slug" element={<PackageDetail />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogDetail />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-of-service" element={<TermsOfService />} />
-        <Route path="/profile" element={<UserProfile />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/services/:slug" element={<ServiceDetail />} />
-        <Route path="/cancellation-policy" element={<CancellationPolicy />} />
-        <Route path="/terms-conditions" element={<TermsOfService />} />
-        <Route path="/terms" element={<TermsOfService />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/refund" element={<NotFound />} />
+          {/* ── Public Routes ── */}
+          <Route path="/" element={<Index />} />
+          <Route path="/destinations" element={<Destinations />} />
+          <Route path="/destinations/:stateSlug" element={<StateListing />} />
+          <Route path="/destinations/:stateSlug/:slug" element={<DestinationDetail />} />
+          <Route path="/packages" element={<Packages />} />
+          <Route path="/packages/helicopter" element={<HelicopterPackages />} />
+          <Route path="/packages/:category" element={<Packages />} />
+          <Route path="/packages/:category/:slug" element={<PackageDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/cancellation-policy" element={<CancellationPolicy />} />
+          <Route path="/terms-conditions" element={<TermsOfService />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/refund" element={<NotFound />} />
 
-        {/* ── Admin: Public ── */}
-        <Route path="/admin/login" element={<AdminLogin />} />
+          {/* ── Admin: Public ── */}
+          <Route path="/admin/login" element={<AdminLogin />} />
 
-        {/* ── Admin: Protected Workspace ── */}
-        <Route element={<ProtectedRoute />}>
-          <Route element={<AdminLayout />}>
+          {/* ── Admin: Protected Workspace ── */}
+          <Route element={<ProtectedRoute />}>
+            <Route element={<AdminLayout />}>
 
-            {/* Core */}
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/enquiries" element={<AdminEnquiries />} />
-            <Route path="/admin/media" element={<AdminMedia />} />
-            <Route path="/admin/reviews" element={<AdminReviews />} />
-            <Route path="/admin/content" element={<ContentHub />} />
+              {/* Core */}
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/enquiries" element={<AdminEnquiries />} />
+              <Route path="/admin/media" element={<AdminMedia />} />
+              <Route path="/admin/reviews" element={<AdminReviews />} />
+              <Route path="/admin/content" element={<ContentHub />} />
 
-            {/* States & UTs */}
-            <Route path="/admin/content/states" element={<AdminStates />} />
-            <Route path="/admin/content/states/new" element={<StateForm />} />
-            <Route path="/admin/content/states/:id/edit" element={<StateForm />} />
+              {/* States & UTs */}
+              <Route path="/admin/content/states" element={<AdminStates />} />
+              <Route path="/admin/content/states/new" element={<StateForm />} />
+              <Route path="/admin/content/states/:id/edit" element={<StateForm />} />
 
-            {/* Destinations */}
-            <Route path="/admin/content/destinations" element={<AdminDestinations />} />
-            <Route path="/admin/content/destinations/new" element={<DestinationForm />} />
-            <Route path="/admin/content/destinations/:id/edit" element={<DestinationForm />} />
+              {/* Destinations */}
+              <Route path="/admin/content/destinations" element={<AdminDestinations />} />
+              <Route path="/admin/content/destinations/new" element={<DestinationForm />} />
+              <Route path="/admin/content/destinations/:id/edit" element={<DestinationForm />} />
 
-            {/* Categories */}
-            <Route path="/admin/content/categories" element={<AdminCategories />} />
-            <Route path="/admin/content/categories/new" element={<CategoryForm />} />
-            <Route path="/admin/content/categories/:id/edit" element={<CategoryForm />} />
+              {/* Categories */}
+              <Route path="/admin/content/categories" element={<AdminCategories />} />
+              <Route path="/admin/content/categories/new" element={<CategoryForm />} />
+              <Route path="/admin/content/categories/:id/edit" element={<CategoryForm />} />
 
-            {/* Packages */}
-            <Route path="/admin/content/packages" element={<AdminPackages />} />
-            <Route path="/admin/content/packages/new" element={<PackageForm />} />
-            <Route path="/admin/content/packages/:id/edit" element={<PackageForm />} />
+              {/* Packages */}
+              <Route path="/admin/content/packages" element={<AdminPackages />} />
+              <Route path="/admin/content/packages/new" element={<PackageForm />} />
+              <Route path="/admin/content/packages/:id/edit" element={<PackageForm />} />
 
-            {/* Blog */}
-            <Route path="/admin/content/blog" element={<AdminBlog />} />
-            <Route path="/admin/content/blog/new" element={<BlogForm />} />
-            <Route path="/admin/content/blog/:id/edit" element={<BlogForm />} />
+              {/* Blog */}
+              <Route path="/admin/content/blog" element={<AdminBlog />} />
+              <Route path="/admin/content/blog/new" element={<BlogForm />} />
+              <Route path="/admin/content/blog/:id/edit" element={<BlogForm />} />
 
-            {/* Testimonials */}
-            <Route path="/admin/content/testimonials" element={<AdminTestimonials />} />
-            <Route path="/admin/content/testimonials/new" element={<TestimonialForm />} />
-            <Route path="/admin/content/testimonials/:id/edit" element={<TestimonialForm />} />
+              {/* Testimonials */}
+              <Route path="/admin/content/testimonials" element={<AdminTestimonials />} />
+              <Route path="/admin/content/testimonials/new" element={<TestimonialForm />} />
+              <Route path="/admin/content/testimonials/:id/edit" element={<TestimonialForm />} />
 
-            {/* FAQs */}
-            <Route path="/admin/content/faqs" element={<AdminFAQs />} />
-            <Route path="/admin/content/faqs/new" element={<FAQForm />} />
-            <Route path="/admin/content/faqs/:id/edit" element={<FAQForm />} />
+              {/* FAQs */}
+              <Route path="/admin/content/faqs" element={<AdminFAQs />} />
+              <Route path="/admin/content/faqs/new" element={<FAQForm />} />
+              <Route path="/admin/content/faqs/:id/edit" element={<FAQForm />} />
 
-            {/* Homepage & Settings */}
-            <Route path="/admin/content/homepage" element={<AdminHomepage />} />
-            <Route path="/admin/content/site-settings" element={<SiteSettings />} />
+              {/* Homepage & Settings */}
+              <Route path="/admin/content/homepage" element={<AdminHomepage />} />
+              <Route path="/admin/content/site-settings" element={<SiteSettings />} />
 
-            {/* Travel Routes */}
-            <Route path="/admin/content/travel-routes" element={<AdminTravelRoutes />} />
-            <Route path="/admin/content/travel-routes/new" element={<TravelRouteForm />} />
-            <Route path="/admin/content/travel-routes/:id/edit" element={<TravelRouteForm />} />
+              {/* Travel Routes */}
+              <Route path="/admin/content/travel-routes" element={<AdminTravelRoutes />} />
+              <Route path="/admin/content/travel-routes/new" element={<TravelRouteForm />} />
+              <Route path="/admin/content/travel-routes/:id/edit" element={<TravelRouteForm />} />
 
-            {/* Festivals */}
-            <Route path="/admin/content/festivals" element={<AdminFestivals />} />
-            <Route path="/admin/content/festivals/new" element={<FestivalForm />} />
-            <Route path="/admin/content/festivals/:id/edit" element={<FestivalForm />} />
+              {/* Festivals */}
+              <Route path="/admin/content/festivals" element={<AdminFestivals />} />
+              <Route path="/admin/content/festivals/new" element={<FestivalForm />} />
+              <Route path="/admin/content/festivals/:id/edit" element={<FestivalForm />} />
 
-            {/* Discovery Vibes */}
-            <Route path="/admin/content/discovery-vibes" element={<AdminDiscoveryVibes />} />
-            <Route path="/admin/content/discovery-vibes/new" element={<DiscoveryVibeForm />} />
-            <Route path="/admin/content/discovery-vibes/:id/edit" element={<DiscoveryVibeForm />} />
+              {/* Discovery Vibes */}
+              <Route path="/admin/content/discovery-vibes" element={<AdminDiscoveryVibes />} />
+              <Route path="/admin/content/discovery-vibes/new" element={<DiscoveryVibeForm />} />
+              <Route path="/admin/content/discovery-vibes/:id/edit" element={<DiscoveryVibeForm />} />
 
-            {/* Domestic & International */}
-            <Route path="/admin/content/domestic-international" element={<AdminDomesticInternational />} />
-            <Route path="/admin/content/domestic-international/new" element={<DomesticInternationalForm />} />
-            <Route path="/admin/content/domestic-international/:id/edit" element={<DomesticInternationalForm />} />
+              {/* Domestic & International */}
+              <Route path="/admin/content/domestic-international" element={<AdminDomesticInternational />} />
+              <Route path="/admin/content/domestic-international/new" element={<DomesticInternationalForm />} />
+              <Route path="/admin/content/domestic-international/:id/edit" element={<DomesticInternationalForm />} />
 
-            {/* Travel Experiences */}
-            <Route path="/admin/content/travel-experiences" element={<AdminTravelExperiences />} />
-            <Route path="/admin/content/travel-experiences/new" element={<TravelExperienceForm />} />
-            <Route path="/admin/content/travel-experiences/:id/edit" element={<TravelExperienceForm />} />
+              {/* Travel Experiences */}
+              <Route path="/admin/content/travel-experiences" element={<AdminTravelExperiences />} />
+              <Route path="/admin/content/travel-experiences/new" element={<TravelExperienceForm />} />
+              <Route path="/admin/content/travel-experiences/:id/edit" element={<TravelExperienceForm />} />
 
-            {/* Why Choose Us */}
-            <Route path="/admin/content/why-choose-us" element={<AdminWhyChooseUs />} />
-            <Route path="/admin/content/why-choose-us/new" element={<WhyChooseUsForm />} />
-            <Route path="/admin/content/why-choose-us/:id/edit" element={<WhyChooseUsForm />} />
+              {/* Why Choose Us */}
+              <Route path="/admin/content/why-choose-us" element={<AdminWhyChooseUs />} />
+              <Route path="/admin/content/why-choose-us/new" element={<WhyChooseUsForm />} />
+              <Route path="/admin/content/why-choose-us/:id/edit" element={<WhyChooseUsForm />} />
 
-            {/* How It Works */}
-            <Route path="/admin/content/how-it-works" element={<AdminHowItWorks />} />
-            <Route path="/admin/content/how-it-works/new" element={<HowItWorksForm />} />
-            <Route path="/admin/content/how-it-works/:id/edit" element={<HowItWorksForm />} />
+              {/* How It Works */}
+              <Route path="/admin/content/how-it-works" element={<AdminHowItWorks />} />
+              <Route path="/admin/content/how-it-works/new" element={<HowItWorksForm />} />
+              <Route path="/admin/content/how-it-works/:id/edit" element={<HowItWorksForm />} />
 
-            {/* Newsletter */}
-            <Route path="/admin/content/newsletter" element={<AdminNewsletter />} />
+              {/* Newsletter */}
+              <Route path="/admin/content/newsletter" element={<AdminNewsletter />} />
 
-            {/* Trust Strip */}
-            <Route path="/admin/content/trust-strip" element={<AdminTrustStrip />} />
+              {/* Trust Strip */}
+              <Route path="/admin/content/trust-strip" element={<AdminTrustStrip />} />
 
+            </Route>
           </Route>
-        </Route>
 
-        {/* Catch-all */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          {/* Catch-all */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </Suspense>
     </AnimatePresence>
   );
@@ -239,24 +239,24 @@ const AnimatedRoutes = () => {
 
 const App = () => (
   <HelmetProvider>
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <BrowserRouter>
-          <TripPlannerProvider>
-            <Toaster />
-            <Sonner />
-            <RetentionNudge />
-            <CookieConsent />
-            <AnimatedRoutes />
-            <TripPlannerModal />
-            <PlannerTeaser />
-            <ResumePlannerPopup />
-          </TripPlannerProvider>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
-  </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <BrowserRouter>
+            <TripPlannerProvider>
+              <Toaster />
+              <Sonner />
+              <RetentionNudge />
+              <CookieConsent />
+              <AnimatedRoutes />
+              <TripPlannerModal />
+              <PlannerTeaser />
+              <ResumePlannerPopup />
+            </TripPlannerProvider>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </HelmetProvider>
 );
 

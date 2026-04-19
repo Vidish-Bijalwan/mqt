@@ -1,40 +1,27 @@
-import { Shield, CheckCircle, CreditCard, Phone, Award, Map, Compass } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/lib/supabase";
+import { motion } from "framer-motion";
 
+// Fetch from DB — if data exists, override defaults
 const fetchTrustStrip = async () => {
-  const { data, error } = await supabase
-    .from("trust_strip")
-    .select("*")
-    .eq("active", true)
-    .order("sort_order", { ascending: true });
-  if (error) throw error;
-  return data;
+  try {
+    const { data } = await supabase
+      .from("trust_strip")
+      .select("*")
+      .eq("active", true)
+      .order("sort_order", { ascending: true })
+      .limit(3);
+    return data || [];
+  } catch {
+    return [];
+  }
 };
 
-const iconMap: Record<string, any> = {
-  Shield,
-  CheckCircle,
-  CreditCard,
-  Phone,
-  Award,
-  Map,
-  Compass
-};
-
-const defaultTrustItems = [
-  { icon_name: "Shield", icon_color_class: 'text-blue-600', icon_bg_class: 'bg-blue-50',
-    title: '100% Safe Travel', description: 'Verified hotels & trusted local partners' },
-  { icon_name: "CheckCircle", icon_color_class: 'text-green-600', icon_bg_class: 'bg-green-50',
-    title: 'Verified Local Guides', description: 'Expert guides with deep regional knowledge' },
-  { icon_name: "CreditCard", icon_color_class: 'text-purple-600', icon_bg_class: 'bg-purple-50',
-    title: 'Best Price Guarantee', description: 'No hidden costs, transparent pricing' },
-  { icon_name: "Phone", icon_color_class: 'text-orange-600', icon_bg_class: 'bg-orange-50',
-    title: '24/7 Customer Support', description: 'Always available when you need us' },
-  { icon_name: "Award", icon_color_class: 'text-amber-600', icon_bg_class: 'bg-amber-50',
-    title: '5000+ Happy Travelers', description: 'Trusted by families across India' },
-  { icon_name: "Map", icon_color_class: 'text-teal-600', icon_bg_class: 'bg-teal-50',
-    title: 'Pan India Coverage', description: 'All 28 states and union territories' },
+// Miller's Law: 3 numbers only. Von Restorff: amber on dark.
+const DEFAULT_STATS = [
+  { number: "500+", label: "Happy Travellers" },
+  { number: "28", label: "States Covered" },
+  { number: "2019", label: "Trusted Since" },
 ];
 
 const TrustStrip = () => {
@@ -43,26 +30,41 @@ const TrustStrip = () => {
     queryFn: fetchTrustStrip,
   });
 
-  const trustItems = data && data.length > 0 ? data : defaultTrustItems;
+  // Use DB data if it has number/label fields, otherwise use defaults
+  const stats =
+    data && data.length > 0 && (data[0] as any).number
+      ? (data as any[]).slice(0, 3).map((d) => ({
+          number: d.number,
+          label: d.label,
+        }))
+      : DEFAULT_STATS;
 
   return (
-    <section className="bg-surface py-10">
+    <section className="bg-[#0F172A] border-b border-amber-500/20">
       <div className="container-page">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {trustItems.map((item: any, idx: number) => {
-            const Icon = iconMap[item.icon_name || "CheckCircle"] || CheckCircle;
-            return (
-              <div key={item.title || idx}
-                className="flex flex-col items-center text-center p-4 rounded-2xl bg-white
-                  shadow-sm hover:shadow-md transition-shadow">
-                <div className={`w-12 h-12 ${item.icon_bg_class || 'bg-gray-100'} rounded-full flex items-center justify-center mb-3`}>
-                  <Icon className={item.icon_color_class || 'text-gray-600'} size={22} />
-                </div>
-                <p className="font-semibold text-gray-800 text-sm leading-tight">{item.title}</p>
-                <p className="text-gray-400 text-xs mt-1 leading-relaxed">{item.description}</p>
-              </div>
-            );
-          })}
+        <div className="flex items-center justify-center divide-x divide-white/10">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.45 }}
+              className="flex flex-col items-center py-6 px-8 sm:px-12 md:px-16 gap-1"
+            >
+              {/* Von Restorff: amber number stands out against dark bg */}
+              <span
+                className="font-display text-2xl sm:text-3xl font-bold"
+                style={{ color: "#F59E0B" }}
+              >
+                {stat.number}
+              </span>
+              {/* Law of Proximity: label immediately below number */}
+              <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-white/50">
+                {stat.label}
+              </span>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

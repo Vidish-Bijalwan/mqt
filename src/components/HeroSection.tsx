@@ -1,63 +1,36 @@
-import { Search, Calendar, Users, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { staggerContainer, staggerItem } from "@/lib/motion";
-import { MagneticButton } from "@/components/ui/MagneticButton";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { useState, useEffect, useRef } from "react";
-import { useTripPlanner } from "@/contexts/TripPlannerContext";
-import SemanticSearchBar from "./SemanticSearchBar";
+import { useState, useEffect } from "react";
+import { getGeneralWhatsAppUrl } from "@/lib/contact";
 
 const heroSlides = [
   {
     src: "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg",
-    alt: "Taj Mahal at sunrise with reflection pool mist, Agra, Uttar Pradesh, India",
+    alt: "Dal Lake, Srinagar, Jammu & Kashmir, India",
   },
   {
     src: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
-    alt: "Pangong Tso Lake at sunrise with turquoise water and barren mountains, Ladakh, India",
+    alt: "Vagator Beach, Goa, India",
   },
   {
     src: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
-    alt: "Ganga Aarti fire ritual at Dashashwamedh Ghat with priests and brass lamps, Varanasi, India",
+    alt: "Ganga Ghat, Haridwar, Uttarakhand, India",
   },
   {
     src: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
-    alt: "Kerala backwaters houseboat at golden hour with coconut palms and reflections, Alleppey, India",
+    alt: "Cherai Beach, Kerala, India",
   },
 ];
 
-const stats = [
-  { icon: "✨", label: "Curated Pan-India Journeys" },
-  { icon: "⭐", label: "4.9 Rated" },
-  { icon: "😊", label: "10,000+ Happy Travellers" },
-  { icon: "📅", label: "Expert Planners" },
-];
-
-const popularTags = ["Kerala Backwaters", "Rajasthan Heritage", "Goa Beaches", "Andaman Islands", "Himalayan Treks", "Varanasi Spiritual"];
-
 const HeroSection = () => {
   const navigate = useNavigate();
-  const { openPlanner } = useTripPlanner();
   const { scrollY } = useScroll();
-  const bgY = useTransform(scrollY, [0, 1000], [0, 300]);
+  // Parallax: bg moves slower than scroll — creates depth
+  const bgY = useTransform(scrollY, [0, 800], [0, 220]);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const ctaBtnRef = useRef<HTMLButtonElement>(null);
 
-  // CTA single pulse — fires once after 2s
-  useEffect(() => {
-    const t = setTimeout(() => {
-      if (ctaBtnRef.current) {
-        ctaBtnRef.current.classList.add('animate-cta-pulse');
-        ctaBtnRef.current.addEventListener('animationend', () => {
-          ctaBtnRef.current?.classList.remove('animate-cta-pulse');
-        }, { once: true });
-      }
-    }, 2000);
-    return () => clearTimeout(t);
-  }, []);
-
+  // Auto-advance slides every 6s
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -66,97 +39,155 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gray-900">
-      {/* Background Slider with Parallax */}
-      <motion.div 
-        style={{ 
-          y: bgY, 
-          scale: 1.1,
+    // Peak-End Rule: hero is the emotional PEAK — must be stunning
+    // 100svh = dynamic viewport height (fixes mobile browser chrome issue)
+    <section className="relative overflow-hidden bg-gray-900" style={{ height: "100svh", minHeight: 560 }}>
 
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-        className="absolute inset-0 w-full h-full"
+      {/* Background image slider with parallax */}
+      <motion.div
+        style={{ y: bgY, scale: 1.08 }}
+        className="absolute inset-0 w-full h-full origin-center"
       >
         {heroSlides.map((slide, index) => (
           <img
             key={index}
             src={slide.src}
             alt={slide.alt}
-            loading={index === 0 ? 'eager' : 'lazy'}
-            fetchPriority={index === 0 ? 'high' : 'auto' as any}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : ("auto" as any)}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out ${
               currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
-            style={{ transitionDuration: '2000ms' }}
+            style={{ transitionDuration: "2000ms" }}
           />
         ))}
-        <div className="absolute inset-0 bg-black/40 z-20" />
-        <div className="absolute inset-0 gradient-hero z-20" />
       </motion.div>
 
-      {/* Content */}
-      <motion.div 
+      {/* Overlay: bottom-heavy gradient so text is always readable */}
+      <div
+        className="absolute inset-0 z-20"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.18) 70%, transparent 100%)",
+        }}
+      />
+
+      {/* Slide indicator dots — Law of Proximity: grouped at bottom-left */}
+      <div className="absolute bottom-8 left-6 z-30 flex gap-2">
+        {heroSlides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentSlide(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className="transition-all duration-300"
+            style={{
+              width: currentSlide === i ? 24 : 8,
+              height: 8,
+              borderRadius: 4,
+              background: currentSlide === i ? "#F59E0B" : "rgba(255,255,255,0.35)",
+              border: "none",
+              cursor: "pointer",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Content — Serial Position Effect: anchored to BOTTOM */}
+      {/* Fitts's Law: CTAs positioned where thumb naturally rests */}
+      <motion.div
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative z-10 container mx-auto px-4 text-center pt-16 pb-32"
+        className="absolute inset-x-0 bottom-0 z-30 container-page pb-16 md:pb-20"
       >
-        <motion.p variants={staggerItem} className="text-accent font-body font-medium text-sm md:text-base tracking-widest uppercase mb-4 shadow-sm">
-          ✨ Premium India Travel Experiences Since 2019
-        </motion.p>
+        {/* Trust pill — social proof first, Aesthetic-Usability + Trust */}
+        <motion.div variants={staggerItem}>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-xs font-semibold tracking-wide mb-5">
+            <span className="text-amber-400">✦</span>
+            Premium India Travel Since 2019 · 500+ Travellers
+          </span>
+        </motion.div>
 
-        <motion.h1 variants={staggerItem} className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold text-background leading-tight mb-6">
-          Discover the Soul<br className="hidden md:block" /> of Incredible India
+        {/* ONE headline — Serial Position Effect: first = most important */}
+        <motion.h1
+          variants={staggerItem}
+          className="font-display font-bold text-white leading-[1.08] mb-5"
+          style={{ fontSize: "clamp(2.2rem, 7vw, 4.5rem)" }}
+        >
+          Discover the Soul<br className="hidden sm:block" /> of Incredible India
         </motion.h1>
 
-        <motion.p variants={staggerItem} className="font-body text-base md:text-lg text-background/90 max-w-2xl mx-auto mb-8 font-medium">
-          From spiritual circuits and Himalayan escapes to serene beaches, heritage cities, wildlife retreats, and luxury holidays — every journey is exclusively crafted around your style and schedule.
+        {/* ONE sub-line — answers "what do you do" in under 5 seconds */}
+        <motion.p
+          variants={staggerItem}
+          className="text-white/80 font-light leading-relaxed mb-8 max-w-xl"
+          style={{ fontSize: "clamp(1rem, 2.2vw, 1.2rem)" }}
+        >
+          Curated journeys across every corner of India.
+          <br className="hidden sm:block" />
+          Planned for you. Perfected by locals.
         </motion.p>
 
-        <motion.div variants={staggerItem} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-          <MagneticButton>
-            <Button 
-              size="lg" 
-              onClick={() => navigate("/packages")}
-              ref={ctaBtnRef}
-              className="gradient-accent text-accent-foreground font-semibold px-8 text-base hover:scale-[1.02] transition-transform shadow-lg"
-            >
-              Explore Packages
-            </Button>
-          </MagneticButton>
-          <MagneticButton>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              onClick={() => openPlanner({ intent_type: 'custom_trip' }, 'hero_cta')}
-              className="bg-transparent border-white text-white hover:bg-white/20 hover:text-white font-medium px-8 text-base shadow-sm backdrop-blur-sm"
-            >
-              Plan Custom Trip →
-            </Button>
-          </MagneticButton>
+        {/* TWO CTAs maximum — Fitts's Law: large targets, close together */}
+        <motion.div
+          variants={staggerItem}
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+        >
+          {/* Primary: WhatsApp — Jakob's Law: green = universally recognised */}
+          <a
+            href={getGeneralWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2.5 font-semibold text-white rounded-xl transition-all duration-200 hover:scale-[1.03] active:scale-[0.97] shadow-lg"
+            style={{
+              height: 56, // Fitts's Law: well above 44px minimum
+              padding: "0 28px",
+              background: "#25D366",
+              boxShadow: "0 8px 28px rgba(37,211,102,0.4)",
+              fontSize: 16,
+              textDecoration: "none",
+            }}
+            id="hero-whatsapp-cta"
+          >
+            {/* WhatsApp icon */}
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+            Plan My Trip on WhatsApp
+          </a>
+
+          {/* Secondary: glass button */}
+          <button
+            onClick={() => navigate("/packages")}
+            className="inline-flex items-center justify-center font-semibold text-white rounded-xl transition-all duration-200 hover:bg-white/20 active:scale-[0.97]"
+            style={{
+              height: 56,
+              padding: "0 28px",
+              background: "rgba(255,255,255,0.12)",
+              border: "1.5px solid rgba(255,255,255,0.35)",
+              backdropFilter: "blur(8px)",
+              fontSize: 16,
+            }}
+            id="hero-explore-cta"
+          >
+            Explore Packages →
+          </button>
         </motion.div>
 
-        {/* Stats */}
-        <motion.div variants={staggerItem} className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
-          {stats.map((stat, i) => (
-            <div key={i} className="flex items-center gap-2 text-background/80 text-sm">
-              <span>{stat.icon}</span>
-              <span>{stat.label}</span>
-              {i < stats.length - 1 && <span className="hidden md:inline text-background/30 ml-4">|</span>}
-            </div>
-          ))}
+        {/* Goal-Gradient Effect: subtle scroll cue shows there's more below */}
+        <motion.div
+          variants={staggerItem}
+          className="hidden sm:flex flex-col items-start gap-1 mt-6"
+        >
+          <span className="text-[11px] text-white/40 uppercase tracking-widest font-medium">
+            Scroll to explore
+          </span>
+          <div
+            className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent"
+            style={{ animation: "scrollArrow 1.8s ease-in-out infinite" }}
+          />
         </motion.div>
       </motion.div>
-
-      {/* Search Widget */}
-      <ScrollReveal delay={0.6} className="absolute bottom-8 lg:bottom-12 left-0 right-0 z-20 px-4">
-        <div className="container mx-auto flex flex-col gap-4 relative">
-          <div className="w-full max-w-2xl mx-auto bg-white/20 backdrop-blur-md p-2 rounded-[2rem] border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
-            <SemanticSearchBar />
-          </div>
-        </div>
-      </ScrollReveal>
     </section>
   );
 };

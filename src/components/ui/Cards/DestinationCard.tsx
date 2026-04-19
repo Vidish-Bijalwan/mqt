@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DestinationModel } from "@/types/models";
 import { SmartImage } from "../SmartImage";
+import { getDestinationImage } from "@/lib/imageMap";
 
 interface DestinationCardProps {
   destination: DestinationModel;
@@ -12,8 +13,11 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({ destination, s
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
-  // Destructure for safety since some schema might be generated/legacy
-  const heroUrl = destination.heroImage?.url || destination.image || '';
+  // Resolve image through imageMap — falls back to TOURISM_FALLBACKS even if
+  // heroImage.url points to broken /india_tourism/... paths
+  const resolved = getDestinationImage(destination.slug, 'card', destination.heroImage?.url || destination.image);
+  const heroUrl = resolved.src;
+  const heroFallback = resolved.fallbackSrc;
   const heroAlt = destination.heroImage?.alt || destination.name;
   
   const estimatedBudget = destination.estimatedBudget?.budget_per_day_inr || 2000;
@@ -43,6 +47,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({ destination, s
       <SmartImage
         src={heroUrl}
         alt={heroAlt}
+        fallbackSrc={heroFallback}
         fallbackType={destination.type as any}
         location={destination.name}
         style={{
@@ -147,7 +152,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({ destination, s
               onClick={(e) => {
                 e.stopPropagation();
                 window.open(
-                  `https://wa.me/919876543210?text=Hi MQT! I'm interested in visiting ${destination.name}. Please share package details.`,
+                  `https://wa.me/917668741373?text=Hi MQT! I'm interested in visiting ${destination.name}. Please share package details.`,
                   '_blank'
                 );
               }}

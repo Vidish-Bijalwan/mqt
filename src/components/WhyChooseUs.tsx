@@ -1,100 +1,99 @@
-import { User, Shield, Wallet, Star, Compass, CheckCircle } from "lucide-react";
-import travelersImg from "@/assets/travelers-group.jpg";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/lib/supabase";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
+import { EASE_SMOOTH } from "@/lib/motion";
 
-const iconMap: Record<string, any> = {
-  Compass,
-  User,
-  Shield,
-  Wallet,
-  Star,
-  CheckCircle,
+// Miller's Law: 3 reasons — not 6, not 8. THREE.
+// Law of Similarity: all 3 cards identical visual treatment.
+// Von Restorff: numbered highlights stand out.
+const REASONS = [
+  {
+    num: "01",
+    icon: "🏔",
+    title: "Local Experts Across India",
+    desc: "Deep knowledge of every route, coast, and trail across all 28 states. We've been there — we'll make sure you go right.",
+  },
+  {
+    num: "02",
+    icon: "🎯",
+    title: "100% Customised for You",
+    desc: "No copy-paste itineraries. Every trip is built from scratch around your dates, budget, travel style, and group.",
+  },
+  {
+    num: "03",
+    icon: "⭐",
+    title: "Rated 4.9/5 by Real Travellers",
+    desc: "500+ verified reviews from families, couples, and solo travellers across India. Not bots — real people, real trips.",
+  },
+] as const;
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
-const fetchWhyChooseUs = async () => {
-  const { data, error } = await supabase
-    .from("why_choose_us")
-    .select("*")
-    .eq("active", true)
-    .order("sort_order", { ascending: true });
-  if (error) throw error;
-  return data;
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  // EASE_SMOOTH is typed as [number,number,number,number] in motion.ts — required by Framer Motion
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: EASE_SMOOTH },
+  },
 };
 
 const WhyChooseUs = () => {
-  const { data: features } = useQuery({
-    queryKey: ["public-why-choose-us"],
-    queryFn: fetchWhyChooseUs,
-  });
-
-  const displayFeatures = features || [
-    { icon_name: "Compass", title: "Destination Experts Across India", description: "Deep local knowledge of every route, coast, and trail" },
-    { icon_name: "Compass", title: "100% Customised", description: "No copy-paste itineraries — every trip built from scratch" },
-    { icon_name: "User", title: "Expert Trip Advisors", description: "Real people, not bots — available Mon–Sat 9AM–7PM" },
-    { icon_name: "Shield", title: "Safety First", description: "Verified hotels, vetted guides, emergency support 24/7" },
-    { icon_name: "Wallet", title: "Price Transparency", description: "No hidden charges — full breakdown before you pay" },
-    { icon_name: "Star", title: "Rated 4.9/5", description: "500+ verified reviews from real travellers" },
-  ];
-
   return (
-    <section className="section-padding bg-surface">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left - Content */}
-          <div>
-            <h2 className="section-heading mb-8">Why Travellers Trust <span className="text-primary">MQT</span></h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {displayFeatures.map((f: any) => {
-                const IconComponent = iconMap[f.icon_name || "CheckCircle"] || CheckCircle;
-                return (
-                  <div key={f.title} className="flex gap-4 group">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors">
-                      <IconComponent className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors" />
-                    </div>
-                    <div>
-                      <h3 className="font-body font-semibold text-foreground text-sm">{f.title}</h3>
-                      <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{f.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+    <section className="section-y bg-white reveal-section">
+      <div className="container-page">
 
-          {/* Right - Image with floating card */}
-          <div className="relative">
-            <img
-              src={travelersImg}
-              alt="Happy group of travellers exploring India"
-              className="rounded-xl shadow-card w-full"
-              loading="lazy"
-              width={800}
-              height={600}
-            />
-            {/* Floating stats */}
-            <div className="absolute -bottom-6 -left-6 bg-background rounded-xl shadow-elevated p-5 border border-border">
-              <div className="grid grid-cols-2 gap-4 text-center">
-                <div>
-                  <p className="font-display text-2xl font-bold text-primary">200+</p>
-                  <p className="text-xs text-muted-foreground">Trips</p>
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-bold text-primary">500+</p>
-                  <p className="text-xs text-muted-foreground">Clients</p>
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-bold text-accent">4.9⭐</p>
-                  <p className="text-xs text-muted-foreground">Rating</p>
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-bold text-primary">5+</p>
-                  <p className="text-xs text-muted-foreground">Years</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* Section header */}
+        <div className="text-center mb-12">
+          <span className="section-eyebrow">WHY MQT</span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-3">
+            Why Travellers Trust Us
+          </h2>
+          <p className="text-base text-gray-500 max-w-md mx-auto">
+            Three things we do differently from every other travel agency.
+          </p>
         </div>
+
+        {/* 3 numbered reason cards — Law of Similarity: identical card shell */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+        >
+          {REASONS.map((reason) => (
+            <motion.div
+              key={reason.num}
+              variants={cardVariants}
+              className="relative bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all duration-300 group"
+            >
+              {/* Von Restorff: large number stands out — nothing else is this large */}
+              <span
+                className="absolute top-6 right-7 font-display font-bold text-gray-100 group-hover:text-primary/10 transition-colors"
+                style={{ fontSize: "4rem", lineHeight: 1 }}
+                aria-hidden
+              >
+                {reason.num}
+              </span>
+
+              {/* Icon */}
+              <span className="text-3xl mb-5 block">{reason.icon}</span>
+
+              {/* Law of Proximity: title and desc grouped, number separated */}
+              <h3 className="font-display text-xl font-bold text-gray-900 mb-3 leading-snug">
+                {reason.title}
+              </h3>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                {reason.desc}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+
       </div>
     </section>
   );

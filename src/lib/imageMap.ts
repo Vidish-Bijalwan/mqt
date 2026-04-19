@@ -1,12 +1,15 @@
 /**
- * MQT Asset Mapping & Resolution Engine v4.0 — Local-First Smart Resolver
+ * MQT Asset Mapping & Resolution Engine v4.1 — Local-First Smart Resolver
  *
  * Priority chain:
- *   1. Local WebP  → /src/assets/images/{category}/{slug}/{variant}.webp
- *   2. Tourism JPG → /public/tourism/{state}/{section}/{file}.jpg
- *   3. CMS URL     → whatever the data layer supplies
- *   4. Gradient    → themed colour fallback (no broken icon)
+ *   1. destinationImagesMap (per-slug, verified)
+ *   2. Local WebP  → /src/assets/images/{category}/{slug}/{variant}.webp
+ *   3. Tourism JPG → /public/tourism/{state}/{section}/{file}.jpg
+ *   4. CMS URL     → whatever the data layer supplies
+ *   5. Gradient    → themed colour fallback (no broken icon)
  */
+
+import { getDestinationTourismImage } from "@/data/destinationImagesMap";
 
 export type ImageVariant = 'hero' | 'card' | 'banner' | 'thumbnail' | 'gallery-1' | 'gallery-2' | 'gallery-3';
 
@@ -126,6 +129,70 @@ const TOURISM_FALLBACKS: Record<string, string> = {
   'jharkhand':      '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
   'mizoram':        '/tourism/Manipur/Screen_Reader_Access/002_image_govt.png',
   'dadra-nagar-haveli': '/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg',
+  // Package slugs — direct slug→image for accurate package card images
+  'kedarnath-yatra-5-nights-6-days':       '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'kedarnath-helicopter-2-nights-3-days':  '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'char-dham-yatra-10-nights-11-days':     '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'char-dham-yatra':                       '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'ladakh-adventure-7-nights-8-days':      '/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg',
+  'ladakh-luxury-8-nights-9-days':         '/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg',
+  'ladakh-motorbike-expedition':           '/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg',
+  'kashmir-honeymoon-5-nights-6-days':     '/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg',
+  'kashmir-family-7-nights-8-days':        '/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg',
+  'kashmir-solo-4-nights-5-days':          '/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg',
+  'manali-family-4-nights-5-days':         '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
+  'manali-winter-snow-4-nights-5-days':    '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
+  'himalayan-grand-circuit-12-nights-13-days': '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
+  'varanasi-spiritual-3-nights-4-days':    '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'varanasi-prayagraj-4-nights-5-days':    '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'valley-of-flowers-trek-6-nights-7-days': '/tourism/valley_of_flowers.jpg',
+  'rishikesh-adventure-2-nights-3-days':   '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'royal-rajasthan-family-escape':         '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg',
+  'rajasthan-heritage-trail':              '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg',
+  'rajasthan-palace-retreat':              '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg',
+  'udaipur-couple-retreat':                '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg',
+  'udaipur-palace-experience':             '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg',
+  'goa-beach-escape':                      '/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg',
+  'goa-family-beach-break':               '/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg',
+  'goa-romantic-escape':                   '/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg',
+  'gokarna-beach-break':                   '/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg',
+  'kerala-family-escape':                  '/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg',
+  'kerala-backwaters-romance':             '/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg',
+  'kerala-luxury-escape':                  '/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg',
+  'kovalam-coastal-holiday':               '/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg',
+  'andaman-family-adventure':              '/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg',
+  'andaman-honeymoon-journey':             '/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg',
+  'andaman-coral-retreat':                 '/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg',
+  'darjeeling-tea-romance':               '/tourism/India_Central/Incredible_India/025_happy-valley-tea-estate-darjeeling-west_bengal-1-h_govt.jpg',
+  'golden-triangle-classic':              '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg',
+  'hampi-heritage-trail':                 '/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg',
+  'rameswaram-temple-trail':              '/tourism/India_Central/Incredible_India/038_1-rameswaram-temple-rameswaram-tamilnadu-hero_govt.jpg',
+  'tirupati-darshan-trip':                '/tourism/India_Central/Incredible_India/037_2-sri-venkateswara-swamy-vaari-temple-2-attr-hero_govt.jpg',
+  'ayodhya-pilgrimage':                   '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'mathura-vrindavan-yatra':              '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg',
+  'spiti-valley-escape':                  '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
+  'bir-billing-adventure':               '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
+  'auli-snow-escape':                     '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'pondicherry-weekend-escape':           '/tourism/India_Central/Incredible_India/039_auroville-puducherry_govt.jpg',
+  'mussoorie-weekend-retreat':            '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'kasol-weekend-escape':                 '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
+  'coorg-coffee-romance':                 '/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg',
+  'tiger-safari-expedition':             '/tourism/India_Central/Incredible_India/031_rajwada-indore-mp-city-hero_govt.jpg',
+  'jim-corbett-safari':                   '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'ranthambore-wildlife-tour':            '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg',
+  'kaziranga-nature-escape':              '/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg',
+  'kabini-jungle-escape':                 '/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg',
+  'kanha-wildlife-retreat':              '/tourism/India_Central/Incredible_India/031_rajwada-indore-mp-city-hero_govt.jpg',
+  'harshil-valley-4-day-package':        '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'gangotri-4-day-package':              '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'nelang-valley-day-trip':              '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'darang-village-day-trip':             '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'lonavala-quick-break':                '/tourism/Maharashtra/Overview/011_indranil-naikjpg_govt.jpg',
+  'lakshadweep-island-escape':           '/tourism/India_Central/Incredible_India/036_kalpeni-kavaratti-lakshwadeep-3-musthead-hero_govt.jpg',
+  'ooty-coorg-family-journey':           '/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg',
+  'shimla-manali-family-vacation':       '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
+  'khajuraho-temple-circuit':            '/tourism/India_Central/Incredible_India/031_rajwada-indore-mp-city-hero_govt.jpg',
+  'mahabalipuram-shore-trail':           '/tourism/India_Central/Incredible_India/038_1-rameswaram-temple-rameswaram-tamilnadu-hero_govt.jpg',
 };
 
 const DEFAULT_FALLBACK = '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg';
@@ -172,7 +239,12 @@ function resolveLocalCategory(categorySlug: string, variant: ImageVariant): stri
 }
 
 function isValidCms(url?: string): boolean {
-  return !!url && (url.startsWith('http') || url.startsWith('/') || url.startsWith('data:'));
+  if (!url) return false;
+  // Reject broken /india_tourism/ paths — they don't exist in public/
+  if (url.includes('/india_tourism/')) return false;
+  // Reject CMS paths that point to non-existent locations
+  if (url.startsWith('/india_tourism')) return false;
+  return url.startsWith('http') || url.startsWith('data:') || url.startsWith('/tourism/');
 }
 
 function makeFallback(slug: string): string {
@@ -184,9 +256,15 @@ function makeFallback(slug: string): string {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export function getStateImage(stateSlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
+  // 1. Local WebP asset (none exist currently, set is empty)
   const local = resolveLocalState(stateSlug, variant);
-  const fallback = isValidCms(cmsUrl) ? (cmsUrl as string) : makeFallback(stateSlug);
-  return { src: local ?? fallback, fallbackSrc: fallback };
+  // 2. TOURISM_FALLBACKS lookup — preferred over any CMS url
+  const tourism = lookupTourism(stateSlug);
+  // 3. Valid CMS URL (only /tourism/ paths, not broken /india_tourism/)
+  const cms = isValidCms(cmsUrl) ? (cmsUrl as string) : null;
+  const src = local ?? tourism ?? cms ?? DEFAULT_FALLBACK;
+  const fallback = tourism ?? DEFAULT_FALLBACK;
+  return { src, fallbackSrc: fallback };
 }
 
 export function getCityImage(stateSlug: string, citySlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
@@ -196,9 +274,22 @@ export function getCityImage(stateSlug: string, citySlug: string, variant: Image
 }
 
 export function getDestinationImage(destSlug: string, variant: ImageVariant = 'card', cmsUrl?: string): ImageResolution {
+  // 1. Per-slug verified destination image (highest priority)
+  const destSpecific = getDestinationTourismImage(destSlug);
+  if (destSpecific) return { src: destSpecific, fallbackSrc: destSpecific };
+
+  // 2. Local WebP asset
   const local = resolveLocalState(destSlug, variant) ?? resolveLocalPackage(destSlug, variant);
-  const fallback = isValidCms(cmsUrl) ? (cmsUrl as string) : makeFallback(destSlug);
-  return { src: local ?? (isValidCms(cmsUrl) ? cmsUrl as string : makeFallback(destSlug)), fallbackSrc: fallback };
+
+  // 3. TOURISM_FALLBACKS by slug
+  const tourism = lookupTourism(destSlug);
+
+  // 4. Valid CMS URL
+  const cms = isValidCms(cmsUrl) ? (cmsUrl as string) : null;
+
+  const src = local ?? tourism ?? cms ?? DEFAULT_FALLBACK;
+  const fallback = tourism ?? cms ?? DEFAULT_FALLBACK;
+  return { src, fallbackSrc: fallback };
 }
 
 export function getPopularLocationImage(stateSlug: string, locationSlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {

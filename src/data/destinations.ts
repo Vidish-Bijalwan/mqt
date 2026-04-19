@@ -41503,7 +41503,7 @@ export const destinationsData: DestinationModel[] = [
     "name": "Kedarnath",
     "stateId": "uttarakhand",
     "stateSlug": "uttarakhand",
-    "type": "hill_station",
+    "type": "pilgrimage",
     "coordinates": {
       "lat": 29.8345,
       "lng": 78.8427
@@ -41512,11 +41512,11 @@ export const destinationsData: DestinationModel[] = [
       "x": 36.14235242779534,
       "y": 24.708682714684507
     },
-    "altitude_meters": 848,
-    "shortDescription": "Kedarnath is a top destination in Uttarakhand, offering incredible hill_station experiences.",
+    "altitude_meters": 3583,
+    "shortDescription": "Kedarnath is a top destination in Uttarakhand, offering incredible pilgrimage experiences.",
     "detailedDescription": "Located in the heart of Uttarakhand, Kedarnath is famous for its natural beauty and cultural significance. Visitors from all over India and the world come to experience its unique atmosphere.",
     "historicalContext": "The history of Kedarnath spans centuries, with local legends and historical monuments adding to its charm.",
-    "bestTimeToVisit": "March to June",
+    "bestTimeToVisit": "May to June, Sep to Oct",
     "avoidMonths": [
       "July",
       "August"
@@ -41655,7 +41655,7 @@ export const destinationsData: DestinationModel[] = [
     "name": "Mussoorie",
     "stateId": "uttarakhand",
     "stateSlug": "uttarakhand",
-    "type": "beach",
+    "type": "hill_station",
     "coordinates": {
       "lat": 30.0218,
       "lng": 78.6789
@@ -41664,8 +41664,8 @@ export const destinationsData: DestinationModel[] = [
       "x": 35.596477685587615,
       "y": 24.06270344942392
     },
-    "altitude_meters": 98,
-    "shortDescription": "Mussoorie is a top destination in Uttarakhand, offering incredible beach experiences.",
+    "altitude_meters": 2005,
+    "shortDescription": "Mussoorie is a top destination in Uttarakhand, offering incredible hill_station experiences.",
     "detailedDescription": "Located in the heart of Uttarakhand, Mussoorie is famous for its natural beauty and cultural significance. Visitors from all over India and the world come to experience its unique atmosphere.",
     "historicalContext": "The history of Mussoorie spans centuries, with local legends and historical monuments adding to its charm.",
     "bestTimeToVisit": "March to June",
@@ -41959,7 +41959,7 @@ export const destinationsData: DestinationModel[] = [
     "name": "Jim Corbett",
     "stateId": "uttarakhand",
     "stateSlug": "uttarakhand",
-    "type": "heritage",
+    "type": "wildlife",
     "coordinates": {
       "lat": 30.0803,
       "lng": 78.995
@@ -41968,11 +41968,11 @@ export const destinationsData: DestinationModel[] = [
       "x": 36.64996575454007,
       "y": 23.860999353357375
     },
-    "altitude_meters": 1830,
-    "shortDescription": "Jim Corbett is a top destination in Uttarakhand, offering incredible heritage experiences.",
+    "altitude_meters": 400,
+    "shortDescription": "Jim Corbett is a top destination in Uttarakhand, offering incredible wildlife experiences.",
     "detailedDescription": "Located in the heart of Uttarakhand, Jim Corbett is famous for its natural beauty and cultural significance. Visitors from all over India and the world come to experience its unique atmosphere.",
     "historicalContext": "The history of Jim Corbett spans centuries, with local legends and historical monuments adding to its charm.",
-    "bestTimeToVisit": "March to June",
+    "bestTimeToVisit": "Nov to Feb",
     "avoidMonths": [
       "July",
       "August"

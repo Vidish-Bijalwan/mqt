@@ -37,7 +37,7 @@ const RelatedCards = (props: RelatedCardsProps) => {
             {(props as RelatedPackageCardsProps).items.map((pkg) => (
               <Link
                 key={pkg.id}
-                to={`/packages/${pkg.categories[0]}/${pkg.slug}`}
+                to={`/packages/${pkg.categories?.[0] || 'tour'}/${pkg.slug}`}
                 className="group bg-card rounded-xl overflow-hidden border border-border card-hover shadow-soft block"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">

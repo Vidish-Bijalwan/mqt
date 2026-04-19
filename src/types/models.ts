@@ -162,6 +162,7 @@ export interface DestinationData {
   bestSeasons?: Season[]; // Legacy filter compatibility
   colorHex?: string; // Legacy
   fullDescription?: string; // Legacy
+  gallery?: string[]; // Legacy gallery placeholder data
 }
 
 export type StateModel = StateData;

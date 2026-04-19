@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Calendar, Clock } from "lucide-react";
-import { blogPosts } from "@/data/packages";
+import { blogPosts } from "@/data/blog";
 import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 import { getBlogImage } from "@/lib/imageMap";
 
@@ -14,7 +14,7 @@ const BlogPreview = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {blogPosts.map((post) => {
+          {blogPosts.slice(0, 3).map((post) => {
             const { src, fallbackSrc } = getBlogImage(post.slug, 'hero', post.image);
             return (
               <Link key={post.id} to={`/blog/${post.slug}`} className="group">

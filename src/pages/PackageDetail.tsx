@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import EnquirySection from "@/components/EnquirySection";
@@ -8,23 +8,21 @@ import StickyMobileCTA from "@/components/StickyMobileCTA";
 import TrendingBadge from "@/components/TrendingBadge";
 import GalleryGrid from "@/components/GalleryGrid";
 import RecentlyViewed from "@/components/RecentlyViewed";
-import YouMayAlsoLike from "@/components/YouMayAlsoLike";
 import PackageRecommendations from "@/components/PackageRecommendations";
 import PackageReviews from "@/components/PackageReviews";
 import { tourPackages } from "@/data/packages";
 import { getSimilarPackages } from "@/lib/recommendations";
 import { addRecentlyViewed } from "@/lib/personalization";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { Check, Star, Download, Map, Calendar, Sun, Zap, ShieldCheck, MessageCircle } from "lucide-react";
+import { Check, Star, Map, Calendar, Sun, Zap, ShieldCheck, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTripPlanner } from "@/contexts/TripPlannerContext";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { JourneyVisualizer, TransportType } from "@/components/JourneyVisualizer";
 import { AlertBadge } from "@/components/AlertBadge";
 import { LiveCountdownTimer } from "@/components/LiveCountdownTimer";
 import { getPackageWhatsAppUrl } from "@/lib/contact";
-
 import { SEO } from "@/components/SEO";
+import { getPackageGallery } from "@/data/packageGalleries";
+import { ImmersiveItinerary, buildItineraryDays } from "@/components/ImmersiveItinerary";
 
 const PackageDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -46,11 +44,9 @@ const PackageDetail = () => {
     return <Navigate to="/404" replace />;
   }
 
-  const gallery = [
-    { src: pkg.image, alt: pkg.title },
-    { src: pkg.image, alt: `${pkg.destination} sightseeing` },
-    { src: pkg.image, alt: `${pkg.destination} experiences` },
-  ];
+  // Get unique destination-accurate gallery images per package slug
+  const galleryEntries = getPackageGallery(pkg.slug, pkg.image);
+  const gallery = galleryEntries.map(e => ({ src: e.src, alt: e.alt, fallback: pkg.image }));
 
   const schema = JSON.stringify({
     "@context": "https://schema.org",
@@ -72,25 +68,19 @@ const PackageDetail = () => {
     "touristType": pkg.categories
   });
 
-  const baseItinerary = pkg.itineraryHighlights?.length 
-    ? pkg.itineraryHighlights 
-    : Array.from({ length: pkg.duration?.days || 3 }).map((_, i) => 
-        i === 0 ? `Day 1: Arrival in ${pkg.destination} & Check-in` :
-        i === (pkg.duration?.days || 3) - 1 ? `Day ${i + 1}: Departure from ${pkg.destination}` :
-        `Day ${i + 1}: Immersive Guided Tour of ${pkg.destination} Highlights`
+  // Build itinerary lines with fallback auto-generation
+  const itineraryLines = pkg.itineraryHighlights?.length
+    ? pkg.itineraryHighlights
+    : Array.from({ length: pkg.duration?.days || 3 }).map((_, i) =>
+        i === 0
+          ? `Day 1: Arrival in ${pkg.destination} & Check-in`
+          : i === (pkg.duration?.days || 3) - 1
+          ? `Day ${i + 1}: Departure from ${pkg.destination}`
+          : `Day ${i + 1}: Guided Tour of ${pkg.destination} Highlights`
       );
 
-  const visualizerStops = baseItinerary.map((day, i) => ({
-    id: `day-${i}`,
-    day: i + 1,
-    location: pkg.destination,
-    title: day,
-    description: i === 0 ? "Arrive at your premium accommodation and acclimatize to the surroundings. Our representative will assist with seamless check-in." : 
-                 i === (pkg.duration?.days || 3) - 1 ? "Enjoy a final authentic breakfast before your private transfer to the airport or station." :
-                 "Enjoy this part of the journey carefully curated by MQT.",
-    imageUrl: gallery[i % gallery.length]?.src || pkg.image,
-    transportToNext: (i % 2 === 0 ? "car" : "trek") as TransportType
-  }));
+  // Build immersive itinerary day objects (with per-day gallery images)
+  const itineraryDays = buildItineraryDays(itineraryLines, galleryEntries);
 
   return (
     <PageLayout>
@@ -193,31 +183,8 @@ const PackageDetail = () => {
                 </div>
               </div>
               
-              {/* Journey Visualizer */}
-              {visualizerStops.length > 0 && (
-                <div className="pt-4">
-                  <JourneyVisualizer stops={visualizerStops} />
-                </div>
-              )}
-              
-              {/* Itinerary */}
-              {pkg.itineraryHighlights && (
-                <div>
-                  <h3 className="font-display text-2xl font-semibold mb-6">Brief Itinerary</h3>
-                  <div className="space-y-4">
-                    {pkg.itineraryHighlights.map((day, i) => (
-                      <div key={i} className="flex gap-4 p-4 border border-border rounded-lg bg-background">
-                        <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold">
-                          D{i+1}
-                        </div>
-                        <div className="flex items-center">
-                          <p className="font-body font-medium">{day}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              {/* Immersive Itinerary — replaces plain text list */}
+              <ImmersiveItinerary days={itineraryDays} />
             </div>
 
             {/* Right: Pricing Card (Sticky) */}

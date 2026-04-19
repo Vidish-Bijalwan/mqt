@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -51,8 +51,8 @@
     --shadow-card: 0 4px 20px -4px rgba(27, 108, 168, 0.12);
     --shadow-elevated: 0 10px 40px -10px rgba(27, 108, 168, 0.18);
 
-    --font-display: 'Cormorant Garamond', serif;
-    --font-body: 'Jost', sans-serif;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -213,6 +213,58 @@
 
   .gradient-dark {
     background: linear-gradient(135deg, hsl(var(--dark)) 0%, hsl(240 33% 18%) 100%);
+  }
+
+  /* ── UX Renovation: Section eyebrow label ──────────────────────── */
+  .section-eyebrow {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: hsl(var(--accent));
+    margin-bottom: 12px;
+  }
+
+  /* ── Scroll reveal base states ──────────────────────────────────── */
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal-section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-child {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .reveal-child.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-section, .reveal-child {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* ── Final CTA section ──────────────────────────────────────────── */
+  .final-cta-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.45);
+  }
+  .final-cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(15,23,42,0.75), rgba(15,23,42,0.55));
   }
 }
 
@@ -417,6 +469,16 @@ img {
 @keyframes badgePulse {
   0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(245,158,11,0.4); }
   50% { transform: scale(1.04); box-shadow: 0 6px 20px rgba(245,158,11,0.6); }
+}
+
+@keyframes alertCardGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0); }
+  50% { box-shadow: 0 0 20px 4px rgba(245,158,11,0.18); }
+}
+
+@keyframes scrollArrow {
+  0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.7; }
+  50% { transform: translateY(6px) scaleY(0.9); opacity: 1; }
 }
 
 @keyframes pinGlow {
