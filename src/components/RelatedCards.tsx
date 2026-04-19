@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Clock, Star, MapPin } from "lucide-react";
 import type { TourPackage, Destination } from "@/data/packages";
-import { destinationsData, type DestinationData } from "@/data/destinations";
+import { destinationsData as destinationsFull } from "@/data/destinations";
+import type { DestinationModel } from "@/types/models";
 import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 import { getPackageImage, getStateImage } from "@/lib/imageMap";
 
@@ -13,7 +14,7 @@ interface RelatedPackageCardsProps {
 
 interface RelatedDestinationCardsProps {
   type: "destination";
-  items: (Destination | DestinationData)[];
+  items: (Destination | DestinationModel)[];
   title?: string;
 }
 
@@ -84,10 +85,10 @@ const RelatedCards = (props: RelatedCardsProps) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {(props as RelatedDestinationCardsProps).items.map((dest) => {
               const slug = dest.slug;
-              const stateSlug = "stateSlug" in dest ? (dest as DestinationData).stateSlug : destinationsData.find(d => d.slug === slug)?.stateSlug || "india";
+              const stateSlug = "stateSlug" in dest ? (dest as DestinationModel).stateSlug : destinationsFull.find(d => d.slug === slug)?.stateSlug || "india";
               const name = dest.name;
-              const image = dest.image;
-              const count = dest.packagesCount;
+              const image = (dest as DestinationModel).heroImage?.url || "default.jpg";
+              const count = "packagesCount" in dest ? dest.packagesCount : 0;
 
               return (
                 <Link

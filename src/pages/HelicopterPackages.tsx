@@ -7,36 +7,39 @@ import { Button } from '@/components/ui/button';
 import { Clock, Map, MapPin } from 'lucide-react';
 
 const HelicopterPackages = () => {
-  const [activeTab, setActiveTab] = useState<'kedarnath' | 'chardham' | 'valley'>('kedarnath');
+  const [activeTab, setActiveTab] = useState<'twodham' | 'chardham'>('twodham');
 
-  const routes = {
-    kedarnath: {
-      title: "Kedarnath Helicopter Package",
-      helipad: "Phata / Sersi / Guptkashi",
-      flightTime: "7 minutes one way from Phata",
-      altitude: "3,583m",
-      description: "Fast-track your pilgrimage to Kedarnath. MQT provides priority shuttle tickets from multiple helipads including Phata and Sersi. Choose between a same-day return or an overnight stay.",
-      price: "From ₹7,500 / person (Seat Only)",
-      videoSearchTerm: "Kedarnath helicopter ride 4K view",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Fallback placeholder since backend embed isn't live
+  type RouteConfig = {
+    title: string;
+    helipad: string;
+    description: string;
+    price: string;
+    videoSearchTerm: string;
+    videoUrl: string;
+    flightTime?: string;
+    altitude?: string;
+    duration?: string;
+    season?: string;
+  };
+
+  const routes: Record<string, RouteConfig> = {
+    twodham: {
+      title: "Do Dham Helicopter Package",
+      helipad: "Sahastradhara (Dehradun) to Dehradun",
+      description: "Fast-track your pilgrimage to Kedarnath and Badrinath. Depart from Dehradun and complete the Do Dham yatra in VIP comfort, bypassing days of strenuous road travel.",
+      price: "₹1,20,000 / person",
+      duration: "2 Days / 1 Night",
+      videoSearchTerm: "Do Dham Helicopter Yatra",
+      videoUrl: "" 
     },
     chardham: {
-      title: "Char Dham Helicopter Package",
-      helipad: "Sahastradhara (Dehradun)",
+      title: "Char Dham Yatra Helicopter",
+      helipad: "Sahastradhara (Dehradun) to Dehradun",
       duration: "5 Days / 4 Nights",
-      description: "The ultimate premium pilgrimage circuit: Yamunotri, Gangotri, Kedarnath, and Badrinath. Completely skip the strenuous multi-day road journeys. VIP darshan included at all shrines.",
-      price: "From ₹1,20,000 / person",
+      description: "The ultimate premium pilgrimage circuit: Yamunotri, Gangotri, Kedarnath, and Badrinath. Depart from Dehradun cleanly skipping the strenuous multi-day road journeys. VIP darshan included at all shrines.",
+      price: "₹2,35,000 / person",
       videoSearchTerm: "Char Dham helicopter package Dehradun",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Fallback placeholder
-    },
-    valley: {
-      title: "Valley of Flowers Helicopter + Trek",
-      helipad: "Govindghat area to Ghangaria",
-      season: "July to September",
-      description: "Skip the strenuous 13km base trek. Fly directly to Ghangaria and begin your 3km gentle walk directly into the UNESCO Valley of Flowers. Guided nature walks included.",
-      price: "WhatsApp for current seasonal pricing",
-      videoSearchTerm: "Valley of flowers helicopter",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Fallback placeholder
+      videoUrl: "" 
     }
   };
 
@@ -71,9 +74,8 @@ const HelicopterPackages = () => {
           {/* Route Tabs */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
             {[
-              { id: 'kedarnath', label: 'Kedarnath Shuttle' },
-              { id: 'chardham', label: 'Char Dham Circuit' },
-              { id: 'valley', label: 'Valley of Flowers' }
+              { id: 'twodham', label: 'Do Dham Yatra' },
+              { id: 'chardham', label: 'Char Dham Yatra' },
             ].map(tab => (
               <button
                 key={tab.id}

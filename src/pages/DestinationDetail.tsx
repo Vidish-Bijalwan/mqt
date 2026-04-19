@@ -32,27 +32,26 @@ const DestinationDetail = () => {
 
   const quickFacts = [
     { label: "State", value: stateData.name },
-    { label: "Best Season", value: destination.bestSeasons.join(", ") },
-    { label: "Budget", value: destination.budget },
+    { label: "Best Season", value: destination.bestTimeToVisit },
+    { label: "Budget", value: `₹${destination.estimatedBudget?.budget_per_day_inr || 2000}/day` },
   ];
 
-  const galleryImages = destination.gallery.map(url => ({
-    src: url,
-    alt: `${destination.name} scenery`
+  const galleryImages = (destination.galleryImages || []).map(img => ({
+    src: img.url,
+    alt: img.alt || `${destination.name} scenery`
   }));
 
   return (
     <PageLayout>
       <Helmet>
-        <title>{destination.seo.title}</title>
-        <meta name="description" content={destination.seo.description} />
-        <meta name="keywords" content={destination.seo.keywords.join(", ")} />
+        <title>{destination.name} Tourism & Highlights | MyQuickTrippers</title>
+        <meta name="description" content={destination.shortDescription} />
       </Helmet>
 
       <PageHero
         title={destination.name}
         subtitle={destination.shortDescription}
-        backgroundImage={destination.image}
+        backgroundImage={destination.heroImage?.url || destination.image}
         breadcrumb={[
           { label: "Destinations", href: "/destinations" },
           { label: stateData.name, href: `/destinations/${stateData.slug}` },
@@ -74,7 +73,7 @@ const DestinationDetail = () => {
                 </h2>
                 <div className="prose prose-slate max-w-none">
                   <p className="text-muted-foreground text-lg leading-relaxed whitespace-pre-line">
-                    {destination.fullDescription}
+                    {destination.detailedDescription || destination.shortDescription}
                   </p>
                 </div>
               </div>
@@ -85,7 +84,7 @@ const DestinationDetail = () => {
                   Highlights
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {(destination.highlights || destination.travelTips || []).map((h, i) => (
+                  {(destination.travelTips || []).map((h, i) => (
                     <div key={i} className="flex items-center gap-4 p-4 bg-surface border border-border/50 rounded-xl hover:bg-primary/5 transition-colors">
                       <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                         <Tag className="w-5 h-5" />
@@ -102,7 +101,7 @@ const DestinationDetail = () => {
                     <span className="w-1.5 h-8 bg-primary rounded-full" />
                     Capturing {destination.name}
                   </h2>
-                  <GalleryComponent images={destination.galleryImages || destination.gallery?.map((url: string) => ({ url, alt: destination.name, credit: 'MQT', license: '' })) || []} destinationName={destination.name} />
+                  <GalleryComponent images={destination.galleryImages || []} destinationName={destination.name} />
                 </div>
               )}
             </div>
@@ -125,7 +124,7 @@ const DestinationDetail = () => {
                     <Calendar className="w-6 h-6 text-primary shrink-0" />
                     <div>
                       <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Best Time to Visit</p>
-                      <p className="font-semibold text-foreground">{destination.bestSeasons.join(", ")}</p>
+                      <p className="font-semibold text-foreground">{destination.bestTimeToVisit}</p>
                     </div>
                   </div>
 
@@ -133,7 +132,7 @@ const DestinationDetail = () => {
                     <CreditCard className="w-6 h-6 text-primary shrink-0" />
                     <div>
                       <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Trip Budget</p>
-                      <p className="font-semibold text-foreground">{destination.budget} Class</p>
+                      <p className="font-semibold text-foreground">₹{destination.estimatedBudget?.budget_per_day_inr || 2000}+ a day</p>
                     </div>
                   </div>
 
@@ -141,7 +140,7 @@ const DestinationDetail = () => {
                     <Tag className="w-6 h-6 text-primary shrink-0" />
                     <div>
                       <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Trip Vibe</p>
-                      <p className="font-semibold text-foreground">{destination.categories.join(" • ")}</p>
+                      <p className="font-semibold text-foreground">{(destination.popularActivities || []).slice(0,3).map(a => a.name).join(" • ")}</p>
                     </div>
                   </div>
                 </div>

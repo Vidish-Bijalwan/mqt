@@ -5,7 +5,7 @@ import { getRecentlyViewed } from "@/lib/personalization";
 import { tourPackages } from "@/data/packages";
 import { destinationsData } from "@/data/destinations";
 import type { TourPackage } from "@/data/packages";
-import type { DestinationData } from "@/data/destinations";
+import type { DestinationModel } from "@/types/models";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 import { getPackageImage, getDestinationImage } from "@/lib/imageMap";
@@ -15,7 +15,7 @@ interface RecentlyViewedProps {
   title?: string;
 }
 
-type RecentItem = { type: "package"; data: TourPackage } | { type: "destination"; data: DestinationData };
+type RecentItem = { type: "package"; data: TourPackage } | { type: "destination"; data: DestinationModel };
 
 const RecentlyViewed = ({ excludeSlug, title = "Recently Viewed" }: RecentlyViewedProps) => {
   const [items, setItems] = useState<RecentItem[]>([]);
@@ -46,17 +46,17 @@ const RecentlyViewed = ({ excludeSlug, title = "Recently Viewed" }: RecentlyView
           {items.map((item, i) => {
             const isPackage = item.type === "package";
             const pkg = isPackage ? (item.data as TourPackage) : null;
-            const dest = !isPackage ? (item.data as DestinationData) : null;
+            const dest = !isPackage ? (item.data as DestinationModel) : null;
             const href = isPackage
               ? `/packages/${pkg!.categories[0]}/${pkg!.slug}`
               : `/destinations/${dest!.stateSlug}/${dest!.slug}`;
             const label = isPackage ? pkg!.title : dest!.name;
             const sub = isPackage
               ? `${pkg!.duration.nights}N / ${pkg!.duration.days}D`
-              : dest!.tagline ?? dest!.state;
+              : dest!.shortDescription ?? dest!.stateSlug;
             const { src, fallbackSrc } = isPackage
               ? getPackageImage(pkg!.slug, 'card', pkg!.image)
-              : getDestinationImage(dest!.slug, 'card', dest!.image);
+              : getDestinationImage(dest!.slug, 'card');
 
             return (
               <Link

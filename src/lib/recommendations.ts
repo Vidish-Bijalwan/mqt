@@ -4,7 +4,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { TourPackage } from "@/data/packages";
-import type { DestinationData } from "@/data/destinations";
+import type { DestinationModel } from "@/types/models";
 
 export type SortOption =
   | "popularity"
@@ -133,25 +133,25 @@ export function getSortedPackages(
  * Returns related destinations for a given destination, excluding itself.
  */
 export function getRelatedDestinations(
-  current: DestinationData,
-  all: DestinationData[],
+  current: DestinationModel,
+  all: DestinationModel[],
   limit = 3
-): DestinationData[] {
-  const related = current.relatedDestinations ?? [];
-  // First: explicitly listed related slugs
+): DestinationModel[] {
+  // Try to find explicit relations via nearbyPlaces
+  const explicitNames = current.nearbyPlaces?.map(np => np.name.toLowerCase()) ?? [];
   const explicit = all
-    .filter((d) => related.includes(d.slug) && d.slug !== current.slug)
+    .filter((d) => explicitNames.includes(d.name.toLowerCase()) && d.slug !== current.slug)
     .slice(0, limit);
 
   if (explicit.length >= limit) return explicit;
 
-  // Fill remaining with highest popularity score
+  // Fill remaining sorted by rating & review count proxy
   const remaining = all
     .filter(
       (d) =>
         d.slug !== current.slug && !explicit.find((e) => e.slug === d.slug)
     )
-    .sort((a, b) => (b.popularityScore ?? 0) - (a.popularityScore ?? 0))
+    .sort((a, b) => (b.rating * b.reviewCount) - (a.rating * a.reviewCount))
     .slice(0, limit - explicit.length);
 
   return [...explicit, ...remaining];

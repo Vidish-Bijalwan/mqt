@@ -20,50 +20,10 @@ export interface ImageResolution {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /** States that have local WebP assets in /src/assets/images/states/{slug}/ */
-const LOCAL_STATES = new Set([
-  'andaman-and-nicobar-islands', 'andaman-nicobar', 'andhra-pradesh',
-  'arunachal-pradesh', 'assam', 'bihar', 'chandigarh', 'char-dham',
-  'chhattisgarh', 'dadra-and-nagar-haveli-and-daman-and-diu',
-  'dadra-nagar-haveli', 'delhi', 'goa', 'gujarat', 'haryana',
-  'himachal-pradesh', 'jammu-and-kashmir', 'jammu-kashmir', 'jharkhand',
-  'karnataka', 'kashmir', 'kedarnath', 'kerala', 'ladakh',
-  'lakshadweep', 'madhya-pradesh', 'maharashtra', 'manali', 'manipur',
-  'meghalaya', 'mizoram', 'nagaland', 'odisha', 'puducherry', 'punjab',
-  'rajasthan', 'sikkim', 'tamil-nadu', 'telangana', 'tripura',
-  'uttarakhand', 'uttar-pradesh', 'varanasi', 'west-bengal',
-]);
+const LOCAL_STATES = new Set<string>();
 
 /** Packages that have local WebP assets in /src/assets/images/packages/{slug}/ */
-const LOCAL_PACKAGES = new Set([
-  'varanasi-spiritual-3-nights-4-days', 'lonavala-quick-break',
-  'mussoorie-weekend-retreat', 'mathura-vrindavan-yatra',
-  'kashmir-honeymoon-5-nights-6-days', 'hampi-heritage-trail',
-  'kasol-weekend-escape', 'ooty-coorg-family-journey', 'kerala-family-escape',
-  'pondicherry-weekend-escape', 'varanasi-prayagraj-4-nights-5-days',
-  'gokarna-beach-break', 'bir-billing-adventure',
-  'rishikesh-adventure-2-nights-3-days', 'andaman-family-adventure',
-  'goa-romantic-escape', 'rajasthan-heritage-tour-7-nights',
-  'kerala-backwaters-romance', 'himalayan-grand-circuit-12-nights',
-  'andaman-coral-retreat', 'andaman-honeymoon-journey', 'auli-snow-escape',
-  'ayodhya-pilgrimage', 'char-dham-yatra-10-nights-11-days',
-  'coorg-coffee-romance', 'darjeeling-tea-romance', 'goa-beaches-and-heritage',
-  'goa-beach-escape', 'goa-family-beach-break', 'golden-triangle-classic',
-  'jim-corbett-safari', 'kabini-jungle-escape', 'kanha-wildlife-retreat',
-  'kashmir-family-7-nights-8-days', 'kashmir-solo-4-nights-5-days',
-  'kaziranga-nature-escape', 'kedarnath-yatra-5-nights-6-days',
-  'kerala-backwaters-and-tea-estates', 'kerala-luxury-escape',
-  'kovalam-coastal-holiday', 'ladakh-adventure-7-nights-8-days',
-  'ladakh-luxury-8-nights-9-days', 'ladakh-motorbike-expedition',
-  'manali-family-4-nights-5-days', 'manali-winter-snow-4-nights-5-days',
-  'rajasthan-heritage-trail', 'rajasthan-palace-retreat',
-  'rameswaram-temple-trail', 'ranthambore-wildlife-tour',
-  'royal-rajasthan-family-escape', 'spiti-valley-escape',
-  'tiger-safari-expedition', 'tirupati-darshan-trip',
-  'udaipur-couple-retreat', 'udaipur-palace-experience',
-  'valley-of-flowers-trek-6-nights-7-days',
-]);
-
-/** Tourism JPG fallbacks keyed by destination slug */
+const LOCAL_PACKAGES = new Set<string>();
 const TOURISM_FALLBACKS: Record<string, string> = {
   // Incredible India core
   'delhi':          '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg',

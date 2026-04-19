@@ -59,7 +59,7 @@ const PackageDetail = () => {
     "description": pkg.overview || "Experience an unforgettable journey.",
     "offers": {
       "@type": "Offer",
-      "price": pkg.internalBasePrice || 10000,
+      "price": pkg.price || 10000,
       "priceCurrency": "INR"
     },
     "url": `https://www.myquicktrippers.com/packages/${pkg.categories[0] || 'all'}/${pkg.slug}`,
@@ -85,8 +85,8 @@ const PackageDetail = () => {
   return (
     <PageLayout>
       <SEO 
-        title={pkg.seoTitle || `${pkg.title} 2026 | MyQuickTrippers`}
-        description={pkg.seoDescription || `Book ${pkg.title} packages. Includes ${pkg.highlights?.slice(0, 2).join(', ')}. Get free quote today.`}
+        title={`${pkg.title} 2026 | MyQuickTrippers`}
+        description={`Book ${pkg.title} packages. Includes ${(pkg.highlights || []).slice(0, 2).join(', ')}. Get free quote today.`}
         canonical={`/packages/${pkg.categories[0] || 'all'}/${pkg.slug}`}
         image={pkg.image}
         schema={schema}
