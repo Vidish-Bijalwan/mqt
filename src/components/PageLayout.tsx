@@ -1,18 +1,14 @@
-import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 import BottomNav from "@/components/BottomNav";
-import { AlertBanner } from "@/components/AlertBanner";
 import { motion, useScroll, useSpring } from "framer-motion";
 
 interface PageLayoutProps {
   children: React.ReactNode;
-  /** If false, hides top info bar (default: true) */
-  showTopBar?: boolean;
 }
 
-const PageLayout = ({ children, showTopBar = true }: PageLayoutProps) => {
+const PageLayout = ({ children }: PageLayoutProps) => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -32,9 +28,7 @@ const PageLayout = ({ children, showTopBar = true }: PageLayoutProps) => {
         className="fixed top-0 left-0 right-0 h-1 origin-left bg-primary z-[100]"
         style={{ scaleX }}
       />
-      {showTopBar && <TopBar />}
       <Navbar />
-      <AlertBanner />
       <main className="flex-1">{children}</main>
       <Footer />
       <FloatingElements />

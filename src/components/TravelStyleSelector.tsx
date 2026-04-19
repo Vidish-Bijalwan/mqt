@@ -13,7 +13,7 @@ const TRAVEL_STYLES = [
     icon: "🙏",
     title: "Spiritual Journey",
     desc: "Char Dham, Varanasi, Kedarnath, pilgrimage circuits",
-    category: "spiritual",
+    category: "pilgrimage",
     // Government tourism images — locally hosted
     image:
       "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
@@ -24,7 +24,7 @@ const TRAVEL_STYLES = [
     icon: "⛰",
     title: "Mountain & Adventure",
     desc: "Ladakh, Spiti, Himachal, trekking, road trips",
-    category: "himalayan-adventures",
+    category: "adventure",
     // Manali/Himachal Pradesh — confirmed local govt image (correct for mountain travel)
     image:
       "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg",
@@ -36,9 +36,8 @@ const TRAVEL_STYLES = [
     icon: "🌴",
     title: "Beach & Leisure",
     desc: "Kerala, Goa, Andaman, honeymoon, family holidays",
-    category: "beach-leisure",
-    image:
-      "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
+    category: "beach-escapes",
+    image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg",
     fallback: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg",
   },
 ] as const;

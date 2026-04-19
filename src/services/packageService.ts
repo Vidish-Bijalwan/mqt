@@ -21,10 +21,10 @@ const mapDbToDomain = (row: DbPackagePublic): TourPackage => {
     reviewsCount: row.reviews_count,
     image: resolveImageSource("package-images", row.image_url, fallbackObj?.image || ""),
     badge: row.badge || undefined,
-    includes: row.includes || [],
-    categories: row.categories || [],
-    tags: row.tags || [],
-    highlights: row.highlights || [],
+    includes: fallbackObj?.includes?.length ? fallbackObj.includes : (row.includes || []),
+    categories: fallbackObj?.categories?.length ? fallbackObj.categories : (row.categories || []),
+    tags: fallbackObj?.tags?.length ? fallbackObj.tags : (row.tags || []),
+    highlights: fallbackObj?.highlights?.length ? fallbackObj.highlights : (row.highlights || []),
     season: row.season,
     availability: row.availability,
     popularityScore: row.popularity_score,
@@ -54,10 +54,16 @@ export async function getPackages(limit?: number): Promise<ServiceResponse<TourP
     if (error) throw error;
     if (!data || data.length === 0) throw new Error("No data found");
 
-    return { data: data.map(mapDbToDomain), error: null };
+    const dbMapped = data.map(mapDbToDomain);
+    
+    // Inject any new static/polyfilled packages that haven't been seeded to the DB yet
+    const missingStatic = tourPackages.filter(p => !dbMapped.some(db => db.slug === p.slug));
+    const merged = [...dbMapped, ...missingStatic].sort((a, b) => b.popularityScore - a.popularityScore);
+
+    return { data: merged, error: null };
   } catch (err) {
     console.warn("[PackageService] Falling back to static data", err);
-    let fallback = [...tourPackages];
+    let fallback = [...tourPackages].sort((a, b) => b.popularityScore - a.popularityScore);
     if (limit) fallback = fallback.slice(0, limit);
     return { data: fallback, error: null };
   }

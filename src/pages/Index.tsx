@@ -1,4 +1,3 @@
-import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import TrustStrip from "@/components/TrustStrip";
@@ -11,7 +10,6 @@ import BlogPreview from "@/components/BlogPreview";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 import BottomNav from "@/components/BottomNav";
-import { AlertBanner } from "@/components/AlertBanner";
 import { ExclusiveAlertModal } from "@/components/ExclusiveAlertModal";
 import { SEO } from "@/components/SEO";
 import { useEffect } from "react";
@@ -84,9 +82,7 @@ const Index = () => {
       />
 
       <ExclusiveAlertModal />
-      <TopBar />
       <Navbar />
-      <AlertBanner />
 
       {/*
         HOMEPAGE — 7 SECTIONS MAXIMUM (Hick's Law + Miller's Law)
