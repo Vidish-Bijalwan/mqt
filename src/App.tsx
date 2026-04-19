@@ -94,6 +94,16 @@ const queryClient = new QueryClient({
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+
+  // Route Change Listener for Google Analytics 4
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+      (window as any).gtag("config", "G-G5MVEVQJPP", {
+         page_path: location.pathname + location.search
+      });
+    }
+  }, [location]);
+
   return (
     <AnimatePresence mode="wait">
       <Suspense fallback={<div className="h-screen w-full flex items-center justify-center p-4"><div className="w-8 h-8 rounded-full border-4 border-primary/30 border-t-primary animate-spin"></div></div>}>
