@@ -34,3 +34,9 @@ pnpm-debug.log*
 
 # TypeScript
 *.tsbuildinfo
+
+# Ignore local raw scrape databases and bloat folders
+india_tourism/
+public/india_tourism/
+src/assets/images/
+logovenv/
