@@ -5,6 +5,7 @@ import destVaranasi from "@/assets/dest-varanasi.jpg";
 import destKashmir from "@/assets/dest-kashmir.jpg";
 import destManali from "@/assets/dest-manali.jpg";
 import destRishikesh from "@/assets/dest-rishikesh.jpg";
+import { packageMenuData } from "./packageMenuData";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Type Definitions
@@ -842,6 +843,49 @@ export const blogPosts = [
 // ─────────────────────────────────────────────────────────────────────────────
 // Utility functions
 // ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dynamic Polyfill for Menu Items
+// ─────────────────────────────────────────────────────────────────────────────
+
+packageMenuData.forEach((group) => {
+  group.categories.forEach((cat) => {
+    cat.featuredPackages.forEach((featured) => {
+      // If the package doesn't exist in our seeded database, we generate it on the fly!
+      if (!tourPackages.find((p) => p.slug === featured.slug)) {
+        const parsedDays = parseInt(featured.duration.match(/(\d+)\s+Days?/i)?.[1] || "3", 10);
+        const parsedNights = parseInt(featured.duration.match(/(\d+)\s+Nights?/i)?.[1] || "2", 10);
+        
+        tourPackages.push({
+          id: `dyn-${featured.slug}`,
+          title: featured.title,
+          slug: featured.slug,
+          destination: featured.destination,
+          state: featured.state,
+          country: "India",
+          type: "domestic",
+          duration: { nights: parsedNights, days: parsedDays },
+          price: featured.price || 45000,
+          originalPrice: (featured.price || 45000) * 1.25,
+          rating: 4.8,
+          reviewsCount: Math.floor(Math.random() * 50) + 10,
+          image: featured.image || destinations[0]?.image,
+          includes: ["Accommodation", "Meals", "Transport", "Guide"],
+          categories: [cat.slug, ...(featured.categories || [])],
+          tags: ["bestseller"],
+          highlights: featured.highlights,
+          season: "All Year",
+          availability: "Available",
+          popularityScore: 85 + Math.floor(Math.random() * 10),
+          bookingCount: 50 + Math.floor(Math.random() * 50),
+          trending: true,
+          featured: true,
+          overview: `Experience the breathtaking ${featured.hook} on this magnificent journey through ${featured.destination}. Curated carefully by MyQuickTrippers.`
+        });
+      }
+    });
+  });
+});
 
 export function getPackageBySlug(slug: string): TourPackage | undefined {
   return tourPackages.find((p) => p.slug === slug);
