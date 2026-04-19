@@ -13,19 +13,19 @@ const About = () => {
 
   const values = [
     {
-      title: "Trusted Partners",
-      desc: "Our carefully vetted network of on-ground partners ensures you get the most authentic and safe experience in every location.",
+      title: "Service Excellence",
+      desc: "Our core virtue. From our gracious smiles to meticulous attention to detail, we ensure every need is met seamlessly.",
+      icon: Trophy
+    },
+    {
+      title: "Trusted Network",
+      desc: "Our handpicked properties and experienced on-ground partners ensure you get the most authentic and safe experience in every location.",
       icon: ShieldCheck
     },
     {
       title: "Commitment to Care",
-      desc: "We treat every traveler like family, ensuring your needs are met before, during, and after your trip.",
+      desc: "Tourism is our business, but your journey is a lifelong memory. We treat every traveler like family and ensure your memories are cherished forever.",
       icon: HeartPulse
-    },
-    {
-      title: "Excellence in Service",
-      desc: "With 98% positive feedback and hundreds of 5-star reviews, our track record speaks for itself.",
-      icon: Trophy
     }
   ];
 
@@ -33,7 +33,7 @@ const About = () => {
     <PageLayout>
       <PageHero
         title="About MyQuickTrippers"
-        subtitle="Your trusted partner for immersive, safe, and unforgettable Himalayan adventures."
+        subtitle="Discover the incredible heritage, cultures, and landscapes of the Indian Subcontinent."
         backgroundImage={aboutHero}
         breadcrumb={[{ label: "About Us" }]}
       />
@@ -43,10 +43,13 @@ const About = () => {
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl font-semibold mb-6">Our Story</h2>
             <p className="font-body text-muted-foreground leading-relaxed mb-4 text-lg">
-              Born from a love of the Indian Himalayas, MyQuickTrippers was founded to make travel to some of the most beautiful—yet challenging—terrain accessible to everyone. Whether you are a solo backpacker looking for the thrill of a lifetime, or a family seeking a safe pilgrimage to the Char Dhams, we build itineraries that cater to every need.
+              India is a medley of fascinating colors and cultures, a canvas of architectural masterpieces, and an extravagant exuberance of royal splendor. Crowned by the mighty Himalayas in the north and surrounded by emerald oceans in the south, India offers a platter full of variety, packed in one country.
+            </p>
+            <p className="font-body text-muted-foreground leading-relaxed mb-4 text-lg">
+              Born from a passion for this incredible land, MyQuickTrippers was founded to make travel across the Indian subcontinent accessible, safe, and deeply immersive. Whether you are seeking a serene backwater cruise in Kerala, a luxury desert camp in Rajasthan, or a profound pilgrimage to the Char Dhams, we build tailored itineraries that cater to every dream.
             </p>
             <p className="font-body text-muted-foreground leading-relaxed text-lg">
-              We specialize in deep, meaningful connections. We don't just book hotels and cabs; we craft experiences, arrange permits, ensure acclimatization, and provide 24/7 on-ground support so your only job is to create memories.
+              We specialize in deep, meaningful connections. We don't just book hotels and transports; we weave experiences with relentless precision. From initial inquiry to your journey's end, we provide 24/7 on-ground support so your only job is to create memories.
             </p>
           </div>
 
