@@ -117,7 +117,7 @@ function PlatformFallbackBrowser({ search, onSearchChange }: { search: string, o
               <div className="aspect-[4/3] bg-gray-50 flex items-center justify-center relative overflow-hidden">
                 <img src={imagePath} alt={slug} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                   <a title="Modify in Settings" href="/admin/content/states" className="text-xs font-semibold bg-white text-gray-800 px-3 py-1.5 rounded-full hover:bg-gray-100">Modify</a>
+                  <a title="Modify in Settings" href={`/admin/content/destinations?search=${slug}`} className="text-xs font-semibold bg-white text-gray-800 px-3 py-1.5 rounded-full hover:bg-gray-100">Modify</a>
                 </div>
               </div>
               <div className="p-3">

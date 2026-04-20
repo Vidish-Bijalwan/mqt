@@ -137,6 +137,7 @@ const defaultForm: AdminPackageInsert = {
   image_url: "", badge: "", customizable: true, featured: false, active: true, trending: false,
   popularity_score: 50, sort_order: 0, seo_title: "", seo_description: "",
   highlights: [], inclusions: [], exclusions: [],
+  country: "India", type: "domestic", duration_nights: 0, duration_days: 0, price: 0, original_price: 0, rating: 5, reviews_count: 0, includes: [], categories: [], tags: [], season: "", availability: "", booking_count: 0, seats_left: 0, itinerary_highlights: []
 };
 
 function slugify(t: string) { return t.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, ""); }
@@ -148,7 +149,7 @@ export function PackageForm() {
   const isEdit = Boolean(id);
   const [form, setForm] = useState<AdminPackageInsert>(defaultForm);
   const [autoSlug, setAutoSlug] = useState(!isEdit);
-  const [newListVal, setNewListVal] = useState({ highlights: "", inclusions: "", exclusions: "" });
+  const [newListVal, setNewListVal] = useState({ highlights: "", inclusions: "", exclusions: "", includes: "", categories: "", tags: "", itinerary_highlights: "" });
 
   const { data: existing, isLoading } = useQuery({
     queryKey: ["admin-package", id],
@@ -178,7 +179,7 @@ export function PackageForm() {
     });
   };
 
-  const addToList = (field: "highlights" | "inclusions" | "exclusions") => {
+  const addToList = (field: "highlights" | "inclusions" | "exclusions" | "includes" | "categories" | "tags" | "itinerary_highlights") => {
     const val = newListVal[field].trim();
     if (val) {
       set(field, [...(form[field] || []), val]);
@@ -233,7 +234,35 @@ export function PackageForm() {
             </div>
 
             <Field label="Short Description"><textarea value={form.short_description ?? ""} onChange={e => set("short_description", e.target.value)} rows={2} className={inputCls} /></Field>
+            <Field label="Full Overview"><textarea value={form.overview ?? ""} onChange={e => set("overview", e.target.value)} rows={5} placeholder="Detailed paragraph describing the package..." className={inputCls} /></Field>
             <Field label="Main Image Path"><MediaInput value={form.image_url ?? ""} onChange={v => set("image_url", v)} defaultBucket="package-images" placeholder="package-images/kashmir/card.webp" /></Field>
+          </section>
+
+          <section className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
+            <h2 className="font-semibold text-gray-700 text-sm border-b border-gray-100 pb-3">Metrics & Pricing</h2>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <Field label="Price (Selling)"><input type="number" value={form.price ?? 0} onChange={e => set("price", Number(e.target.value))} className={inputCls} /></Field>
+              <Field label="Original Price"><input type="number" value={form.original_price ?? 0} onChange={e => set("original_price", Number(e.target.value))} className={inputCls} /></Field>
+              <Field label="Duration Days"><input type="number" value={form.duration_days ?? 0} onChange={e => set("duration_days", Number(e.target.value))} className={inputCls} /></Field>
+              <Field label="Duration Nights"><input type="number" value={form.duration_nights ?? 0} onChange={e => set("duration_nights", Number(e.target.value))} className={inputCls} /></Field>
+
+              <Field label="Rating"><input type="number" step="0.1" value={form.rating ?? 5} onChange={e => set("rating", Number(e.target.value))} className={inputCls} /></Field>
+              <Field label="Reviews Count"><input type="number" value={form.reviews_count ?? 0} onChange={e => set("reviews_count", Number(e.target.value))} className={inputCls} /></Field>
+              <Field label="Booking Count"><input type="number" value={form.booking_count ?? 0} onChange={e => set("booking_count", Number(e.target.value))} className={inputCls} /></Field>
+              <Field label="Seats Left"><input type="number" value={form.seats_left ?? 0} onChange={e => set("seats_left", Number(e.target.value))} className={inputCls} /></Field>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Country"><input type="text" value={form.country ?? "India"} onChange={e => set("country", e.target.value)} className={inputCls} /></Field>
+              <Field label="Package Type">
+                <select value={form.type || "domestic"} onChange={e => set("type", e.target.value)} className={inputCls}>
+                  <option value="domestic">Domestic</option>
+                  <option value="international">International</option>
+                </select>
+              </Field>
+              <Field label="Season"><input type="text" value={form.season ?? ""} onChange={e => set("season", e.target.value)} placeholder="e.g. Summer" className={inputCls} /></Field>
+              <Field label="Availability"><input type="text" value={form.availability ?? ""} onChange={e => set("availability", e.target.value)} placeholder="e.g. Available" className={inputCls} /></Field>
+            </div>
           </section>
 
           <section className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
@@ -246,9 +275,9 @@ export function PackageForm() {
             </div>
           </section>
 
-          {(["highlights", "inclusions", "exclusions"] as const).map(field => (
+          {(["highlights", "inclusions", "exclusions", "itinerary_highlights", "includes", "categories", "tags"] as const).map(field => (
             <section key={field} className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
-              <h2 className="font-semibold text-gray-700 text-sm border-b border-gray-100 pb-3 capitalize">{field}</h2>
+              <h2 className="font-semibold text-gray-700 text-sm border-b border-gray-100 pb-3 capitalize">{field.replace(/_/g, " ")}</h2>
               <div className="space-y-2">
                 {(form[field] || []).map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2">

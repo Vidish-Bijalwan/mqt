@@ -8,6 +8,14 @@ export interface AdminPackage {
   category_id?: string;
   destination?: string;
   state?: string;
+  country?: string;
+  type?: 'domestic' | 'international';
+  duration_nights?: number;
+  duration_days?: number;
+  price?: number;
+  original_price?: number;
+  rating?: number;
+  reviews_count?: number;
   short_description?: string;
   overview?: string;
   duration_label?: string;
@@ -18,12 +26,20 @@ export interface AdminPackage {
   highlights?: string[];
   inclusions?: string[];
   exclusions?: string[];
+  includes?: string[];
+  categories?: string[];
+  tags?: string[];
+  itinerary_highlights?: string[];
   image_url?: string;
   badge?: string;
   featured: boolean;
   active: boolean;
   trending: boolean;
   popularity_score: number;
+  booking_count?: number;
+  seats_left?: number;
+  season?: string;
+  availability?: string;
   seo_title?: string;
   seo_description?: string;
   sort_order: number;
@@ -45,7 +61,7 @@ export async function listAdminPackages(filters?: {
   try {
     let query = supabase
       .from("packages")
-      .select("id, title, slug, destination, state, category_id, image_url, featured, active, trending, popularity_score, sort_order, badge, duration_label, created_at")
+      .select("*")
       .order("sort_order")
       .order("title");
 

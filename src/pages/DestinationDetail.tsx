@@ -13,6 +13,11 @@ import { SmartImage } from "@/components/ui/SmartImage";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/lib/supabase";
 import { useValidatedImage } from "@/hooks/useValidatedImage";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { AudioGuide } from "@/components/AudioGuide";
 
 const DestinationDetail = () => {
   const { stateSlug, slug } = useParams<{ stateSlug: string; slug: string }>();
@@ -36,7 +41,6 @@ const DestinationDetail = () => {
   const quickFacts = [
     { label: "State", value: stateData.name },
     { label: "Best Season", value: destination.bestTimeToVisit },
-    { label: "Budget", value: `₹${destination.estimatedBudget?.budget_per_day_inr || 2000}/day` },
   ];
 
   const galleryImages = (destination.galleryImages || []).map(img => ({
@@ -80,29 +84,31 @@ const DestinationDetail = () => {
         quickFacts={quickFacts}
       />
 
-      <section className="section-padding bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            
-            {/* Left Content */}
-            <div className="lg:col-span-2 space-y-12">
-              <div>
-                <h2 className="font-display text-3xl font-bold mb-6 flex items-center gap-3">
-                  <span className="w-1.5 h-8 bg-primary rounded-full" />
+      <div className="container mx-auto px-4 py-8">
+        <AudioGuide 
+          title={destination.name} 
+          content={destination.shortDescription || "Discover the beauty and culture of this amazing destination."} 
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <Tabs defaultValue="overview" className="w-full">
+              <TabsList className="grid grid-cols-2 gap-0.5">
+                <TabsTrigger value="overview" className="w-full py-3 font-medium text-sm">
                   Overview
-                </h2>
+                </TabsTrigger>
+                <TabsTrigger value="highlights" className="w-full py-3 font-medium text-sm">
+                  Highlights
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="overview" className="pt-4">
                 <div className="prose prose-slate max-w-none">
                   <p className="text-muted-foreground text-lg leading-relaxed whitespace-pre-line">
                     {destination.detailedDescription || destination.shortDescription}
                   </p>
                 </div>
-              </div>
-
-              <div>
-                <h2 className="font-display text-3xl font-bold mb-6 flex items-center gap-3">
-                  <span className="w-1.5 h-8 bg-primary rounded-full" />
-                  Highlights
-                </h2>
+              </TabsContent>
+              <TabsContent value="highlights" className="pt-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {(destination.travelTips || []).map((h, i) => (
                     <div key={i} className="flex items-center gap-4 p-4 bg-surface border border-border/50 rounded-xl hover:bg-primary/5 transition-colors">
@@ -113,75 +119,75 @@ const DestinationDetail = () => {
                     </div>
                   ))}
                 </div>
+              </TabsContent>
+            </Tabs>
+
+            {galleryImages.length > 0 && (
+              <div className="mt-8">
+                <h2 className="font-display text-3xl font-bold mb-6 flex items-center gap-3">
+                  <span className="w-1.5 h-8 bg-primary rounded-full" />
+                  Capturing {destination.name}
+                </h2>
+                <GalleryComponent images={destination.galleryImages || []} destinationName={destination.name} />
               </div>
-
-              {galleryImages.length > 0 && (
-                <div>
-                   <h2 className="font-display text-3xl font-bold mb-6 flex items-center gap-3">
-                    <span className="w-1.5 h-8 bg-primary rounded-full" />
-                    Capturing {destination.name}
-                  </h2>
-                  <GalleryComponent images={destination.galleryImages || []} destinationName={destination.name} />
-                </div>
-              )}
-            </div>
-
-            {/* Right Sidebar */}
-            <div className="space-y-8">
-              <div className="bg-surface border border-border/50 rounded-3xl p-8 sticky top-24 shadow-sm">
-                <h3 className="font-display text-2xl font-bold mb-6">Quick Details</h3>
-                
-                <div className="space-y-6">
-                   <div className="flex items-start gap-4">
-                    <MapPin className="w-6 h-6 text-primary shrink-0" />
-                    <div>
-                      <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Location</p>
-                      <p className="font-semibold text-foreground">{stateData.name}, India</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <Calendar className="w-6 h-6 text-primary shrink-0" />
-                    <div>
-                      <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Best Time to Visit</p>
-                      <p className="font-semibold text-foreground">{destination.bestTimeToVisit}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <CreditCard className="w-6 h-6 text-primary shrink-0" />
-                    <div>
-                      <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Trip Budget</p>
-                      <p className="font-semibold text-foreground">₹{destination.estimatedBudget?.budget_per_day_inr || 2000}+ a day</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <Tag className="w-6 h-6 text-primary shrink-0" />
-                    <div>
-                      <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Trip Vibe</p>
-                      <p className="font-semibold text-foreground">{(destination.popularActivities || []).slice(0,3).map(a => a.name).join(" • ")}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-10 pt-8 border-t border-border/50">
-                  <button 
-                    onClick={() => document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-bold text-sm uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
-                  >
-                    Check Availability
-                  </button>
-                  <p className="text-center text-[10px] text-muted-foreground mt-4 font-medium italic">
-                    * Guaranteed best price for custom group tours
-                  </p>
-                </div>
-              </div>
-            </div>
-
+            )}
           </div>
+
+          {/* Right Sidebar */}
+          <div className="space-y-8">
+            <div className="bg-surface border border-border/50 rounded-3xl p-8 sticky top-24 shadow-sm">
+              <h3 className="font-display text-2xl font-bold mb-6">Quick Details</h3>
+              
+              <div className="space-y-6">
+                 <div className="flex items-start gap-4">
+                  <MapPin className="w-6 h-6 text-primary shrink-0" />
+                  <div>
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Location</p>
+                    <p className="font-semibold text-foreground">{stateData.name}, India</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <Calendar className="w-6 h-6 text-primary shrink-0" />
+                  <div>
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Best Time to Visit</p>
+                    <p className="font-semibold text-foreground">{destination.bestTimeToVisit}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <CreditCard className="w-6 h-6 text-primary shrink-0" />
+                  <div>
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Enquire Now</p>
+                    <p className="font-semibold text-foreground">Custom Itineraries</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <Tag className="w-6 h-6 text-primary shrink-0" />
+                  <div>
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Trip Vibe</p>
+                    <p className="font-semibold text-foreground">{(destination.popularActivities || []).slice(0,3).map(a => a.name).join(" • ")}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-10 pt-8 border-t border-border/50">
+                <button 
+                  onClick={() => document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-bold text-sm uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  Check Availability
+                </button>
+                <p className="text-center text-[10px] text-muted-foreground mt-4 font-medium italic">
+                  * Guaranteed best price for custom group tours
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </section>
+      </div>
 
       <EnquirySection />
 

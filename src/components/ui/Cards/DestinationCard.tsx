@@ -148,7 +148,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({ destination, s
             </div>
           )}
           <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '11px', marginLeft: 'auto' }}>
-            From ₹{estimatedBudget.toLocaleString('en-IN')}/day
+            Book Now
           </div>
         </div>
 

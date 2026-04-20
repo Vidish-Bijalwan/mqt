@@ -131,9 +131,9 @@ export const LocationHoverCard: React.FC<LocationHoverCardProps> = ({
           paddingTop: '8px'
         }}>
           <div>
-            <div style={{ fontSize: '9px', color: '#64748B' }}>Budget/day</div>
+            <div style={{ fontSize: '9px', color: '#64748B' }}>Plan</div>
             <div style={{ fontSize: '12px', color: '#22C55E', fontWeight: 600 }}>
-              ₹{budget.toLocaleString('en-IN')}
+              Custom
             </div>
           </div>
           <div style={{ textAlign: 'right' }}>

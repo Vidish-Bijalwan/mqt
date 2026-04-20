@@ -23,6 +23,7 @@ import { getPackageWhatsAppUrl } from "@/lib/contact";
 import { SEO } from "@/components/SEO";
 import { getPackageGallery } from "@/data/packageGalleries";
 import { ImmersiveItinerary, buildItineraryDays } from "@/components/ImmersiveItinerary";
+import { AudioGuide } from "@/components/AudioGuide";
 
 const PackageDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -108,6 +109,11 @@ const PackageDetail = () => {
             {/* Left: Content */}
             <div className="lg:col-span-2 space-y-12">
               
+              <AudioGuide 
+                title={pkg.title} 
+                content={pkg.overview || "Experience an unforgettable journey with our carefully crafted itinerary."} 
+              />
+
               {/* Overview */}
               <div>
                 <div className="flex items-center gap-4 mb-4 flex-wrap">
