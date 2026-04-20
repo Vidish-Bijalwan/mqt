@@ -6,21 +6,24 @@ import type { ServiceResponse } from "./enquiryService";
 const mapDbToDomain = (row: DbPackagePublic): TourPackage => {
   const fallbackObj = tourPackages.find(p => p.slug === row.slug);
   
+  // Refinement Check: If the static fallback has our high-fidelity "refined" assets, use them as the primary source.
+  const isRefined = fallbackObj?.image?.startsWith("/tourism/refined/") || fallbackObj?.title?.includes("[MQT-V2]");
+
   return {
     id: row.id,
-    title: row.title,
+    title: isRefined ? (fallbackObj?.title || row.title) : row.title,
     slug: row.slug,
     destination: row.destination,
     state: row.state,
     country: row.country,
     type: row.type,
     duration: { nights: row.duration_nights, days: row.duration_days },
-    price: 0, // Safely stripped from DB view
-    originalPrice: 0, // Safely stripped from DB view
+    price: fallbackObj?.price || 0, // Fallback to static if DB version is stripped
+    originalPrice: fallbackObj?.originalPrice || 0, 
     rating: Number(row.rating),
     reviewsCount: row.reviews_count,
-    image: resolveImageSource("package-images", row.image_url, fallbackObj?.image || ""),
-    badge: row.badge || undefined,
+    image: isRefined ? (fallbackObj?.image || "") : resolveImageSource("package-images", row.image_url, fallbackObj?.image || ""),
+    badge: isRefined ? (fallbackObj?.badge || row.badge) : (row.badge || undefined),
     includes: fallbackObj?.includes?.length ? fallbackObj.includes : (row.includes || []),
     categories: fallbackObj?.categories?.length ? fallbackObj.categories : (row.categories || []),
     tags: fallbackObj?.tags?.length ? fallbackObj.tags : (row.tags || []),

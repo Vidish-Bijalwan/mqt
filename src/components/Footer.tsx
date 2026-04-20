@@ -100,7 +100,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-dark-foreground/10">
         <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-dark-foreground/50">
-          <span>© 2025 MQT — MyQuickTrippers. All Rights Reserved.</span>
+          <span>© 2019 - 2026 MQT — MyQuickTrippers. All Rights Reserved.</span>
           <span>Designed with ❤ for explorers of India</span>
         </div>
       </div>

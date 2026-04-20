@@ -1,0 +1,66 @@
+{
+  "kedarnath": [
+    "/tourism/refined/hero-kedarnath.jpg",
+    "/tourism/refined/dest-kedarnath.jpg",
+    "/tourism/refined/kedarnath-sunset.jpg"
+  ],
+  "gangotri": [
+    "/tourism/refined/hero-gangotri.jpg"
+  ],
+  "nelang-valley": [
+    "/tourism/refined/hero-gangotri.jpg"
+  ],
+  "kedarnath-helicopter": [
+    "/tourism/refined/hero-kedarnath-heli.jpg",
+    "/tourism/refined/hero-kedarnath.jpg"
+  ],
+  "varanasi": [
+    "/tourism/refined/hero-varanasi.jpg"
+  ],
+  "kashmir": [
+    "/tourism/India_Central/Incredible_India/016_dal-lake-srinagar-jammu--kashmir-2-attr-hero_govt.jpg"
+  ],
+  "ladakh": [
+    "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg"
+  ],
+  "manali": [
+    "/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg"
+  ],
+  "goa": [
+    "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg"
+  ],
+  "rajasthan": [
+    "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg"
+  ],
+  "kerala": [
+    "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg"
+  ],
+  "delhi": [
+    "/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg"
+  ],
+  "darjeeling": [
+    "/tourism/India_Central/Incredible_India/025_happy-valley-tea-estate-darjeeling-west_bengal-1-h_govt.jpg"
+  ],
+  "andaman": [
+    "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg"
+  ],
+  "puducherry": [
+    "/tourism/India_Central/Incredible_India/039_auroville-puducherry_govt.jpg"
+  ],
+  "odisha": [
+    "/tourism/India_Central/Incredible_India/023_1-lingaraj-temple-bhubaneshwar-odisha-city-hero_govt.jpg"
+  ],
+  "karnataka": [
+    "/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg"
+  ],
+  "tamil-nadu": [
+    "/tourism/India_Central/Incredible_India/038_1-rameswaram-temple-rameswaram-tamilnadu-hero_govt.jpg"
+  ],
+  "gujarat": [
+    "/tourism/Gujarat/Ahmedabad/002_Sabarmati_Ashram_govt.jpg"
+  ],
+  "uttarakhand": [
+    "/tourism/refined/hero-gangotri.jpg",
+    "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg"
+  ]
+}

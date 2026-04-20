@@ -27,7 +27,7 @@ const LOCAL_STATES = new Set<string>();
 
 /** Packages that have local WebP assets in /src/assets/images/packages/{slug}/ */
 const LOCAL_PACKAGES = new Set<string>();
-const TOURISM_FALLBACKS: Record<string, string> = {
+export const TOURISM_FALLBACKS: Record<string, string> = {
   // Incredible India core
   'delhi':          '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg',
   'ladakh':         '/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg',
@@ -44,12 +44,13 @@ const TOURISM_FALLBACKS: Record<string, string> = {
   'jaisalmer':      '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg',
   'rann-of-kutch':  '/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg',
   'uttarakhand':    '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
-  'kedarnath':      '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'kedarnath':      '/tourism/refined/hero-kedarnath.jpg',
   'rishikesh':      '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
   'haridwar':       '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
-  'char-dham':      '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
-  'gangotri':       '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
-  'harshil':        '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'char-dham':      '/tourism/refined/hero-kedarnath.jpg',
+  'gangotri':       '/tourism/refined/hero-gangotri.jpg',
+  'harshil':        '/tourism/refined/hero-gangotri.jpg',
+  'nelang-valley':  '/tourism/refined/hero-gangotri.jpg',
   'valley-of-flowers': '/tourism/valley_of_flowers.jpg',
   'odisha':         '/tourism/India_Central/Incredible_India/023_1-lingaraj-temple-bhubaneshwar-odisha-city-hero_govt.jpg',
   'bhubaneswar':    '/tourism/India_Central/Incredible_India/023_1-lingaraj-temple-bhubaneshwar-odisha-city-hero_govt.jpg',
@@ -86,8 +87,8 @@ const TOURISM_FALLBACKS: Record<string, string> = {
   'gujarat':        '/tourism/Gujarat/Ahmedabad/002_Sabarmati_Ashram_govt.jpg',
   'ahmedabad':      '/tourism/Gujarat/Ahmedabad/002_Sabarmati_Ashram_govt.jpg',
   'manipur':        '/tourism/Manipur/Exclusive_Destination/003_ema_keithel3_govt.jpg',
-  'nagaland':       '/tourism/Manipur/Screen_Reader_Access/002_image_govt.png',
-  'meghalaya':      '/tourism/Manipur/Screen_Reader_Access/002_image_govt.png',
+  'nagaland':       '/tourism/India_Central/Incredible_India/025_happy-valley-tea-estate-darjeeling-west_bengal-1-h_govt.jpg',
+  'meghalaya':      '/tourism/India_Central/Incredible_India/025_happy-valley-tea-estate-darjeeling-west_bengal-1-h_govt.jpg',
   'tripura':        '/tourism/Tripura/Destination/005_destination_govt.jpg',
   'haryana':        '/tourism/Haryana/Destinations/006_Ambala_govt.jpg',
   // Festival images (after download script runs)
@@ -97,7 +98,7 @@ const TOURISM_FALLBACKS: Record<string, string> = {
   'hornbill':       '/assets/festivals/hornbill.jpg',
   'thrissur-pooram': '/assets/festivals/thrissur-pooram.jpg',
   // Extra destinations
-  'varanasi':       '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'varanasi':       '/tourism/refined/hero-varanasi.jpg',
   'agra':           '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg',
   'mathura':        '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg',
   'ayodhya':        '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg',
@@ -127,10 +128,10 @@ const TOURISM_FALLBACKS: Record<string, string> = {
   'bihar':          '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg',
   'chhattisgarh':   '/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg',
   'jharkhand':      '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
-  'mizoram':        '/tourism/Manipur/Screen_Reader_Access/002_image_govt.png',
+  'mizoram':        '/tourism/India_Central/Incredible_India/025_happy-valley-tea-estate-darjeeling-west_bengal-1-h_govt.jpg',
   'dadra-nagar-haveli': '/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg',
   // Package slugs — direct slug→image for accurate package card images
-  'kedarnath-yatra-5-nights-6-days':       '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'kedarnath-yatra-5-nights-6-days':       '/tourism/refined/hero-kedarnath.jpg',
   'kedarnath-helicopter-2-nights-3-days':  '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
   'char-dham-yatra-10-nights-11-days':     '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
   'char-dham-yatra':                       '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
@@ -143,7 +144,7 @@ const TOURISM_FALLBACKS: Record<string, string> = {
   'manali-family-4-nights-5-days':         '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
   'manali-winter-snow-4-nights-5-days':    '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
   'himalayan-grand-circuit-12-nights-13-days': '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
-  'varanasi-spiritual-3-nights-4-days':    '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'varanasi-spiritual-3-nights-4-days':    '/tourism/refined/hero-varanasi.jpg',
   'varanasi-prayagraj-4-nights-5-days':    '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
   'valley-of-flowers-trek-6-nights-7-days': '/tourism/valley_of_flowers.jpg',
   'rishikesh-adventure-2-nights-3-days':   '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
@@ -183,19 +184,20 @@ const TOURISM_FALLBACKS: Record<string, string> = {
   'kaziranga-nature-escape':              '/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg',
   'kabini-jungle-escape':                 '/tourism/India_Central/Incredible_India/035_vitthala-temple-complex-hampi-karnataka-city-hero_govt.jpg',
   'kanha-wildlife-retreat':              '/tourism/India_Central/Incredible_India/031_rajwada-indore-mp-city-hero_govt.jpg',
-  'harshil-valley-4-day-package':        '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
-  'gangotri-4-day-package':              '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
-  'nelang-valley-day-trip':              '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
-  'darang-village-day-trip':             '/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg',
+  'harshil-valley-4-day-package':        '/tourism/refined/hero-gangotri.jpg',
+  'gangotri-4-day-package':              '/tourism/refined/hero-gangotri.jpg',
+  'nelang-valley-day-trip':              '/tourism/refined/hero-gangotri.jpg',
+  'darang-village-day-trip':             '/tourism/refined/hero-gangotri.jpg',
   'lonavala-quick-break':                '/tourism/Maharashtra/Overview/011_indranil-naikjpg_govt.jpg',
   'lakshadweep-island-escape':           '/tourism/India_Central/Incredible_India/036_kalpeni-kavaratti-lakshwadeep-3-musthead-hero_govt.jpg',
   'ooty-coorg-family-journey':           '/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg',
   'shimla-manali-family-vacation':       '/tourism/India_Central/Incredible_India/017_hidimba-temple-manali-himachal-pradesh-1-attr-hero_govt.jpg',
   'khajuraho-temple-circuit':            '/tourism/India_Central/Incredible_India/031_rajwada-indore-mp-city-hero_govt.jpg',
   'mahabalipuram-shore-trail':           '/tourism/India_Central/Incredible_India/038_1-rameswaram-temple-rameswaram-tamilnadu-hero_govt.jpg',
+  // ── PLACEHOLDER & DEFAULT ──
 };
 
-const DEFAULT_FALLBACK = '/tourism/India_Central/Incredible_India/013_red-fort-delhi1-attr-hero_govt.jpg';
+const DEFAULT_FALLBACK = '/images/placeholder.svg';
 
 // Normalize slug for lookup
 const norm = (s: string) =>
@@ -256,52 +258,56 @@ function makeFallback(slug: string): string {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export function getStateImage(stateSlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
-  // 1. Local WebP asset (none exist currently, set is empty)
-  const local = resolveLocalState(stateSlug, variant);
-  // 2. TOURISM_FALLBACKS lookup — preferred over any CMS url
-  const tourism = lookupTourism(stateSlug);
-  // 3. Valid CMS URL (only /tourism/ paths, not broken /india_tourism/)
+  // 1. Valid CMS URL override directly from the Admin DB
   const cms = isValidCms(cmsUrl) ? (cmsUrl as string) : null;
-  const src = local ?? tourism ?? cms ?? DEFAULT_FALLBACK;
+  // 2. Local WebP asset (none exist currently, set is empty)
+  const local = resolveLocalState(stateSlug, variant);
+  // 3. TOURISM_FALLBACKS lookup
+  const tourism = lookupTourism(stateSlug);
+  const src = cms ?? local ?? tourism ?? DEFAULT_FALLBACK;
   const fallback = tourism ?? DEFAULT_FALLBACK;
   return { src, fallbackSrc: fallback };
 }
 
 export function getCityImage(stateSlug: string, citySlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
+  const cms = isValidCms(cmsUrl) ? (cmsUrl as string) : null;
   const local = resolveLocalCity(stateSlug, citySlug, variant);
-  const fallback = isValidCms(cmsUrl) ? (cmsUrl as string) : makeFallback(citySlug) || makeFallback(stateSlug);
-  return { src: local ?? fallback, fallbackSrc: fallback };
+  const fallback = makeFallback(citySlug) || makeFallback(stateSlug);
+  return { src: cms ?? local ?? fallback, fallbackSrc: fallback };
 }
 
 export function getDestinationImage(destSlug: string, variant: ImageVariant = 'card', cmsUrl?: string): ImageResolution {
-  // 1. Per-slug verified destination image (highest priority)
+  // 1. Valid CMS URL override directly from the Admin DB (taking highest priority)
+  const cms = isValidCms(cmsUrl) ? (cmsUrl as string) : null;
+  if (cms) return { src: cms, fallbackSrc: getDestinationTourismImage(destSlug) || lookupTourism(destSlug) };
+
+  // 2. Per-slug verified destination image
   const destSpecific = getDestinationTourismImage(destSlug);
   if (destSpecific) return { src: destSpecific, fallbackSrc: destSpecific };
 
-  // 2. Local WebP asset
+  // 3. Local WebP asset
   const local = resolveLocalState(destSlug, variant) ?? resolveLocalPackage(destSlug, variant);
 
-  // 3. TOURISM_FALLBACKS by slug
+  // 4. TOURISM_FALLBACKS by slug
   const tourism = lookupTourism(destSlug);
 
-  // 4. Valid CMS URL
-  const cms = isValidCms(cmsUrl) ? (cmsUrl as string) : null;
-
-  const src = local ?? tourism ?? cms ?? DEFAULT_FALLBACK;
-  const fallback = tourism ?? cms ?? DEFAULT_FALLBACK;
+  const src = local ?? tourism ?? DEFAULT_FALLBACK;
+  const fallback = tourism ?? DEFAULT_FALLBACK;
   return { src, fallbackSrc: fallback };
 }
 
 export function getPopularLocationImage(stateSlug: string, locationSlug: string, variant: ImageVariant = 'hero', cmsUrl?: string): ImageResolution {
+  const cms = isValidCms(cmsUrl) ? (cmsUrl as string) : null;
   const local = resolveLocalCity(stateSlug, locationSlug, variant);
-  const fallback = isValidCms(cmsUrl) ? (cmsUrl as string) : makeFallback(locationSlug) || makeFallback(stateSlug);
-  return { src: local ?? fallback, fallbackSrc: fallback };
+  const fallback = makeFallback(locationSlug) || makeFallback(stateSlug);
+  return { src: cms ?? local ?? fallback, fallbackSrc: fallback };
 }
 
 export function getPackageImage(packageSlug: string, variant: ImageVariant = 'card', cmsUrl?: string): ImageResolution {
+  const cms = isValidCms(cmsUrl) ? (cmsUrl as string) : null;
   const local = resolveLocalPackage(packageSlug, variant);
-  const fallback = isValidCms(cmsUrl) ? (cmsUrl as string) : makeFallback(packageSlug);
-  const src = local ?? (isValidCms(cmsUrl) ? cmsUrl as string : fallback);
+  const fallback = makeFallback(packageSlug);
+  const src = cms ?? local ?? fallback;
   return { src, fallbackSrc: fallback };
 }
 
@@ -311,7 +317,8 @@ export function getBlogImage(blogSlug: string, variant: ImageVariant = 'hero', c
 }
 
 export function getCategoryImage(categorySlug: string, variant: ImageVariant = 'card', cmsUrl?: string): ImageResolution {
+  const cms = isValidCms(cmsUrl) ? (cmsUrl as string) : null;
   const local = resolveLocalCategory(categorySlug, variant);
-  const fallback = isValidCms(cmsUrl) ? (cmsUrl as string) : makeFallback(categorySlug);
-  return { src: local ?? fallback, fallbackSrc: fallback };
+  const fallback = makeFallback(categorySlug);
+  return { src: cms ?? local ?? fallback, fallbackSrc: fallback };
 }

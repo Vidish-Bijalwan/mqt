@@ -1,10 +1,3 @@
-import destKedarnath from "@/assets/dest-kedarnath.jpg";
-import destLadakh from "@/assets/dest-ladakh.jpg";
-import destValleyFlowers from "@/assets/dest-valley-flowers.jpg";
-import destVaranasi from "@/assets/dest-varanasi.jpg";
-import destKashmir from "@/assets/dest-kashmir.jpg";
-import destManali from "@/assets/dest-manali.jpg";
-import destRishikesh from "@/assets/dest-rishikesh.jpg";
 import { packageMenuData } from "./packageMenuData";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -69,7 +62,7 @@ export interface Destination {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const destinations: Destination[] = [
-  { id: "1",  name: "Kedarnath",       slug: "kedarnath",     image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", packagesCount: 15 },
+  { id: "1",  name: "Kedarnath",       slug: "kedarnath",     image: "/tourism/refined/hero-kedarnath.jpg", packagesCount: 15 },
   { id: "2",  name: "Ladakh",          slug: "ladakh",        image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg",    packagesCount: 12 },
   { id: "3",  name: "Valley of Flowers", slug: "valley-of-flowers", image: "/tourism/valley_of_flowers.jpg",                                                         packagesCount: 8  },
   { id: "4",  name: "Varanasi",         slug: "varanasi",      image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg", packagesCount: 10 },
@@ -145,7 +138,7 @@ export const tourPackages: TourPackage[] = [
     originalPrice: 0,
     rating: 5.0,
     reviewsCount: 88,
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/tourism/refined/hero-gangotri.jpg",
     includes: ["Accommodation", "Meals", "Transport", "Darshan"],
     categories: ["exclusive", "pilgrimage"],
     tags: ["spiritual", "exclusive"],
@@ -181,7 +174,7 @@ export const tourPackages: TourPackage[] = [
     originalPrice: 0,
     rating: 4.8,
     reviewsCount: 15,
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/tourism/India_Central/Incredible_India/015_7-choglamsar-leh-ladakh-city-hero-new_govt.jpg",
     includes: ["Inner Line Permit", "Transport", "Guide", "Packed Lunch"],
     categories: ["exclusive"],
     tags: ["restricted", "exclusive"],
@@ -252,9 +245,9 @@ export const tourPackages: TourPackage[] = [
   },
   {
     id: "1",
-    title: "Kedarnath Yatra Package",
+    title: "Sacred Kedarnath Temple Yatra",
     slug: "kedarnath-yatra-5-nights-6-days",
-    destination: "Kedarnath",
+    destination: "Kedarnath Dham",
     state: "Uttarakhand",
     country: "India",
     type: "domestic",
@@ -263,8 +256,8 @@ export const tourPackages: TourPackage[] = [
     originalPrice: 15000,
     rating: 4.9,
     reviewsCount: 124,
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
-    badge: "Bestseller",
+    image: "/tourism/refined/hero-kedarnath.jpg",
+    badge: "Verified Pilgrim Site",
     discountBadge: "13% Off",
     includes: ["Hotel", "Meals", "Cab", "Guide"],
     categories: ["pilgrimage", "adventure"],
@@ -400,7 +393,7 @@ export const tourPackages: TourPackage[] = [
     originalPrice: 11000,
     rating: 4.8,
     reviewsCount: 203,
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/tourism/refined/hero-varanasi.jpg",
     discountBadge: "18% Off",
     includes: ["Hotel", "Meals", "Boat Ride", "Guide"],
     categories: ["pilgrimage", "family"],
@@ -556,7 +549,7 @@ export const tourPackages: TourPackage[] = [
     originalPrice: 35000,
     rating: 4.8,
     reviewsCount: 167,
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/tourism/refined/hero-kedarnath.jpg",
     badge: "Sacred Journey",
     discountBadge: "17% Off",
     includes: ["Hotel", "Meals", "Cab", "Guide", "Yatra Registration"],
@@ -588,7 +581,7 @@ export const tourPackages: TourPackage[] = [
     originalPrice: 27000,
     rating: 4.9,
     reviewsCount: 84,
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/tourism/refined/hero-kedarnath-heli.jpg",
     badge: "Helicopter ✈ Darshan",
     discountBadge: "15% Off",
     includes: ["Hotel", "Meals", "Helicopter", "Guide"],
@@ -685,7 +678,7 @@ export const tourPackages: TourPackage[] = [
     originalPrice: 14500,
     rating: 4.8,
     reviewsCount: 113,
-    image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+    image: "/tourism/refined/hero-varanasi.jpg",
     badge: "Spiritual Circuit",
     discountBadge: "17% Off",
     includes: ["Hotel", "Meals", "Cab", "Guide", "Boat Ride"],

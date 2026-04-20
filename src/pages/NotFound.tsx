@@ -4,7 +4,7 @@ import PageLayout from "@/components/PageLayout";
 
 const NotFound = () => {
   return (
-    <PageLayout showTopBar={false}>
+    <PageLayout>
       <div className="min-h-[70vh] flex items-center justify-center bg-background section-padding text-center">
         <div className="container mx-auto max-w-2xl">
           <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce-slow">

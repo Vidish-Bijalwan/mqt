@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Plus, Search, Pencil, Trash2, AlertCircle } from "lucide-react";
 import { listStates, deleteState, type StateUT } from "@/services/stateService";
+import { useValidatedImage } from "@/hooks/useValidatedImage";
+
+function StateImagePreview({ state }: { state: StateUT }) {
+  const { src, onError } = useValidatedImage((state as any).hero_image_url || state.image_url, state.slug);
+  return <img src={src} onError={onError} alt={state.name} className="w-12 h-12 min-w-[3rem] object-cover rounded-xl border border-gray-100 shadow-sm bg-gray-50" />;
+}
 
 const REGIONS = ["North India", "South India", "East India", "West India", "Central India", "North East India", "Island Territories"];
 
@@ -74,14 +80,15 @@ export default function AdminStates() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100 bg-gray-50">
-                  {["Name", "Type", "Region", "Featured", "Active", "Actions"].map(h => (
+                  {["Image", "Name", "Type", "Region", "Featured", "Active", "Actions"].map(h => (
                     <th key={h} className="text-left text-[10px] font-bold uppercase tracking-wider text-gray-400 px-5 py-3">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {states.map((state: StateUT) => (
-                  <tr key={state.id} className="border-b border-gray-50 hover:bg-gray-50 last:border-0">
+                  <tr key={state.id} className="border-b border-gray-50 hover:bg-gray-50 last:border-0 items-center">
+                    <td className="px-5 py-3"><StateImagePreview state={state} /></td>
                     <td className="px-5 py-4 font-medium text-gray-800">{state.name}</td>
                     <td className="px-5 py-4">
                       <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded-full ${state.type === "State" ? "bg-blue-50 text-blue-600" : "bg-purple-50 text-purple-600"}`}>{state.type}</span>

@@ -9,6 +9,12 @@ import {
   createAdminDestination, updateAdminDestination, type AdminDestination, type AdminDestinationInsert
 } from "@/services/adminDestinationService";
 import { MediaInput } from "@/components/admin/MediaInput";
+import { useValidatedImage } from "@/hooks/useValidatedImage";
+
+function DestinationImagePreview({ dest }: { dest: AdminDestination }) {
+  const { src, onError } = useValidatedImage(dest.hero_image_url || dest.image_url, dest.slug);
+  return <img src={src} onError={onError} alt={dest.name} className="w-12 h-12 min-w-[3rem] object-cover rounded-xl border border-gray-100 shadow-sm bg-gray-50" />;
+}
 
 const inputCls = "w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
 
@@ -65,14 +71,15 @@ export function AdminDestinations() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100 bg-gray-50">
-                  {["Name","State","Featured","Trending","Active","Actions"].map(h=>(
+                  {["Image", "Name","State","Featured","Trending","Active","Actions"].map(h=>(
                     <th key={h} className="text-left text-[10px] font-bold uppercase tracking-wider text-gray-400 px-5 py-3">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {destinations.map((dest) => (
-                  <tr key={dest.id} className="border-b border-gray-50 hover:bg-gray-50 last:border-0">
+                  <tr key={dest.id} className="border-b border-gray-50 hover:bg-gray-50 last:border-0 items-center">
+                    <td className="px-5 py-3"><DestinationImagePreview dest={dest as AdminDestination} /></td>
                     <td className="px-5 py-4">
                       <div className="font-medium text-gray-800">{dest.name}</div>
                       <div className="text-xs text-gray-400 font-mono">{dest.slug}</div>

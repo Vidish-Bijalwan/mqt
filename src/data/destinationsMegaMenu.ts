@@ -531,12 +531,12 @@ export const megaMenuData: MegaMenuRegion[] = [
 
 export const popularDestinationsData: PopularSection = {
   trending: [
-    { name: "Kedarnath", slug: "kedarnath", state: "Uttarakhand", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" },
-    { name: "Jaipur", slug: "jaipur", state: "Rajasthan", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" },
+    { name: "Kedarnath", slug: "kedarnath", state: "Uttarakhand", image: "/tourism/refined/hero-kedarnath.jpg" },
+    { name: "Jaipur", slug: "jaipur", state: "Rajasthan", image: "/tourism/India_Central/Incredible_India/020_city-palace-udaipur-rajasthan-2-new-attr-hero_govt.jpg" },
     { name: "Munnar", slug: "munnar", state: "Kerala", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" },
-    { name: "Goa", slug: "goa", state: "Goa", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" },
-    { name: "Andaman", slug: "andaman-and-nicobar-islands", state: "Andaman", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" },
-    { name: "Varanasi", slug: "varanasi", state: "Uttar Pradesh", image: "/tourism/India_Central/Incredible_India/040_Cherai_Beach_Ernakulam_Kochi_Kerala_India_on_a_clo_govt.jpg" }
+    { name: "Goa", slug: "goa", state: "Goa", image: "/tourism/India_Central/Incredible_India/027_vagator-beach-goa-city-1-hero_govt.jpg" },
+    { name: "Andaman", slug: "andaman-and-nicobar-islands", state: "Andaman", image: "/tourism/Andaman_Nicobar/Destinations/003_image_govt.jpg" },
+    { name: "Varanasi", slug: "varanasi", state: "Uttar Pradesh", image: "/src/assets/dest-varanasi.jpg" }
   ],
   categories: [
     {

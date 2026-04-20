@@ -10,6 +10,9 @@ import { getStateBySlug } from "@/data/india-states";
 import { Helmet } from "react-helmet-async";
 import { MapPin, Calendar, CreditCard, Tag } from "lucide-react";
 import { SmartImage } from "@/components/ui/SmartImage";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
+import { useValidatedImage } from "@/hooks/useValidatedImage";
 
 const DestinationDetail = () => {
   const { stateSlug, slug } = useParams<{ stateSlug: string; slug: string }>();
@@ -41,6 +44,23 @@ const DestinationDetail = () => {
     alt: img.alt || `${destination.name} scenery`
   }));
 
+  // ── Database Sync: Check if Admin has overridden the image
+  const { data: dbDestination } = useQuery({
+    queryKey: ["destination-override", slug],
+    queryFn: async () => {
+      if (!slug) return null;
+      const { data } = await supabase.from("destinations").select("hero_image_url, image_url").eq("slug", slug).single();
+      return data as any;
+    },
+    staleTime: 60000
+  });
+
+  const rawPrimary = destination.heroImage?.url || destination.image;
+  // If DB override exists, use it; otherwise use the local map primary
+  const finalPrimary = (dbDestination && (dbDestination.hero_image_url || dbDestination.image_url)) || rawPrimary;
+  
+  const { src: activeHeroImg } = useValidatedImage(finalPrimary, destination.slug);
+
   return (
     <PageLayout>
       <Helmet>
@@ -51,7 +71,7 @@ const DestinationDetail = () => {
       <PageHero
         title={destination.name}
         subtitle={destination.shortDescription}
-        backgroundImage={destination.heroImage?.url || destination.image}
+        backgroundImage={activeHeroImg}
         breadcrumb={[
           { label: "Destinations", href: "/destinations" },
           { label: stateData.name, href: `/destinations/${stateData.slug}` },

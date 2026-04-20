@@ -14,6 +14,9 @@ import { StateGallery } from "@/components/ui/StateGallery";
 import { getStateImage } from "@/lib/imageMap";
 import { stateImagesMap } from "@/data/stateImagesMap";
 import { Category, Season, BudgetTier } from "@/types/models";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
+import { useValidatedImage } from "@/hooks/useValidatedImage";
 
 const StateListing = () => {
   const { stateSlug } = useParams<{ stateSlug: string }>();
@@ -61,9 +64,22 @@ const StateListing = () => {
     return <Navigate to="/destinations" replace />;
   }
 
-  // ── Hero image: use resolved TOURISM_FALLBACKS path (ignores broken /india_tourism/ CMS data)
-  const heroResolved = getStateImage(stateData.slug, 'hero');
-  const heroImg = heroResolved;
+  // ── Database Sync: Check if Admin has overridden the image
+  const { data: dbState } = useQuery({
+    queryKey: ["state-override", stateData?.slug],
+    queryFn: async () => {
+      if (!stateData?.slug) return null;
+      const { data } = await supabase.from("states_uts").select("image_url").eq("slug", stateData.slug).single();
+      return data as any;
+    },
+    staleTime: 60000
+  });
+
+  // ── Hero image: Render DB override -> Map Fallback -> Placeholder
+  const defaultResolved = getStateImage(stateData.slug, 'hero');
+  const { src: dynamicHero } = useValidatedImage(dbState?.image_url, stateData.slug);
+  
+  const heroImg = (dbState && dbState.image_url) ? dynamicHero : defaultResolved.src;
 
   // ── Gallery: build from stateImagesMap which has confirmed-working local paths.
   //    If the state has entries in stateImagesMap, use those;
@@ -78,10 +94,10 @@ const StateListing = () => {
     }
     // No specific gallery for this state — use hero image + related regional fallbacks
     return [
-      { url: heroResolved.src, alt: `${stateData.name} — Featured` },
-      { url: heroResolved.fallbackSrc, alt: `${stateData.name} — Landscape` },
+      { url: heroImg, alt: `${stateData.name} — Featured` },
+      { url: defaultResolved.fallbackSrc, alt: `${stateData.name} — Landscape` },
     ].filter((img, idx, arr) => arr.findIndex(a => a.url === img.url) === idx);
-  }, [stateData.slug, heroResolved.src]);
+  }, [stateData.slug, heroImg, defaultResolved.fallbackSrc]);
 
 
   return (

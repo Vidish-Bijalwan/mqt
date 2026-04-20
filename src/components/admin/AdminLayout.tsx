@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Inbox, Image as ImageIcon, LogOut,
   Globe, Package, MapPin, BookOpen, MessageSquare, HelpCircle,
-  Home, Settings, Map, ChevronRight, Menu, X, Flag, Compass, Flower2, Grid3x3, Lightbulb, HelpingHand, Mail, Waves, Smile, ScrollText
+  Home, Settings, Map, ChevronRight, Menu, X, Flag, Compass, Flower2,
+  Lightbulb, HelpingHand, Mail, Waves, Smile, ScrollText, Star
 } from "lucide-react";
 
 const sidebarGroups = [

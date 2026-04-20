@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { DestinationModel } from "@/types/models";
 import { SmartImage } from "../SmartImage";
 import { getDestinationImage } from "@/lib/imageMap";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
 
 interface DestinationCardProps {
   destination: DestinationModel;
@@ -13,9 +15,22 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({ destination, s
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
+  // Real-time UI Sync loop (w/ 5 minute aggressive cache to prevent spamming DB)
+  const { data: dbDestination } = useQuery({
+    queryKey: ["dest-card-sync", destination.slug],
+    queryFn: async () => {
+      const { data } = await supabase.from("destinations").select("hero_image_url, image_url").eq("slug", destination.slug).single();
+      return data as any;
+    },
+    staleTime: 300000 // 5 minutes
+  });
+
+  const rawPrimary = destination.heroImage?.url || destination.image;
+  const adminOverride = dbDestination && (dbDestination.hero_image_url || dbDestination.image_url);
+  
   // Resolve image through imageMap — falls back to TOURISM_FALLBACKS even if
   // heroImage.url points to broken /india_tourism/... paths
-  const resolved = getDestinationImage(destination.slug, 'card', destination.heroImage?.url || destination.image);
+  const resolved = getDestinationImage(destination.slug, 'card', adminOverride || rawPrimary);
   const heroUrl = resolved.src;
   const heroFallback = resolved.fallbackSrc;
   const heroAlt = destination.heroImage?.alt || destination.name;

@@ -397,7 +397,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "11 Days / 10 Nights",
             hook: "The ultimate Himalayan spiritual circuit.",
             highlights: ["Helicopter transfers available", "VIP Darshan coordination", "All 4 Dhams"],
-            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+            image: "/tourism/refined/hero-kedarnath.jpg",
           },
           {
             title: "Kedarnath Yatra Package",
@@ -407,7 +407,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "6 Days / 5 Nights",
             hook: "Sacred pilgrimage to Lord Shiva's abode at 3,583m.",
             highlights: ["Trek or helicopter option", "Haridwar Ganga Aarti", "Expert pilgrimage guide"],
-            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+            image: "/tourism/refined/hero-kedarnath.jpg",
           },
           {
             title: "Varanasi Spiritual Journey",
@@ -417,7 +417,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "4 Days / 3 Nights",
             hook: "Sunrise boats on the Ganga, Ganga Aarti, Sarnath.",
             highlights: ["Ganga Aarti ceremony", "Sunrise boat ride 88 ghats", "Kashi Vishwanath darshan"],
-            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+            image: "/src/assets/dest-varanasi.jpg",
           },
           {
             title: "Ayodhya Pilgrimage",
@@ -467,7 +467,7 @@ export const packageMenuData: PackageMenuGroup[] = [
             duration: "3 Days / 2 Nights",
             hook: "No trek needed — direct helicopter darshan.",
             highlights: ["Return helicopter (Phata ↔ Kedarnath)", "VIP Darshan assistance", "Senior-friendly"],
-            image: "/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg",
+            image: "/tourism/refined/hero-kedarnath.jpg",
           },
         ],
       },

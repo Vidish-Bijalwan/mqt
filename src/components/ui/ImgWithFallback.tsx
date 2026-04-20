@@ -69,9 +69,6 @@ export function ImgWithFallback({
 
   const handleLoad = () => setIsLoaded(true);
 
-  // Total failure — show coloured gradient or branded placeholder
-  const showGradient = failedCount >= 2 || (!imgSrc || imgSrc === '/placeholder.svg');
-
   const Wrapper = containerClassName
     ? ({ children }: { children: React.ReactNode }) => (
         <div className={`overflow-hidden ${containerClassName}`}>
@@ -80,34 +77,19 @@ export function ImgWithFallback({
       )
     : React.Fragment;
 
-  if (showGradient) {
-    const gradient = fallbackColor
-      ? buildGradient(fallbackColor)
-      : 'linear-gradient(135deg, #e8f0fe 0%, #dce8fa 60%, #c7d9f5 100%)';
+  // Total failure — show placeholder SVG
+  const showPlaceholder = failedCount >= 2 || (!imgSrc || imgSrc === '/placeholder.svg');
 
+  if (showPlaceholder) {
     return (
       <Wrapper>
-        <div
-          className={`flex flex-col items-center justify-center ${className}`}
-          style={{ background: gradient, width: '100%', height: '100%', minHeight: 80 }}
+        <img
+          src="/images/placeholder.svg"
+          alt={alt}
+          className={`${className} opacity-100`}
+          style={{ objectFit: 'contain', background: '#F1F5F9' }}
           aria-label={alt}
-          role="img"
-        >
-          {/* Subtle MQT watermark */}
-          <span
-            style={{
-              fontSize: '10px',
-              fontWeight: 700,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.35)',
-              fontFamily: 'sans-serif',
-              userSelect: 'none',
-            }}
-          >
-            MyQuickTrippers
-          </span>
-        </div>
+        />
       </Wrapper>
     );
   }

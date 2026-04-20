@@ -72,14 +72,15 @@ const IMGS = {
   mah3:      `${MAH}/035_image_govt.jpg`,
   mah4:      `${MAH}/037_image_govt.jpg`,
   // Local high-quality assets
-  assetKedarnath:    "/src/assets/dest-kedarnath.jpg",
   assetLadakh:       "/src/assets/dest-ladakh.jpg",
   assetKashmir:      "/src/assets/dest-kashmir.jpg",
   assetManali:       "/src/assets/dest-manali.jpg",
   assetRishikesh:    "/src/assets/dest-rishikesh.jpg",
   assetVof:          "/src/assets/dest-valley-flowers.jpg",
   assetVaranasi:     "/src/assets/dest-varanasi.jpg",
-  assetHeroKedarnath:"/src/assets/hero-kedarnath.jpg",
+  assetHeroKedarnath:"/tourism/refined/hero-kedarnath.jpg",
+  assetKedarnath:     "/tourism/refined/dest-kedarnath.jpg",
+  assetKedarnathSunset: "/tourism/refined/kedarnath-sunset.jpg",
 };
 
 // ─── Per-package gallery definitions ─────────────────────────────────────
@@ -118,17 +119,17 @@ export const packageGalleries: Galleries = {
 
   // ── KEDARNATH / UTTARAKHAND ──
   "kedarnath-yatra-5-nights-6-days": [
-    { src: IMGS.assetKedarnath, alt: "Kedarnath Temple", caption: "The sacred Kedarnath Jyotirlinga at 3,583m" },
-    { src: IMGS.assetHeroKedarnath, alt: "The trek to Kedarnath", caption: "The iconic 16km Himalayan pilgrim trail" },
-    { src: IMGS.haridwar,  alt: "Ganga Aarti — Haridwar", caption: "Grand Ganga Aarti on the first night" },
-    { src: IMGS.manali,   alt: "Himalayan temples and forests", caption: "Overnight stay at Guptkashi en route" },
+    { src: IMGS.assetHeroKedarnath, alt: "Kedarnath Temple", caption: "The sacred Kedarnath Jyotirlinga at 3,583m" },
+    { src: IMGS.assetKedarnath, alt: "The trek to Kedarnath", caption: "The iconic 16km Himalayan pilgrim trail" },
+    { src: IMGS.assetKedarnathSunset, alt: "Kedarnath Sunset", caption: "Golden peaks of the Kedarnath range at sunset" },
+    { src: IMGS.assetKedarnath, alt: "Pilgrims at Kedarnath", caption: "Thousands of devotees on the sacred path" },
   ],
 
   "kedarnath-helicopter-2-nights-3-days": [
-    { src: IMGS.assetHeroKedarnath, alt: "Kedarnath aerial view", caption: "Phata helipad — gateway to Kedarnath Darshan" },
-    { src: IMGS.assetKedarnath, alt: "Kedarnath Temple sanctum", caption: "VIP Darshan at the sacred temple" },
-    { src: IMGS.haridwar,  alt: "Haridwar Ganga Ghat", caption: "Scenic drive through the Garhwal Himalayas" },
-    { src: IMGS.manali,   alt: "Himalayan prayer flags", caption: "Luxury guesthouse near the temple complex" },
+    { src: IMGS.assetHeroKedarnath, alt: "Kedarnath aerial view", caption: "Breathtaking views of the Himalayan range from above" },
+    { src: IMGS.assetKedarnathSunset, alt: "Kedarnath Temple peaks", caption: "The sacred shrine nestled amongst glaciated peaks" },
+    { src: IMGS.assetKedarnath, alt: "Kedarnath Temple environment", caption: "Spirituality meet majesty at 3,500m" },
+    { src: IMGS.assetHeroKedarnath, alt: "Kedarnath Temple facade", caption: "VIP Darshan at the ancient Jyotirlinga" },
   ],
 
   "char-dham-yatra-10-nights-11-days": [

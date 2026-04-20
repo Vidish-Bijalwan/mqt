@@ -48,6 +48,8 @@ const I = {
   gujarat3:    `${GUJ}/008_Bai_Harir_ni_Vav_govt.jpg`,
   gujarat4:    `${GUJ}/011_Lothal_govt.jpg`,
   mah1:        `${MAH}/011_indranil-naikjpg_govt.jpg`,
+  kedarnath:   "/tourism/refined/hero-kedarnath.jpg",
+  trek:        "/tourism/refined/dest-kedarnath.jpg",
   mah2:        `${MAH}/017_MH-Digital-Standee-Forts-01jpg_govt.jpg`,
   mah3:        `${MAH}/035_image_govt.jpg`,
   mp1:         `${MP}/005_Asirgarh_Fort_govt.webp`,
@@ -395,7 +397,7 @@ export const destinationImagesMap: Record<string, string> = {
   // ── UTTARAKHAND ──
   "rishikesh":            I.uttarakhand,
   "haridwar":             I.uttarakhand,
-  "kedarnath":            I.ladakh,
+  "kedarnath":            I.kedarnath,
   "badrinath":            I.ladakh,
   "mussoorie":            I.kashmir,
   "nainital":             I.darjeeling,
