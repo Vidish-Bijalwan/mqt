@@ -14,6 +14,7 @@ export function AudioGuide({ title, content }: AudioGuideProps) {
   const [language, setLanguage] = useState<'en-IN' | 'hi-IN'>('en-IN');
   const synthRef = useRef(window.speechSynthesis);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const stopRequestedRef = useRef(false);
 
   useEffect(() => {
     return () => {
@@ -23,16 +24,10 @@ export function AudioGuide({ title, content }: AudioGuideProps) {
 
   const getVoice = (lang: string) => {
     const voices = synthRef.current.getVoices();
-    
-    // Filter voices matching the requested language
     const langVoices = voices.filter(v => v.lang === lang || v.lang.startsWith(lang.split('-')[0]));
-    
-    // Attempt to select the most natural-sounding voice available
-    // Google, Microsoft, and "Natural" variants usually have better synthesis engines
     const premiumVoice = langVoices.find(
       v => /Google|Natural|Premium|Microsoft/i.test(v.name)
     );
-    
     return premiumVoice || langVoices[0] || voices[0];
   };
 
@@ -40,21 +35,27 @@ export function AudioGuide({ title, content }: AudioGuideProps) {
 
   const handlePlay = async () => {
     if (isPaused) {
+      stopRequestedRef.current = false;
       synthRef.current.resume();
       setIsPlaying(true);
       setIsPaused(false);
       return;
     }
 
+    stopRequestedRef.current = false;
     synthRef.current.cancel();
     
     let textToRead = `Audio Guide for ${title}. ${content}`;
     
-    // Translate text dynamically for Hindi
+    // Translate text dynamically for Hindi using POST to bypass URL length limits
     if (language === 'hi-IN') {
        setIsLoadingTranslation(true);
        try {
-         const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=${encodeURIComponent(textToRead)}`);
+         const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t`, {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+           body: `q=${encodeURIComponent(textToRead)}`
+         });
          if (!res.ok) throw new Error("Translation failed");
          const data = await res.json();
          textToRead = data[0].map((item: any) => item[0]).join("");
@@ -65,22 +66,46 @@ export function AudioGuide({ title, content }: AudioGuideProps) {
        }
     }
 
-    const utterance = new SpeechSynthesisUtterance(textToRead);
-    const voice = getVoice(language);
-    if (voice) utterance.voice = voice;
-    
-    // Adjust rate and pitch to make it sound more conversational and less robotic
-    utterance.rate = 0.95; // Slightly slower than 1.0 for better articulation
-    utterance.pitch = 1.0; // Keep natural pitch
-    utterance.lang = language;
-    
-    utterance.onend = () => {
-      setIsPlaying(false);
-      setIsPaused(false);
+    if (stopRequestedRef.current) return;
+
+    // Advanced TTS text chunking to prevent mobile browser crash limits (usually >250 chars)
+    // and to artificially enforce natural pauses between sentences.
+    const sentences = textToRead.match(/[^.!?]+[.!?]+/g) || [textToRead];
+    let currentIndex = 0;
+
+    const playNextSentence = () => {
+      if (stopRequestedRef.current || currentIndex >= sentences.length) {
+        setIsPlaying(false);
+        setIsPaused(false);
+        return;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(sentences[currentIndex].trim());
+      const voice = getVoice(language);
+      if (voice) utterance.voice = voice;
+      
+      utterance.rate = 0.90; // Slower rate hides robotic imperfections
+      utterance.pitch = 1.0;
+      utterance.lang = language;
+      
+      utterance.onend = () => {
+        if (stopRequestedRef.current) return;
+        currentIndex++;
+        playNextSentence();
+      };
+      
+      utterance.onerror = (e) => {
+         console.warn("TTS Error chunk", e);
+         if (stopRequestedRef.current) return;
+         currentIndex++;
+         playNextSentence();
+      }
+
+      utteranceRef.current = utterance;
+      synthRef.current.speak(utterance);
     };
 
-    utteranceRef.current = utterance;
-    synthRef.current.speak(utterance);
+    playNextSentence();
     
     setIsPlaying(true);
     setIsPaused(false);
@@ -93,6 +118,7 @@ export function AudioGuide({ title, content }: AudioGuideProps) {
   };
 
   const handleStop = () => {
+    stopRequestedRef.current = true;
     synthRef.current.cancel();
     setIsPlaying(false);
     setIsPaused(false);
@@ -121,7 +147,7 @@ export function AudioGuide({ title, content }: AudioGuideProps) {
         </div>
       </div>
       
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto mt-4 sm:mt-0">
         <Button 
           variant="outline" 
           size="sm" 
