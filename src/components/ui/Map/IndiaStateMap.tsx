@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { stateLocations } from "@/data/stateLocations";
-import { indiaStates } from "@/data/india-states";
+import { statesArray } from "@/data/india-states";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -10,12 +10,12 @@ export const IndiaStateMap: React.FC = () => {
   const navigate = useNavigate();
 
   // Find destination data for the hovered state
-  const hoveredLocation = stateLocations.find(l => l.id === hoveredStateId);
-  const hoveredStateData = hoveredLocation ? indiaStates.find(s => s.name === hoveredLocation.name) : undefined;
+  const hoveredLocation = stateLocations?.find(l => l.id === hoveredStateId);
+  const hoveredStateData = hoveredLocation ? statesArray.find(s => s.name === hoveredLocation.name) : undefined;
 
   const handleStateClick = (stateId: string) => {
-    const loc = stateLocations.find(l => l.id === stateId);
-    const state = loc ? indiaStates.find(s => s.name === loc.name) : undefined;
+    const loc = stateLocations?.find(l => l.id === stateId);
+    const state = loc ? statesArray.find(s => s.name === loc.name) : undefined;
     if (state) {
       navigate(`/destinations/${state.slug}`);
     }
@@ -29,9 +29,9 @@ export const IndiaStateMap: React.FC = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {stateLocations.map((loc) => {
+        {stateLocations?.map((loc) => {
           const isHovered = hoveredStateId === loc.id;
-          const stateData = indiaStates.find(s => s.name === loc.name);
+          const stateData = statesArray.find(s => s.name === loc.name);
           const color = stateData?.colorHex || "#CBD5E1";
 
           return (
@@ -77,7 +77,7 @@ export const IndiaStateMap: React.FC = () => {
               <div className="flex items-center justify-between text-[10px] uppercase font-bold tracking-tighter">
                  <div className="flex flex-col">
                     <span className="text-muted-foreground">Destinations</span>
-                    <span>{hoveredStateData.famousDestinations.length}+</span>
+                    <span>{hoveredStateData.destinations.length}+</span>
                  </div>
                  <div className="flex items-center text-primary gap-1">
                     Click to Explore →

@@ -40,8 +40,8 @@ const HeroSection = () => {
 
   return (
     // Peak-End Rule: hero is the emotional PEAK — must be stunning
-    // 100svh = dynamic viewport height (fixes mobile browser chrome issue)
-    <section className="relative overflow-hidden bg-gray-900" style={{ height: "100svh", minHeight: 560 }}>
+    // Responsive height: slightly shorter on mobile to prevent stretching text to the very bottom edge
+    <section className="relative overflow-hidden bg-gray-900 h-[88svh] md:h-[100svh] min-h-[560px]">
 
       {/* Background image slider with parallax */}
       <motion.div
@@ -98,7 +98,7 @@ const HeroSection = () => {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="absolute inset-x-0 bottom-0 z-30 container-page pb-16 md:pb-20"
+        className="absolute inset-x-0 bottom-0 z-30 container-page pb-28 md:pb-20"
       >
         {/* Trust pill — social proof first, Aesthetic-Usability + Trust */}
         <motion.div variants={staggerItem}>

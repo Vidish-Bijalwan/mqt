@@ -25,7 +25,7 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
   };
 
   return (
-    <TiltCard className="bg-white h-full rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow group block">
+    <TiltCard className="bg-white w-full h-full rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow group block">
       <Link
         to={`/packages/${categorySlug || 'tour'}/${pkg.slug}`}
         className="block h-full relative border-none outline-none flex flex-col"

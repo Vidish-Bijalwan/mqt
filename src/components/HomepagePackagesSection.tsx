@@ -85,10 +85,14 @@ const HomepagePackagesSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5"
+          className="flex overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 gap-4 md:grid md:grid-cols-2 xl:grid-cols-4 md:mx-0 md:px-0 md:pb-0 items-stretch"
         >
           {TOP_4_PACKAGES.map(({ pkg, cat }) => (
-            <motion.div key={pkg.slug} variants={cardVariants}>
+            <motion.div 
+              key={pkg.slug} 
+              variants={cardVariants}
+              className="snap-center shrink-0 w-[85vw] max-w-[320px] md:w-auto md:max-w-none flex"
+            >
               <PackageCard
                 pkg={pkg}
                 categoryLabel={cat.name}

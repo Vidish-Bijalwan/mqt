@@ -36,6 +36,8 @@ export function AudioGuide({ title, content }: AudioGuideProps) {
     return premiumVoice || langVoices[0] || voices[0];
   };
 
+  const [isLoadingTranslation, setIsLoadingTranslation] = useState(false);
+
   const handlePlay = async () => {
     if (isPaused) {
       synthRef.current.resume();
@@ -47,9 +49,20 @@ export function AudioGuide({ title, content }: AudioGuideProps) {
     synthRef.current.cancel();
     
     let textToRead = `Audio Guide for ${title}. ${content}`;
-    // Basic translation prompt or fallback (Browser TTS doesn't auto-translate)
+    
+    // Translate text dynamically for Hindi
     if (language === 'hi-IN') {
-       toast.info("Attempting Hindi pronunciation. For accurate Hindi, the text needs to be translated in the database.");
+       setIsLoadingTranslation(true);
+       try {
+         const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=${encodeURIComponent(textToRead)}`);
+         if (!res.ok) throw new Error("Translation failed");
+         const data = await res.json();
+         textToRead = data[0].map((item: any) => item[0]).join("");
+       } catch (err) {
+         toast.error("Failed to fetch Hindi translation. Playing with English fallback.");
+       } finally {
+         setIsLoadingTranslation(false);
+       }
     }
 
     const utterance = new SpeechSynthesisUtterance(textToRead);
@@ -120,8 +133,20 @@ export function AudioGuide({ title, content }: AudioGuideProps) {
         </Button>
 
         {!isPlaying ? (
-          <Button variant="default" size="sm" onClick={handlePlay} className="px-6 shadow-md hover:shadow-lg transition-shadow">
-            <Play size={14} className="mr-2" fill="currentColor" /> Play
+          <Button 
+            variant="default" 
+            size="sm" 
+            onClick={handlePlay} 
+            className="px-6 shadow-md hover:shadow-lg transition-shadow"
+            disabled={isLoadingTranslation}
+          >
+            {isLoadingTranslation ? (
+              <span className="flex items-center gap-2">
+                <span className="w-3 h-3 border-2 border-white/50 border-t-white rounded-full animate-spin" /> Translating...
+              </span>
+            ) : (
+              <><Play size={14} className="mr-2" fill="currentColor" /> Play</>
+            )}
           </Button>
         ) : (
           <Button variant="secondary" size="sm" onClick={handlePause} className="px-6">

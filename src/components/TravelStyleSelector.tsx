@@ -85,8 +85,7 @@ const TravelStyleSelector = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               onClick={() => handleSelect(style.category)}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60"
-              style={{ aspectRatio: "3/4" }}
+              className="group relative rounded-2xl overflow-hidden cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60 aspect-[16/9] md:aspect-[3/4]"
               aria-label={`Explore ${style.title} packages`}
               // Aesthetic-Usability: beautiful card earns trust
               whileHover={{ y: -8, scale: 1.015 }}
@@ -129,13 +128,6 @@ const TravelStyleSelector = () => {
             </motion.button>
           ))}
         </div>
-
-        {/* Mobile: landscape cards to save vertical space */}
-        <style>{`
-          @media (max-width: 767px) {
-            .travel-style-card { aspect-ratio: 16/9 !important; }
-          }
-        `}</style>
       </div>
     </section>
   );

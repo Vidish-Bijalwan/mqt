@@ -82,7 +82,7 @@ const Packages = () => {
                ))}
             </div>
           ) : filteredPackages.length > 0 ? (
-            <RelatedCards type="package" items={filteredPackages} />
+            <RelatedCards type="package" items={filteredPackages} plainGrid />
           ) : (
             <EmptyState 
               title="No packages found" 

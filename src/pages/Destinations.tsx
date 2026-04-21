@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet-async";
 import destHero from "@/assets/dest-ladakh.jpg";
 import { StateMapContainer } from "@/components/ui/Map/StateMapContainer";
 import { IndiaStateMap } from "@/components/ui/Map/IndiaStateMap";
+import { MapErrorBoundary } from "@/components/ui/Map/MapErrorBoundary";
 
 const REGIONS: ("All" | Region)[] = [
   "All",
@@ -48,9 +49,11 @@ const Destinations = () => {
       {/* Interactive Map Section */}
       <section className="py-20 bg-background relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <StateMapContainer>
-            <IndiaStateMap />
-          </StateMapContainer>
+          <MapErrorBoundary>
+            <StateMapContainer>
+              <IndiaStateMap />
+            </StateMapContainer>
+          </MapErrorBoundary>
         </div>
       </section>
 

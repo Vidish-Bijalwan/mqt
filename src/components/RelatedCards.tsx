@@ -10,31 +10,32 @@ interface RelatedPackageCardsProps {
   type: "package";
   items: TourPackage[];
   title?: string;
+  plainGrid?: boolean;
 }
 
 interface RelatedDestinationCardsProps {
   type: "destination";
   items: (Destination | DestinationModel)[];
   title?: string;
+  plainGrid?: boolean;
 }
 
 type RelatedCardsProps = RelatedPackageCardsProps | RelatedDestinationCardsProps;
 
 const RelatedCards = (props: RelatedCardsProps) => {
-  const { type, title } = props;
+  const { type, title, plainGrid } = props;
 
-  return (
-    <section className="section-padding bg-background">
-      <div className="container mx-auto">
-        {title && (
-          <div className="text-center mb-8">
-            <h2 className="section-heading">{title}</h2>
-          </div>
-        )}
+  const content = (
+    <>
+      {title && (
+        <div className="text-center mb-8">
+          <h2 className="section-heading">{title}</h2>
+        </div>
+      )}
 
-        {type === "package" && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(props as RelatedPackageCardsProps).items.map((pkg) => (
+      {type === "package" && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {(props as RelatedPackageCardsProps).items.map((pkg) => (
               <Link
                 key={pkg.id}
                 to={`/packages/${pkg.categories?.[0] || 'tour'}/${pkg.slug}`}
@@ -122,6 +123,17 @@ const RelatedCards = (props: RelatedCardsProps) => {
             })}
           </div>
         )}
+    </>
+  );
+
+  if (plainGrid) {
+    return content;
+  }
+
+  return (
+    <section className="section-padding bg-background">
+      <div className="container mx-auto">
+        {content}
       </div>
     </section>
   );

@@ -16,7 +16,38 @@ const TestimonialsSection = () => {
           <p className="text-sm text-muted-foreground mt-1">Based on 500+ verified reviews</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Mobile Marquee View */}
+        <div className="md:hidden relative overflow-hidden -mx-4 px-4 w-[100vw] flex items-center group">
+           <div className="flex gap-4 animate-marquee min-w-max pb-4 touch-pan-x" onTouchStart={(e) => e.currentTarget.classList.add('pause-animation')} onTouchEnd={(e) => e.currentTarget.classList.remove('pause-animation')}>
+              {/* Double the list for seamless looping */}
+              {[...testimonials, ...testimonials].map((t, idx) => (
+                <div key={`${t.id}-${idx}`} className="bg-card rounded-xl p-5 border border-border shadow-soft w-[85vw] sm:w-[320px] shrink-0 whitespace-normal">
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(t.rating)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-foreground leading-relaxed mb-4 italic line-clamp-4">"{t.text}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-primary-foreground font-semibold text-sm shrink-0">
+                      {t.name.charAt(0)}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-body font-semibold text-sm text-foreground truncate">{t.name}</p>
+                      <p className="text-xs text-muted-foreground truncate">{t.location} · {t.tour}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+           </div>
+           
+           {/* Gradient Edges */}
+           <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-surface to-transparent pointer-events-none" />
+           <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-surface to-transparent pointer-events-none" />
+        </div>
+
+        {/* Desktop Grid View */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t) => (
             <div key={t.id} className="bg-card rounded-xl p-6 border border-border shadow-soft">
               <div className="flex gap-1 mb-4">
