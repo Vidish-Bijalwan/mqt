@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { UploadCloud, Image as ImageIcon, Download, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 env.allowLocalModels = false;
 
@@ -20,19 +21,20 @@ const DESTINATION_KEYWORDS: Record<string, string[]> = {
 
 function enrichCaption(rawCaption: string, filename = "", destination = "") {
   const lower = (filename + " " + destination).toLowerCase();
-  let locationContext = "";
   for (const [place, keywords] of Object.entries(DESTINATION_KEYWORDS)) {
     if (lower.includes(place)) {
-      locationContext = `in ${place.charAt(0).toUpperCase() + place.slice(1)}, India`;
+      const loc = place.charAt(0).toUpperCase() + place.slice(1);
       const extra = keywords.slice(0, 2).join(" and ");
-      return `${rawCaption} - ${extra} scene ${locationContext}`;
+      return rawCaption + " - " + extra + " scene in " + loc + ", India";
     }
   }
-  return destination ? `${rawCaption} at ${destination}, India` : rawCaption;
+  return destination ? rawCaption + " at " + destination + ", India" : rawCaption;
 }
 
+type Status = "idle" | "loading" | "ready" | "processing";
+
 export default function AltTextGenerator() {
-  const [status, setStatus] = useState<"idle" | "loading" | "ready" | "processing">("idle");
+  const [status, setStatus] = useState<Status>("idle");
   const [loadProgress, setLoadProgress] = useState(0);
   const [results, setResults] = useState<{ filename: string; url: string; rawCaption: string; altText: string }[]>([]);
   const [destination, setDestination] = useState("");
@@ -75,8 +77,7 @@ export default function AltTextGenerator() {
   const handleFiles = async (files: FileList | null) => {
     if (!files || !files.length) return;
     setStatus("processing");
-    toast.info(`Processing ${files.length} images...`);
-
+    toast.info("Processing " + files.length + " images...");
     for (const file of Array.from(files)) {
       if (!file.type.startsWith("image/")) continue;
       const result = await processImage(file);
@@ -101,40 +102,50 @@ export default function AltTextGenerator() {
   return (
     <div className="max-w-5xl mx-auto p-6 space-y-8 animate-in fade-in duration-500">
       <div>
-        <h2 className="text-3xl font-bold tracking-tight mb-2">AI Alt-Text Extractor</h2>
+        <h2 className="text-3xl font-bold tracking-tight mb-2">AI Alt-Text Generator</h2>
         <p className="text-muted-foreground">
-          Drop your huge tourism images here. Our WebAssembly Vision model analyzes the image pixels and generates SEO-rich alternate text completely offline.
+          Vision AI analyzes your images and generates SEO-rich alt text that runs entirely offline in your browser.
         </p>
       </div>
 
       <div className="flex gap-4 items-center">
         <Input
-          placeholder="Destination hint (e.g. Ladakh, Goa) automatically injects regional keywords"
+          placeholder="Destination hint (e.g. Ladakh, Goa) — injects regional SEO keywords"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
           className="max-w-md"
         />
         {status === "idle" && (
           <Button onClick={loadModel} className="gap-2">
-            <ImageIcon className="w-4 h-4" /> Load AI Context
+            <ImageIcon className="w-4 h-4" /> Load AI Model
           </Button>
         )}
       </div>
 
       <div
-        className={\`border-2 border-dashed rounded-xl p-16 text-center cursor-pointer transition-all duration-200 \${dragging ? "border-primary bg-primary/5" : "border-muted-foreground/30 hover:border-primary/50"}\`}
+        className={cn(
+          "border-2 border-dashed rounded-xl p-16 text-center cursor-pointer transition-all duration-200",
+          dragging ? "border-primary bg-primary/5" : "border-muted-foreground/30 hover:border-primary/50"
+        )}
         onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
         onDragLeave={() => setDragging(false)}
         onDrop={(e) => { e.preventDefault(); setDragging(false); handleFiles(e.dataTransfer.files); }}
         onClick={() => fileInputRef.current?.click()}
       >
-        <input ref={fileInputRef} type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
-        
+        <input
+          ref={fileInputRef}
+          type="file"
+          multiple
+          accept="image/*"
+          className="hidden"
+          onChange={(e) => handleFiles(e.target.files)}
+        />
+
         {status === "loading" ? (
           <div className="flex flex-col items-center gap-4">
             <Loader2 className="w-10 h-10 animate-spin text-primary" />
-            <p className="text-lg font-medium text-foreground">Loading Vision Weights: {loadProgress}%</p>
-            <p className="text-sm text-muted-foreground">This only happens once. The 30MB model is cached in your browser.</p>
+            <p className="text-lg font-medium text-foreground">Loading Vision Model: {loadProgress}%</p>
+            <p className="text-sm text-muted-foreground">One-time download — cached in browser forever after.</p>
           </div>
         ) : status === "processing" ? (
           <div className="flex flex-col items-center gap-4">
@@ -147,8 +158,8 @@ export default function AltTextGenerator() {
               <UploadCloud className="w-8 h-8 text-primary" />
             </div>
             <div>
-              <p className="text-lg font-medium text-foreground">Click or Drop tourism images here</p>
-              <p className="text-sm text-muted-foreground mt-1">Supports JPG, PNG, WEBP. Execution is 100% private and offline.</p>
+              <p className="text-lg font-medium text-foreground">Click or Drop images here</p>
+              <p className="text-sm text-muted-foreground mt-1">Supports JPG, PNG, WEBP — 100% private, no server upload.</p>
             </div>
           </div>
         )}
@@ -173,7 +184,7 @@ export default function AltTextGenerator() {
                 </div>
                 <div className="p-4 space-y-3">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-muted-foreground">SEO INJECTED ALT TEXT</label>
+                    <label className="text-xs font-semibold text-muted-foreground">SEO ALT TEXT</label>
                     <textarea
                       className="w-full text-sm border-0 bg-muted/50 rounded-lg p-3 outline-none focus:ring-1 focus:ring-primary min-h-[80px] resize-none"
                       value={r.altText}
