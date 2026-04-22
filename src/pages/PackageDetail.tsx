@@ -208,9 +208,9 @@ const PackageDetail = () => {
                   <span className="flex items-center gap-2"><Map className="w-4 h-4 text-primary" /> {pkg.destination}, {pkg.state}</span>
                   <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /> {pkg.duration.nights}N / {pkg.duration.days}D</span>
                   <span className="flex items-center gap-2"><Sun className="w-4 h-4 text-primary" /> {pkg.season}</span>
-                  <span className="flex items-center gap-1 font-medium text-foreground ml-auto">
+                  <a href="#reviews" className="flex items-center gap-1 font-medium text-foreground ml-auto hover:text-primary transition-colors hover:underline">
                     <Star className="w-4 h-4 fill-accent text-accent" /> {pkg.rating} ({pkg.reviewsCount} reviews)
-                  </span>
+                  </a>
                 </div>
                 <p className="font-body text-muted-foreground leading-relaxed">
                   {pkg.overview || "Experience an unforgettable journey with our carefully crafted itinerary..."}
