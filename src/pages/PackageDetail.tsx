@@ -49,25 +49,84 @@ const PackageDetail = () => {
   const galleryEntries = getPackageGallery(pkg.slug, pkg.image);
   const gallery = galleryEntries.map(e => ({ src: e.src, alt: e.alt, fallback: pkg.image }));
 
-  const schema = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "TourPackage",
-    "name": pkg.title,
-    "description": pkg.overview || "Experience an unforgettable journey.",
-    "offers": {
-      "@type": "Offer",
-      "price": pkg.price || 10000,
-      "priceCurrency": "INR"
+  const siteUrl = "https://www.myquicktrippers.com";
+  const url = `${siteUrl}/packages/${pkg.categories[0] || 'all'}/${pkg.slug}`;
+  const schemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristTrip",
+      name: pkg.title,
+      description: pkg.overview || "Experience an unforgettable journey.",
+      url,
+      image: [pkg.image],
+      touristType: pkg.categories?.map(c => ({ "@type": "Audience", audienceType: c })),
+      offers: {
+        "@type": "Offer",
+        price: pkg.price || 10000,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        url
+      },
+      provider: { "@type": "TravelAgency", name: "MyQuickTrippers", url: siteUrl },
+      duration: `P${pkg.duration?.days || 1}D`
     },
-    "url": `https://www.myquicktrippers.com/packages/${pkg.categories[0] || 'all'}/${pkg.slug}`,
-    "image": pkg.image,
-    "provider": {
-      "@type": "Organization",
-      "name": "MyQuickTrippers"
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: pkg.title,
+      description: pkg.overview || `Book the ${pkg.title} package.`,
+      image: pkg.image,
+      brand: { "@type": "Brand", name: "MyQuickTrippers" },
+      offers: {
+        "@type": "Offer",
+        price: pkg.price || 10000,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split("T")[0],
+        url
+      },
+      ...(pkg.rating && {
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: pkg.rating,
+          reviewCount: pkg.reviewsCount || 10,
+          bestRating: 5
+        }
+      })
     },
-    "duration": `P${pkg.duration?.days || 1}D`,
-    "touristType": pkg.categories
-  });
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: `What is included in the ${pkg.title} package?`,
+          acceptedAnswer: { "@type": "Answer", text: `Includes ${pkg.includes?.join(", ") || "accommodation, transport, and meals"} along with activities like ${pkg.highlights?.join(", ")}.` }
+        },
+        {
+          "@type": "Question",
+          name: `What is the duration of the ${pkg.title}?`,
+          acceptedAnswer: { "@type": "Answer", text: `This package is ${pkg.duration?.days || 1} days long.` }
+        },
+        {
+          "@type": "Question",
+          name: `What is the price of the ${pkg.title}?`,
+          acceptedAnswer: { "@type": "Answer", text: `Starts from ₹${(pkg.price || 10000).toLocaleString("en-IN")} per person.` }
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Packages", item: `${siteUrl}/packages` },
+        { "@type": "ListItem", position: 3, name: pkg.title, item: url }
+      ]
+    }
+  ];
+
+  const schema = JSON.stringify(schemas);
 
   // Build itinerary lines with fallback auto-generation
   const itineraryLines = pkg.itineraryHighlights?.length

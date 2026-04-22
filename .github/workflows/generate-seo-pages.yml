@@ -1,0 +1,58 @@
+# .github/workflows/generate-seo-pages.yml
+#
+# ──────────────────────────────────────────────────────────────────────────
+# SETUP (one-time only):
+#   1. Get free Gemini API key: https://aistudio.google.com
+#   2. Your GitHub repo → Settings → Secrets and variables → Actions
+#   3. Click "New repository secret"
+#      Name:  GEMINI_API_KEY
+#      Value: your-api-key-here
+#   4. Commit this file. Done — runs every Sunday automatically.
+# ──────────────────────────────────────────────────────────────────────────
+
+name: "🤖 Generate Programmatic SEO Pages"
+
+on:
+  schedule:
+    - cron: "0 2 * * 0"   # Every Sunday at 02:00 UTC
+  workflow_dispatch:        # Also triggerable manually from GitHub UI
+
+permissions:
+  contents: write           # Needed to commit generated pages back
+
+jobs:
+  generate-seo-pages:
+    name: Generate Long-Tail Landing Pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: "⚙️ Setup Node.js 20"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: "📦 Install dependencies"
+        run: npm ci --prefer-offline
+
+      - name: "🚀 Generate SEO pages"
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/generate-seo-pages.js
+
+      - name: "✅ Commit generated pages"
+        run: |
+          git config user.name  "MQT SEO Bot"
+          git config user.email "seobot@myquicktrippers.com"
+          git add src/pages/seo/ || true
+          # Only commit if something actually changed
+          git diff --staged --quiet || \
+            git commit -m "🤖 chore(seo): auto-generate long-tail landing pages [$(date '+%Y-%m-%d')]"
+          git push

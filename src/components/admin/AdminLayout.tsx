@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Inbox, Image as ImageIcon, LogOut,
   Globe, Package, MapPin, BookOpen, MessageSquare, HelpCircle,
   Home, Settings, Map, ChevronRight, Menu, X, Flag, Compass, Flower2,
-  Lightbulb, HelpingHand, Mail, Waves, Smile, ScrollText, Star
+  Lightbulb, HelpingHand, Mail, Waves, Smile, ScrollText, Star, Wand2
 } from "lucide-react";
 
 const sidebarGroups = [
@@ -50,6 +50,7 @@ const sidebarGroups = [
     label: "Media",
     items: [
       { label: "Media Library", path: "/admin/media", icon: ImageIcon },
+      { label: "AI Alt-Text Generator", path: "/admin/alt-text", icon: Wand2 },
     ],
   },
 ];

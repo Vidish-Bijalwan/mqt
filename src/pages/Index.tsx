@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import SemanticSearch from "@/components/SemanticSearch";
 import TrustStrip from "@/components/TrustStrip";
 import TravelStyleSelector from "@/components/TravelStyleSelector";
 import HomepagePackagesSection from "@/components/HomepagePackagesSection";
@@ -109,6 +110,11 @@ const Index = () => {
       <main>
         {/* Section 1: Hero — Peak-End Rule peak moment */}
         <HeroSection />
+
+        {/* AI Semantic Search — lazy loads Transformers.js on first focus */}
+        <section className="relative -mt-6 z-10 pb-6">
+          <SemanticSearch />
+        </section>
 
         {/* Section 2: Trust Strip — 3 numbers, dark bar */}
         <TrustStrip />
