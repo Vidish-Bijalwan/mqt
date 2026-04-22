@@ -119,7 +119,7 @@ export default function PackageReviews({ packageSlug }: { packageSlug: string })
         const review = reviews.find(r => r.id === reviewId);
         if (review) {
           await supabase.from("reviews")
-            .update({ helpful_votes: (review.helpful_votes || 0) + 1 })
+            .update({ helpful_votes: (review.helpful_votes || 0) + 1 } as any)
             .eq("id", reviewId);
         }
       }
