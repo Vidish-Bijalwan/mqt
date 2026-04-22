@@ -9,17 +9,30 @@ export const IndiaStateMap: React.FC = () => {
   const [hoveredStateId, setHoveredStateId] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  // Find destination data for the hovered state
-  const hoveredLocation = stateLocations?.find(l => l.id === hoveredStateId);
-  const hoveredStateData = hoveredLocation ? statesArray.find(s => s.name === hoveredLocation.name) : undefined;
+  // Memoize state lookups to O(1) to prevent severe map iteration lag (35 SVG elements checking a 36-element array every millisecond = 1,260 array iterations on every hover state change).
+  const stateDataMap = React.useMemo(() => {
+    const map = new Map();
+    statesArray.forEach((s) => map.set(s.name, s));
+    return map;
+  }, []);
 
-  const handleStateClick = (stateId: string) => {
-    const loc = stateLocations?.find(l => l.id === stateId);
-    const state = loc ? statesArray.find(s => s.name === loc.name) : undefined;
+  const locationMap = React.useMemo(() => {
+    const map = new Map();
+    stateLocations?.forEach((l) => map.set(l.id, l));
+    return map;
+  }, []);
+
+  // Find destination data for the hovered state
+  const hoveredLocation = hoveredStateId ? locationMap.get(hoveredStateId) : undefined;
+  const hoveredStateData = hoveredLocation ? stateDataMap.get(hoveredLocation.name) : undefined;
+
+  const handleStateClick = React.useCallback((stateId: string) => {
+    const loc = locationMap.get(stateId);
+    const state = loc ? stateDataMap.get(loc.name) : undefined;
     if (state) {
       navigate(`/destinations/${state.slug}`);
     }
-  };
+  }, [locationMap, stateDataMap, navigate]);
 
   return (
     <div className="relative w-full h-full">
@@ -28,10 +41,11 @@ export const IndiaStateMap: React.FC = () => {
         className="w-full h-full drop-shadow-2xl"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        style={{ willChange: 'transform' }} // hardware acceleration trick
       >
         {stateLocations?.map((loc) => {
           const isHovered = hoveredStateId === loc.id;
-          const stateData = statesArray.find(s => s.name === loc.name);
+          const stateData = stateDataMap.get(loc.name);
           const color = stateData?.colorHex || "#CBD5E1";
 
           return (
@@ -44,13 +58,13 @@ export const IndiaStateMap: React.FC = () => {
                 stroke: isHovered ? "#FFFFFF" : "#93c5fd",
                 strokeWidth: isHovered ? 2 : 0.8,
                 scale: isHovered ? 1.01 : 1,
-                zIndex: isHovered ? 50 : 1,
               }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               onMouseEnter={() => setHoveredStateId(loc.id)}
               onMouseLeave={() => setHoveredStateId(null)}
               onClick={() => handleStateClick(loc.id)}
               className="cursor-pointer transition-all outline-none"
+              style={{ zIndex: isHovered ? 50 : 1 }}
             />
           );
         })}

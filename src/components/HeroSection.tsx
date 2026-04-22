@@ -45,7 +45,7 @@ const HeroSection = () => {
 
       {/* Background image slider with parallax */}
       <motion.div
-        style={{ y: bgY, scale: 1.08 }}
+        style={{ y: bgY, scale: 1.08, willChange: "transform" }}
         className="absolute inset-0 w-full h-full origin-center"
       >
         {heroSlides.map((slide, index) => (
@@ -55,6 +55,7 @@ const HeroSection = () => {
             alt={slide.alt}
             loading={index === 0 ? "eager" : "lazy"}
             fetchPriority={index === 0 ? "high" : ("auto" as any)}
+            decoding="async"
             className={`absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out ${
               currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
