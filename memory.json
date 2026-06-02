@@ -1,0 +1,12 @@
+[
+    {
+        "subject": "User",
+        "relation": "likes",
+        "target": "AI Agents"
+    },
+    {
+        "subject": "User",
+        "relation": "uses",
+        "target": "Arch Linux"
+    }
+]

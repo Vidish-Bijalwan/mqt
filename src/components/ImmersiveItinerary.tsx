@@ -7,6 +7,7 @@ import type { GalleryEntry } from "@/data/packageGalleries";
 interface ItineraryDay {
   day: number;
   title: string; // Full itinerary highlight string e.g. "Day 1: Arrival in Kedarnath..."
+  description?: string; // Optional detailed description
   gallery: GalleryEntry[];
 }
 
@@ -183,7 +184,9 @@ const DayCard = ({ entry, index, total }: { entry: ItineraryDay; index: number; 
                 <div className="flex-1 p-4 sm:p-5">
                   <h5 className="font-semibold text-slate-800 text-sm mb-2">{titleText}</h5>
                   <p className="text-slate-500 text-[13px] leading-relaxed">
-                    {isFirst
+                    {entry.description ? (
+                      entry.description
+                    ) : isFirst
                       ? `Your journey begins. Arrive at ${img.alt.split(',')[0] || 'your destination'} and check into your premium accommodation. Our representative will ensure a seamless start to your adventure.`
                       : isLast
                       ? `A final unhurried morning to soak in the last views. Enjoy a traditional breakfast before your private transfer for your onward journey — memories packed for life.`
