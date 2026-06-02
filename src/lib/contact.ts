@@ -59,3 +59,11 @@ export const getFestivalWhatsAppUrl = (festivalName: string, city: string): stri
 export const getGeneralWhatsAppUrl = (): string => {
   return getWhatsAppUrl("Hi MQT Team! I found you on myquicktrippers.com and I'm interested in booking a tour package. Can you help me?");
 };
+
+/**
+ * Generate a Craft/Handicraft-specific WhatsApp URL.
+ */
+export const getCraftWhatsAppUrl = (craftName: string, location: string): string => {
+  const msg = `Hi MQT! I'm interested in buying ${craftName} from ${location}. Can you help me source it or suggest where I can get it during my trip?`;
+  return getWhatsAppUrl(msg);
+};

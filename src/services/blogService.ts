@@ -32,29 +32,11 @@ const mapDbToDomain = (row: DbBlogPost): BlogPost => {
 };
 
 export async function getBlogPosts(limit?: number): Promise<ServiceResponse<BlogPost[]>> {
-  try {
-    let query = supabase
-      .from("blog_posts")
-      .select("*")
-      .eq("published", true)
-      .order("sort_order", { ascending: true })
-      .order("created_at", { ascending: false });
-
-    if (limit) {
-      query = query.limit(limit);
-    }
-
-    const { data, error } = await query;
-    if (error) throw error;
-    if (!data || data.length === 0) throw new Error("No data found");
-
-    return { data: data.map(mapDbToDomain), error: null };
-  } catch (err) {
-    console.warn("[BlogService] Falling back to static data", err);
-    let fallback = [...blogPosts];
-    if (limit) fallback = fallback.slice(0, limit);
-    return { data: fallback, error: null };
-  }
+  // Bypassing Supabase temporarily to serve from local static data because
+  // the seed script is blocked by Row-Level Security policies.
+  let fallback = [...blogPosts];
+  if (limit) fallback = fallback.slice(0, limit);
+  return { data: fallback, error: null };
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<ServiceResponse<BlogPost>> {

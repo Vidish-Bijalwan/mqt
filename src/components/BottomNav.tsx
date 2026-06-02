@@ -1,53 +1,28 @@
-import { NavLink, useLocation } from 'react-router-dom';
-import { Home, Package, MapPin, Phone } from 'lucide-react';
-
-// Jakob's Law: travel apps always have Home, Packages, Explore, Contact
-// Fitts's Law: 4 equally-spaced items with adequate tap area (h-16)
-// Removed compass FAB — TripPlannerModal accessible from hamburger menu
-const NAV_ITEMS = [
-  { to: '/', label: 'Home', icon: Home, exact: true },
-  { to: '/packages', label: 'Packages', icon: Package, exact: false },
-  { to: '/destinations', label: 'Explore', icon: MapPin, exact: false },
-  { to: '/contact', label: 'Contact', icon: Phone, exact: false },
-];
+import { MessageCircle } from 'lucide-react';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 const BottomNav = () => {
-  const location = useLocation();
+  const { track } = useAnalytics();
 
-  const isActive = (to: string, exact: boolean) =>
-    exact ? location.pathname === to : location.pathname.startsWith(to);
+  const handleWhatsApp = () => {
+    track("whatsapp_click", { source: "sticky_mobile_cta" });
+  };
 
   return (
     <nav
-      className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-100 h-16 flex items-center justify-around shadow-[0_-2px_12px_rgba(0,0,0,0.07)]"
-      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+      className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-100 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.15)]"
+      style={{ paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))' }}
     >
-      {NAV_ITEMS.map((item) => {
-        const Icon = item.icon;
-        const active = isActive(item.to, item.exact);
-
-        return (
-          <NavLink
-            key={item.label}
-            to={item.to}
-            className="flex flex-col items-center justify-center gap-1 flex-1 h-full"
-            aria-label={item.label}
-          >
-            <Icon
-              className={`w-[22px] h-[22px] transition-colors ${
-                active ? 'text-blue-700' : 'text-gray-400'
-              }`}
-            />
-            <span
-              className={`text-[10px] font-medium transition-colors ${
-                active ? 'text-blue-700' : 'text-gray-500'
-              }`}
-            >
-              {item.label}
-            </span>
-          </NavLink>
-        );
-      })}
+      <a
+        href="https://wa.me/917668741373?text=Hi!%20I'm%20interested%20in%20planning%20a%20trip."
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleWhatsApp}
+        className="flex items-center justify-center gap-2 w-full h-14 rounded-xl bg-[#25D366] text-white font-bold text-[17px] shadow-[0_4px_12px_rgba(37,211,102,0.3)] hover:bg-[#20bd5a] transition-colors"
+      >
+        <MessageCircle className="h-6 w-6" />
+        Plan My Trip on WhatsApp
+      </a>
     </nav>
   );
 };

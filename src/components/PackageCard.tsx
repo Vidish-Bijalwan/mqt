@@ -65,7 +65,7 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
             <div className="flex flex-col items-end">
               <div className="flex items-center gap-1 mt-1">
                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-white text-white" />
+                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                  ))}
               </div>
             </div>
@@ -83,22 +83,29 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
             {pkg.title}
           </h3>
 
-          <p className="text-sm text-gray-600 mb-4 line-clamp-2 italic">
-            "{pkg.hook}"
-          </p>
-
-          <div className="mt-auto mb-5 space-y-1">
-             {pkg.highlights.map((highlight, idx) => (
-                <div key={idx} className="flex items-start gap-2 text-xs text-gray-600">
-                  <span className="w-1 h-1 rounded-full bg-gray-300 mt-1.5 shrink-0" />
-                  <span className="line-clamp-1">{highlight}</span>
-                </div>
-             ))}
+          <div className="text-xs font-semibold text-rose-600 bg-rose-50 px-2 py-1 rounded inline-block mb-3 self-start">
+            Usually booked 3–4 weeks in advance
           </div>
 
-          <div className="grid grid-cols-2 gap-2 mt-auto pt-4 border-t border-gray-100">
-            <span className="flex items-center justify-center py-2.5 rounded-lg border border-gray-200 text-gray-600 text-[11px] font-bold uppercase tracking-wider hover:bg-gray-50 transition-colors">
-               <Search className="w-3.5 h-3.5 mr-1.5" /> Details
+          <div className="mt-auto mb-4 relative overflow-hidden group/itinerary">
+             {/* Teaser Itinerary (hover to expand) */}
+             <div className="text-xs text-gray-600 mb-1 font-semibold flex items-center justify-between">
+                <span>Quick Itinerary</span>
+                <span className="text-[10px] text-primary/60 group-hover/itinerary:hidden">Hover to view</span>
+             </div>
+             <div className="space-y-1.5 max-h-[48px] group-hover/itinerary:max-h-[120px] transition-all duration-300 ease-in-out">
+               {pkg.highlights.slice(0, 3).map((highlight, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs text-gray-600">
+                    <span className="font-bold text-gray-400 min-w-[36px]">Day {idx + 1}</span>
+                    <span className="line-clamp-1">{highlight}</span>
+                  </div>
+               ))}
+             </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 mt-auto pt-4 border-t border-gray-100">
+            <span className="flex items-center justify-center py-2.5 rounded-lg text-primary text-[12px] font-bold tracking-wide hover:bg-primary/5 transition-colors">
+               <Search className="w-4 h-4 mr-1.5" /> View Details
             </span>
             <span
               onClick={handleGetQuote}

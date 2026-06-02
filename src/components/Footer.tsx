@@ -4,10 +4,10 @@ import { Mountain, Phone, Mail, Instagram, Facebook, Youtube, MessageCircle } fr
 const Footer = () => {
   return (
     <footer className="gradient-dark text-dark-foreground">
-      <div className="container mx-auto px-4 py-8 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+      <div className="container mx-auto px-4 py-8 md:py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {/* Brand */}
-          <div className="col-span-1 sm:col-span-2 md:col-span-1 mb-4 md:mb-0">
+          <div className="col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-1 mb-4 md:mb-0">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <img src="/logo.png" alt="MyQuickTrippers Logo" className="h-8 w-auto object-contain" />
               <span className="font-display text-xl font-bold tracking-tight">MQT</span>
@@ -37,11 +37,11 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">
             {/* Destinations */}
             <div>
-              <h4 className="font-body font-semibold text-sm text-dark-foreground mb-4 tracking-wide uppercase">Destinations</h4>
-              <ul className="space-y-2 text-sm text-dark-foreground/60">
+              <h4 className="font-body font-semibold text-xs text-dark-foreground mb-3 tracking-wide uppercase">Destinations</h4>
+              <ul className="space-y-1.5 text-sm text-dark-foreground/60">
                 <li><Link to="/destinations/uttarakhand/kedarnath" className="hover:text-accent transition-colors">Kedarnath Yatra</Link></li>
                 <li><Link to="/destinations/ladakh/ladakh" className="hover:text-accent transition-colors">Ladakh Tour</Link></li>
                 <li><Link to="/destinations/uttarakhand/valley-of-flowers" className="hover:text-accent transition-colors">Valley of Flowers</Link></li>
@@ -55,8 +55,8 @@ const Footer = () => {
 
             {/* Tour Types */}
             <div>
-              <h4 className="font-body font-semibold text-sm text-dark-foreground mb-4 tracking-wide uppercase">Tour Types</h4>
-              <ul className="space-y-2 text-sm text-dark-foreground/60">
+              <h4 className="font-body font-semibold text-xs text-dark-foreground mb-3 tracking-wide uppercase">Tour Types</h4>
+              <ul className="space-y-1.5 text-sm text-dark-foreground/60">
                 <li><Link to="/packages/honeymoon" className="hover:text-accent transition-colors">Honeymoon Packages</Link></li>
                 <li><Link to="/packages/family" className="hover:text-accent transition-colors">Family Tour Packages</Link></li>
                 <li><Link to="/packages/adventure" className="hover:text-accent transition-colors">Adventure Packages</Link></li>
@@ -69,8 +69,8 @@ const Footer = () => {
 
             {/* Services - Hidden on small mobile to save space */}
             <div className="hidden md:block">
-              <h4 className="font-body font-semibold text-sm text-dark-foreground mb-4 tracking-wide uppercase">Services</h4>
-              <ul className="space-y-2 text-sm text-dark-foreground/60">
+              <h4 className="font-body font-semibold text-xs text-dark-foreground mb-3 tracking-wide uppercase">Services</h4>
+              <ul className="space-y-1.5 text-sm text-dark-foreground/60">
                 <li><Link to="/services/custom-itinerary" className="hover:text-accent transition-colors">Custom Itinerary</Link></li>
                 <li><Link to="/services/hotel-booking" className="hover:text-accent transition-colors">Hotel Booking</Link></li>
                 <li><Link to="/services/flight-booking" className="hover:text-accent transition-colors">Flight Booking</Link></li>
@@ -83,8 +83,8 @@ const Footer = () => {
 
             {/* Company - Hidden on small mobile to save space */}
             <div className="hidden md:block">
-              <h4 className="font-body font-semibold text-sm text-dark-foreground mb-4 tracking-wide uppercase">Company</h4>
-              <ul className="space-y-2 text-sm text-dark-foreground/60">
+              <h4 className="font-body font-semibold text-xs text-dark-foreground mb-3 tracking-wide uppercase">Company</h4>
+              <ul className="space-y-1.5 text-sm text-dark-foreground/60">
                 <li><Link to="/about" className="hover:text-accent transition-colors">About Us</Link></li>
                 <li><Link to="/blog" className="hover:text-accent transition-colors">Blog / Journal</Link></li>
                 <li><Link to="/testimonials" className="hover:text-accent transition-colors">Testimonials</Link></li>

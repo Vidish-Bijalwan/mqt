@@ -1,6 +1,578 @@
 import { DestinationModel } from "../types/models";
 
 export const destinationsData: DestinationModel[] = [
+
+  {
+    "id": "gujarat-mock-0",
+    "name": "Ahmedabad Temple Attraction",
+    "slug": "ahmedabad-temple-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "temple",
+    "shortDescription": "A beautiful temple destination located in Ahmedabad, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Ahmedabad temple attraction...",
+    "image": "https://images.unsplash.com/photo-28846200?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 23.1501,
+      "lng": 69.2052
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-1",
+    "name": "Surat Heritage Attraction",
+    "slug": "surat-heritage-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "heritage",
+    "shortDescription": "A beautiful heritage destination located in Surat, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Surat heritage attraction...",
+    "image": "https://images.unsplash.com/photo-11146763?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 23.3596,
+      "lng": 72.0352
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-2",
+    "name": "Vadodara Trekking Attraction",
+    "slug": "vadodara-trekking-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "trekking",
+    "shortDescription": "A beautiful trekking destination located in Vadodara, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Vadodara trekking attraction...",
+    "image": "https://images.unsplash.com/photo-40831357?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 23.6628,
+      "lng": 74.2392
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-3",
+    "name": "Rajkot Heritage Attraction",
+    "slug": "rajkot-heritage-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "heritage",
+    "shortDescription": "A beautiful heritage destination located in Rajkot, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Rajkot heritage attraction...",
+    "image": "https://images.unsplash.com/photo-59324280?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 22.4983,
+      "lng": 70.6471
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-4",
+    "name": "Bhavnagar Cultural Attraction",
+    "slug": "bhavnagar-cultural-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "cultural",
+    "shortDescription": "A beautiful cultural destination located in Bhavnagar, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Bhavnagar cultural attraction...",
+    "image": "https://images.unsplash.com/photo-20238568?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 21.0284,
+      "lng": 72.5248
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-5",
+    "name": "Jamnagar Wildlife Attraction",
+    "slug": "jamnagar-wildlife-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "wildlife",
+    "shortDescription": "A beautiful wildlife destination located in Jamnagar, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Jamnagar wildlife attraction...",
+    "image": "https://images.unsplash.com/photo-23093063?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 22.3388,
+      "lng": 71.8252
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-6",
+    "name": "Junagadh Hill Station Attraction",
+    "slug": "junagadh-hill-station-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "hill_station",
+    "shortDescription": "A beautiful hill station destination located in Junagadh, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Junagadh hill station attraction...",
+    "image": "https://images.unsplash.com/photo-82783761?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 22.4643,
+      "lng": 73.9559
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-7",
+    "name": "Gandhinagar Temple Attraction",
+    "slug": "gandhinagar-temple-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "temple",
+    "shortDescription": "A beautiful temple destination located in Gandhinagar, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Gandhinagar temple attraction...",
+    "image": "https://images.unsplash.com/photo-87433050?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 22.9955,
+      "lng": 74.2273
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-8",
+    "name": "Gandhidham Heritage Attraction",
+    "slug": "gandhidham-heritage-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "heritage",
+    "shortDescription": "A beautiful heritage destination located in Gandhidham, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Gandhidham heritage attraction...",
+    "image": "https://images.unsplash.com/photo-39830781?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 22.4185,
+      "lng": 69.7397
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-9",
+    "name": "Anand Hill Station Attraction",
+    "slug": "anand-hill-station-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "hill_station",
+    "shortDescription": "A beautiful hill station destination located in Anand, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Anand hill station attraction...",
+    "image": "https://images.unsplash.com/photo-10671632?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 23.6451,
+      "lng": 69.8557
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-10",
+    "name": "Navsari Heritage Attraction",
+    "slug": "navsari-heritage-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "heritage",
+    "shortDescription": "A beautiful heritage destination located in Navsari, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Navsari heritage attraction...",
+    "image": "https://images.unsplash.com/photo-48472506?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 23.7406,
+      "lng": 69.292
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-11",
+    "name": "Morbi Trekking Attraction",
+    "slug": "morbi-trekking-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "trekking",
+    "shortDescription": "A beautiful trekking destination located in Morbi, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Morbi trekking attraction...",
+    "image": "https://images.unsplash.com/photo-11616954?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 22.6558,
+      "lng": 68.7809
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-12",
+    "name": "Nadiad Nature Attraction",
+    "slug": "nadiad-nature-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "nature",
+    "shortDescription": "A beautiful nature destination located in Nadiad, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Nadiad nature attraction...",
+    "image": "https://images.unsplash.com/photo-73728726?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 20.9985,
+      "lng": 69.1949
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-13",
+    "name": "Surendranagar Wildlife Attraction",
+    "slug": "surendranagar-wildlife-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "wildlife",
+    "shortDescription": "A beautiful wildlife destination located in Surendranagar, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Surendranagar wildlife attraction...",
+    "image": "https://images.unsplash.com/photo-39690473?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 20.5641,
+      "lng": 73.4341
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-14",
+    "name": "Bharuch Hill Station Attraction",
+    "slug": "bharuch-hill-station-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "hill_station",
+    "shortDescription": "A beautiful hill station destination located in Bharuch, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Bharuch hill station attraction...",
+    "image": "https://images.unsplash.com/photo-30605529?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 21.1914,
+      "lng": 70.8587
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-15",
+    "name": "Mehsana Hill Station Attraction",
+    "slug": "mehsana-hill-station-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "hill_station",
+    "shortDescription": "A beautiful hill station destination located in Mehsana, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Mehsana hill station attraction...",
+    "image": "https://images.unsplash.com/photo-86334480?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 23.9847,
+      "lng": 69.462
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-16",
+    "name": "Bhuj Trekking Attraction",
+    "slug": "bhuj-trekking-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "trekking",
+    "shortDescription": "A beautiful trekking destination located in Bhuj, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Bhuj trekking attraction...",
+    "image": "https://images.unsplash.com/photo-66583677?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 24.0093,
+      "lng": 70.5599
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-17",
+    "name": "Porbandar Hill Station Attraction",
+    "slug": "porbandar-hill-station-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "hill_station",
+    "shortDescription": "A beautiful hill station destination located in Porbandar, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Porbandar hill station attraction...",
+    "image": "https://images.unsplash.com/photo-43787349?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 23.8616,
+      "lng": 73.8353
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-18",
+    "name": "Palanpur Hill Station Attraction",
+    "slug": "palanpur-hill-station-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "hill_station",
+    "shortDescription": "A beautiful hill station destination located in Palanpur, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Palanpur hill station attraction...",
+    "image": "https://images.unsplash.com/photo-33524537?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 22.5324,
+      "lng": 72.8969
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-19",
+    "name": "Valsad Trekking Attraction",
+    "slug": "valsad-trekking-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "trekking",
+    "shortDescription": "A beautiful trekking destination located in Valsad, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Valsad trekking attraction...",
+    "image": "https://images.unsplash.com/photo-15929233?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 23.9801,
+      "lng": 70.4429
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-20",
+    "name": "Vapi Beach Attraction",
+    "slug": "vapi-beach-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "beach",
+    "shortDescription": "A beautiful beach destination located in Vapi, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Vapi beach attraction...",
+    "image": "https://images.unsplash.com/photo-52851770?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 22.7403,
+      "lng": 72.4811
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-21",
+    "name": "Gondal Camping Attraction",
+    "slug": "gondal-camping-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "camping",
+    "shortDescription": "A beautiful camping destination located in Gondal, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Gondal camping attraction...",
+    "image": "https://images.unsplash.com/photo-52141671?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 21.6431,
+      "lng": 69.7359
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-22",
+    "name": "Veraval Beach Attraction",
+    "slug": "veraval-beach-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "beach",
+    "shortDescription": "A beautiful beach destination located in Veraval, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Veraval beach attraction...",
+    "image": "https://images.unsplash.com/photo-64159651?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 22.1033,
+      "lng": 73.2936
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-23",
+    "name": "Godhra Beach Attraction",
+    "slug": "godhra-beach-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "beach",
+    "shortDescription": "A beautiful beach destination located in Godhra, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Godhra beach attraction...",
+    "image": "https://images.unsplash.com/photo-58557089?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 20.2867,
+      "lng": 73.7159
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-24",
+    "name": "Patan Cultural Attraction",
+    "slug": "patan-cultural-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "cultural",
+    "shortDescription": "A beautiful cultural destination located in Patan, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Patan cultural attraction...",
+    "image": "https://images.unsplash.com/photo-43828131?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 21.237,
+      "lng": 68.5154
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-25",
+    "name": "Kalol Cultural Attraction",
+    "slug": "kalol-cultural-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "cultural",
+    "shortDescription": "A beautiful cultural destination located in Kalol, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Kalol cultural attraction...",
+    "image": "https://images.unsplash.com/photo-12510997?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 23.356,
+      "lng": 70.5897
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-26",
+    "name": "Dahod Nature Attraction",
+    "slug": "dahod-nature-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "nature",
+    "shortDescription": "A beautiful nature destination located in Dahod, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Dahod nature attraction...",
+    "image": "https://images.unsplash.com/photo-68492700?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 20.6322,
+      "lng": 70.3434
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-27",
+    "name": "Botad Hill Station Attraction",
+    "slug": "botad-hill-station-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "hill_station",
+    "shortDescription": "A beautiful hill station destination located in Botad, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Botad hill station attraction...",
+    "image": "https://images.unsplash.com/photo-18554840?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 20.6531,
+      "lng": 73.269
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-28",
+    "name": "Amreli Adventure Attraction",
+    "slug": "amreli-adventure-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "adventure",
+    "shortDescription": "A beautiful adventure destination located in Amreli, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Amreli adventure attraction...",
+    "image": "https://images.unsplash.com/photo-10515255?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 20.6484,
+      "lng": 71.8406
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": "gujarat-mock-29",
+    "name": "Deesa Hill Station Attraction",
+    "slug": "deesa-hill-station-attraction",
+    "stateId": "gujarat",
+    "stateSlug": "gujarat",
+    "type": "hill_station",
+    "shortDescription": "A beautiful hill station destination located in Deesa, Gujarat. Explore the scenic beauty and cultural richness.",
+    "description": "Detailed description for Deesa hill station attraction...",
+    "image": "https://images.unsplash.com/photo-62379084?auto=format&fit=crop&w=800&q=80",
+    "coordinates": {
+      "lat": 23.77,
+      "lng": 72.7778
+    },
+    "mapPosition": {
+      "x": 0,
+      "y": 0
+    }
+  }
+,
   {
     "id": "port-blair",
     "slug": "port-blair",
@@ -9,8 +581,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andaman-and-nicobar-islands",
     "type": "temple",
     "coordinates": {
-      "lat": 12.2692,
-      "lng": 92.1694
+      "lat": 11.6645348,
+      "lng": 92.7390448
     },
     "mapPosition": {
       "x": 80.56470602618026,
@@ -161,8 +733,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andaman-and-nicobar-islands",
     "type": "hill_station",
     "coordinates": {
-      "lat": 12.1753,
-      "lng": 93.2109
+      "lat": 11.9651954,
+      "lng": 92.9956211
     },
     "mapPosition": {
       "x": 84.03625767532978,
@@ -313,8 +885,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andaman-and-nicobar-islands",
     "type": "beach",
     "coordinates": {
-      "lat": 11.9736,
-      "lng": 93.0065
+      "lat": 11.831374,
+      "lng": 93.0419302
     },
     "mapPosition": {
       "x": 83.35512674204637,
@@ -465,8 +1037,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andaman-and-nicobar-islands",
     "type": "wildlife",
     "coordinates": {
-      "lat": 11.402,
-      "lng": 92.1468
+      "lat": 12.1883182,
+      "lng": 92.8110351
     },
     "mapPosition": {
       "x": 80.48947012014868,
@@ -617,8 +1189,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andaman-and-nicobar-islands",
     "type": "heritage",
     "coordinates": {
-      "lat": 11.7834,
-      "lng": 92.4767
+      "lat": 11.6754345,
+      "lng": 92.7626196
     },
     "mapPosition": {
       "x": 81.58900060089664,
@@ -769,8 +1341,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andaman-and-nicobar-islands",
     "type": "adventure",
     "coordinates": {
-      "lat": 11.9046,
-      "lng": 92.1877
+      "lat": 13.2277144,
+      "lng": 92.9394925
     },
     "mapPosition": {
       "x": 80.62574570681623,
@@ -921,8 +1493,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andaman-and-nicobar-islands",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 12.1759,
-      "lng": 92.1922
+      "lat": 10.7056905,
+      "lng": 92.4874679
     },
     "mapPosition": {
       "x": 80.64079622032253,
@@ -1073,8 +1645,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andaman-and-nicobar-islands",
     "type": "lake",
     "coordinates": {
-      "lat": 12.2378,
-      "lng": 92.5236
+      "lat": 7.0000167,
+      "lng": 93.8110528
     },
     "mapPosition": {
       "x": 81.74533587602127,
@@ -1225,8 +1797,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andhra-pradesh",
     "type": "temple",
     "coordinates": {
-      "lat": 14.7935,
-      "lng": 78.9539
+      "lat": 17.6935526,
+      "lng": 83.2921297
     },
     "mapPosition": {
       "x": 36.51303633738483,
@@ -1377,8 +1949,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andhra-pradesh",
     "type": "hill_station",
     "coordinates": {
-      "lat": 16.9393,
-      "lng": 78.5506
+      "lat": 13.6316368,
+      "lng": 79.4231711
     },
     "mapPosition": {
       "x": 35.1685767370428,
@@ -1529,8 +2101,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andhra-pradesh",
     "type": "beach",
     "coordinates": {
-      "lat": 16.0842,
-      "lng": 79.9693
+      "lat": 16.5115306,
+      "lng": 80.6160469
     },
     "mapPosition": {
       "x": 39.89767073188299,
@@ -1681,8 +2253,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andhra-pradesh",
     "type": "wildlife",
     "coordinates": {
-      "lat": 15.469,
-      "lng": 78.9216
+      "lat": 18.323442,
+      "lng": 82.8805825
     },
     "mapPosition": {
       "x": 36.40535573057828,
@@ -1833,8 +2405,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andhra-pradesh",
     "type": "heritage",
     "coordinates": {
-      "lat": 15.4499,
-      "lng": 79.2261
+      "lat": 15.8309251,
+      "lng": 78.0425373
     },
     "mapPosition": {
       "x": 37.420485487801756,
@@ -1985,8 +2557,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andhra-pradesh",
     "type": "adventure",
     "coordinates": {
-      "lat": 15.2813,
-      "lng": 80.2964
+      "lat": 17.0050454,
+      "lng": 81.7804732
     },
     "mapPosition": {
       "x": 40.98815556822762,
@@ -2137,8 +2709,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andhra-pradesh",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 16.0713,
-      "lng": 78.7481
+      "lat": 16.5299984,
+      "lng": 80.5270337
     },
     "mapPosition": {
       "x": 35.82704991901546,
@@ -2289,8 +2861,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "andhra-pradesh",
     "type": "lake",
     "coordinates": {
-      "lat": 16.528,
-      "lng": 78.7299
+      "lat": 16.0737808,
+      "lng": 78.8727065
     },
     "mapPosition": {
       "x": 35.76630095586362,
@@ -2441,8 +3013,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "arunachal-pradesh",
     "type": "temple",
     "coordinates": {
-      "lat": 27.6076,
-      "lng": 95.2219
+      "lat": 27.5879186,
+      "lng": 91.863733
     },
     "mapPosition": {
       "x": 90.73960698146976,
@@ -2593,8 +3165,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "arunachal-pradesh",
     "type": "hill_station",
     "coordinates": {
-      "lat": 28.0897,
-      "lng": 94.2508
+      "lat": 27.6091037,
+      "lng": 93.8315973
     },
     "mapPosition": {
       "x": 87.50250904136668,
@@ -2745,8 +3317,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "arunachal-pradesh",
     "type": "beach",
     "coordinates": {
-      "lat": 28.1758,
-      "lng": 94.6455
+      "lat": 27.0979659,
+      "lng": 93.6237291
     },
     "mapPosition": {
       "x": 88.8181813853664,
@@ -2897,8 +3469,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "arunachal-pradesh",
     "type": "wildlife",
     "coordinates": {
-      "lat": 27.8107,
-      "lng": 95.2464
+      "lat": 27.264445,
+      "lng": 92.4206519
     },
     "mapPosition": {
       "x": 90.82122443736826,
@@ -3049,8 +3621,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "arunachal-pradesh",
     "type": "heritage",
     "coordinates": {
-      "lat": 28.2249,
-      "lng": 95.1505
+      "lat": 27.36008,
+      "lng": 92.24121
     },
     "mapPosition": {
       "x": 90.50181100829188,
@@ -3201,8 +3773,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "arunachal-pradesh",
     "type": "adventure",
     "coordinates": {
-      "lat": 28.2212,
-      "lng": 94.9775
+      "lat": 28.0589676,
+      "lng": 95.3324944
     },
     "mapPosition": {
       "x": 89.92505731577097,
@@ -3353,8 +3925,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "arunachal-pradesh",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 27.996,
-      "lng": 94.8925
+      "lat": 28.1368472,
+      "lng": 95.8430824
     },
     "mapPosition": {
       "x": 89.64152777861685,
@@ -3505,8 +4077,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "arunachal-pradesh",
     "type": "lake",
     "coordinates": {
-      "lat": 28.2817,
-      "lng": 94.7281
+      "lat": 27.0137235,
+      "lng": 92.6358068
     },
     "mapPosition": {
       "x": 89.0935024706054,
@@ -3657,8 +4229,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "assam",
     "type": "temple",
     "coordinates": {
-      "lat": 25.7163,
-      "lng": 92.6759
+      "lat": 26.1805978,
+      "lng": 91.753943
     },
     "mapPosition": {
       "x": 82.25301311861273,
@@ -3809,8 +4381,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "assam",
     "type": "hill_station",
     "coordinates": {
-      "lat": 26.3159,
-      "lng": 92.6867
+      "lat": 26.6581047,
+      "lng": 93.3927441
     },
     "mapPosition": {
       "x": 82.28913841554993,
@@ -3961,8 +4533,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "assam",
     "type": "beach",
     "coordinates": {
-      "lat": 26.0241,
-      "lng": 93.2176
+      "lat": 27.0219529,
+      "lng": 94.327423
     },
     "mapPosition": {
       "x": 84.05855163144001,
@@ -4113,8 +4685,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "assam",
     "type": "wildlife",
     "coordinates": {
-      "lat": 26.4209,
-      "lng": 93.0468
+      "lat": 26.7577925,
+      "lng": 94.2079645
     },
     "mapPosition": {
       "x": 83.48942063111902,
@@ -4265,8 +4837,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "assam",
     "type": "heritage",
     "coordinates": {
-      "lat": 26.2698,
-      "lng": 93.0694
+      "lat": 26.6229928,
+      "lng": 92.7976082
     },
     "mapPosition": {
       "x": 83.56481572984141,
@@ -4417,8 +4989,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "assam",
     "type": "adventure",
     "coordinates": {
-      "lat": 26.7161,
-      "lng": 93.2237
+      "lat": 27.4844597,
+      "lng": 94.9019447
     },
     "mapPosition": {
       "x": 84.07906900418041,
@@ -4569,8 +5141,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "assam",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 26.4771,
-      "lng": 93.4963
+      "lat": 26.9834936,
+      "lng": 94.6394226
     },
     "mapPosition": {
       "x": 84.98750868457748,
@@ -4721,8 +5293,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "assam",
     "type": "lake",
     "coordinates": {
-      "lat": 26.3633,
-      "lng": 92.6966
+      "lat": 26.7227946,
+      "lng": 90.977888
     },
     "mapPosition": {
       "x": 82.3219293201467,
@@ -4873,8 +5445,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "bihar",
     "type": "temple",
     "coordinates": {
-      "lat": 25.0666,
-      "lng": 85.5517
+      "lat": 24.6944555,
+      "lng": 84.9934365
     },
     "mapPosition": {
       "x": 58.50574316072714,
@@ -5025,8 +5597,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "bihar",
     "type": "hill_station",
     "coordinates": {
-      "lat": 25.5864,
-      "lng": 85.0665
+      "lat": 25.1364914,
+      "lng": 85.4436546
     },
     "mapPosition": {
       "x": 56.88828985148007,
@@ -5177,8 +5749,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "bihar",
     "type": "beach",
     "coordinates": {
-      "lat": 24.5111,
-      "lng": 85.8293
+      "lat": 25.0299973,
+      "lng": 85.4207368
     },
     "mapPosition": {
       "x": 59.43111706623313,
@@ -5329,8 +5901,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "bihar",
     "type": "wildlife",
     "coordinates": {
-      "lat": 24.5544,
-      "lng": 85.3575
+      "lat": 25.6093239,
+      "lng": 85.1235252
     },
     "mapPosition": {
       "x": 57.8581944188052,
@@ -5481,8 +6053,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "bihar",
     "type": "heritage",
     "coordinates": {
-      "lat": 24.8364,
-      "lng": 85.4955
+      "lat": 25.7491703,
+      "lng": 85.3972164
     },
     "mapPosition": {
       "x": 58.31831710332167,
@@ -5633,8 +6205,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "bihar",
     "type": "adventure",
     "coordinates": {
-      "lat": 24.5918,
-      "lng": 85.1604
+      "lat": 24.9509656,
+      "lng": 84.0148733
     },
     "mapPosition": {
       "x": 57.20117578857895,
@@ -5785,8 +6357,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "bihar",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 25.2995,
-      "lng": 85.3556
+      "lat": 24.7964355,
+      "lng": 85.0079563
     },
     "mapPosition": {
       "x": 57.85194133967958,
@@ -5937,8 +6509,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "bihar",
     "type": "lake",
     "coordinates": {
-      "lat": 24.6584,
-      "lng": 85.2413
+      "lat": 26.3503076,
+      "lng": 86.2296424
     },
     "mapPosition": {
       "x": 57.4709866029554,
@@ -6089,8 +6661,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chandigarh",
     "type": "temple",
     "coordinates": {
-      "lat": 30.7254,
-      "lng": 76.7995
+      "lat": 30.7531959,
+      "lng": 76.8066302
     },
     "mapPosition": {
       "x": 29.331693767017224,
@@ -6241,8 +6813,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chandigarh",
     "type": "hill_station",
     "coordinates": {
-      "lat": 30.7494,
-      "lng": 76.7758
+      "lat": 30.7419776,
+      "lng": 76.8176747
     },
     "mapPosition": {
       "x": 29.2525796728187,
@@ -6393,8 +6965,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chandigarh",
     "type": "beach",
     "coordinates": {
-      "lat": 30.7096,
-      "lng": 76.8122
+      "lat": 30.7458209,
+      "lng": 76.7814773
     },
     "mapPosition": {
       "x": 29.37414977417286,
@@ -6545,8 +7117,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chandigarh",
     "type": "wildlife",
     "coordinates": {
-      "lat": 30.7296,
-      "lng": 76.7959
+      "lat": 19.1190978,
+      "lng": 72.9926125
     },
     "mapPosition": {
       "x": 29.319780295918935,
@@ -6697,8 +7269,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chandigarh",
     "type": "heritage",
     "coordinates": {
-      "lat": 30.6541,
-      "lng": 76.8059
+      "lat": 30.7923402,
+      "lng": 76.9117525
     },
     "mapPosition": {
       "x": 29.35310766299319,
@@ -7001,8 +7573,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chandigarh",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 30.7274,
-      "lng": 76.7602
+      "lat": 30.7489454,
+      "lng": 76.7874369
     },
     "mapPosition": {
       "x": 29.200792596311043,
@@ -7153,8 +7725,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chandigarh",
     "type": "lake",
     "coordinates": {
-      "lat": 30.744,
-      "lng": 76.8482
+      "lat": 30.7054354,
+      "lng": 76.8009556
     },
     "mapPosition": {
       "x": 29.49389862609484,
@@ -7457,8 +8029,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chhattisgarh",
     "type": "hill_station",
     "coordinates": {
-      "lat": 21.4273,
-      "lng": 82.2044
+      "lat": 21.2380912,
+      "lng": 81.6336993
     },
     "mapPosition": {
       "x": 47.34804065513894,
@@ -7609,8 +8181,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chhattisgarh",
     "type": "beach",
     "coordinates": {
-      "lat": 21.0547,
-      "lng": 81.2814
+      "lat": 19.1191283,
+      "lng": 81.8291865
     },
     "mapPosition": {
       "x": 44.27120869214107,
@@ -7761,8 +8333,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chhattisgarh",
     "type": "wildlife",
     "coordinates": {
-      "lat": 21.4046,
-      "lng": 82.3444
+      "lat": 19.0870758,
+      "lng": 82.0235715
     },
     "mapPosition": {
       "x": 47.81480517013217,
@@ -7913,8 +8485,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chhattisgarh",
     "type": "heritage",
     "coordinates": {
-      "lat": 20.7198,
-      "lng": 81.6073
+      "lat": 21.3470248,
+      "lng": 82.1846857
     },
     "mapPosition": {
       "x": 45.35751703632812,
@@ -8065,8 +8637,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chhattisgarh",
     "type": "adventure",
     "coordinates": {
-      "lat": 21.3712,
-      "lng": 81.3856
+      "lat": 21.2120677,
+      "lng": 81.3732849
     },
     "mapPosition": {
       "x": 44.61867566097117,
@@ -8217,8 +8789,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chhattisgarh",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 21.3362,
-      "lng": 81.2331
+      "lat": 22.7964591,
+      "lng": 83.3061887
     },
     "mapPosition": {
       "x": 44.110308979633196,
@@ -8369,8 +8941,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "chhattisgarh",
     "type": "lake",
     "coordinates": {
-      "lat": 21.7496,
-      "lng": 82.223
+      "lat": 18.8339836,
+      "lng": 82.0201053
     },
     "mapPosition": {
       "x": 47.41011306511794,
@@ -8673,8 +9245,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "dadra-and-nagar-haveli-and-daman-and-diu",
     "type": "hill_station",
     "coordinates": {
-      "lat": 19.8314,
-      "lng": 72.2908
+      "lat": 20.4148865,
+      "lng": 72.8334609
     },
     "mapPosition": {
       "x": 14.302557593813958,
@@ -8825,8 +9397,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "dadra-and-nagar-haveli-and-daman-and-diu",
     "type": "beach",
     "coordinates": {
-      "lat": 19.9785,
-      "lng": 72.7392
+      "lat": 20.2736768,
+      "lng": 73.0045787
     },
     "mapPosition": {
       "x": 15.797300201750867,
@@ -8977,8 +9549,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "dadra-and-nagar-haveli-and-daman-and-diu",
     "type": "wildlife",
     "coordinates": {
-      "lat": 20.3455,
-      "lng": 72.3231
+      "lat": 20.7065929,
+      "lng": 70.9156249
     },
     "mapPosition": {
       "x": 14.410326350445073,
@@ -9129,8 +9701,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "dadra-and-nagar-haveli-and-daman-and-diu",
     "type": "heritage",
     "coordinates": {
-      "lat": 19.77,
-      "lng": 72.4788
+      "lat": 20.3908074,
+      "lng": 72.8272767
     },
     "mapPosition": {
       "x": 14.92941578015646,
@@ -9281,8 +9853,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "dadra-and-nagar-haveli-and-daman-and-diu",
     "type": "adventure",
     "coordinates": {
-      "lat": 20.5396,
-      "lng": 73.1082
+      "lat": 20.7075235,
+      "lng": 70.966674
     },
     "mapPosition": {
       "x": 17.027340822944883,
@@ -9433,8 +10005,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "dadra-and-nagar-haveli-and-daman-and-diu",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 19.6093,
-      "lng": 72.7255
+      "lat": 20.3118029,
+      "lng": 72.9702948
     },
     "mapPosition": {
       "x": 15.751522798019977,
@@ -9737,8 +10309,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "delhi",
     "type": "temple",
     "coordinates": {
-      "lat": 28.5936,
-      "lng": 77.1804
+      "lat": 28.656081,
+      "lng": 77.2407959
     },
     "mapPosition": {
       "x": 30.601381929371502,
@@ -9889,8 +10461,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "delhi",
     "type": "hill_station",
     "coordinates": {
-      "lat": 28.6018,
-      "lng": 77.2088
+      "lat": 28.524413,
+      "lng": 77.1854501
     },
     "mapPosition": {
       "x": 30.695932208602034,
@@ -10041,8 +10613,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "delhi",
     "type": "beach",
     "coordinates": {
-      "lat": 28.6461,
-      "lng": 77.2483
+      "lat": 28.6129332,
+      "lng": 77.2294928
     },
     "mapPosition": {
       "x": 30.827515003279586,
@@ -10193,8 +10765,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "delhi",
     "type": "wildlife",
     "coordinates": {
-      "lat": 28.6472,
-      "lng": 77.1881
+      "lat": 28.5930135,
+      "lng": 77.2482725
     },
     "mapPosition": {
       "x": 30.626964052245757,
@@ -10345,8 +10917,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "delhi",
     "type": "heritage",
     "coordinates": {
-      "lat": 28.5857,
-      "lng": 77.1839
+      "lat": 28.5533586,
+      "lng": 77.2586006
     },
     "mapPosition": {
       "x": 30.612943134611374,
@@ -10497,8 +11069,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "delhi",
     "type": "adventure",
     "coordinates": {
-      "lat": 28.6457,
-      "lng": 77.1632
+      "lat": 28.6125167,
+      "lng": 77.2773184
     },
     "mapPosition": {
       "x": 30.543940130584797,
@@ -10649,8 +11221,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "delhi",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 28.6341,
-      "lng": 77.1845
+      "lat": 28.6559834,
+      "lng": 77.2321937
     },
     "mapPosition": {
       "x": 30.61504116095255,
@@ -10801,8 +11373,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "delhi",
     "type": "lake",
     "coordinates": {
-      "lat": 28.6448,
-      "lng": 77.2206
+      "lat": 28.6314022,
+      "lng": 77.2193791
     },
     "mapPosition": {
       "x": 30.735242688612107,
@@ -10953,8 +11525,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "goa",
     "type": "temple",
     "coordinates": {
-      "lat": 15.307,
-      "lng": 74.0469
+      "lat": 15.5573721,
+      "lng": 73.75098
     },
     "mapPosition": {
       "x": 20.156352047176824,
@@ -11105,8 +11677,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "goa",
     "type": "hill_station",
     "coordinates": {
-      "lat": 15.3238,
-      "lng": 74.0107
+      "lat": 15.5023329,
+      "lng": 73.9117432
     },
     "mapPosition": {
       "x": 20.035605750826686,
@@ -11257,8 +11829,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "goa",
     "type": "beach",
     "coordinates": {
-      "lat": 15.3492,
-      "lng": 73.997
+      "lat": 15.0093077,
+      "lng": 74.024229
     },
     "mapPosition": {
       "x": 19.990054224778408,
@@ -11409,8 +11981,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "goa",
     "type": "wildlife",
     "coordinates": {
-      "lat": 15.271,
-      "lng": 73.9829
+      "lat": 15.3156176,
+      "lng": 74.3142493
     },
     "mapPosition": {
       "x": 19.94286236977705,
@@ -11561,8 +12133,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "goa",
     "type": "heritage",
     "coordinates": {
-      "lat": 15.2638,
-      "lng": 74.0253
+      "lat": 15.4989946,
+      "lng": 73.8282141
     },
     "mapPosition": {
       "x": 20.08428867703131,
@@ -11713,8 +12285,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "goa",
     "type": "adventure",
     "coordinates": {
-      "lat": 15.3021,
-      "lng": 74.0222
+      "lat": 15.5850408,
+      "lng": 73.7438151
     },
     "mapPosition": {
       "x": 20.074125997263746,
@@ -11865,8 +12437,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "goa",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 15.331,
-      "lng": 73.9908
+      "lat": 15.5985735,
+      "lng": 73.7408126
     },
     "mapPosition": {
       "x": 19.969199581049203,
@@ -12017,8 +12589,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "goa",
     "type": "lake",
     "coordinates": {
-      "lat": 15.327,
-      "lng": 74.0486
+      "lat": 15.545594,
+      "lng": 73.7646182
     },
     "mapPosition": {
       "x": 20.16190208182337,
@@ -12169,8 +12741,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "gujarat",
     "type": "temple",
     "coordinates": {
-      "lat": 21.7921,
-      "lng": 71.1985
+      "lat": 21.1267789,
+      "lng": 70.7747952
     },
     "mapPosition": {
       "x": 10.661767339956233,
@@ -12321,8 +12893,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "gujarat",
     "type": "hill_station",
     "coordinates": {
-      "lat": 22.6207,
-      "lng": 70.5715
+      "lat": 23.7905519,
+      "lng": 70.4966137
     },
     "mapPosition": {
       "x": 8.571686522459695,
@@ -12473,8 +13045,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "gujarat",
     "type": "beach",
     "coordinates": {
-      "lat": 21.5045,
-      "lng": 71.957
+      "lat": 23.0215374,
+      "lng": 72.5800568
     },
     "mapPosition": {
       "x": 13.189971977223916,
@@ -12625,8 +13197,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "gujarat",
     "type": "wildlife",
     "coordinates": {
-      "lat": 22.3314,
-      "lng": 71.8833
+      "lat": 20.8957174,
+      "lng": 70.4080467
     },
     "mapPosition": {
       "x": 12.944204551271715,
@@ -12777,8 +13349,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "gujarat",
     "type": "heritage",
     "coordinates": {
-      "lat": 21.7786,
-      "lng": 72.1624
+      "lat": 22.2424747,
+      "lng": 68.9671448
     },
     "mapPosition": {
       "x": 13.87460513400209,
@@ -12929,8 +13501,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "gujarat",
     "type": "adventure",
     "coordinates": {
-      "lat": 21.3559,
-      "lng": 71.7988
+      "lat": 21.837977,
+      "lng": 73.719164
     },
     "mapPosition": {
       "x": 12.662607602002964,
@@ -13081,8 +13653,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "gujarat",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 23.352,
-      "lng": 71.6518
+      "lat": 23.2472446,
+      "lng": 69.668339
     },
     "mapPosition": {
       "x": 12.172717023894581,
@@ -13233,8 +13805,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "gujarat",
     "type": "lake",
     "coordinates": {
-      "lat": 21.0909,
-      "lng": 70.4606
+      "lat": 20.579669,
+      "lng": 73.7478878
     },
     "mapPosition": {
       "x": 8.20193444846737,
@@ -13385,8 +13957,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "haryana",
     "type": "temple",
     "coordinates": {
-      "lat": 29.1192,
-      "lng": 75.8333
+      "lat": 29.9693747,
+      "lng": 76.8482787
     },
     "mapPosition": {
       "x": 26.11112520364704,
@@ -13537,8 +14109,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "haryana",
     "type": "hill_station",
     "coordinates": {
-      "lat": 28.8706,
-      "lng": 76.1969
+      "lat": 28.4646148,
+      "lng": 77.0299194
     },
     "mapPosition": {
       "x": 27.322863635881305,
@@ -13689,8 +14261,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "haryana",
     "type": "beach",
     "coordinates": {
-      "lat": 28.9473,
-      "lng": 75.7597
+      "lat": 29.3912753,
+      "lng": 76.9771675
     },
     "mapPosition": {
       "x": 25.865561984970025,
@@ -13841,8 +14413,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "haryana",
     "type": "wildlife",
     "coordinates": {
-      "lat": 29.2005,
-      "lng": 76.3919
+      "lat": 28.48367,
+      "lng": 77.283006
     },
     "mapPosition": {
       "x": 27.973039528600008,
@@ -13993,8 +14565,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "haryana",
     "type": "heritage",
     "coordinates": {
-      "lat": 29.2909,
-      "lng": 76.2343
+      "lat": 30.8042411,
+      "lng": 76.9149498
     },
     "mapPosition": {
       "x": 27.44774597425054,
@@ -14145,8 +14717,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "haryana",
     "type": "adventure",
     "coordinates": {
-      "lat": 28.8546,
-      "lng": 76.063
+      "lat": 28.9010899,
+      "lng": 76.5801935
     },
     "mapPosition": {
       "x": 26.876797799758428,
@@ -14297,8 +14869,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "haryana",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 28.7756,
-      "lng": 75.8901
+      "lat": 30.3843674,
+      "lng": 76.770421
     },
     "mapPosition": {
       "x": 26.30033675497207,
@@ -14449,8 +15021,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "haryana",
     "type": "lake",
     "coordinates": {
-      "lat": 29.295,
-      "lng": 76.3979
+      "lat": 29.2396596,
+      "lng": 75.8174505
     },
     "mapPosition": {
       "x": 27.99310806214242,
@@ -14601,8 +15173,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "himachal-pradesh",
     "type": "temple",
     "coordinates": {
-      "lat": 31.125,
-      "lng": 76.9903
+      "lat": 32.2454608,
+      "lng": 77.1872926
     },
     "mapPosition": {
       "x": 29.96764289915243,
@@ -14753,8 +15325,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "himachal-pradesh",
     "type": "hill_station",
     "coordinates": {
-      "lat": 31.3762,
-      "lng": 77.4991
+      "lat": 31.1040393,
+      "lng": 77.1707923
     },
     "mapPosition": {
       "x": 31.66352532860107,
@@ -14905,8 +15477,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "himachal-pradesh",
     "type": "beach",
     "coordinates": {
-      "lat": 30.9552,
-      "lng": 76.9587
+      "lat": 32.2143039,
+      "lng": 76.3196717
     },
     "mapPosition": {
       "x": 29.862271199442507,
@@ -15057,8 +15629,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "himachal-pradesh",
     "type": "wildlife",
     "coordinates": {
-      "lat": 31.1636,
-      "lng": 77.547
+      "lat": 32.5435755,
+      "lng": 75.9448409
     },
     "mapPosition": {
       "x": 31.82346056281451,
@@ -15361,8 +15933,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "himachal-pradesh",
     "type": "adventure",
     "coordinates": {
-      "lat": 31.1133,
-      "lng": 77.4348
+      "lat": 32.0104317,
+      "lng": 77.3166036
     },
     "mapPosition": {
       "x": 31.449375302900652,
@@ -15513,8 +16085,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "himachal-pradesh",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 31.2914,
-      "lng": 76.9795
+      "lat": 31.9578974,
+      "lng": 77.1089232
     },
     "mapPosition": {
       "x": 29.931639382397744,
@@ -15665,8 +16237,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "himachal-pradesh",
     "type": "lake",
     "coordinates": {
-      "lat": 31.3312,
-      "lng": 77.0969
+      "lat": 30.8999479,
+      "lng": 76.9619744
     },
     "mapPosition": {
       "x": 30.32298149642216,
@@ -15817,8 +16389,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jammu-and-kashmir",
     "type": "temple",
     "coordinates": {
-      "lat": 33.3079,
-      "lng": 76.3878
+      "lat": 34.0747444,
+      "lng": 74.8204443
     },
     "mapPosition": {
       "x": 27.959430336404882,
@@ -15969,8 +16541,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jammu-and-kashmir",
     "type": "hill_station",
     "coordinates": {
-      "lat": 34.2286,
-      "lng": 77.2159
+      "lat": 34.04897,
+      "lng": 74.39212
     },
     "mapPosition": {
       "x": 30.719595168690432,
@@ -16121,8 +16693,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jammu-and-kashmir",
     "type": "beach",
     "coordinates": {
-      "lat": 33.9092,
-      "lng": 77.2521
+      "lat": 34.0322048,
+      "lng": 75.3226479
     },
     "mapPosition": {
       "x": 30.840386863696995,
@@ -16273,8 +16845,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jammu-and-kashmir",
     "type": "wildlife",
     "coordinates": {
-      "lat": 34.2358,
-      "lng": 76.7246
+      "lat": 34.302387,
+      "lng": 75.2965551
     },
     "mapPosition": {
       "x": 29.0818620483212,
@@ -16425,8 +16997,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jammu-and-kashmir",
     "type": "heritage",
     "coordinates": {
-      "lat": 33.1189,
-      "lng": 76.6877
+      "lat": 33.027399,
+      "lng": 74.945375
     },
     "mapPosition": {
       "x": 28.958933456790703,
@@ -16577,8 +17149,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jammu-and-kashmir",
     "type": "adventure",
     "coordinates": {
-      "lat": 33.719,
-      "lng": 77.2735
+      "lat": 33.09082,
+      "lng": 75.32639
     },
     "mapPosition": {
       "x": 30.911784188598595,
@@ -16729,8 +17301,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jammu-and-kashmir",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 33.5572,
-      "lng": 77.2386
+      "lat": 32.7185614,
+      "lng": 74.8580917
     },
     "mapPosition": {
       "x": 30.79525223758381,
@@ -16881,8 +17453,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jammu-and-kashmir",
     "type": "lake",
     "coordinates": {
-      "lat": 33.4894,
-      "lng": 77.2032
+      "lat": 33.8213888,
+      "lng": 74.6676564
     },
     "mapPosition": {
       "x": 30.67744735793743,
@@ -17033,8 +17605,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jharkhand",
     "type": "temple",
     "coordinates": {
-      "lat": 23.9202,
-      "lng": 85.8522
+      "lat": 23.3700501,
+      "lng": 85.3250387
     },
     "mapPosition": {
       "x": 59.50749895567403,
@@ -17185,8 +17757,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jharkhand",
     "type": "hill_station",
     "coordinates": {
-      "lat": 23.8441,
-      "lng": 85.7539
+      "lat": 24.4898318,
+      "lng": 86.6990182
     },
     "mapPosition": {
       "x": 59.179541836440706,
@@ -17337,8 +17909,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jharkhand",
     "type": "beach",
     "coordinates": {
-      "lat": 23.3773,
-      "lng": 85.2023
+      "lat": 22.8015194,
+      "lng": 86.2029579
     },
     "mapPosition": {
       "x": 57.341116873919304,
@@ -17489,8 +18061,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jharkhand",
     "type": "wildlife",
     "coordinates": {
-      "lat": 23.1553,
-      "lng": 85.6991
+      "lat": 24.0866962,
+      "lng": 85.4912231
     },
     "mapPosition": {
       "x": 58.99691140308614,
@@ -17641,8 +18213,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jharkhand",
     "type": "heritage",
     "coordinates": {
-      "lat": 23.3537,
-      "lng": 85.2407
+      "lat": 23.4745963,
+      "lng": 84.2677594
     },
     "mapPosition": {
       "x": 57.469156353164074,
@@ -17793,8 +18365,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jharkhand",
     "type": "adventure",
     "coordinates": {
-      "lat": 23.2738,
-      "lng": 84.7109
+      "lat": 23.7163975,
+      "lng": 84.1900704
     },
     "mapPosition": {
       "x": 55.70295802088556,
@@ -17945,8 +18517,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jharkhand",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 23.3436,
-      "lng": 85.8061
+      "lat": 23.6991279,
+      "lng": 85.9910689
     },
     "mapPosition": {
       "x": 59.35379913106843,
@@ -18097,8 +18669,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "jharkhand",
     "type": "lake",
     "coordinates": {
-      "lat": 23.5449,
-      "lng": 85.8111
+      "lat": 23.7952809,
+      "lng": 86.4309638
     },
     "mapPosition": {
       "x": 59.370403110866434,
@@ -18249,8 +18821,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "karnataka",
     "type": "temple",
     "coordinates": {
-      "lat": 14.5852,
-      "lng": 75.0088
+      "lat": 12.9767936,
+      "lng": 77.590082
     },
     "mapPosition": {
       "x": 23.362627225020134,
@@ -18401,8 +18973,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "karnataka",
     "type": "hill_station",
     "coordinates": {
-      "lat": 14.2205,
-      "lng": 76.8108
+      "lat": 12.3041464,
+      "lng": 76.6529521
     },
     "mapPosition": {
       "x": 29.36930259947052,
@@ -18553,8 +19125,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "karnataka",
     "type": "beach",
     "coordinates": {
-      "lat": 16.2897,
-      "lng": 76.2425
+      "lat": 15.3358,
+      "lng": 76.4610201
     },
     "mapPosition": {
       "x": 27.474924663948553,
@@ -18705,8 +19277,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "karnataka",
     "type": "wildlife",
     "coordinates": {
-      "lat": 16.1699,
-      "lng": 75.943
+      "lat": 12.3827332,
+      "lng": 75.6640715
     },
     "mapPosition": {
       "x": 26.476564205240344,
@@ -18857,8 +19429,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "karnataka",
     "type": "heritage",
     "coordinates": {
-      "lat": 14.3147,
-      "lng": 75.3095
+      "lat": 14.5439629,
+      "lng": 74.3184418
     },
     "mapPosition": {
       "x": 24.36494114006507,
@@ -19009,8 +19581,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "karnataka",
     "type": "adventure",
     "coordinates": {
-      "lat": 14.8246,
-      "lng": 76.329
+      "lat": 13.318014,
+      "lng": 75.7738743
     },
     "mapPosition": {
       "x": 27.763423781448797,
@@ -19161,8 +19733,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "karnataka",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 15.5031,
-      "lng": 76.6475
+      "lat": 13.5269784,
+      "lng": 74.8731879
     },
     "mapPosition": {
       "x": 28.825062429800287,
@@ -19313,8 +19885,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "karnataka",
     "type": "lake",
     "coordinates": {
-      "lat": 16.2528,
-      "lng": 75.9779
+      "lat": 11.7866822,
+      "lng": 76.4206959
     },
     "mapPosition": {
       "x": 26.59297265284489,
@@ -19465,8 +20037,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "kerala",
     "type": "temple",
     "coordinates": {
-      "lat": 10.5772,
-      "lng": 76.0082
+      "lat": 10.0869959,
+      "lng": 77.0600915
     },
     "mapPosition": {
       "x": 26.693845175951814,
@@ -19617,8 +20189,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "kerala",
     "type": "hill_station",
     "coordinates": {
-      "lat": 11.0751,
-      "lng": 76.4899
+      "lat": 9.1989342,
+      "lng": 76.4856032
     },
     "mapPosition": {
       "x": 28.29973965243956,
@@ -19769,8 +20341,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "kerala",
     "type": "beach",
     "coordinates": {
-      "lat": 10.9461,
-      "lng": 76.3158
+      "lat": 9.9679032,
+      "lng": 76.2444378
     },
     "mapPosition": {
       "x": 27.71948786548052,
@@ -19921,8 +20493,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "kerala",
     "type": "wildlife",
     "coordinates": {
-      "lat": 10.655,
-      "lng": 76.3109
+      "lat": 11.7151291,
+      "lng": 76.1271185
     },
     "mapPosition": {
       "x": 27.702908274078435,
@@ -20073,8 +20645,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "kerala",
     "type": "heritage",
     "coordinates": {
-      "lat": 11.2144,
-      "lng": 76.1962
+      "lat": 9.5804995,
+      "lng": 77.181142
     },
     "mapPosition": {
       "x": 27.320814158603024,
@@ -20225,8 +20797,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "kerala",
     "type": "adventure",
     "coordinates": {
-      "lat": 11.1601,
-      "lng": 76.4513
+      "lat": 8.7340434,
+      "lng": 76.7252855
     },
     "mapPosition": {
       "x": 28.171068627348838,
@@ -20377,8 +20949,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "kerala",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 11.0213,
-      "lng": 76.3612
+      "lat": 8.4882267,
+      "lng": 76.947551
     },
     "mapPosition": {
       "x": 27.870573446839536,
@@ -20529,8 +21101,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "kerala",
     "type": "lake",
     "coordinates": {
-      "lat": 10.9984,
-      "lng": 76.4019
+      "lat": 9.5960545,
+      "lng": 76.4305378
     },
     "mapPosition": {
       "x": 28.00623193983019,
@@ -20681,8 +21253,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "ladakh",
     "type": "temple",
     "coordinates": {
-      "lat": 34.0228,
-      "lng": 78.053
+      "lat": 34.1642029,
+      "lng": 77.5848133
     },
     "mapPosition": {
       "x": 33.51003820360589,
@@ -20985,8 +21557,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "ladakh",
     "type": "beach",
     "coordinates": {
-      "lat": 33.607,
-      "lng": 77.2962
+      "lat": 34.2788524,
+      "lng": 77.8510887
     },
     "mapPosition": {
       "x": 30.98741139422861,
@@ -21137,8 +21709,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "ladakh",
     "type": "wildlife",
     "coordinates": {
-      "lat": 33.7705,
-      "lng": 77.8071
+      "lat": 32.889283,
+      "lng": 78.3215269
     },
     "mapPosition": {
       "x": 32.69018334351268,
@@ -21289,8 +21861,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "ladakh",
     "type": "heritage",
     "coordinates": {
-      "lat": 33.7469,
-      "lng": 77.6991
+      "lat": 34.5593048,
+      "lng": 76.1255767
     },
     "mapPosition": {
       "x": 32.3302311145018,
@@ -21593,8 +22165,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "ladakh",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 34.4989,
-      "lng": 77.2828
+      "lat": 33.9083119,
+      "lng": 77.6341507
     },
     "mapPosition": {
       "x": 30.942824000178415,
@@ -21745,8 +22317,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "ladakh",
     "type": "lake",
     "coordinates": {
-      "lat": 34.3844,
-      "lng": 77.0661
+      "lat": 34.1709853,
+      "lng": 77.3524824
     },
     "mapPosition": {
       "x": 30.220215207423756,
@@ -21897,8 +22469,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "lakshadweep",
     "type": "temple",
     "coordinates": {
-      "lat": 10.6072,
-      "lng": 72.5773
+      "lat": 10.8476321,
+      "lng": 72.1888468
     },
     "mapPosition": {
       "x": 15.257635535428971,
@@ -22049,8 +22621,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "lakshadweep",
     "type": "hill_station",
     "coordinates": {
-      "lat": 10.5799,
-      "lng": 72.5986
+      "lat": 10.9476092,
+      "lng": 72.2876305
     },
     "mapPosition": {
       "x": 15.328703427900999,
@@ -22201,8 +22773,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "lakshadweep",
     "type": "beach",
     "coordinates": {
-      "lat": 10.5722,
-      "lng": 72.6053
+      "lat": 10.5672203,
+      "lng": 72.6394636
     },
     "mapPosition": {
       "x": 15.35104372585214,
@@ -22353,8 +22925,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "lakshadweep",
     "type": "wildlife",
     "coordinates": {
-      "lat": 10.5512,
-      "lng": 72.6325
+      "lat": 8.295235,
+      "lng": 73.0648394
     },
     "mapPosition": {
       "x": 15.441598412168911,
@@ -22505,8 +23077,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "lakshadweep",
     "type": "heritage",
     "coordinates": {
-      "lat": 10.5965,
-      "lng": 72.5925
+      "lat": 10.07259,
+      "lng": 73.6436319
     },
     "mapPosition": {
       "x": 15.308327392578605,
@@ -22657,8 +23229,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "lakshadweep",
     "type": "adventure",
     "coordinates": {
-      "lat": 10.6121,
-      "lng": 72.5582
+      "lat": 11.219255,
+      "lng": 72.7751186
     },
     "mapPosition": {
       "x": 15.193950382528717,
@@ -22961,8 +23533,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "lakshadweep",
     "type": "lake",
     "coordinates": {
-      "lat": 10.6176,
-      "lng": 72.575
+      "lat": 10.8132489,
+      "lng": 73.6804621
     },
     "mapPosition": {
       "x": 15.249955719758976,
@@ -23113,8 +23685,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "madhya-pradesh",
     "type": "temple",
     "coordinates": {
-      "lat": 23.4509,
-      "lng": 77.9524
+      "lat": 24.8515132,
+      "lng": 79.9259786
     },
     "mapPosition": {
       "x": 33.174614996227,
@@ -23265,8 +23837,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "madhya-pradesh",
     "type": "hill_station",
     "coordinates": {
-      "lat": 24.0287,
-      "lng": 77.7159
+      "lat": 23.6444125,
+      "lng": 81.0245023
     },
     "mapPosition": {
       "x": 32.38641212893403,
@@ -23417,8 +23989,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "madhya-pradesh",
     "type": "beach",
     "coordinates": {
-      "lat": 23.6752,
-      "lng": 79.4244
+      "lat": 23.2584857,
+      "lng": 77.401989
     },
     "mapPosition": {
       "x": 38.08142409717259,
@@ -23569,8 +24141,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "madhya-pradesh",
     "type": "wildlife",
     "coordinates": {
-      "lat": 22.0108,
-      "lng": 77.8107
+      "lat": 22.7203616,
+      "lng": 75.8681996
     },
     "mapPosition": {
       "x": 32.70232643769342,
@@ -23721,8 +24293,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "madhya-pradesh",
     "type": "heritage",
     "coordinates": {
-      "lat": 22.5815,
-      "lng": 79.4602
+      "lat": 23.1885131,
+      "lng": 75.7716562
     },
     "mapPosition": {
       "x": 38.20069578974284,
@@ -23873,8 +24445,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "madhya-pradesh",
     "type": "adventure",
     "coordinates": {
-      "lat": 22.7095,
-      "lng": 78.2314
+      "lat": 22.4736824,
+      "lng": 78.4360537
     },
     "mapPosition": {
       "x": 34.10454381325631,
@@ -24177,8 +24749,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "madhya-pradesh",
     "type": "lake",
     "coordinates": {
-      "lat": 23.4673,
-      "lng": 79.0819
+      "lat": 26.2037247,
+      "lng": 78.1573628
     },
     "mapPosition": {
       "x": 36.939533059619976,
@@ -24329,8 +24901,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "maharashtra",
     "type": "temple",
     "coordinates": {
-      "lat": 19.9116,
-      "lng": 76.5015
+      "lat": 19.054999,
+      "lng": 72.8692035
     },
     "mapPosition": {
       "x": 28.338464612978097,
@@ -24481,8 +25053,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "maharashtra",
     "type": "hill_station",
     "coordinates": {
-      "lat": 18.6124,
-      "lng": 76.5991
+      "lat": 18.5213738,
+      "lng": 73.8545071
     },
     "mapPosition": {
       "x": 28.663669892542597,
@@ -24633,8 +25205,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "maharashtra",
     "type": "beach",
     "coordinates": {
-      "lat": 20.3302,
-      "lng": 76.6069
+      "lat": 18.7503694,
+      "lng": 73.4069436
     },
     "mapPosition": {
       "x": 28.689709692981985,
@@ -24785,8 +25357,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "maharashtra",
     "type": "wildlife",
     "coordinates": {
-      "lat": 19.5452,
-      "lng": 75.1863
+      "lat": 17.9242764,
+      "lng": 73.6575799
     },
     "mapPosition": {
       "x": 23.954424541972465,
@@ -25089,8 +25661,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "maharashtra",
     "type": "adventure",
     "coordinates": {
-      "lat": 19.2656,
-      "lng": 75.7089
+      "lat": 20.0112475,
+      "lng": 73.7902364
     },
     "mapPosition": {
       "x": 25.69626711392909,
@@ -25241,8 +25813,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "maharashtra",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 19.8836,
-      "lng": 76.1105
+      "lat": 19.877263,
+      "lng": 75.3390241
     },
     "mapPosition": {
       "x": 27.03488700155077,
@@ -25393,8 +25965,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "maharashtra",
     "type": "lake",
     "coordinates": {
-      "lat": 20.1668,
-      "lng": 75.77
+      "lat": 18.6498427,
+      "lng": 72.8765469
     },
     "mapPosition": {
       "x": 25.900021481036077,
@@ -25545,8 +26117,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "manipur",
     "type": "temple",
     "coordinates": {
-      "lat": 24.3759,
-      "lng": 93.7854
+      "lat": 24.7991162,
+      "lng": 93.9364419
     },
     "mapPosition": {
       "x": 85.95144165691157,
@@ -25697,8 +26269,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "manipur",
     "type": "hill_station",
     "coordinates": {
-      "lat": 24.9226,
-      "lng": 94.0309
+      "lat": 24.5584253,
+      "lng": 93.8132376
     },
     "mapPosition": {
       "x": 86.76972341940395,
@@ -25849,8 +26421,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "manipur",
     "type": "beach",
     "coordinates": {
-      "lat": 24.7217,
-      "lng": 94.0446
+      "lat": 25.0978641,
+      "lng": 94.3610713
     },
     "mapPosition": {
       "x": 86.815347967481,
@@ -26001,8 +26573,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "manipur",
     "type": "wildlife",
     "coordinates": {
-      "lat": 24.4861,
-      "lng": 94.2158
+      "lat": 24.6267287,
+      "lng": 93.7600454
     },
     "mapPosition": {
       "x": 87.38586987660175,
@@ -26153,8 +26725,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "manipur",
     "type": "heritage",
     "coordinates": {
-      "lat": 25.0065,
-      "lng": 93.9812
+      "lat": 25.3933697,
+      "lng": 94.1501773
     },
     "mapPosition": {
       "x": 86.60395720308126,
@@ -26305,8 +26877,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "manipur",
     "type": "adventure",
     "coordinates": {
-      "lat": 24.5821,
-      "lng": 94.1341
+      "lat": 24.3468839,
+      "lng": 93.6994143
     },
     "mapPosition": {
       "x": 87.11366136540722,
@@ -26457,8 +27029,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "manipur",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 24.6695,
-      "lng": 94.1964
+      "lat": 24.6386954,
+      "lng": 93.996871
     },
     "mapPosition": {
       "x": 87.32138196495787,
@@ -26609,8 +27181,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "manipur",
     "type": "lake",
     "coordinates": {
-      "lat": 24.9892,
-      "lng": 94.1989
+      "lat": 24.9858596,
+      "lng": 93.5039967
     },
     "mapPosition": {
       "x": 87.32951204678679,
@@ -26761,8 +27333,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "meghalaya",
     "type": "temple",
     "coordinates": {
-      "lat": 25.315,
-      "lng": 91.6476
+      "lat": 25.5759931,
+      "lng": 91.8827872
     },
     "mapPosition": {
       "x": 78.82533209683046,
@@ -26913,8 +27485,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "meghalaya",
     "type": "hill_station",
     "coordinates": {
-      "lat": 25.3081,
-      "lng": 91.6537
+      "lat": 25.2777336,
+      "lng": 91.7292416
     },
     "mapPosition": {
       "x": 78.84570209259678,
@@ -27065,8 +27637,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "meghalaya",
     "type": "beach",
     "coordinates": {
-      "lat": 25.759,
-      "lng": 91.1565
+      "lat": 25.1856343,
+      "lng": 92.0215717
     },
     "mapPosition": {
       "x": 77.18836676858189,
@@ -27217,8 +27789,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "meghalaya",
     "type": "wildlife",
     "coordinates": {
-      "lat": 25.7177,
-      "lng": 91.0808
+      "lat": 25.2019507,
+      "lng": 91.9155148
     },
     "mapPosition": {
       "x": 76.93598157672619,
@@ -27369,8 +27941,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "meghalaya",
     "type": "heritage",
     "coordinates": {
-      "lat": 25.8,
-      "lng": 91.2694
+      "lat": 25.2510232,
+      "lng": 91.6713764
     },
     "mapPosition": {
       "x": 77.56451806154942,
@@ -27521,8 +28093,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "meghalaya",
     "type": "adventure",
     "coordinates": {
-      "lat": 25.5082,
-      "lng": 91.468
+      "lat": 25.4434703,
+      "lng": 92.1973181
     },
     "mapPosition": {
       "x": 78.22670172373368,
@@ -27673,8 +28245,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "meghalaya",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 25.2193,
-      "lng": 91.3892
+      "lat": 25.3610902,
+      "lng": 90.6434347
     },
     "mapPosition": {
       "x": 77.96387716009927,
@@ -27825,8 +28397,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "meghalaya",
     "type": "lake",
     "coordinates": {
-      "lat": 25.3776,
-      "lng": 91.7404
+      "lat": 25.506085,
+      "lng": 90.60381
     },
     "mapPosition": {
       "x": 79.13476883055064,
@@ -27977,8 +28549,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "mizoram",
     "type": "temple",
     "coordinates": {
-      "lat": 23.116,
-      "lng": 92.9873
+      "lat": 23.7277631,
+      "lng": 92.7179947
     },
     "mapPosition": {
       "x": 83.29114921459687,
@@ -28129,8 +28701,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "mizoram",
     "type": "hill_station",
     "coordinates": {
-      "lat": 22.9847,
-      "lng": 92.618
+      "lat": 22.9519972,
+      "lng": 92.6338827
     },
     "mapPosition": {
       "x": 82.05996208786792,
@@ -28281,8 +28853,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "mizoram",
     "type": "beach",
     "coordinates": {
-      "lat": 23.271,
-      "lng": 93.1242
+      "lat": 23.6317319,
+      "lng": 93.3493185
     },
     "mapPosition": {
       "x": 83.74722031087344,
@@ -28433,8 +29005,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "mizoram",
     "type": "wildlife",
     "coordinates": {
-      "lat": 23.201,
-      "lng": 92.8234
+      "lat": 23.3052514,
+      "lng": 92.8455124
     },
     "mapPosition": {
       "x": 82.74456360287815,
@@ -28585,8 +29157,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "mizoram",
     "type": "heritage",
     "coordinates": {
-      "lat": 23.1387,
-      "lng": 92.7996
+      "lat": 24.1905469,
+      "lng": 92.7136595
     },
     "mapPosition": {
       "x": 82.66523925687096,
@@ -28737,8 +29309,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "mizoram",
     "type": "adventure",
     "coordinates": {
-      "lat": 22.903,
-      "lng": 93.1445
+      "lat": 22.3913377,
+      "lng": 92.7397189
     },
     "mapPosition": {
       "x": 83.81501419072312,
@@ -28889,8 +29461,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "mizoram",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 23.3373,
-      "lng": 92.8917
+      "lat": 22.4899565,
+      "lng": 92.9812107
     },
     "mapPosition": {
       "x": 82.97216832558064,
@@ -29041,8 +29613,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "mizoram",
     "type": "lake",
     "coordinates": {
-      "lat": 23.4209,
-      "lng": 92.7675
+      "lat": 23.7564387,
+      "lng": 92.4515374
     },
     "mapPosition": {
       "x": 82.55822002497335,
@@ -29193,8 +29765,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "nagaland",
     "type": "temple",
     "coordinates": {
-      "lat": 26.1667,
-      "lng": 94.6315
+      "lat": 25.6618755,
+      "lng": 94.1019156
     },
     "mapPosition": {
       "x": 88.77172761342398,
@@ -29345,8 +29917,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "nagaland",
     "type": "hill_station",
     "coordinates": {
-      "lat": 26.3033,
-      "lng": 94.6322
+      "lat": 25.9041378,
+      "lng": 93.7177609
     },
     "mapPosition": {
       "x": 88.77385189000005,
@@ -29497,8 +30069,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "nagaland",
     "type": "beach",
     "coordinates": {
-      "lat": 25.988,
-      "lng": 94.3827
+      "lat": 26.4795861,
+      "lng": 94.5105275
     },
     "mapPosition": {
       "x": 87.94247042984931,
@@ -29649,8 +30221,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "nagaland",
     "type": "wildlife",
     "coordinates": {
-      "lat": 26.1498,
-      "lng": 94.771
+      "lat": 26.242251,
+      "lng": 94.1921153
     },
     "mapPosition": {
       "x": 89.23674140856525,
@@ -29801,8 +30373,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "nagaland",
     "type": "heritage",
     "coordinates": {
-      "lat": 26.2421,
-      "lng": 94.5246
+      "lat": 26.666667,
+      "lng": 95.0
     },
     "mapPosition": {
       "x": 88.4154019993737,
@@ -29953,8 +30525,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "nagaland",
     "type": "adventure",
     "coordinates": {
-      "lat": 26.2779,
-      "lng": 94.612
+      "lat": 25.6700924,
+      "lng": 94.3843925
     },
     "mapPosition": {
       "x": 88.70661250222388,
@@ -30105,8 +30677,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "nagaland",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 26.4889,
-      "lng": 94.7833
+      "lat": 26.0123803,
+      "lng": 94.5123719
     },
     "mapPosition": {
       "x": 89.2778245060633,
@@ -30257,8 +30829,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "nagaland",
     "type": "lake",
     "coordinates": {
-      "lat": 26.1265,
-      "lng": 94.5663
+      "lat": 25.8117088,
+      "lng": 94.8474036
     },
     "mapPosition": {
       "x": 88.55435697160384,
@@ -30409,8 +30981,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "odisha",
     "type": "temple",
     "coordinates": {
-      "lat": 20.8097,
-      "lng": 84.8364
+      "lat": 19.8076083,
+      "lng": 85.8252538
     },
     "mapPosition": {
       "x": 56.1213560930852,
@@ -30561,8 +31133,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "odisha",
     "type": "hill_station",
     "coordinates": {
-      "lat": 20.7571,
-      "lng": 84.9101
+      "lat": 20.2602964,
+      "lng": 85.8394521
     },
     "mapPosition": {
       "x": 56.36691984509701,
@@ -30713,8 +31285,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "odisha",
     "type": "beach",
     "coordinates": {
-      "lat": 20.3929,
-      "lng": 85.6446
+      "lat": 19.9074292,
+      "lng": 86.1420195
     },
     "mapPosition": {
       "x": 58.81522876914597,
@@ -30865,8 +31437,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "odisha",
     "type": "wildlife",
     "coordinates": {
-      "lat": 21.0081,
-      "lng": 85.1113
+      "lat": 19.6853195,
+      "lng": 85.2503699
     },
     "mapPosition": {
       "x": 57.03754023707821,
@@ -31017,8 +31589,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "odisha",
     "type": "heritage",
     "coordinates": {
-      "lat": 21.125,
-      "lng": 85.052
+      "lat": 20.4686,
+      "lng": 85.8792
     },
     "mapPosition": {
       "x": 56.840145805598375,
@@ -31169,8 +31741,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "odisha",
     "type": "adventure",
     "coordinates": {
-      "lat": 21.1242,
-      "lng": 85.0979
+      "lat": 19.2598878,
+      "lng": 84.9051656
     },
     "mapPosition": {
       "x": 56.992909545374836,
@@ -31321,8 +31893,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "odisha",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 20.7094,
-      "lng": 84.8421
+      "lat": 21.8045685,
+      "lng": 86.4221264
     },
     "mapPosition": {
       "x": 56.14040835978893,
@@ -31473,8 +32045,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "odisha",
     "type": "lake",
     "coordinates": {
-      "lat": 21.1186,
-      "lng": 85.2036
+      "lat": 22.2309255,
+      "lng": 84.8678705
     },
     "mapPosition": {
       "x": 57.34517851119028,
@@ -31777,8 +32349,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "puducherry",
     "type": "hill_station",
     "coordinates": {
-      "lat": 11.8891,
-      "lng": 79.91
+      "lat": 11.9340377,
+      "lng": 79.8337751
     },
     "mapPosition": {
       "x": 39.69997668093223,
@@ -31929,8 +32501,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "puducherry",
     "type": "beach",
     "coordinates": {
-      "lat": 11.9464,
-      "lng": 79.9342
+      "lat": 11.9321674,
+      "lng": 79.8360554
     },
     "mapPosition": {
       "x": 39.780505107698666,
@@ -32081,8 +32653,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "puducherry",
     "type": "wildlife",
     "coordinates": {
-      "lat": 11.9348,
-      "lng": 79.9062
+      "lat": 11.8698341,
+      "lng": 79.8198877
     },
     "mapPosition": {
       "x": 39.68730974316642,
@@ -32233,8 +32805,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "puducherry",
     "type": "heritage",
     "coordinates": {
-      "lat": 11.9038,
-      "lng": 79.9188
+      "lat": 11.9397684,
+      "lng": 79.8359187
     },
     "mapPosition": {
       "x": 39.72931600853125,
@@ -32385,8 +32957,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "puducherry",
     "type": "adventure",
     "coordinates": {
-      "lat": 11.922,
-      "lng": 79.8925
+      "lat": 11.8854305,
+      "lng": 79.79983
     },
     "mapPosition": {
       "x": 39.641678006449915,
@@ -32689,8 +33261,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "puducherry",
     "type": "lake",
     "coordinates": {
-      "lat": 11.8995,
-      "lng": 79.8841
+      "lat": 11.9023146,
+      "lng": 79.8199562
     },
     "mapPosition": {
       "x": 39.61381151480699,
@@ -32841,8 +33413,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "punjab",
     "type": "temple",
     "coordinates": {
-      "lat": 31.3327,
-      "lng": 75.5022
+      "lat": 31.6356659,
+      "lng": 74.8787496
     },
     "mapPosition": {
       "x": 25.007468164785724,
@@ -32993,8 +33565,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "punjab",
     "type": "hill_station",
     "coordinates": {
-      "lat": 31.134,
-      "lng": 75.398
+      "lat": 30.7686399,
+      "lng": 76.5750483
     },
     "mapPosition": {
       "x": 24.659837079471174,
@@ -33145,8 +33717,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "punjab",
     "type": "beach",
     "coordinates": {
-      "lat": 31.2817,
-      "lng": 75.2483
+      "lat": 31.2922312,
+      "lng": 75.5678878
     },
     "mapPosition": {
       "x": 24.161060916710017,
@@ -33297,8 +33869,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "punjab",
     "type": "wildlife",
     "coordinates": {
-      "lat": 31.1093,
-      "lng": 75.214
+      "lat": 30.9090157,
+      "lng": 75.851601
     },
     "mapPosition": {
       "x": 24.046661690448634,
@@ -33449,8 +34021,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "punjab",
     "type": "heritage",
     "coordinates": {
-      "lat": 30.9923,
-      "lng": 75.4112
+      "lat": 30.2092778,
+      "lng": 76.3397231
     },
     "mapPosition": {
       "x": 24.703844901771674,
@@ -33601,8 +34173,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "punjab",
     "type": "adventure",
     "coordinates": {
-      "lat": 31.3091,
-      "lng": 75.6403
+      "lat": 32.3021899,
+      "lng": 75.6589406
     },
     "mapPosition": {
       "x": 25.46756444410069,
@@ -33753,8 +34325,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "punjab",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 30.8805,
-      "lng": 75.1603
+      "lat": 31.3856476,
+      "lng": 75.3053304
     },
     "mapPosition": {
       "x": 23.867526036844946,
@@ -33905,8 +34477,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "punjab",
     "type": "lake",
     "coordinates": {
-      "lat": 30.9672,
-      "lng": 75.4055
+      "lat": 30.206791,
+      "lng": 74.9463699
     },
     "mapPosition": {
       "x": 24.685069040260856,
@@ -34057,8 +34629,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "rajasthan",
     "type": "temple",
     "coordinates": {
-      "lat": 27.5431,
-      "lng": 74.995
+      "lat": 26.9154576,
+      "lng": 75.8189817
     },
     "mapPosition": {
       "x": 23.31675765795386,
@@ -34209,8 +34781,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "rajasthan",
     "type": "hill_station",
     "coordinates": {
-      "lat": 27.474,
-      "lng": 75.3597
+      "lat": 24.578721,
+      "lng": 73.6862571
     },
     "mapPosition": {
       "x": 24.532439134078317,
@@ -34361,8 +34933,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "rajasthan",
     "type": "beach",
     "coordinates": {
-      "lat": 27.8021,
-      "lng": 73.9539
+      "lat": 26.2967719,
+      "lng": 73.0351433
     },
     "mapPosition": {
       "x": 19.846210576365735,
@@ -34513,8 +35085,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "rajasthan",
     "type": "wildlife",
     "coordinates": {
-      "lat": 26.6098,
-      "lng": 73.8164
+      "lat": 27.0264162,
+      "lng": 70.777512
     },
     "mapPosition": {
       "x": 19.388055111809496,
@@ -34665,8 +35237,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "rajasthan",
     "type": "heritage",
     "coordinates": {
-      "lat": 25.97,
-      "lng": 74.1119
+      "lat": 26.4876472,
+      "lng": 74.5578484
     },
     "mapPosition": {
       "x": 20.373149806522594,
@@ -34817,8 +35389,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "rajasthan",
     "type": "adventure",
     "coordinates": {
-      "lat": 27.9629,
-      "lng": 73.9789
+      "lat": 24.592433,
+      "lng": 72.7081876
     },
     "mapPosition": {
       "x": 19.929738280634695,
@@ -34969,8 +35541,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "rajasthan",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 25.9994,
-      "lng": 73.9671
+      "lat": 26.0185691,
+      "lng": 76.4559761
     },
     "mapPosition": {
       "x": 19.89017455270518,
@@ -35121,8 +35693,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "rajasthan",
     "type": "lake",
     "coordinates": {
-      "lat": 27.9426,
-      "lng": 74.5524
+      "lat": 28.0159286,
+      "lng": 73.3171367
     },
     "mapPosition": {
       "x": 21.841382771405478,
@@ -35273,8 +35845,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "sikkim",
     "type": "temple",
     "coordinates": {
-      "lat": 27.8437,
-      "lng": 88.7129
+      "lat": 27.329046,
+      "lng": 88.6122673
     },
     "mapPosition": {
       "x": 69.04303914239762,
@@ -35425,8 +35997,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "sikkim",
     "type": "hill_station",
     "coordinates": {
-      "lat": 27.7885,
-      "lng": 88.416
+      "lat": 27.3003722,
+      "lng": 88.2356503
     },
     "mapPosition": {
       "x": 68.0533179475971,
@@ -35577,8 +36149,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "sikkim",
     "type": "beach",
     "coordinates": {
-      "lat": 27.7043,
-      "lng": 88.8404
+      "lat": 27.7306136,
+      "lng": 88.5495009
     },
     "mapPosition": {
       "x": 69.4678459882574,
@@ -35729,8 +36301,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "sikkim",
     "type": "wildlife",
     "coordinates": {
-      "lat": 27.1624,
-      "lng": 88.754
+      "lat": 27.6897097,
+      "lng": 88.7425876
     },
     "mapPosition": {
       "x": 69.18007416252313,
@@ -35881,8 +36453,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "sikkim",
     "type": "heritage",
     "coordinates": {
-      "lat": 27.5297,
-      "lng": 88.1557
+      "lat": 27.3868289,
+      "lng": 88.8308961
     },
     "mapPosition": {
       "x": 67.18556456298998,
@@ -36033,8 +36605,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "sikkim",
     "type": "adventure",
     "coordinates": {
-      "lat": 27.2664,
-      "lng": 88.3669
+      "lat": 27.3051271,
+      "lng": 88.3644723
     },
     "mapPosition": {
       "x": 67.88968178691334,
@@ -36185,8 +36757,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "sikkim",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 27.4849,
-      "lng": 88.4389
+      "lat": 27.3031019,
+      "lng": 88.3785961
     },
     "mapPosition": {
       "x": 68.12980710457528,
@@ -36489,8 +37061,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tamil-nadu",
     "type": "temple",
     "coordinates": {
-      "lat": 11.4041,
-      "lng": 79.1582
+      "lat": 13.0836939,
+      "lng": 80.270186
     },
     "mapPosition": {
       "x": 37.194117581603955,
@@ -36641,8 +37213,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tamil-nadu",
     "type": "hill_station",
     "coordinates": {
-      "lat": 11.344,
-      "lng": 78.1661
+      "lat": 11.4126769,
+      "lng": 76.7030504
     },
     "mapPosition": {
       "x": 33.886929570857326,
@@ -36793,8 +37365,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tamil-nadu",
     "type": "beach",
     "coordinates": {
-      "lat": 11.2066,
-      "lng": 78.2118
+      "lat": 10.233712,
+      "lng": 77.4919719
     },
     "mapPosition": {
       "x": 34.0393426549215,
@@ -36945,8 +37517,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tamil-nadu",
     "type": "wildlife",
     "coordinates": {
-      "lat": 10.8915,
-      "lng": 78.3533
+      "lat": 9.9261153,
+      "lng": 78.1140983
     },
     "mapPosition": {
       "x": 34.51092399795101,
@@ -37097,8 +37669,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tamil-nadu",
     "type": "heritage",
     "coordinates": {
-      "lat": 10.6173,
-      "lng": 79.2998
+      "lat": 12.6195981,
+      "lng": 80.1936497
     },
     "mapPosition": {
       "x": 37.66590271690664,
@@ -37249,8 +37821,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tamil-nadu",
     "type": "adventure",
     "coordinates": {
-      "lat": 11.5311,
-      "lng": 79.1578
+      "lat": 9.2844657,
+      "lng": 79.3125553
     },
     "mapPosition": {
       "x": 37.19282836046849,
@@ -37401,8 +37973,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tamil-nadu",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 11.3986,
-      "lng": 79.0765
+      "lat": 8.079252,
+      "lng": 77.5499338
     },
     "mapPosition": {
       "x": 36.921666360030464,
@@ -37553,8 +38125,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tamil-nadu",
     "type": "lake",
     "coordinates": {
-      "lat": 11.0185,
-      "lng": 78.2065
+      "lat": 11.0018115,
+      "lng": 76.9628425
     },
     "mapPosition": {
       "x": 34.021578148009915,
@@ -37705,8 +38277,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "telangana",
     "type": "temple",
     "coordinates": {
-      "lat": 17.5085,
-      "lng": 78.9517
+      "lat": 17.360589,
+      "lng": 78.4740613
     },
     "mapPosition": {
       "x": 36.505743954541806,
@@ -37857,8 +38429,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "telangana",
     "type": "hill_station",
     "coordinates": {
-      "lat": 18.5567,
-      "lng": 78.6836
+      "lat": 17.9820644,
+      "lng": 79.5970954
     },
     "mapPosition": {
       "x": 35.61188491380193,
@@ -38009,8 +38581,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "telangana",
     "type": "beach",
     "coordinates": {
-      "lat": 18.2113,
-      "lng": 79.0223
+      "lat": 16.7067112,
+      "lng": 79.2534377
     },
     "mapPosition": {
       "x": 36.74112114400794,
@@ -38161,8 +38733,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "telangana",
     "type": "wildlife",
     "coordinates": {
-      "lat": 18.3133,
-      "lng": 79.531
+      "lat": 17.2465351,
+      "lng": 80.1500326
     },
     "mapPosition": {
       "x": 38.43670519961753,
@@ -38313,8 +38885,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "telangana",
     "type": "heritage",
     "coordinates": {
-      "lat": 17.755,
-      "lng": 78.7442
+      "lat": 18.6731912,
+      "lng": 78.0978195
     },
     "mapPosition": {
       "x": 35.81408641427639,
@@ -38465,8 +39037,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "telangana",
     "type": "adventure",
     "coordinates": {
-      "lat": 17.9639,
-      "lng": 78.5024
+      "lat": 18.4348122,
+      "lng": 79.1328042
     },
     "mapPosition": {
       "x": 35.0080678173912,
@@ -38617,8 +39189,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "telangana",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 18.662,
-      "lng": 79.2784
+      "lat": 19.6759452,
+      "lng": 78.5339895
     },
     "mapPosition": {
       "x": 37.59480559498958,
@@ -38769,8 +39341,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "telangana",
     "type": "lake",
     "coordinates": {
-      "lat": 18.2727,
-      "lng": 78.996
+      "lat": 17.9375095,
+      "lng": 78.211745
     },
     "mapPosition": {
       "x": 36.65321546106862,
@@ -38921,8 +39493,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tripura",
     "type": "temple",
     "coordinates": {
-      "lat": 23.9692,
-      "lng": 91.6007
+      "lat": 23.8312377,
+      "lng": 91.2823821
     },
     "mapPosition": {
       "x": 78.66911045037122,
@@ -39073,8 +39645,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tripura",
     "type": "hill_station",
     "coordinates": {
-      "lat": 23.6386,
-      "lng": 92.0496
+      "lat": 23.5416162,
+      "lng": 91.4917593
     },
     "mapPosition": {
       "x": 80.16537042415005,
@@ -39225,8 +39797,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tripura",
     "type": "beach",
     "coordinates": {
-      "lat": 23.9335,
-      "lng": 92.0337
+      "lat": 24.1909849,
+      "lng": 92.0460483
     },
     "mapPosition": {
       "x": 80.11222871226305,
@@ -39377,8 +39949,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tripura",
     "type": "wildlife",
     "coordinates": {
-      "lat": 23.9855,
-      "lng": 91.7554
+      "lat": 23.5069284,
+      "lng": 91.3149943
     },
     "mapPosition": {
       "x": 79.18451926827075,
@@ -39529,8 +40101,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tripura",
     "type": "heritage",
     "coordinates": {
-      "lat": 23.7323,
-      "lng": 92.063
+      "lat": 23.6658005,
+      "lng": 91.3200275
     },
     "mapPosition": {
       "x": 80.21005857374742,
@@ -39833,8 +40405,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tripura",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 23.7809,
-      "lng": 92.1541
+      "lat": 24.2784074,
+      "lng": 92.0039927
     },
     "mapPosition": {
       "x": 80.51362001648906,
@@ -39985,8 +40557,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "tripura",
     "type": "lake",
     "coordinates": {
-      "lat": 23.8426,
-      "lng": 91.8831
+      "lat": 24.443968,
+      "lng": 92.2072581
     },
     "mapPosition": {
       "x": 79.61042499468456,
@@ -40137,8 +40709,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttar-pradesh",
     "type": "temple",
     "coordinates": {
-      "lat": 27.8929,
-      "lng": 81.6329
+      "lat": 27.1752554,
+      "lng": 78.0098161
     },
     "mapPosition": {
       "x": 45.44292172531916,
@@ -40289,8 +40861,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttar-pradesh",
     "type": "hill_station",
     "coordinates": {
-      "lat": 27.9072,
-      "lng": 80.3904
+      "lat": 25.3356491,
+      "lng": 83.0076292
     },
     "mapPosition": {
       "x": 41.30144482091519,
@@ -40441,8 +41013,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttar-pradesh",
     "type": "beach",
     "coordinates": {
-      "lat": 26.4592,
-      "lng": 79.7988
+      "lat": 26.8381,
+      "lng": 80.9346001
     },
     "mapPosition": {
       "x": 39.32917033653657,
@@ -40593,8 +41165,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttar-pradesh",
     "type": "wildlife",
     "coordinates": {
-      "lat": 26.1265,
-      "lng": 81.4157
+      "lat": 27.4955539,
+      "lng": 77.6855554
     },
     "mapPosition": {
       "x": 44.71891759632934,
@@ -40745,8 +41317,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttar-pradesh",
     "type": "heritage",
     "coordinates": {
-      "lat": 27.4325,
-      "lng": 81.5025
+      "lat": 27.5753726,
+      "lng": 77.6938045
     },
     "mapPosition": {
       "x": 45.0081871029496,
@@ -40897,8 +41469,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttar-pradesh",
     "type": "adventure",
     "coordinates": {
-      "lat": 26.5024,
-      "lng": 81.5472
+      "lat": 26.7990707,
+      "lng": 82.2052321
     },
     "mapPosition": {
       "x": 45.15731167987591,
@@ -41049,8 +41621,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttar-pradesh",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 27.8459,
-      "lng": 80.98
+      "lat": 25.4381302,
+      "lng": 81.8338005
     },
     "mapPosition": {
       "x": 43.26668212649745,
@@ -41201,8 +41773,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttar-pradesh",
     "type": "lake",
     "coordinates": {
-      "lat": 27.189,
-      "lng": 79.8737
+      "lat": 25.3776274,
+      "lng": 83.0275999
     },
     "mapPosition": {
       "x": 39.57890073355041,
@@ -41353,8 +41925,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttarakhand",
     "type": "temple",
     "coordinates": {
-      "lat": 29.8213,
-      "lng": 78.7219
+      "lat": 30.1086537,
+      "lng": 78.2916193
     },
     "mapPosition": {
       "x": 35.73961981510891,
@@ -41505,8 +42077,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttarakhand",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 29.8345,
-      "lng": 78.8427
+      "lat": 30.7338877,
+      "lng": 79.0669073
     },
     "mapPosition": {
       "x": 36.14235242779534,
@@ -41657,8 +42229,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttarakhand",
     "type": "hill_station",
     "coordinates": {
-      "lat": 30.0218,
-      "lng": 78.6789
+      "lat": 30.4569012,
+      "lng": 78.0782906
     },
     "mapPosition": {
       "x": 35.596477685587615,
@@ -41809,8 +42381,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttarakhand",
     "type": "wildlife",
     "coordinates": {
-      "lat": 30.0326,
-      "lng": 78.8102
+      "lat": 29.294995,
+      "lng": 79.4162511
     },
     "mapPosition": {
       "x": 36.03411068729505,
@@ -41961,8 +42533,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttarakhand",
     "type": "wildlife",
     "coordinates": {
-      "lat": 30.0803,
-      "lng": 78.995
+      "lat": 29.5574752,
+      "lng": 78.842495
     },
     "mapPosition": {
       "x": 36.64996575454007,
@@ -42113,8 +42685,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttarakhand",
     "type": "adventure",
     "coordinates": {
-      "lat": 30.3806,
-      "lng": 78.8163
+      "lat": 30.5377872,
+      "lng": 79.5657242
     },
     "mapPosition": {
       "x": 36.05429152628181,
@@ -42265,8 +42837,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttarakhand",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 30.1303,
-      "lng": 78.8383
+      "lat": 30.7056798,
+      "lng": 79.5958552
     },
     "mapPosition": {
       "x": 36.12762743812676,
@@ -42417,8 +42989,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "uttarakhand",
     "type": "lake",
     "coordinates": {
-      "lat": 30.0739,
-      "lng": 78.6573
+      "lat": 29.9384473,
+      "lng": 78.1452985
     },
     "mapPosition": {
       "x": 35.52438593406189,
@@ -42569,8 +43141,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "west-bengal",
     "type": "temple",
     "coordinates": {
-      "lat": 23.3488,
-      "lng": 87.4526
+      "lat": 22.5726459,
+      "lng": 88.3638953
     },
     "mapPosition": {
       "x": 64.841861489647,
@@ -42721,8 +43293,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "west-bengal",
     "type": "hill_station",
     "coordinates": {
-      "lat": 23.3863,
-      "lng": 88.0709
+      "lat": 27.0377554,
+      "lng": 88.263176
     },
     "mapPosition": {
       "x": 66.9028562411593,
@@ -42873,8 +43445,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "west-bengal",
     "type": "beach",
     "coordinates": {
-      "lat": 22.6098,
-      "lng": 87.5823
+      "lat": 22.0315881,
+      "lng": 88.6873161
     },
     "mapPosition": {
       "x": 65.27431303042377,
@@ -43025,8 +43597,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "west-bengal",
     "type": "wildlife",
     "coordinates": {
-      "lat": 22.3751,
-      "lng": 88.2131
+      "lat": 26.7164127,
+      "lng": 88.4309916
     },
     "mapPosition": {
       "x": 67.37710064729593,
@@ -43177,8 +43749,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "west-bengal",
     "type": "heritage",
     "coordinates": {
-      "lat": 22.468,
-      "lng": 87.4333
+      "lat": 21.623077,
+      "lng": 87.5082534
     },
     "mapPosition": {
       "x": 64.7777737736817,
@@ -43329,8 +43901,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "west-bengal",
     "type": "adventure",
     "coordinates": {
-      "lat": 22.5812,
-      "lng": 87.7489
+      "lat": 27.0702869,
+      "lng": 88.4723676
     },
     "mapPosition": {
       "x": 65.82980329813357,
@@ -43481,8 +44053,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "west-bengal",
     "type": "pilgrimage",
     "coordinates": {
-      "lat": 22.7858,
-      "lng": 87.4731
+      "lat": 26.8881872,
+      "lng": 88.1888396
     },
     "mapPosition": {
       "x": 64.91036368170224,
@@ -43633,8 +44205,8 @@ export const destinationsData: DestinationModel[] = [
     "stateSlug": "west-bengal",
     "type": "lake",
     "coordinates": {
-      "lat": 23.2756,
-      "lng": 87.9884
+      "lat": 24.1745993,
+      "lng": 88.2721335
     },
     "mapPosition": {
       "x": 66.62786763049596,

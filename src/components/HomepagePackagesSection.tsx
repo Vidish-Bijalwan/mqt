@@ -5,6 +5,7 @@ import { EASE_SMOOTH } from "@/lib/motion"; import type { Variants } from "frame
 import PackageCard from "./PackageCard";
 import { packageMenuData } from "@/data/packageMenuData";
 import { getGeneralWhatsAppUrl } from "@/lib/contact";
+import { useState } from "react";
 
 // Pull the 4 most-booked packages — one from each of the top categories
 // Miller's Law: 4 cards only. Hick's Law: no category filter on homepage.
@@ -58,9 +59,27 @@ const cardVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_SMOOTH } },
 };
 
+const CATEGORIES = [
+  { id: "all", label: "Popular" },
+  { id: "honeymoon-journeys", label: "Honeymoon" },
+  { id: "family-holidays", label: "Family" },
+  { id: "adventure-tours", label: "Adventure" },
+  { id: "pilgrimage-tours", label: "Pilgrimage" },
+];
+
 const HomepagePackagesSection = () => {
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  const displayPackages = activeCategory === "all" 
+    ? TOP_4_PACKAGES 
+    : (() => {
+        const catGroup = packageMenuData.flatMap((g) => g.categories).find((c) => c.slug === activeCategory);
+        if (!catGroup) return [];
+        return catGroup.featuredPackages.slice(0, 4).map(pkg => ({ pkg, cat: catGroup }));
+      })();
+
   return (
-    <section className="section-y bg-gray-50 reveal-section">
+    <section className="section-y reveal-section bg-white">
       <div className="container-page">
 
         {/* Section header */}
@@ -79,6 +98,23 @@ const HomepagePackagesSection = () => {
           </Link>
         </div>
 
+        {/* Category Filter */}
+        <div className="flex overflow-x-auto hide-scrollbar gap-2 mb-8 pb-2">
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors ${
+                activeCategory === cat.id 
+                  ? 'bg-primary text-white shadow-md' 
+                  : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
         {/* 4 cards — Miller's Law */}
         <motion.div
           variants={containerVariants}
@@ -87,7 +123,7 @@ const HomepagePackagesSection = () => {
           viewport={{ once: true, margin: "-80px" }}
           className="flex overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 gap-4 md:grid md:grid-cols-2 xl:grid-cols-4 md:mx-0 md:px-0 md:pb-0 items-stretch"
         >
-          {TOP_4_PACKAGES.map(({ pkg, cat }) => (
+          {displayPackages.map(({ pkg, cat }) => (
             <motion.div 
               key={pkg.slug} 
               variants={cardVariants}

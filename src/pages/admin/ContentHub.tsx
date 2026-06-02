@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Globe, MapPin, Package, BookOpen, MessageSquare, HelpCircle, Home, Settings, Map, Plus, ArrowRight, Compass, Flower2, Waves, Flag, Lightbulb, Smile, ScrollText, Mail, HelpingHand } from "lucide-react";
+import { Globe, MapPin, Package, BookOpen, MessageSquare, HelpCircle, Home, Settings, Map, Plus, ArrowRight, Compass, Flower2, Waves, Flag, Lightbulb, Smile, ScrollText, Mail, HelpingHand, Palette } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 async function fetchContentCounts() {
-  const [states, destinations, categories, packages, blogs, testimonials, faqs, travelRoutes, festivals, discoveryVibes, domesticIntl, travelExperiences, whyChooseUs, howItWorks] = await Promise.all([
+  const [states, destinations, categories, packages, blogs, testimonials, faqs, travelRoutes, festivals, discoveryVibes, domesticIntl, travelExperiences, whyChooseUs, howItWorks, crafts] = await Promise.all([
     supabase.from("states_uts").select("*", { count: "exact", head: true }),
     supabase.from("destinations").select("*", { count: "exact", head: true }),
     supabase.from("package_categories").select("*", { count: "exact", head: true }),
@@ -19,6 +19,7 @@ async function fetchContentCounts() {
     supabase.from("travel_experiences").select("*", { count: "exact", head: true }),
     supabase.from("why_choose_us").select("*", { count: "exact", head: true }),
     supabase.from("how_it_works").select("*", { count: "exact", head: true }),
+    supabase.from("crafts").select("*", { count: "exact", head: true }),
   ]);
   return {
     states: states.count ?? 0,
@@ -35,6 +36,7 @@ async function fetchContentCounts() {
     travelExperiences: travelExperiences.count ?? 0,
     whyChooseUs: whyChooseUs.count ?? 0,
     howItWorks: howItWorks.count ?? 0,
+    crafts: crafts.count ?? 0,
   };
 }
 
@@ -183,6 +185,15 @@ const contentModules = (counts: Record<string, number>) => [
       count: null,
       color: "bg-lime-50 text-lime-600",
     },
+    {
+      label: "Indian Crafts",
+      icon: Palette,
+      description: "Manage artisan crafts displayed on the Indian Craft Trail marketplace.",
+      path: "/admin/content/crafts",
+      newPath: "/admin/content/crafts/new",
+      count: counts.crafts,
+      color: "bg-amber-50 text-amber-600",
+    },
   {
     label: "Homepage",
     icon: Home,
@@ -210,7 +221,7 @@ export default function ContentHub() {
     staleTime: 60_000,
   });
 
-    const modules = contentModules(counts ?? { states: 0, destinations: 0, categories: 0, packages: 0, blogs: 0, testimonials: 0, faqs: 0, travelRoutes: 0, festivals: 0, discoveryVibes: 0, domesticIntl: 0, travelExperiences: 0, whyChooseUs: 0, howItWorks: 0 });
+    const modules = contentModules(counts ?? { states: 0, destinations: 0, categories: 0, packages: 0, blogs: 0, testimonials: 0, faqs: 0, travelRoutes: 0, festivals: 0, discoveryVibes: 0, domesticIntl: 0, travelExperiences: 0, whyChooseUs: 0, howItWorks: 0, crafts: 0 });
 
   return (
     <div>

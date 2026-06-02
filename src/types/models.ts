@@ -4,7 +4,7 @@ export type Category = "Adventure" | "Spiritual" | "Heritage" | "Nature" | "Wild
 export type BudgetTier = "Budget" | "Mid-Range" | "Luxury" | "Premium";
 
 export type TravelTheme = "adventure" | "spiritual" | "heritage" | "nature" | "wildlife" | "hill_station" | "beach" | "desert" | "cityscape" | "luxury" | "offbeat" | "pilgrimage" | "trekking" | "Buddhist culture" | "cultural" | "backpacker" | "Char Dham";
-export type DestinationType = "temple" | "hill_station" | "beach" | "wildlife" | "heritage" | "adventure" | "pilgrimage" | "valley" | "lake" | "waterfall" | "city" | "restricted_zone" | "nature" | "Buddhist culture" | "offbeat" | "cultural" | "backpacker" | "Char Dham";
+export type DestinationType = "temple" | "hill_station" | "beach" | "wildlife" | "heritage" | "adventure" | "pilgrimage" | "valley" | "lake" | "waterfall" | "city" | "restricted_zone" | "nature" | "Buddhist culture" | "offbeat" | "cultural" | "backpacker" | "Char Dham" | "camping" | "trekking" | "historical" | "winter_sports" | "bird_watching";
 
 export interface SEOData {
   title: string;

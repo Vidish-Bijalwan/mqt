@@ -26,6 +26,7 @@ const About = React.lazy(() => import('./pages/About.tsx'));
 const Contact = React.lazy(() => import('./pages/Contact.tsx'));
 const Blog = React.lazy(() => import('./pages/Blog.tsx'));
 const BlogDetail = React.lazy(() => import('./pages/BlogDetail.tsx'));
+const IndianCrafts = React.lazy(() => import('./pages/IndianCrafts.tsx'));
 const NotFound = React.lazy(() => import('./pages/NotFound.tsx'));
 const CancellationPolicy = React.lazy(() => import("./pages/CancellationPolicy.tsx"));
 const ServiceDetail = React.lazy(() => import("./pages/ServiceDetail.tsx"));
@@ -83,6 +84,8 @@ const AdminHowItWorks = React.lazy(() => import('./pages/admin/content/AdminHowI
 const HowItWorksForm = React.lazy(() => import('./pages/admin/content/HowItWorksForm.tsx').then(module => ({ default: module.HowItWorksForm })));
 const AdminNewsletter = React.lazy(() => import('./pages/admin/content/AdminNewsletter.tsx').then(module => ({ default: module.AdminNewsletter })));
 const AdminTrustStrip = React.lazy(() => import('./pages/admin/content/AdminTrustStrip.tsx').then(module => ({ default: module.AdminTrustStrip })));
+const AdminCrafts = React.lazy(() => import('./pages/admin/content/AdminCrafts.tsx').then(module => ({ default: module.AdminCrafts })));
+const CraftForm = React.lazy(() => import('./pages/admin/content/CraftForm.tsx').then(module => ({ default: module.CraftForm })));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -122,6 +125,7 @@ const AnimatedRoutes = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
+          <Route path="/crafts" element={<IndianCrafts />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/profile" element={<UserProfile />} />
@@ -227,6 +231,11 @@ const AnimatedRoutes = () => {
 
               {/* Trust Strip */}
               <Route path="/admin/content/trust-strip" element={<AdminTrustStrip />} />
+
+              {/* Indian Crafts */}
+              <Route path="/admin/content/crafts" element={<AdminCrafts />} />
+              <Route path="/admin/content/crafts/new" element={<CraftForm />} />
+              <Route path="/admin/content/crafts/:id/edit" element={<CraftForm />} />
 
             </Route>
           </Route>

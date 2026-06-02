@@ -6,7 +6,6 @@ import { getWhatsAppUrl } from "@/lib/contact";
 
 export const ExclusiveAlertModal = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showCloseButton, setShowCloseButton] = useState(false);
 
   useEffect(() => {
     // Check localStorage for the 24-hour rule
@@ -21,14 +20,8 @@ export const ExclusiveAlertModal = () => {
         localStorage.setItem(LAST_SEEN_KEY, now.toString());
       }, 3000);
       
-      // Show close button after 8 seconds of modal being open
-      const closeTimer = setTimeout(() => {
-        setShowCloseButton(true);
-      }, 11000); // 3s + 8s
-      
       return () => {
         clearTimeout(timer);
-        clearTimeout(closeTimer);
       };
     }
   }, []);
@@ -51,7 +44,7 @@ export const ExclusiveAlertModal = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="absolute inset-0 bg-black/70 backdrop-blur-md"
-          onClick={() => showCloseButton && setIsOpen(false)}
+          onClick={() => setIsOpen(false)}
         />
         
         {/* Modal Content */}
@@ -61,14 +54,12 @@ export const ExclusiveAlertModal = () => {
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           className="relative w-full max-w-[480px] bg-[#0F172A] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] border border-[#F59E0B]/30 flex flex-col"
         >
-          {showCloseButton && (
-            <button 
-              onClick={() => setIsOpen(false)}
-              className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white/80 hover:text-white hover:bg-black/70 transition-all"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          )}
+          <button 
+            onClick={() => setIsOpen(false)}
+            className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white/80 hover:text-white hover:bg-black/70 transition-all"
+          >
+            <X className="w-5 h-5" />
+          </button>
 
           <div className="relative h-[200px] w-full shrink-0">
             <img 

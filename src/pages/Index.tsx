@@ -1,9 +1,11 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import SemanticSearch from "@/components/SemanticSearch";
 import TrustStrip from "@/components/TrustStrip";
+import DestinationGrid from "@/components/DestinationGrid";
 import TravelStyleSelector from "@/components/TravelStyleSelector";
 import HomepagePackagesSection from "@/components/HomepagePackagesSection";
+import IndianCraftsCarousel from "@/components/IndianCraftsCarousel";
+import HowItWorks from "@/components/HowItWorks";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import EnquirySection from "@/components/EnquirySection";
@@ -75,7 +77,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col pb-16 lg:pb-0">
       <SEO
-        title="Premium India Tour Packages 2026 | MyQuickTrippers Meerut"
+        title="Premium India Tour Packages 2026 | MyQuickTrippers"
         description="Book curated India tour packages for Kedarnath, Ladakh, Kashmir, Kerala & more. Expert guides, best prices, free quotes. Trusted by 500+ travellers. Call now."
         canonical=""
         image="/og-image.jpg"
@@ -111,31 +113,35 @@ const Index = () => {
         {/* Section 1: Hero — Peak-End Rule peak moment */}
         <HeroSection />
 
-        {/* AI Semantic Search — lazy loads Transformers.js on first focus */}
-        <section className="relative -mt-6 z-10 pb-6">
-          <SemanticSearch />
-        </section>
-
         {/* Section 2: Trust Strip — 3 numbers, dark bar */}
         <TrustStrip />
 
-        {/* Section 3: Travel Style Selector — Hick's Law: 3 choices */}
-        <TravelStyleSelector />
+        {/* Section 3: How It Works — 3 steps */}
+        <HowItWorks />
 
-        {/* Section 4: Featured Packages — Miller's Law: 4 only */}
-        <HomepagePackagesSection />
+            {/* Section 3: Travel Style Selector — Hick's Law: 3 choices */}
+            <TravelStyleSelector />
 
-        {/* Section 5: Why MQT — Miller's Law: 3 reasons */}
-        <WhyChooseUs />
+            {/* Section 3.5: Destinations Grid */}
+            <DestinationGrid />
 
-        {/* Section 6: Testimonials — social proof before final CTA */}
-        <TestimonialsSection />
+            {/* Section 4: Featured Packages — Miller's Law: 4 only */}
+            <HomepagePackagesSection />
 
-        {/* Section 7: Final CTA — Peak-End Rule end moment */}
-        <EnquirySection />
+            {/* Section 4.5: Indian Crafts Carousel */}
+            <IndianCraftsCarousel />
 
-        {/* Blog teaser — lightweight, below fold, after conversion */}
-        <BlogPreview />
+            {/* Section 5: Why MQT — Miller's Law: 3 reasons */}
+            <WhyChooseUs />
+
+            {/* Section 6: Testimonials — social proof before final CTA */}
+            <TestimonialsSection />
+
+            {/* Blog teaser — lightweight, below fold, before final CTA */}
+            <BlogPreview />
+
+            {/* Section 7: Final CTA — Peak-End Rule end moment */}
+            <EnquirySection />
       </main>
 
       <Footer />
