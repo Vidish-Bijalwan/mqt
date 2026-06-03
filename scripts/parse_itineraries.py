@@ -77,28 +77,26 @@ def parse_itineraries():
     
     pkg_blocks = []
     # Find all start indices
-    starts = [m.start() for m in re.finditer(r'\d+\s+Nights\s*/\s*\d+\s+Days', content, re.IGNORECASE)]
+    starts = [m.start() for m in re.finditer(r'\d+\s+Nights?\s*/\s*\d+\s+Days?', content, re.IGNORECASE)]
     
     for i in range(len(starts)):
         start = starts[i]
         end = starts[i+1] if i + 1 < len(starts) else len(content)
         pkg_blocks.append(content[start:end])
         
-    print(f"Found {len(pkg_blocks)} package blocks (expecting ~51).")
+    print(f"Found {len(pkg_blocks)} total blocks.")
+    
+    # Filter out TOC blocks. A TOC block usually doesn't have "Day 01:" in it.
+    actual_blocks = [b for b in pkg_blocks if re.search(r'Day\s*0?1\s*:', b, re.IGNORECASE)]
+    print(f"Found {len(actual_blocks)} actual itinerary blocks.")
     
     packages = []
     
     # Let's align blocks to TOC
     for idx, (region, name, places_str, nights, days) in enumerate(toc):
-        # find best block for this package
         best_block = None
-        
-        # We can just match them in order, assuming the text file matches the TOC order
-        # There might be some misalignment if a block was missed, so let's match by index roughly, or search.
-        if idx < len(pkg_blocks):
-            best_block = pkg_blocks[idx]
-        else:
-            best_block = ""
+        if idx < len(actual_blocks):
+            best_block = actual_blocks[idx]
             
         places = [p.strip() for p in places_str.replace('-', '/').split('/') if p.strip()]
         
@@ -109,7 +107,6 @@ def parse_itineraries():
             for d in days_content:
                 day_title = d.group(1).strip()
                 day_desc = d.group(2).strip()
-                # Clean up title
                 if not day_title.endswith(':'): day_title += ':'
                 
                 day_wise.append({
@@ -118,17 +115,21 @@ def parse_itineraries():
                     "description": day_desc
                 })
         
-        # Fix missing days if parser failed
         if not day_wise:
             day_wise = [{"day": 1, "title": "Day 1: Arrival", "description": "Arrival and local sightseeing."}]
             
         # Pricing
         price = None
         if best_block:
-            price_match = re.search(r'PRICING.*?(\d{4,6})', best_block, re.IGNORECASE)
-            if price_match:
-                p = int(price_match.group(1))
-                if p > 2000: price = p
+            pricing_section = re.search(r'PRICING(.*)', best_block, re.IGNORECASE | re.DOTALL)
+            if pricing_section:
+                nums = re.findall(r'\b\d{4,6}\b', pricing_section.group(1))
+                for n in nums:
+                    val = int(n)
+                    if val >= 4000:
+                        # Multiply by 1.6 as requested by the user
+                        price = int(val * 1.6)
+                        break
                 
         # Includes
         includes = []

@@ -71,6 +71,7 @@
     width: 100%;
     position: relative;
     overscroll-behavior: auto; /* Keeps scroll snappy, native behavior */
+    scroll-behavior: smooth;
   }
 
   * {
@@ -233,7 +234,7 @@
   .reveal-section {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
+    transition: opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1), transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
   }
   .reveal-section.revealed {
     opacity: 1;
@@ -242,7 +243,7 @@
   .reveal-child {
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
   .reveal-child.revealed {
     opacity: 1;
