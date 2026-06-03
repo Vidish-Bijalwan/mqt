@@ -10,10 +10,10 @@ import { useQuery } from "@tanstack/react-query";
 import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import blogHero from "@/assets/dest-ladakh.jpg";
+import { SEO } from "@/components/SEO";
 
 const Blog = () => {
   useEffect(() => {
-    document.title = "Travel Blog & Guides | MQT";
     window.scrollTo(0, 0);
   }, []);
 
@@ -27,6 +27,12 @@ const Blog = () => {
 
   return (
     <PageLayout>
+      <SEO
+        title="India Travel Blog & Guides"
+        description="Expert India travel guides — Kashmir safety, Kedarnath timing, Ladakh tips & Kerala honeymoons. Plan smarter with MyQuickTrippers."
+        canonical="/blog"
+        image={blogHero}
+      />
       <PageHero
         title="Travel Guides & Insights"
         subtitle="Expert tips, deep-dive itineraries, and inspiring stories from the Himalayas and beyond."

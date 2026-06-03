@@ -1,10 +1,16 @@
 import React from 'react';
 import PageLayout from '@/components/PageLayout';
 import PageHero from '@/components/PageHero';
+import { SEO } from '@/components/SEO';
 
 export default function PrivacyPolicy() {
   return (
     <PageLayout>
+      <SEO
+        title="Privacy Policy"
+        description="MyQuickTrippers privacy policy — how we collect, use, and protect your personal information when you book India tour packages."
+        canonical="/privacy-policy"
+      />
       <PageHero title="Privacy Policy" subtitle="Last Updated: April 16, 2026" />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="prose prose-lg dark:prose-invert">

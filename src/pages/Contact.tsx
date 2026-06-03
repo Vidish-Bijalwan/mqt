@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PageLayout from "@/components/PageLayout";
+import { SEO } from "@/components/SEO";
 import PageHero from "@/components/PageHero";
 import InquiryBanner from "@/components/InquiryBanner";
 import EnquirySection from "@/components/EnquirySection";
@@ -11,7 +12,6 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: "", phone: "", message: "" });
 
   useEffect(() => {
-    document.title = "Contact Us | MQT";
     window.scrollTo(0, 0);
   }, []);
 
@@ -23,6 +23,12 @@ const Contact = () => {
 
   return (
     <PageLayout>
+      <SEO
+        title="Contact MyQuickTrippers"
+        description="Get a free India tour quote — call +91-7668741373 or WhatsApp MQT. Custom Kerala, Kashmir, Rajasthan & pilgrimage packages from Meerut."
+        canonical="/contact"
+        image={contactHero}
+      />
       <PageHero
         title="Get in Touch"
         subtitle="Have questions? Our travel experts are available 24/7 to help you plan your next adventure or support your current journey."

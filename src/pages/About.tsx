@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import PageLayout from "@/components/PageLayout";
+import { SEO } from "@/components/SEO";
+import { buildTravelAgencySchema, combineSchemas } from "@/lib/seo";
 import PageHero from "@/components/PageHero";
 import InquiryBanner from "@/components/InquiryBanner";
 import aboutHero from "@/assets/dest-valley-flowers.jpg";
@@ -7,7 +9,6 @@ import { Check, ShieldCheck, HeartPulse, Trophy } from "lucide-react";
 
 const About = () => {
   useEffect(() => {
-    document.title = "About Us | MQT";
     window.scrollTo(0, 0);
   }, []);
 
@@ -31,6 +32,13 @@ const About = () => {
 
   return (
     <PageLayout>
+      <SEO
+        title="About MyQuickTrippers — Why MQT"
+        description="Meet MyQuickTrippers — premium India tour experts from Meerut. Curated packages, verified partners, 24/7 support & custom itineraries across 28 states."
+        canonical="/about"
+        image={aboutHero}
+        schema={combineSchemas(buildTravelAgencySchema())}
+      />
       <PageHero
         title="About MyQuickTrippers"
         subtitle="Discover the incredible heritage, cultures, and landscapes of the Indian Subcontinent."
@@ -51,6 +59,19 @@ const About = () => {
             <p className="font-body text-muted-foreground leading-relaxed text-lg">
               We specialize in deep, meaningful connections. We don't just book hotels and transports; we weave experiences with relentless precision. From initial inquiry to your journey's end, we provide 24/7 on-ground support so your only job is to create memories.
             </p>
+          </div>
+
+          <div className="mt-16 rounded-2xl border border-primary/20 bg-primary/5 p-8 md:p-10">
+            <h2 className="font-display text-2xl font-bold mb-4 text-center">Why choose MQT?</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-6 leading-relaxed">
+              Unlike large OTAs, MyQuickTrippers pairs human experts with curated inventory — personalised routing, verified Himalayan partners, and transparent pricing for families, honeymooners, and spiritual travellers.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-foreground max-w-2xl mx-auto">
+              <li className="flex gap-2"><Check className="w-5 h-5 text-primary shrink-0" /> Custom itineraries — no cookie-cutter tours</li>
+              <li className="flex gap-2"><Check className="w-5 h-5 text-primary shrink-0" /> Meerut-based team, pan-India ground network</li>
+              <li className="flex gap-2"><Check className="w-5 h-5 text-primary shrink-0" /> Kerala, Kashmir, Rajasthan, Ladakh specialists</li>
+              <li className="flex gap-2"><Check className="w-5 h-5 text-primary shrink-0" /> Free quotes & WhatsApp support within hours</li>
+            </ul>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">

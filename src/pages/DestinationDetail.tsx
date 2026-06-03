@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import InquiryBanner from "@/components/InquiryBanner";
@@ -7,7 +7,16 @@ import EnquirySection from "@/components/EnquirySection";
 import { GalleryComponent } from "@/components/ui/Explore/GalleryComponent";
 import { destinationsData } from "@/data/destinations";
 import { getStateBySlug } from "@/data/india-states";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
+import { DestinationSeoSections } from "@/components/DestinationSeoSections";
+import { getDestinationGuideContent } from "@/data/destination-seo-content";
+import { tourPackages } from "@/data/packages";
+import {
+  buildFaqSchema,
+  buildBreadcrumbSchema,
+  combineSchemas,
+  formatSeoDescription,
+} from "@/lib/seo";
 import { MapPin, Calendar, CreditCard, Tag } from "lucide-react";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { useQuery } from "@tanstack/react-query";
@@ -34,6 +43,30 @@ const DestinationDetail = () => {
     window.scrollTo(0, 0);
   }, [slug]);
 
+  const { data: dbDestination } = useQuery({
+    queryKey: ["destination-override", slug],
+    queryFn: async () => {
+      if (!slug) return null;
+      const { data } = await supabase
+        .from("destinations")
+        .select("hero_image_url, image_url")
+        .eq("slug", slug)
+        .single();
+      return data as { hero_image_url?: string; image_url?: string } | null;
+    },
+    enabled: !!slug && !!destination,
+    staleTime: 60000,
+  });
+
+  const rawPrimary = destination?.heroImage?.url || destination?.image || "";
+  const finalPrimary =
+    (dbDestination && (dbDestination.hero_image_url || dbDestination.image_url)) ||
+    rawPrimary;
+  const { src: activeHeroImg } = useValidatedImage(
+    finalPrimary,
+    destination?.slug || slug || "destination"
+  );
+
   if (!destination || !stateData) {
     return <Navigate to="/destinations" replace />;
   }
@@ -43,34 +76,56 @@ const DestinationDetail = () => {
     { label: "Best Season", value: destination.bestTimeToVisit },
   ];
 
-  const galleryImages = (destination.galleryImages || []).map(img => ({
+  const galleryImages = (destination.galleryImages || []).map((img) => ({
     src: img.url,
-    alt: img.alt || `${destination.name} scenery`
+    alt: img.alt || `${destination.name} scenery`,
   }));
 
-  // ── Database Sync: Check if Admin has overridden the image
-  const { data: dbDestination } = useQuery({
-    queryKey: ["destination-override", slug],
-    queryFn: async () => {
-      if (!slug) return null;
-      const { data } = await supabase.from("destinations").select("hero_image_url, image_url").eq("slug", slug).single();
-      return data as any;
-    },
-    staleTime: 60000
-  });
+  const canonicalPath = `/destinations/${stateData.slug}/${destination.slug}`;
+  const guide = getDestinationGuideContent(
+    destination.name,
+    stateData.name,
+    destination.bestTimeToVisit
+  );
+  const stateToken = stateData.name.split(" ")[0].toLowerCase();
+  const relatedPackages = tourPackages
+    .filter(
+      (p) =>
+        p.state.toLowerCase().includes(stateToken) ||
+        p.destination.toLowerCase().includes(destination.name.toLowerCase())
+    )
+    .slice(0, 5);
 
-  const rawPrimary = destination.heroImage?.url || destination.image;
-  // If DB override exists, use it; otherwise use the local map primary
-  const finalPrimary = (dbDestination && (dbDestination.hero_image_url || dbDestination.image_url)) || rawPrimary;
-  
-  const { src: activeHeroImg } = useValidatedImage(finalPrimary, destination.slug);
+  const seoDescription = formatSeoDescription(
+    `${destination.name} travel guide — ${destination.shortDescription} Best time: ${guide.bestTimeSummary} Book ${stateData.name} tour packages with MQT.`
+  );
+
+  const schema = combineSchemas(
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristDestination",
+      name: destination.name,
+      description: destination.shortDescription,
+      containedInPlace: { "@type": "AdministrativeArea", name: stateData.name },
+    },
+    buildFaqSchema(guide.faqs),
+    buildBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Destinations", path: "/destinations" },
+      { name: stateData.name, path: `/destinations/${stateData.slug}` },
+      { name: destination.name, path: canonicalPath },
+    ])
+  );
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>{destination.name} Tourism & Highlights | MyQuickTrippers</title>
-        <meta name="description" content={destination.shortDescription} />
-      </Helmet>
+      <SEO
+        title={`${destination.name} Tourism Guide`}
+        description={seoDescription}
+        canonical={canonicalPath}
+        image={activeHeroImg}
+        schema={schema}
+      />
 
       <PageHero
         title={destination.name}
@@ -104,6 +159,9 @@ const DestinationDetail = () => {
               <TabsContent value="overview" className="pt-4">
                 <div className="prose prose-slate max-w-none">
                   <p className="text-muted-foreground text-lg leading-relaxed whitespace-pre-line">
+                    <strong>{destination.name}</strong> in {stateData.name} is a must-see on India tour itineraries — {destination.shortDescription}
+                  </p>
+                  <p className="text-muted-foreground text-lg leading-relaxed whitespace-pre-line mt-4">
                     {destination.detailedDescription || destination.shortDescription}
                   </p>
                 </div>
@@ -131,6 +189,13 @@ const DestinationDetail = () => {
                 <GalleryComponent images={destination.galleryImages || []} destinationName={destination.name} />
               </div>
             )}
+
+            <DestinationSeoSections
+              destinationName={destination.name}
+              stateName={stateData.name}
+              guide={guide}
+              relatedPackages={relatedPackages}
+            />
           </div>
 
           {/* Right Sidebar */}

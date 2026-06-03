@@ -1,10 +1,16 @@
 import React from 'react';
 import PageLayout from '@/components/PageLayout';
 import PageHero from '@/components/PageHero';
+import { SEO } from '@/components/SEO';
 
 export default function TermsOfService() {
   return (
     <PageLayout>
+      <SEO
+        title="Terms of Service"
+        description="Terms and conditions for booking India tour packages with MyQuickTrippers (MQT)."
+        canonical="/terms-of-service"
+      />
       <PageHero title="Terms and Conditions" subtitle="Last Updated: April 16, 2026" />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="prose prose-lg dark:prose-invert">

@@ -269,8 +269,9 @@ const IndianCrafts = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col pb-16 lg:pb-0">
       <SEO
-        title="Indian Handicrafts Marketplace — Craft Trail | MyQuickTrippers"
-        description="Explore authentic Indian handicrafts from every state. 160+ artisan crafts across 16 states."
+        title="Indian Handicrafts Craft Trail"
+        description="Explore authentic Indian handicrafts from every state — 160+ artisan crafts across 16 states. Part of the MyQuickTrippers India experience."
+        canonical="/crafts"
       />
       <Navbar />
 

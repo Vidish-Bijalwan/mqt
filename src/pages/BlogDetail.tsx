@@ -5,6 +5,8 @@ import PageHero from "@/components/PageHero";
 import InquiryBanner from "@/components/InquiryBanner";
 import YouMayAlsoLike from "@/components/YouMayAlsoLike";
 import { blogPosts } from "@/data/blog";
+import { SEO } from "@/components/SEO";
+import { buildBreadcrumbSchema, combineSchemas } from "@/lib/seo";
 import { tourPackages } from "@/data/packages";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { Calendar, Clock, Facebook, Twitter, Linkedin, Link as LinkIcon } from "lucide-react";
@@ -27,10 +29,6 @@ const BlogDetail = () => {
 
   useEffect(() => {
     if (post) {
-      document.title = `${post.title} | MyQuickTrippers`;
-      const checkMeta = document.querySelector('meta[name="description"]');
-      if (checkMeta) checkMeta.setAttribute("content", post.metaDescription);
-      
       window.scrollTo(0, 0);
       track("page_view", { type: "blog", slug: post.slug });
     }
@@ -39,6 +37,15 @@ const BlogDetail = () => {
   if (!post) {
     return <Navigate to="/404" replace />;
   }
+
+  const canonicalPath = `/blog/${post.slug}`;
+  const schema = combineSchemas(
+    buildBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Blog", path: "/blog" },
+      { name: post.title, path: canonicalPath },
+    ])
+  );
 
   const handleShare = (platform: string) => {
     track("social_share", { platform, slug: post.slug });
@@ -50,6 +57,13 @@ const BlogDetail = () => {
 
   return (
     <PageLayout>
+      <SEO
+        title={post.title}
+        description={post.metaDescription}
+        canonical={canonicalPath}
+        image={post.image}
+        schema={schema}
+      />
       <PageHero
         title={post.title}
         backgroundImage={post.image}
