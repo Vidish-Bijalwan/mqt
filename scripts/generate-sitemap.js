@@ -58,7 +58,7 @@ function parseDestinations(content) {
 }
 
 function parseSlugsFromFile(content, field = "slug") {
-  const re = new RegExp(`${field}:\\s*"([^"]+)"`, "g");
+  const re = new RegExp(`"?${field}"?:\\s*"([^"]+)"`, "g");
   const slugs = new Set();
   let m;
   while ((m = re.exec(content)) !== null) {
