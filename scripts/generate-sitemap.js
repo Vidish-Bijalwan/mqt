@@ -168,9 +168,15 @@ ${[...urls].join("\n")}
 </urlset>
 `;
 
+  if (xml.includes("<loc></loc>") || xml.includes("<url>\n  </url>")) {
+    console.error("❌ Sitemap contains empty <url> entries — fix generator before deploying.");
+    process.exit(1);
+  }
+
   const outPath = path.join(ROOT, "public/sitemap.xml");
   fs.writeFileSync(outPath, xml, "utf8");
-  console.log(`✅ Wrote ${urls.size} URLs → public/sitemap.xml`);
+  const urlCount = (xml.match(/<loc>/g) || []).length;
+  console.log(`✅ Wrote ${urlCount} URLs → public/sitemap.xml`);
 }
 
 main();
