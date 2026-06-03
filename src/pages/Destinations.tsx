@@ -5,7 +5,8 @@ import InquiryBanner from "@/components/InquiryBanner";
 import { indiaStates, getStatesByRegion } from "@/data/india-states";
 import { StateCard } from "@/components/ui/Cards/StateCard";
 import { Region } from "@/types/models";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
+import { buildBreadcrumbSchema, combineSchemas } from "@/lib/seo";
 import destHero from "@/assets/dest-ladakh.jpg";
 import { StateMapContainer } from "@/components/ui/Map/StateMapContainer";
 import { IndiaStateMap } from "@/components/ui/Map/IndiaStateMap";
@@ -31,13 +32,22 @@ const Destinations = () => {
 
   const displayedStates = useMemo(() => getStatesByRegion(activeRegion), [activeRegion]);
 
+  const schema = combineSchemas(
+    buildBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Destinations", path: "/destinations" },
+    ])
+  );
+
   return (
     <PageLayout>
-      <Helmet>
-        <title>Explore Indian States & Union Territories | MyQuickTrippers</title>
-        <meta name="description" content="Discover the beauty of India. Explore all 36 states and union territories, from the Himalayas to the Indian Ocean. Plan your perfect journey with MQT." />
-        <meta name="keywords" content="india tourism, indian states, travel destination india, north india tours, south india travel" />
-      </Helmet>
+      <SEO
+        title="India Destinations & States Guide"
+        description="Explore all 36 Indian states and union territories — Himalayas, backwaters, deserts & islands. Plan your perfect India trip with MyQuickTrippers expert planners."
+        canonical="/destinations"
+        image={destHero}
+        schema={schema}
+      />
 
       <PageHero
         title="Find Your Perfect Destination"

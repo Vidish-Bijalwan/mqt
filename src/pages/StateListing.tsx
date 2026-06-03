@@ -8,7 +8,11 @@ import { getStateBySlug } from "@/data/india-states";
 import { destinationsData } from "@/data/destinations";
 import { DestinationCard } from "@/components/ui/Cards/DestinationCard";
 import { DestinationFilterSystem } from "@/components/ui/Explore/DestinationFilterSystem";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
+import { DestinationSeoSections } from "@/components/DestinationSeoSections";
+import { getStateGuideContent } from "@/data/destination-seo-content";
+import { tourPackages } from "@/data/packages";
+import { buildFaqSchema, buildBreadcrumbSchema, combineSchemas } from "@/lib/seo";
 import { InteractiveVectorMap } from "@/components/ui/Map/InteractiveVectorMap";
 import { StateGallery } from "@/components/ui/StateGallery";
 import { getStateImage } from "@/lib/imageMap";
@@ -99,14 +103,39 @@ const StateListing = () => {
     ].filter((img, idx, arr) => arr.findIndex(a => a.url === img.url) === idx);
   }, [stateData.slug, heroImg, defaultResolved.fallbackSrc]);
 
+  const canonicalPath = `/destinations/${stateData.slug}`;
+  const guide = getStateGuideContent(
+    stateData.name,
+    stateData.bestTimeToVisit.primary
+  );
+  const stateToken = stateData.name.split(" ")[0].toLowerCase();
+  const relatedPackages = tourPackages
+    .filter((p) => p.state.toLowerCase().includes(stateToken))
+    .slice(0, 5);
+  const schema = combineSchemas(
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristDestination",
+      name: stateData.name,
+      description: stateData.seo.description,
+    },
+    buildFaqSchema(guide.faqs),
+    buildBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Destinations", path: "/destinations" },
+      { name: stateData.name, path: canonicalPath },
+    ])
+  );
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>{stateData.seo.title}</title>
-        <meta name="description" content={stateData.seo.description} />
-        <meta name="keywords" content={stateData.seo.keywords.join(", ")} />
-      </Helmet>
+      <SEO
+        title={`${stateData.name} Tour Packages`}
+        description={stateData.seo.description}
+        canonical={canonicalPath}
+        image={heroImg}
+        schema={schema}
+      />
 
       <PageHero
         title={stateData.name}
@@ -170,6 +199,17 @@ const StateListing = () => {
         images={confirmedImages}
         stateColor={stateData.colorPrimary}
       />
+
+      <section className="section-padding bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <DestinationSeoSections
+            destinationName={stateData.name}
+            stateName={stateData.name}
+            guide={guide}
+            relatedPackages={relatedPackages}
+          />
+        </div>
+      </section>
 
       <EnquirySection />
 

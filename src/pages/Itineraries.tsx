@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import {
   Map, Search, Filter, Tag, ArrowRight, ChevronLeft, Calendar, Compass,
   Mountain, Sunrise, TreePine, Waves, Heart, Users, Ship, Sparkles,
@@ -14,9 +14,9 @@ import { useTripPlanner } from "@/contexts/TripPlannerContext";
 // ─── Region metadata ──────────────────────────────────────────────────────────
 const REGION_META: Record<string, { icon: React.ReactNode; examples: string; desc: string; count: number }> = {
   "North India": { icon: <Mountain className="w-6 h-6" />, examples: "Delhi, Agra, Jaipur, Himachal, Kashmir", desc: "Best for heritage, mountains & spiritual trips", count: 0 },
-  "East India":  { icon: <TreePine className="w-6 h-6" />, examples: "Darjeeling, Gangtok, Assam, Odisha", desc: "Best for tea hills, monasteries & nature", count: 0 },
+  "East India": { icon: <TreePine className="w-6 h-6" />, examples: "Darjeeling, Gangtok, Assam, Odisha", desc: "Best for tea hills, monasteries & nature", count: 0 },
   "Central India": { icon: <Compass className="w-6 h-6" />, examples: "Madhya Pradesh, Khajuraho, Orchha", desc: "Best for heritage, temples & wildlife", count: 0 },
-  "West India":  { icon: <Sunrise className="w-6 h-6" />, examples: "Rajasthan, Gujarat, Goa, Maharashtra", desc: "Best for deserts, beaches & royal cities", count: 0 },
+  "West India": { icon: <Sunrise className="w-6 h-6" />, examples: "Rajasthan, Gujarat, Goa, Maharashtra", desc: "Best for deserts, beaches & royal cities", count: 0 },
   "South India": { icon: <Waves className="w-6 h-6" />, examples: "Kerala, Coorg, Andaman, Tamil Nadu, Karnataka", desc: "Best for beaches, backwaters & hill stations", count: 0 },
 };
 // Populate counts
@@ -24,28 +24,28 @@ itineraries.forEach(i => { if (REGION_META[i.region]) REGION_META[i.region].coun
 
 // ─── Experience categories (mapped to actual categoryTags) ─────────────────
 const EXPERIENCE_OPTIONS = [
-  { id: "Heritage",     label: "Heritage & Culture",    icon: <Sunrise className="w-6 h-6" />, desc: "Forts, palaces, temples, and historic cities", tags: ["Heritage", "Culture"] },
-  { id: "Nature",       label: "Wildlife & Nature",     icon: <TreePine className="w-6 h-6" />, desc: "Tigers, national parks, forests, and sanctuaries", tags: ["Nature"] },
+  { id: "Heritage", label: "Heritage & Culture", icon: <Sunrise className="w-6 h-6" />, desc: "Forts, palaces, temples, and historic cities", tags: ["Heritage", "Culture"] },
+  { id: "Nature", label: "Wildlife & Nature", icon: <TreePine className="w-6 h-6" />, desc: "Tigers, national parks, forests, and sanctuaries", tags: ["Nature"] },
   { id: "Hill Station", label: "Mountains & Hill Stations", icon: <Mountain className="w-6 h-6" />, desc: "Cool escapes, hill retreats, and misty valleys", tags: ["Hill Station"] },
-  { id: "Beach",        label: "Beaches & Islands",     icon: <Waves className="w-6 h-6" />, desc: "Goa, Andaman, Lakshadweep, Kovalam", tags: ["Beach"] },
-  { id: "Leisure",      label: "Leisure & Family",      icon: <Users className="w-6 h-6" />, desc: "Relaxed getaways, family-friendly routes", tags: ["Leisure"] },
+  { id: "Beach", label: "Beaches & Islands", icon: <Waves className="w-6 h-6" />, desc: "Goa, Andaman, Lakshadweep, Kovalam", tags: ["Beach"] },
+  { id: "Leisure", label: "Leisure & Family", icon: <Users className="w-6 h-6" />, desc: "Relaxed getaways, family-friendly routes", tags: ["Leisure"] },
 ];
 
 // ─── Duration options ─────────────────────────────────────────────────────────
 const DURATION_OPTIONS = [
-  { id: "weekend",  label: "Weekend Escape",   range: "1–3 Days",  bestFor: "Quick city breaks & nearby getaways", min: 1, max: 3 },
-  { id: "short",    label: "Short Break",       range: "4–5 Days",  bestFor: "Single-destination deep dives", min: 4, max: 5 },
-  { id: "classic",  label: "Classic Trip",       range: "6–7 Days",  bestFor: "Complete regional circuits", min: 6, max: 7 },
-  { id: "extended", label: "Extended Journey",   range: "8–12 Days", bestFor: "Multi-region explorations", min: 8, max: 12 },
-  { id: "grand",    label: "Grand India Tour",   range: "13+ Days",  bestFor: "The ultimate cross-India adventure", min: 13, max: 999 },
+  { id: "weekend", label: "Weekend Escape", range: "1–3 Days", bestFor: "Quick city breaks & nearby getaways", min: 1, max: 3 },
+  { id: "short", label: "Short Break", range: "4–5 Days", bestFor: "Single-destination deep dives", min: 4, max: 5 },
+  { id: "classic", label: "Classic Trip", range: "6–7 Days", bestFor: "Complete regional circuits", min: 6, max: 7 },
+  { id: "extended", label: "Extended Journey", range: "8–12 Days", bestFor: "Multi-region explorations", min: 8, max: 12 },
+  { id: "grand", label: "Grand India Tour", range: "13+ Days", bestFor: "The ultimate cross-India adventure", min: 13, max: 999 },
 ];
 
 // ─── Progress steps ───────────────────────────────────────────────────────────
 const STEPS = [
-  { key: "region",     label: "Region" },
+  { key: "region", label: "Region" },
   { key: "experience", label: "Experience" },
-  { key: "duration",   label: "Duration" },
-  { key: "results",    label: "Matches" },
+  { key: "duration", label: "Duration" },
+  { key: "results", label: "Matches" },
 ];
 
 const Itineraries = () => {
@@ -109,6 +109,27 @@ const Itineraries = () => {
     }
   }, [wizardStep]);
 
+  // Scroll Reveal Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            // Optional: stop observing once revealed
+            // observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -100px 0px", threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll(".reveal-section, .reveal-child");
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [wizardStep]); // Re-run when wizardStep changes as new elements might appear
+
   // ── Handlers ──
   const handleSelectRegion = (region: string) => { setSelectedRegion(region); setWizardStep(2); };
   const handleSelectExperience = (exp: string) => { setSelectedExperience(exp); setWizardStep(3); };
@@ -168,7 +189,7 @@ const Itineraries = () => {
     if (selectedRegion !== "All") chips.push({ label: regionLabel, onClear: () => { setSelectedRegion("All"); if (wizardStep > 1) setWizardStep(1); } });
     if (selectedExperience !== "All") chips.push({ label: experienceLabel, onClear: () => { setSelectedExperience("All"); if (wizardStep > 2) setWizardStep(2); } });
     if (selectedDuration !== "All") chips.push({ label: durationLabel, onClear: () => { setSelectedDuration("All"); if (wizardStep > 3) setWizardStep(3); } });
-    
+
     if (chips.length === 0) return null;
     return (
       <div className="flex flex-wrap items-center justify-center gap-2 px-6 pb-6 border-b border-gray-100">
@@ -187,10 +208,12 @@ const Itineraries = () => {
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>Find Your Perfect India Itinerary | My Quick Trippers</title>
-        <meta name="description" content="Answer a few quick questions and we'll match you with handpicked India travel routes across heritage cities, mountains, beaches, wildlife escapes, and spiritual journeys." />
-      </Helmet>
+      <SEO
+        title="India Itinerary Planner"
+        description="Find your perfect India itinerary — heritage, mountains, beaches & spiritual routes. Answer a few questions for handpicked MQT tour plans."
+        canonical="/itineraries"
+        image="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&q=80&w=1200"
+      />
 
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 1: HERO
@@ -241,7 +264,7 @@ const Itineraries = () => {
           SECTION 2: TRIP FINDER WIZARD (Steps 1-3)
           ═══════════════════════════════════════════════════════════════════════ */}
       {wizardStep >= 1 && wizardStep <= 3 && (
-        <section className="bg-[#faf7f1] pb-10 md:pb-20 relative z-20" style={{ marginTop: "-120px" }}>
+        <section className="bg-[#faf7f1] pb-10 md:pb-20 relative z-20 reveal-section" style={{ marginTop: "-120px" }}>
           <div className="container mx-auto px-4 max-w-5xl">
             <div className="bg-white rounded-[2rem] shadow-2xl shadow-black/5 border border-gray-100 overflow-hidden relative"
               style={{ backgroundImage: "radial-gradient(circle at 20% 80%, rgba(251,191,36,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(249,115,22,0.03) 0%, transparent 50%)" }}
@@ -435,7 +458,7 @@ const Itineraries = () => {
           SECTION 3: RESULTS
           ═══════════════════════════════════════════════════════════════════════ */}
       {wizardStep === 4 && (
-        <section ref={resultsRef} className="bg-[#faf7f1] pb-10 md:pb-20 relative z-20" style={{ marginTop: "-80px" }}>
+        <section ref={resultsRef} className="bg-[#faf7f1] pb-10 md:pb-20 relative z-20 reveal-section" style={{ marginTop: "-80px" }}>
           <div className="container mx-auto px-4">
 
             {/* Results header card */}
@@ -577,7 +600,7 @@ const Itineraries = () => {
           SECTION 4: TRUST STRIP
           ═══════════════════════════════════════════════════════════════════════ */}
       {wizardStep === 4 && (
-        <section className="bg-white border-y border-gray-100 py-12 md:py-16">
+        <section className="bg-white border-y border-gray-100 py-12 md:py-16 reveal-section">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               {[
@@ -601,11 +624,11 @@ const Itineraries = () => {
           SECTION 5: CUSTOM TRIP CTA
           ═══════════════════════════════════════════════════════════════════════ */}
       {wizardStep === 4 && (
-        <section className="bg-gradient-to-br from-[#111827] to-[#1e293b] py-16 md:py-24 relative overflow-hidden">
+        <section className="bg-gradient-to-br from-[#111827] to-[#1e293b] py-16 md:py-24 relative overflow-hidden reveal-section">
           {/* Subtle background patterns */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3 pointer-events-none" />
-          
+
           <div className="container mx-auto px-4 text-center max-w-3xl relative z-10">
             <MessageCircle className="w-12 h-12 text-amber-400 mx-auto mb-6" />
             <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">Need Something More Specific?</h3>

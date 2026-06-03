@@ -45,9 +45,11 @@ const HelicopterPackages = () => {
 
   return (
     <PageLayout>
-      <SEO 
-        title="Premium Helicopter Packages 2026 | Kedarnath & Char Dham"
-        description="Book VIP helicopter packages for Kedarnath, Char Dham, and Valley of Flowers. Official DGCA-approved routes from Phata, Sersi, and Dehradun. Limited seats available."
+      <SEO
+        title="Char Dham Helicopter Packages 2026"
+        description="Book Kedarnath & Char Dham helicopter yatra from Dehradun. VIP DGCA routes, limited seats. Do Dham & Char Dham packages — free MQT quote."
+        canonical="/packages/helicopter"
+        image="/tourism/India_Central/Incredible_India/021_ganga-ghat-haridwar-uttarakhand-1-attr-hero_govt.jpg"
       />
       
       <div className="relative pt-32 pb-20 bg-[#0F172A] text-white overflow-hidden">

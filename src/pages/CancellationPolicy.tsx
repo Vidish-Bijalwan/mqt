@@ -1,10 +1,16 @@
 import React from 'react';
 import PageLayout from '@/components/PageLayout';
 import PageHero from '@/components/PageHero';
+import { SEO } from '@/components/SEO';
 
 export default function CancellationPolicy() {
   return (
     <PageLayout>
+      <SEO
+        title="Cancellation & Refund Policy"
+        description="MyQuickTrippers cancellation and refund policy for India tour packages, flights, and custom itineraries."
+        canonical="/cancellation-policy"
+      />
       <PageHero title="Cancellation & Refund Policy" subtitle="Clear, transparent terms for peace of mind" />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="prose prose-lg dark:prose-invert">

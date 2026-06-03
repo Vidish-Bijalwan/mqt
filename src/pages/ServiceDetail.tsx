@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PageLayout from '@/components/PageLayout';
+import { SEO } from '@/components/SEO';
 import { Plane, Hotel, Navigation, Shield, Award, MapPin, CheckCircle2, Clock, Star, PhoneCall, ChevronRight } from 'lucide-react';
 
 const serviceData: Record<string, any> = {
@@ -85,6 +86,12 @@ export default function ServiceDetail() {
 
   return (
     <PageLayout>
+      <SEO
+        title={`${service.title} — Travel Services`}
+        description={service.description}
+        canonical={`/services/${slug || "custom-itinerary"}`}
+        image={service.image}
+      />
       {/* Dynamic Hero Section */}
       <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0">

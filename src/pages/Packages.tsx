@@ -10,18 +10,24 @@ import { useQuery } from "@tanstack/react-query";
 import { experienceCategories } from "@/data/experiences";
 import { useLocation } from "react-router-dom";
 import heroImg from "@/assets/dest-kashmir.jpg";
+import { SEO } from "@/components/SEO";
+import { useParams } from "react-router-dom";
 
 const Packages = () => {
   const location = useLocation();
+  const { category: routeCategory } = useParams<{ category?: string }>();
   const searchParams = new URLSearchParams(location.search);
-  const initialCategory = searchParams.get("category") || "all";
+  const initialCategory = routeCategory || searchParams.get("category") || "all";
 
   const [activeCategory, setActiveCategory] = useState(initialCategory);
 
   useEffect(() => {
-    document.title = "Tour Packages | MQT";
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (routeCategory) setActiveCategory(routeCategory);
+  }, [routeCategory]);
 
   const { data: fetchResult, isLoading } = useQuery({
     queryKey: ["public-packages"],
@@ -36,8 +42,28 @@ const Packages = () => {
     return tourPackages.filter((pkg) => pkg.categories.includes(activeCategory));
   }, [activeCategory, tourPackages]);
 
+  const categoryMeta = experienceCategories.find((c) => c.slug === activeCategory);
+  const seoTitle =
+    categoryMeta && activeCategory !== "all"
+      ? `${categoryMeta.title} India`
+      : "India Tour Packages";
+  const seoDescription =
+    categoryMeta && activeCategory !== "all"
+      ? categoryMeta.description[0]
+      : "Browse curated India tour packages — honeymoon, family, pilgrimage, adventure & luxury. Custom itineraries, best prices, free quotes from MQT.";
+  const canonical =
+    activeCategory && activeCategory !== "all"
+      ? `/packages/${activeCategory}`
+      : "/packages";
+
   return (
     <PageLayout>
+      <SEO
+        title={seoTitle}
+        description={seoDescription}
+        canonical={canonical}
+        image={heroImg}
+      />
       <PageHero
         title="Our Tour Packages"
         subtitle="Discover our handcrafted itineraries designed for every type of traveler. From weekend getaways to grand Himalayan expeditions."

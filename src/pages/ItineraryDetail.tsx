@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
+import { buildBreadcrumbSchema, combineSchemas } from "@/lib/seo";
 import { Map, Calendar, Sun, Check, MessageCircle, Zap, ShieldCheck } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
@@ -42,47 +43,49 @@ const ItineraryDetail = () => {
     gallery: galleryEntries,
   }));
 
-  const siteUrl = "https://www.myquicktrippers.com";
-  const url = `${siteUrl}/itineraries/${itinerary.slug}`;
-
-  // Structured Data
-  const schema = JSON.stringify([
+  const canonicalPath = `/itineraries/${itinerary.slug}`;
+  const schema = combineSchemas(
     {
       "@context": "https://schema.org",
       "@type": "TouristTrip",
       name: itinerary.packageName,
       description: itinerary.seoDescription,
-      url,
-      touristType: itinerary.categoryTags?.map(c => ({ "@type": "Audience", audienceType: c })),
+      url: `https://www.myquicktrippers.com${canonicalPath}`,
+      touristType: itinerary.categoryTags?.map((c) => ({
+        "@type": "Audience",
+        audienceType: c,
+      })),
       offers: {
         "@type": "Offer",
         price: itinerary.pricing.startingPrice || 10000,
         priceCurrency: "INR",
         availability: "https://schema.org/InStock",
-        url
+        url: `https://www.myquicktrippers.com${canonicalPath}`,
       },
-      provider: { "@type": "TravelAgency", name: "MyQuickTrippers", url: siteUrl },
-      duration: `P${itinerary.days}D`
+      provider: {
+        "@type": "TravelAgency",
+        name: "MyQuickTrippers",
+        url: "https://www.myquicktrippers.com",
+      },
+      duration: `P${itinerary.days}D`,
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-        { "@type": "ListItem", position: 2, name: "Itineraries", item: `${siteUrl}/itineraries` },
-        { "@type": "ListItem", position: 3, name: itinerary.packageName, item: url }
-      ]
-    }
-  ]);
+    buildBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Itineraries", path: "/itineraries" },
+      { name: itinerary.packageName, path: canonicalPath },
+    ])
+  );
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>{itinerary.seoTitle}</title>
-        <meta name="description" content={itinerary.seoDescription} />
-        <link rel="canonical" href={url} />
-        <script type="application/ld+json">{schema}</script>
-      </Helmet>
+      <SEO
+        title={itinerary.seoTitle.replace(/\s*\|.*$/, "")}
+        description={itinerary.seoDescription}
+        canonical={canonicalPath}
+        image={itinerary.image}
+        schema={schema}
+        rawTitle
+      />
 
       <PageHero
         title={itinerary.packageName}
