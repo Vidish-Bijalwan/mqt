@@ -21,7 +21,7 @@ export async function listFAQs(scope?: string): Promise<ServiceResponse<FAQ[]>> 
     if (scope && scope !== "all") query = query.eq("scope", scope);
     const { data, error } = await query;
     if (error) throw error;
-    return { data: data as FAQ[], error: null };
+    return { data: data as unknown as unknown as FAQ[], error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -31,7 +31,7 @@ export async function getFAQById(id: string): Promise<ServiceResponse<FAQ>> {
   try {
     const { data, error } = await supabase.from("faqs").select("*").eq("id", id).single();
     if (error) throw error;
-    return { data: data as FAQ, error: null };
+    return { data: data as unknown as FAQ, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -41,7 +41,7 @@ export async function createFAQ(payload: FAQInsert): Promise<ServiceResponse<FAQ
   try {
     const { data, error } = await supabase.from("faqs").insert([payload] as any).select().single();
     if (error) throw error;
-    return { data: data as FAQ, error: null };
+    return { data: data as unknown as FAQ, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -51,10 +51,10 @@ export async function updateFAQ(id: string, payload: Partial<FAQInsert>): Promis
   try {
     const { data, error } = await supabase
       .from("faqs")
-      .update({ ...payload, updated_at: new Date().toISOString() } as any)
+      .update({ ...payload, updated_at: new Date().toISOString() })
       .eq("id", id).select().single();
     if (error) throw error;
-    return { data: data as FAQ, error: null };
+    return { data: data as unknown as FAQ, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }

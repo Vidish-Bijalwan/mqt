@@ -42,7 +42,7 @@ export async function listAdminTestimonials(filters?: {
 
     const { data, error } = await query;
     if (error) throw error;
-    return { data: data as AdminTestimonial[], error: null };
+    return { data: data as unknown as unknown as AdminTestimonial[], error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -52,7 +52,7 @@ export async function getAdminTestimonialById(id: string): Promise<ServiceRespon
   try {
     const { data, error } = await supabase.from("testimonials").select("*").eq("id", id).single();
     if (error) throw error;
-    return { data: data as AdminTestimonial, error: null };
+    return { data: data as unknown as AdminTestimonial, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -62,7 +62,7 @@ export async function createAdminTestimonial(payload: AdminTestimonialInsert): P
   try {
     const { data, error } = await supabase.from("testimonials").insert([payload as any] as any).select().single();
     if (error) throw error;
-    return { data: data as AdminTestimonial, error: null };
+    return { data: data as unknown as AdminTestimonial, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -76,7 +76,7 @@ export async function updateAdminTestimonial(id: string, payload: Partial<AdminT
       .update({ ...payload, updated_at: new Date().toISOString() } as any)
       .eq("id", id).select().single();
     if (error) throw error;
-    return { data: data as AdminTestimonial, error: null };
+    return { data: data as unknown as AdminTestimonial, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }

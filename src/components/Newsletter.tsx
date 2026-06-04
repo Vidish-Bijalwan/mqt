@@ -13,12 +13,20 @@ const fetchNewsletterSettings = async () => {
   return data;
 };
 
-const defaultSettings = {
+type NewsletterSettings = {
+  heading: string;
+  subheading: string;
+  success_message: string;
+  button_text: string;
+  bullets: string[] | string;
+};
+
+const defaultSettings: NewsletterSettings = {
   heading: "Get Exclusive Travel Deals & Insider Guides",
   subheading: "Join 5,000+ travellers who receive our monthly newsletter",
   success_message: "Thank you! Check your inbox for a free travel guide.",
   button_text: "Subscribe Now →",
-  bullets: ["✅ No spam, ever", "📧 Monthly, not daily", "🎁 Free travel guide on signup"]
+  bullets: ["✅ No spam, ever", "📧 Monthly, not daily", "🎁 Free travel guide on signup"],
 };
 
 const Newsletter = () => {
@@ -30,7 +38,10 @@ const Newsletter = () => {
     queryFn: fetchNewsletterSettings,
   });
 
-  const settings = settingsData || defaultSettings;
+  const settings: NewsletterSettings = {
+    ...defaultSettings,
+    ...(settingsData as Partial<NewsletterSettings> | null),
+  };
   const bulletsResponse = settings.bullets || ["✅ No spam, ever", "📧 Monthly, not daily", "🎁 Free travel guide on signup"];
   const parsedBullets = Array.isArray(bulletsResponse) ? bulletsResponse : 
     (typeof bulletsResponse === 'string' ? JSON.parse(bulletsResponse) : defaultSettings.bullets);

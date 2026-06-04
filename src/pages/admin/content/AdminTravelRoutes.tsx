@@ -22,7 +22,7 @@ async function fetchTravelRoutes() {
     .select("*")
     .order("sort_order", { ascending: true });
   if (error) throw error;
-  return data;
+  return (data ?? []) as unknown as TravelRoute[];
 }
 
 async function deleteTravelRoute(id: string) {

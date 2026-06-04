@@ -1,5 +1,6 @@
 import { supabase, type DbDestination, type DbDestinationItineraryDay } from "@/lib/supabase";
-import { destinationsData, type DestinationData } from "@/data/destinations";
+import { destinationsData } from "@/data/destinations";
+import type { DestinationDetail } from "@/types/destination-detail";
 import { resolveImageSource } from "@/lib/storage";
 import type { ServiceResponse } from "./enquiryService";
 
@@ -7,25 +8,35 @@ type DbDestinationWithItinerary = DbDestination & {
   destination_itinerary_days?: DbDestinationItineraryDay[];
 };
 
-const mapDbToDomain = (row: DbDestinationWithItinerary): DestinationData => {
-  // Sort itinerary days by day_number
-  const sortedItinerary = row.destination_itinerary_days 
+function imageFallback(value: unknown): string {
+  return typeof value === "string" ? value : "";
+}
+
+const mapDbToDomain = (row: DbDestinationWithItinerary): DestinationDetail => {
+  const sortedItinerary = row.destination_itinerary_days
     ? [...row.destination_itinerary_days].sort((a, b) => a.day_number - b.day_number)
     : [];
 
-  // Locate fallback to pull the local vite asset string if DB string is null
-  const fallbackObj = destinationsData.find(d => d.slug === row.slug);
+  const fallbackObj = destinationsData.find((d) => d.slug === row.slug);
 
   return {
     id: row.id,
     name: row.name,
     slug: row.slug,
-    stateSlug: row.state_ut_id, // See comment in getDestinationBySlug below
+    stateSlug: row.state_ut_id,
     state: row.state,
     country: row.country,
     tagline: row.tagline || "",
-    image: resolveImageSource("destination-images", row.image_url, fallbackObj?.image || ""),
-    heroImage: resolveImageSource("destination-images", row.hero_image_url, fallbackObj?.heroImage || ""),
+    image: resolveImageSource(
+      "destination-images",
+      row.image_url,
+      imageFallback(fallbackObj?.image)
+    ),
+    heroImage: resolveImageSource(
+      "destination-images",
+      row.hero_image_url,
+      imageFallback(fallbackObj?.heroImage)
+    ),
     altitude: row.altitude || undefined,
     bestSeason: row.best_season,
     idealDuration: row.ideal_duration,
@@ -34,29 +45,29 @@ const mapDbToDomain = (row: DbDestinationWithItinerary): DestinationData => {
     trending: row.trending,
     packagesCount: row.packages_count,
     overview: row.overview || [],
-    quickFacts: (row.quick_facts as any) || [],
-    bestTimeToVisit: (row.best_time_to_visit as any) || [],
-    highlights: (row.highlights as any) || [],
+    quickFacts: (row.quick_facts as DestinationDetail["quickFacts"]) || [],
+    bestTimeToVisit: row.best_time_to_visit || [],
+    highlights: row.highlights || [],
     inclusions: row.inclusions || [],
     exclusions: row.exclusions || [],
     travelTips: row.travel_tips || [],
-    faqs: (row.faqs as any) || [],
-    gallery: [], // Needs separate mapping or static fallback
+    faqs: row.faqs || [],
+    gallery: [],
     relatedDestinations: row.related_destinations || [],
     relatedPackageSlugs: row.related_package_slugs || [],
     relatedBlogSlugs: row.related_blog_slugs || [],
-    itinerary: sortedItinerary.map(day => ({
+    itinerary: sortedItinerary.map((day) => ({
       day: day.day_number,
       title: day.title,
       description: day.description,
       activities: day.activities || [],
       stay: day.stay || "",
       meals: day.meals || "",
-    }))
-  } as DestinationData; // Hack for stateSlug mapping, we rely mostly on the hook.
+    })),
+  };
 };
 
-export async function getDestinations(limit?: number): Promise<ServiceResponse<DestinationData[]>> {
+export async function getDestinations(limit?: number): Promise<ServiceResponse<DestinationDetail[]>> {
   try {
     let query = supabase
       .from("destinations")
@@ -75,32 +86,43 @@ export async function getDestinations(limit?: number): Promise<ServiceResponse<D
     return { data: data.map(mapDbToDomain), error: null };
   } catch (err) {
     console.warn("[DestinationService] Falling back to static data", err);
-    let fallback = [...destinationsData];
+    let fallback = destinationsData.map(
+      (d) =>
+        ({
+          id: d.id,
+          name: d.name,
+          slug: d.slug,
+          stateSlug: d.stateSlug,
+          image: imageFallback(d.image),
+          heroImage: imageFallback(d.heroImage),
+          shortDescription: d.shortDescription,
+        }) as DestinationDetail
+    );
     if (limit) fallback = fallback.slice(0, limit);
     return { data: fallback, error: null };
   }
 }
 
-export async function getDestinationBySlug(slug: string): Promise<ServiceResponse<DestinationData>> {
+export async function getDestinationBySlug(slug: string): Promise<ServiceResponse<DestinationDetail>> {
   try {
     const { data, error } = await supabase
       .from("destinations")
-      .select("*, destination_itinerary_days(*), states_ut(slug)")
+      .select("*, destination_itinerary_days(*), states_uts(slug)")
       .eq("active", true)
       .eq("slug", slug)
       .single();
 
     if (error) throw error;
     if (!data) throw new Error("Not found");
-    
-    // Fix stateSlug injection from joint table
+
     const mapped = mapDbToDomain(data);
-    mapped.stateSlug = (data as any).states_ut?.slug || mapped.stateSlug;
-    
-    // Inject static gallery since we didn't model a gallery table yet
-    const staticFallback = destinationsData.find(d => d.slug === slug);
-    if (staticFallback) {
-      mapped.gallery = staticFallback.gallery;
+    const stateSlug = (data as DbDestinationWithItinerary & { states_uts?: { slug: string } }).states_uts
+      ?.slug;
+    if (stateSlug) mapped.stateSlug = stateSlug;
+
+    const staticFallback = destinationsData.find((d) => d.slug === slug);
+    if (staticFallback?.gallery) {
+      mapped.gallery = staticFallback.gallery as string[];
     }
 
     return { data: mapped, error: null };
@@ -108,6 +130,18 @@ export async function getDestinationBySlug(slug: string): Promise<ServiceRespons
     console.warn(`[DestinationService] Falling back to static data for slug: ${slug}`, err);
     const fallback = destinationsData.find((d) => d.slug === slug);
     if (!fallback) return { data: null, error: new Error("Not found in static either") };
-    return { data: fallback, error: null };
+    return {
+      data: {
+        id: fallback.id,
+        name: fallback.name,
+        slug: fallback.slug,
+        stateSlug: fallback.stateSlug,
+        image: imageFallback(fallback.image),
+        heroImage: imageFallback(fallback.heroImage),
+        shortDescription: fallback.shortDescription,
+        gallery: (fallback.gallery as string[]) || [],
+      } as DestinationDetail,
+      error: null,
+    };
   }
 }

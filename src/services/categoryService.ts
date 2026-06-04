@@ -25,7 +25,7 @@ export async function listCategories(search?: string): Promise<ServiceResponse<C
     if (search) query = query.ilike("name", `%${search}%`);
     const { data, error } = await query;
     if (error) throw error;
-    return { data: data as Category[], error: null };
+    return { data: data as unknown as unknown as Category[], error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -35,7 +35,7 @@ export async function getCategoryById(id: string): Promise<ServiceResponse<Categ
   try {
     const { data, error } = await supabase.from("package_categories").select("*").eq("id", id).single();
     if (error) throw error;
-    return { data: data as Category, error: null };
+    return { data: data as unknown as Category, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -45,7 +45,7 @@ export async function createCategory(payload: CategoryInsert): Promise<ServiceRe
   try {
     const { data, error } = await supabase.from("package_categories").insert([payload] as any).select().single();
     if (error) throw error;
-    return { data: data as Category, error: null };
+    return { data: data as unknown as Category, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -55,10 +55,10 @@ export async function updateCategory(id: string, payload: Partial<CategoryInsert
   try {
     const { data, error } = await supabase
       .from("package_categories")
-      .update({ ...payload, updated_at: new Date().toISOString() } as any)
+      .update({ ...payload, updated_at: new Date().toISOString() })
       .eq("id", id).select().single();
     if (error) throw error;
-    return { data: data as Category, error: null };
+    return { data: data as unknown as Category, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }

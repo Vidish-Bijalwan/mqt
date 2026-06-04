@@ -46,8 +46,8 @@ const FeaturedReview = ({ review }: { review: Testimonial }) => {
         </div>
 
         {/* Content — takes 3/5 */}
-        <div className="lg:col-span-3 p-8 md:p-10 flex flex-col justify-center">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="lg:col-span-3 card-pad flex flex-col justify-center">
+          <div className="flex items-center gap-3 mb-3">
             <div className="flex gap-0.5">
               {[...Array(review.rating)].map((_, i) => (
                 <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
@@ -60,7 +60,7 @@ const FeaturedReview = ({ review }: { review: Testimonial }) => {
             )}
           </div>
 
-          <blockquote className="text-lg md:text-xl text-gray-800 leading-relaxed mb-6 font-body">
+          <blockquote className="text-lg md:text-xl text-gray-800 leading-relaxed mb-5 font-body">
             "{getHook(review.text, 220)}"
           </blockquote>
 
@@ -85,9 +85,8 @@ const FeaturedReview = ({ review }: { review: Testimonial }) => {
 // ─── Secondary Card ───────────────────────────────────────────────────────────
 const ReviewCard = ({ review }: { review: Testimonial }) => {
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
-      {/* Destination tag */}
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-white rounded-2xl card-pad shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-gray-100">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-1.5 text-primary text-xs font-bold">
           <MapPin className="w-3.5 h-3.5" />
           {review.destination}
@@ -100,7 +99,7 @@ const ReviewCard = ({ review }: { review: Testimonial }) => {
       </div>
 
       {/* Quote */}
-      <p className="text-sm text-gray-700 leading-relaxed mb-5 flex-1 line-clamp-3">
+      <p className="text-sm text-gray-700 leading-relaxed mb-4 flex-1 line-clamp-3">
         "{getHook(review.text, 120)}"
       </p>
 
@@ -138,12 +137,10 @@ const TestimonialsSection = () => {
   const prevMobile = () => setMobileIdx((p) => (p - 1 + mobileReviews.length) % mobileReviews.length);
 
   return (
-    <section className="section-y-compact md:section-y bg-[#F5F1EB]">
-      <div className="container-page max-w-[1400px]">
-        <div className="section-header-center">
-          <h2 className="section-heading mb-2 sm:mb-3">
-            What Our Travellers Say
-          </h2>
+    <section className="section-compact bg-[#F5F1EB]">
+      <div className="container-page">
+        <div className="section-header-center section-intro-center">
+          <h2 className="section-heading">What Our Travellers Say</h2>
           <div className="flex items-center justify-center gap-4 flex-wrap text-sm">
             <div className="flex items-center gap-1.5">
               <div className="flex gap-0.5">
@@ -167,8 +164,7 @@ const TestimonialsSection = () => {
             <FeaturedReview review={featured} />
           </div>
 
-          {/* Secondary grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 grid-gap">
             {secondary.map((t) => (
               <ReviewCard key={t.id} review={t} />
             ))}
@@ -188,8 +184,9 @@ const TestimonialsSection = () => {
           {/* Nav */}
           <div className="flex items-center justify-center gap-4 mt-6">
             <button
+              type="button"
               onClick={prevMobile}
-              className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors shadow-sm"
+              className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors shadow-sm"
               aria-label="Previous review"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -211,8 +208,9 @@ const TestimonialsSection = () => {
             </div>
 
             <button
+              type="button"
               onClick={nextMobile}
-              className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors shadow-sm"
+              className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors shadow-sm"
               aria-label="Next review"
             >
               <ChevronRight className="w-5 h-5" />

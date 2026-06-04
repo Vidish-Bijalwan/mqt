@@ -4,40 +4,52 @@ import { destinationsData } from "@/data/destinations";
 import { blogPosts } from "@/data/blog";
 import { allTestimonials } from "@/data/testimonials";
 
+/** Static seed rows use a looser shape than full DestinationData */
+type SeedDestination = Record<string, unknown> & {
+  slug: string;
+  name: string;
+  popularityScore?: number;
+  image?: unknown;
+  heroImage?: unknown;
+};
+
 export async function seedDatabaseFromClient() {
   const errors: string[] = [];
+  const seedDestinations = destinationsData as unknown as SeedDestination[];
 
   // ── 1. Destinations ──────────────────────────────────────────────────────────
-  for (const dest of destinationsData) {
+  for (const dest of seedDestinations) {
+    const difficulty = dest.difficulty as string | undefined;
     const { error } = await supabase.from("destinations").upsert({
       slug: dest.slug,
       name: dest.name,
-      tagline: dest.tagline || "",
-      state: dest.state,
-      country: dest.country || "India",
-      // image strings: could be Unsplash URL or Vite asset object - coerce to string
+      tagline: (dest.tagline as string) || "",
+      state: (dest.state as string) || "",
+      country: (dest.country as string) || "India",
       image_url: typeof dest.image === "string" ? dest.image : "",
       hero_image_url: typeof dest.heroImage === "string" ? dest.heroImage : "",
-      altitude: dest.altitude || null,
-      best_season: dest.bestSeason || "",
-      ideal_duration: dest.idealDuration || "",
-      difficulty: (["Easy","Moderate","Challenging"].includes(dest.difficulty) ? dest.difficulty : "Easy") as any,
-      overview: dest.overview || [],
-      quick_facts: dest.quickFacts || [],
-      best_time_to_visit: dest.bestTimeToVisit || [],
-      highlights: dest.highlights || [],
-      inclusions: dest.inclusions || [],
-      exclusions: dest.exclusions || [],
-      travel_tips: dest.travelTips || [],
-      faqs: dest.faqs || [],
-      related_destinations: dest.relatedDestinations || [],
-      related_package_slugs: dest.relatedPackageSlugs || [],
-      related_blog_slugs: dest.relatedBlogSlugs || [],
+      altitude: (dest.altitude as string) || null,
+      best_season: (dest.bestSeason as string) || "",
+      ideal_duration: (dest.idealDuration as string) || "",
+      difficulty: (["Easy", "Moderate", "Challenging"].includes(difficulty || "")
+        ? difficulty
+        : "Easy") as "Easy" | "Moderate" | "Challenging",
+      overview: (dest.overview as string[]) || [],
+      quick_facts: (dest.quickFacts as unknown[]) || [],
+      best_time_to_visit: (dest.bestTimeToVisit as unknown[]) || [],
+      highlights: (dest.highlights as unknown[]) || [],
+      inclusions: (dest.inclusions as string[]) || [],
+      exclusions: (dest.exclusions as string[]) || [],
+      travel_tips: (dest.travelTips as string[]) || [],
+      faqs: (dest.faqs as unknown[]) || [],
+      related_destinations: (dest.relatedDestinations as string[]) || [],
+      related_package_slugs: (dest.relatedPackageSlugs as string[]) || [],
+      related_blog_slugs: (dest.relatedBlogSlugs as string[]) || [],
       popularity_score: dest.popularityScore || 50,
-      trending: dest.trending || false,
-      packages_count: dest.packagesCount || 0,
+      trending: Boolean(dest.trending),
+      packages_count: (dest.packagesCount as number) || 0,
       active: true,
-      featured: dest.popularityScore > 80,
+      featured: (dest.popularityScore || 0) > 80,
     }, { onConflict: "slug" });
 
     if (error) errors.push(`[Destination:${dest.slug}] ${error.message}`);
