@@ -6,7 +6,7 @@ import { getGeneralWhatsAppUrl, getPhoneUrl, getEmailUrl, getInstagramUrl } from
 // Fitts's Law: massive CTA button, impossible to miss.
 const EnquirySection = () => {
   return (
-    <section className="relative py-24 md:py-32 text-center overflow-hidden reveal-section" id="enquiry">
+    <section className="relative py-12 sm:py-20 md:py-28 text-center overflow-hidden reveal-section w-full" id="enquiry">
 
       {/* Background image — emotional, aspirational */}
       <div
@@ -38,7 +38,7 @@ const EnquirySection = () => {
           Starts with a WhatsApp
         </h2>
 
-        <p className="text-white/75 text-base leading-relaxed mb-10 max-w-lg mx-auto">
+        <p className="text-white/75 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-lg mx-auto px-2">
           No forms. No waiting. Just tell us where you want to go and we'll plan
           everything — permits, hotels, guides, and memories.
         </p>
@@ -51,15 +51,7 @@ const EnquirySection = () => {
           whileHover={{ scale: 1.03, y: -3 }}
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 340, damping: 24 }}
-          className="inline-flex items-center justify-center gap-3 font-bold text-white rounded-2xl mb-6 transition-colors"
-          style={{
-            height: 64,
-            padding: "0 48px",
-            fontSize: 18,
-            background: "#25D366",
-            boxShadow: "0 16px 48px rgba(37,211,102,0.4)",
-            textDecoration: "none",
-          }}
+          className="inline-flex items-center justify-center gap-2 sm:gap-3 h-12 sm:h-14 px-6 sm:px-10 text-sm sm:text-lg font-bold text-white rounded-xl sm:rounded-2xl mb-5 sm:mb-6 bg-[#25D366] shadow-lg shadow-[#25D366]/40 no-underline transition-colors"
           id="final-cta-whatsapp"
         >
           {/* WhatsApp icon */}

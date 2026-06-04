@@ -26,23 +26,23 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 bg-white ${
-        scrolled ? "shadow-[0_4px_20px_rgb(0,0,0,0.05)] py-2.5 md:py-3" : "py-4 md:py-5"
+      className={`sticky top-0 z-50 w-full max-w-[100vw] transition-all duration-300 bg-white ${
+        scrolled ? "shadow-[0_4px_20px_rgb(0,0,0,0.05)] py-2 md:py-3" : "py-2.5 md:py-4"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-12">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center gap-2 min-h-11 md:min-h-12">
           
           {/* Logo (Left) */}
-          <Link to="/" className="flex items-center gap-3 group shrink-0" aria-label="Home">
+          <Link to="/" className="flex items-center gap-2 min-w-0 group shrink" aria-label="Home">
             <img 
               src="/logo.png" 
               alt="MyQuickTrippers" 
-              className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+              className="h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 shrink-0 object-contain transition-transform duration-300 group-hover:scale-105" 
             />
-            <div className="flex flex-col justify-center">
-              <span className="font-display text-xl md:text-2xl font-bold text-[#111111] tracking-tight leading-none">MQT</span>
-              <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold mt-0.5 whitespace-nowrap">MyQuickTrippers</span>
+            <div className="flex flex-col justify-center min-w-0">
+              <span className="font-display text-lg sm:text-xl md:text-2xl font-bold text-[#111111] tracking-tight leading-none">MQT</span>
+              <span className="hidden min-[400px]:block text-[8px] md:text-[10px] uppercase tracking-[0.15em] text-gray-500 font-semibold mt-0.5 truncate max-w-[6.5rem] sm:max-w-none">MyQuickTrippers</span>
             </div>
           </Link>
 
@@ -70,7 +70,7 @@ const Navbar = () => {
           </nav>
 
           {/* Desktop CTA & Mobile controls (Right) */}
-          <div className="flex items-center gap-2 md:gap-4 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-4 shrink-0">
             {/* User Account / Login */}
             <Link to="/profile" className="hidden lg:flex items-center justify-center h-10 w-10 rounded-full border border-gray-200 text-[#111111] hover:bg-gray-50 hover:border-amber-200 hover:text-amber-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500" aria-label="User Account">
               <User className="h-4 w-4" />
@@ -78,11 +78,12 @@ const Navbar = () => {
             {/* Primary CTA (Visible on Desktop & Mobile!) */}
             <button
               onClick={() => openPlanner()}
-              className="group flex items-center justify-center gap-1.5 px-5 md:px-6 py-2.5 md:py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-400 text-white font-bold text-sm md:text-[15px] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+              className="group flex items-center justify-center gap-1 px-3 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-400 text-white font-bold text-xs sm:text-sm md:text-[15px] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 whitespace-nowrap"
               aria-label="Plan My Trip"
             >
-              <span>Plan My Trip</span>
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <span className="sm:hidden">Plan Trip</span>
+              <span className="hidden sm:inline">Plan My Trip</span>
+              <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-1 shrink-0" />
             </button>
 
             {/* Mobile Menu Toggle */}

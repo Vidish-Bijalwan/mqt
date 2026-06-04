@@ -67,21 +67,18 @@ const cardVariants: Variants = {
 
 const WhyChooseUs = () => {
   return (
-    <section className="section-y relative overflow-hidden bg-gray-50">
-      {/* Premium Background Orbs */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[50%] rounded-full bg-amber-200/20 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[35%] h-[40%] rounded-full bg-blue-200/20 blur-[100px]" />
-        <div className="absolute top-[20%] right-[10%] w-[20%] h-[30%] rounded-full bg-emerald-200/15 blur-[80px]" />
+    <section className="section-y-compact relative overflow-hidden bg-gray-50 w-full">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-20 -left-20 w-48 h-48 sm:w-72 sm:h-72 rounded-full bg-amber-200/20 blur-[80px]" />
+        <div className="absolute -bottom-20 -right-16 w-40 h-40 sm:w-64 sm:h-64 rounded-full bg-blue-200/20 blur-[80px]" />
       </div>
 
-      <div className="container-page relative z-10">
-        {/* Section header */}
-        <div className="text-center mb-16">
+      <div className="container-page relative z-10 w-full max-w-full">
+        <div className="text-center mb-8 sm:mb-12">
           <span className="inline-block py-1 px-3 rounded-full bg-amber-100/50 text-amber-800 text-xs font-bold tracking-widest uppercase mb-4 shadow-sm border border-amber-200/50">
             Why MQT
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-4 tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-3 sm:mb-4 tracking-tight">
             Why Travellers Trust Us
           </h2>
           <p className="text-base md:text-lg text-gray-500 max-w-xl mx-auto">
@@ -94,20 +91,19 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full"
         >
           {REASONS.map((reason, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
-              className="relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 group flex flex-col"
+              className="relative bg-white/80 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] md:hover:-translate-y-2 transition-all duration-500 group flex flex-col w-full"
             >
-              {/* Premium Gradient Icon */}
-              <div className={`mb-8 w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${reason.iconBg} ${reason.iconShadow} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
+              <div className={`mb-5 sm:mb-8 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${reason.iconBg} ${reason.iconShadow} md:group-hover:scale-110 md:group-hover:rotate-3 transition-transform duration-500`}>
                 {reason.icon}
               </div>
 
-              <h3 className="font-display text-2xl font-bold text-gray-900 mb-4 leading-tight">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
                 {reason.title}
               </h3>
               <p className="text-base text-gray-500 leading-relaxed flex-1">

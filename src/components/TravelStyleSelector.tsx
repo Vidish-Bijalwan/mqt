@@ -76,7 +76,7 @@ const TravelStyleSelector = () => {
   const [featured, ...rest] = TRAVEL_STYLES;
 
   return (
-    <section className="py-16 md:py-24 bg-[#FAF8F4] relative overflow-hidden">
+    <section className="section-y-compact md:py-24 bg-[#FAF8F4] relative overflow-hidden">
       <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="text-center mb-10 md:mb-14">
@@ -97,7 +97,7 @@ const TravelStyleSelector = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
           onClick={() => handleSelect(featured.category)}
-          className="group relative w-full h-[260px] md:h-[400px] rounded-3xl overflow-hidden cursor-pointer text-left mb-5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60"
+          className="group relative w-full h-[200px] sm:h-[260px] md:h-[400px] rounded-3xl overflow-hidden cursor-pointer text-left mb-5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60"
           aria-label={`Explore ${featured.title} packages`}
         >
           <img
@@ -107,8 +107,8 @@ const TravelStyleSelector = () => {
             onError={(e) => { (e.currentTarget as HTMLImageElement).src = featured.fallback; }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
-          <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 z-10">
-            <h3 className="font-sans text-2xl md:text-5xl font-bold text-white mb-2">
+          <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-12 z-10">
+            <h3 className="font-sans text-xl sm:text-2xl md:text-5xl font-bold text-white mb-2">
               {featured.title}
             </h3>
             <div className="flex items-center justify-between">
@@ -121,7 +121,7 @@ const TravelStyleSelector = () => {
         </motion.button>
 
         {/* Secondary cards — responsive grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-5">
           {rest.map((style, i) => (
             <motion.button
               key={style.id}
@@ -131,7 +131,7 @@ const TravelStyleSelector = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               onClick={() => handleSelect(style.category)}
-              className="group relative h-[220px] md:h-[280px] rounded-2xl overflow-hidden cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60 hover:-translate-y-2 hover:shadow-xl transition-all duration-500"
+              className="group relative h-[180px] sm:h-[220px] md:h-[280px] rounded-2xl overflow-hidden cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60 hover:-translate-y-2 hover:shadow-xl transition-all duration-500"
               aria-label={`Explore ${style.title} packages`}
             >
               <img

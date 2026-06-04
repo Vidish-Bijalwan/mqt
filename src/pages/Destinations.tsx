@@ -57,7 +57,7 @@ const Destinations = () => {
       />
 
       {/* Interactive Map Section */}
-      <section className="py-20 bg-background relative overflow-hidden">
+      <section className="section-y-compact bg-background relative overflow-hidden">
         <div className="container mx-auto px-4">
           <MapErrorBoundary>
             <StateMapContainer>
@@ -72,8 +72,8 @@ const Destinations = () => {
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 tracking-tight">Explore by Region</h2>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold mb-4 tracking-tight">Explore by Region</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Choose a region to begin your adventure across the diverse landscapes of India.
             </p>

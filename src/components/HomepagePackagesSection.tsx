@@ -127,7 +127,7 @@ const HomepagePackagesSection = () => {
             <motion.div 
               key={pkg.slug} 
               variants={cardVariants}
-              className="snap-center shrink-0 w-[85vw] max-w-[320px] md:w-auto md:max-w-none flex"
+              className="snap-center shrink-0 w-[min(88vw,300px)] md:w-auto md:max-w-none flex"
             >
               <PackageCard
                 pkg={pkg}

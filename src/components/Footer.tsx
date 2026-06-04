@@ -3,11 +3,11 @@ import { Mountain, Phone, Mail, Instagram, Facebook, Youtube, MessageCircle } fr
 
 const Footer = () => {
   return (
-    <footer className="gradient-dark text-dark-foreground">
-      <div className="container mx-auto px-4 py-8 md:py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+    <footer className="gradient-dark text-dark-foreground w-full overflow-hidden footer-safe-bottom lg:pb-0">
+      <div className="container-page py-8 md:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-6">
           {/* Brand */}
-          <div className="col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-1 mb-4 md:mb-0">
+          <div className="col-span-1 md:col-span-1 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <img src="/logo.png" alt="MyQuickTrippers Logo" className="h-8 w-auto object-contain" />
               <span className="font-display text-xl font-bold tracking-tight">MQT</span>
@@ -37,7 +37,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">
+          <div className="grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-4 gap-8 min-[400px]:gap-6 col-span-1 md:col-span-3 lg:col-span-4">
             {/* Destinations */}
             <div>
               <h4 className="font-body font-semibold text-xs text-dark-foreground mb-3 tracking-wide uppercase">Destinations</h4>
@@ -102,7 +102,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-dark-foreground/10">
-        <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-dark-foreground/50">
+        <div className="container-page py-4 flex flex-col md:flex-row items-center justify-center md:justify-between gap-2 text-xs text-dark-foreground/50 text-center md:text-left">
           <span>© 2019 - 2026 MQT — MyQuickTrippers. All Rights Reserved.</span>
           <span>Designed with ❤ for explorers of India</span>
         </div>

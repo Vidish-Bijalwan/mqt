@@ -73,13 +73,13 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
         </div>
 
         {/* Content Section */}
-        <div className="p-5 flex flex-col flex-1">
+        <div className="p-4 sm:p-5 flex flex-col flex-1">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-2">
             <Clock className="h-3.5 w-3.5" />
             <span>{pkg.duration}</span>
           </div>
 
-          <h3 className="font-display font-bold text-lg text-gray-900 mb-2 leading-snug group-hover:text-primary transition-colors">
+          <h3 className="font-display font-bold text-base sm:text-lg text-gray-900 mb-2 leading-snug line-clamp-2 group-hover:text-primary transition-colors">
             {pkg.title}
           </h3>
 

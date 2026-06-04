@@ -152,10 +152,10 @@ const StateListing = () => {
         ]}
       />
 
-      <section className="section-padding bg-background">
+      <section className="section-y-compact bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto mb-16 text-center">
-            <h2 className="font-display text-3xl font-bold mb-6 italic text-primary">Discover {stateData.name}</h2>
+          <div className="max-w-4xl mx-auto mb-8 sm:mb-16 text-center">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 italic text-primary">Discover {stateData.name}</h2>
             <p className="text-muted-foreground font-body text-lg leading-relaxed">
               {stateData.introOverview}
             </p>
@@ -172,7 +172,7 @@ const StateListing = () => {
             totalResults={filteredDestinations.length}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {filteredDestinations.map((dest) => (
               <DestinationCard key={dest.id} destination={dest} />
             ))}

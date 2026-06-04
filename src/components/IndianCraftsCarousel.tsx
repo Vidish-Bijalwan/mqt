@@ -11,7 +11,7 @@ const IndianCraftsCarousel = () => {
   const featuredCrafts = craftsData.filter((_, i) => i % 10 === 0).slice(0, 12);
 
   return (
-    <section className="py-20 bg-background overflow-hidden relative">
+    <section className="section-y-compact bg-background overflow-hidden relative">
       <div className="container-page mx-auto">
         {/* Header */}
         <ScrollReveal className="text-center mb-16">
@@ -32,7 +32,7 @@ const IndianCraftsCarousel = () => {
             {featuredCrafts.map((craft, i) => (
               <div 
                 key={craft.id} 
-                className="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-center sm:snap-start mr-4 sm:mr-6 lg:mr-8 group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border bg-gray-200 flex flex-col h-[400px]"
+                className="flex-none w-[min(85vw,280px)] sm:w-[320px] lg:w-[350px] snap-center sm:snap-start mr-4 sm:mr-6 lg:mr-8 group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border bg-gray-200 flex flex-col card-tile-md"
               >
                 {/* Background image */}
                 <ImgWithFallback

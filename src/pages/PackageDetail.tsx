@@ -259,7 +259,7 @@ const PackageDetail = () => {
 
             {/* Right: Pricing Card (Sticky) */}
             <div className="lg:col-span-1">
-              <div className="sticky top-28 bg-background border border-border rounded-xl shadow-elevated overflow-hidden">
+              <div className="lg:sticky lg:top-28 bg-background border border-border rounded-xl shadow-elevated overflow-hidden">
                 <div className="p-6">
                   {pkg.isAlertPackage ? (
                     <>

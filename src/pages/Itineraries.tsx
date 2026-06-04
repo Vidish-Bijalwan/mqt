@@ -218,7 +218,7 @@ const Itineraries = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 1: HERO
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[60vh] md:min-h-[70vh] flex flex-col justify-center overflow-hidden">
+      <section className="relative min-h-[45vh] sm:min-h-[55vh] md:min-h-[70vh] flex flex-col justify-center overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&q=80&w=2000"
           alt="India landscape"
@@ -227,15 +227,15 @@ const Itineraries = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-[#faf7f1]" />
 
-        <div className="relative z-10 container mx-auto px-4 py-16 text-center -mt-10 md:-mt-20">
+        <div className="relative z-10 container mx-auto px-4 py-10 sm:py-16 text-center -mt-6 sm:-mt-10 md:-mt-20">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/20 backdrop-blur-sm border border-amber-400/30 rounded-full text-amber-300 text-xs font-bold uppercase tracking-widest mb-6">
             <Sparkles className="w-3.5 h-3.5" /> 50+ Curated Packages
           </span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mx-auto mb-5">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl mx-auto mb-4 sm:mb-5">
             Find Your Perfect <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-400">India Itinerary</span>
           </h1>
-          <p className="font-body text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+          <p className="font-body text-sm sm:text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-6 sm:mb-10 leading-relaxed font-medium">
             Answer a few quick questions and we'll match you with handpicked India travel routes across heritage cities, mountains, beaches, wildlife escapes, and spiritual journeys.
           </p>
           {wizardStep === 0 && (
@@ -243,7 +243,7 @@ const Itineraries = () => {
               <Button
                 onClick={() => setWizardStep(1)}
                 size="lg"
-                className="w-full sm:w-auto px-10 py-6 text-lg bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 rounded-full shadow-xl shadow-amber-500/25 text-white font-bold group"
+                className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-6 text-base sm:text-lg bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 rounded-full shadow-xl shadow-amber-500/25 text-white font-bold group"
               >
                 Start Trip Finder <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -251,7 +251,7 @@ const Itineraries = () => {
                 onClick={handleSkipToResults}
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto px-8 py-6 text-lg rounded-full border-2 border-white text-white bg-transparent hover:bg-white/10 hover:text-white font-semibold backdrop-blur-sm transition-all"
+                className="w-full sm:w-auto px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-full border-2 border-white text-white bg-transparent hover:bg-white/10 hover:text-white font-semibold backdrop-blur-sm transition-all"
               >
                 Browse All Itineraries
               </Button>
@@ -264,7 +264,7 @@ const Itineraries = () => {
           SECTION 2: TRIP FINDER WIZARD (Steps 1-3)
           ═══════════════════════════════════════════════════════════════════════ */}
       {wizardStep >= 1 && wizardStep <= 3 && (
-        <section className="bg-[#faf7f1] pb-10 md:pb-20 relative z-20 reveal-section" style={{ marginTop: "-120px" }}>
+        <section className="bg-[#faf7f1] pb-10 md:pb-20 relative z-20 reveal-section -mt-16 sm:-mt-24 md:-mt-[120px]">
           <div className="container mx-auto px-4 max-w-5xl">
             <div className="bg-white rounded-[2rem] shadow-2xl shadow-black/5 border border-gray-100 overflow-hidden relative"
               style={{ backgroundImage: "radial-gradient(circle at 20% 80%, rgba(251,191,36,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(249,115,22,0.03) 0%, transparent 50%)" }}
@@ -279,14 +279,14 @@ const Itineraries = () => {
 
               {/* ── STEP 1: Region ── */}
               {wizardStep === 1 && (
-                <div className="px-6 md:px-12 pb-12 pt-10">
-                  <div className="text-center mb-10">
+                <div className="px-4 sm:px-6 md:px-12 pb-8 sm:pb-12 pt-6 sm:pt-10">
+                  <div className="text-center wizard-section-mb">
                     <h2 className="text-2xl md:text-3xl font-display font-bold text-[#111111] mb-3">
                       Where would you like to begin your India journey?
                     </h2>
                     <p className="text-gray-500 text-sm md:text-base max-w-xl mx-auto">Choose a region to explore, or let us surprise you with the best from across India.</p>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 wizard-section-gap">
                     {regions.map(region => {
                       const meta = REGION_META[region];
                       return (
@@ -294,14 +294,14 @@ const Itineraries = () => {
                           key={region}
                           onClick={() => handleSelectRegion(region)}
                           aria-label={`Select ${region}`}
-                          className="group relative bg-white border-2 border-gray-100 hover:border-amber-400 hover:bg-amber-50/30 rounded-2xl p-6 text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
+                          className="group relative bg-white border-2 border-gray-100 hover:border-amber-400 hover:bg-amber-50/30 rounded-2xl wizard-tile text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
                         >
                           <div className="flex items-center gap-3 mb-4">
                             <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-colors">
                               {meta?.icon || <Map className="w-6 h-6" />}
                             </div>
                             <div>
-                              <div className="font-bold text-[#111111] text-lg group-hover:text-amber-700 transition-colors leading-tight">{region}</div>
+                              <div className="font-bold text-[#111111] text-base sm:text-lg group-hover:text-amber-700 transition-colors leading-tight">{region}</div>
                               <span className="inline-block mt-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 group-hover:text-amber-500">{meta?.count} packages</span>
                             </div>
                           </div>
@@ -315,7 +315,7 @@ const Itineraries = () => {
                     <button
                       onClick={() => handleSelectRegion("All")}
                       aria-label="Show all regions"
-                      className="group relative bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 hover:border-amber-400 rounded-2xl p-6 text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
+                      className="group relative bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 hover:border-amber-400 rounded-2xl wizard-tile text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
                     >
                       <div className="absolute top-4 right-4 px-2 py-0.5 bg-amber-200/50 text-amber-700 text-[10px] font-bold uppercase tracking-wider rounded">Recommended</div>
                       <div className="flex items-center gap-3 mb-4">
@@ -323,7 +323,7 @@ const Itineraries = () => {
                           <Compass className="w-6 h-6" />
                         </div>
                         <div>
-                          <div className="font-bold text-[#111111] text-lg group-hover:text-amber-700 transition-colors leading-tight">I'm Flexible</div>
+                          <div className="font-bold text-[#111111] text-base sm:text-lg group-hover:text-amber-700 transition-colors leading-tight">I'm Flexible</div>
                           <span className="inline-block mt-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-600/70">{itineraries.length} packages</span>
                         </div>
                       </div>
@@ -338,26 +338,26 @@ const Itineraries = () => {
 
               {/* ── STEP 2: Experience ── */}
               {wizardStep === 2 && (
-                <div className="px-6 md:px-12 pb-12 pt-10">
-                  <div className="text-center mb-10">
+                <div className="px-4 sm:px-6 md:px-12 pb-8 sm:pb-12 pt-6 sm:pt-10">
+                  <div className="text-center wizard-section-mb">
                     <h2 className="text-2xl md:text-3xl font-display font-bold text-[#111111] mb-3">
                       What kind of trip feels right for you?
                     </h2>
                     <p className="text-gray-500 text-sm md:text-base max-w-xl mx-auto">Pick a theme that excites you most — or see a mix of everything.</p>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 wizard-section-gap">
                     {EXPERIENCE_OPTIONS.map(exp => (
                       <button
                         key={exp.id}
                         onClick={() => handleSelectExperience(exp.id)}
                         aria-label={`Select ${exp.label}`}
-                        className="group relative bg-white border-2 border-gray-100 hover:border-amber-400 hover:bg-amber-50/30 rounded-2xl p-6 text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
+                        className="group relative bg-white border-2 border-gray-100 hover:border-amber-400 hover:bg-amber-50/30 rounded-2xl wizard-tile text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
                       >
                         <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors">
                           {exp.icon}
                         </div>
                         <div className="mt-auto">
-                          <div className="font-bold text-[#111111] text-lg group-hover:text-amber-700 transition-colors mb-1">{exp.label}</div>
+                          <div className="font-bold text-[#111111] text-base sm:text-lg group-hover:text-amber-700 transition-colors mb-1">{exp.label}</div>
                           <p className="text-sm text-gray-500 leading-relaxed">{exp.desc}</p>
                         </div>
                       </button>
@@ -365,14 +365,14 @@ const Itineraries = () => {
                     <button
                       onClick={() => handleSelectExperience("All")}
                       aria-label="Show all experiences"
-                      className="group relative bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 hover:border-amber-400 rounded-2xl p-6 text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
+                      className="group relative bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 hover:border-amber-400 rounded-2xl wizard-tile text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
                     >
                       <div className="absolute top-4 right-4 px-2 py-0.5 bg-amber-200/50 text-amber-700 text-[10px] font-bold uppercase tracking-wider rounded">Recommended</div>
                       <div className="w-12 h-12 rounded-xl bg-white text-amber-600 flex items-center justify-center mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors shadow-sm">
                         <Sparkles className="w-6 h-6" />
                       </div>
                       <div className="mt-auto">
-                        <div className="font-bold text-[#111111] text-lg group-hover:text-amber-700 transition-colors mb-1">A Mix of Everything</div>
+                        <div className="font-bold text-[#111111] text-base sm:text-lg group-hover:text-amber-700 transition-colors mb-1">A Mix of Everything</div>
                         <p className="text-sm text-amber-700/80 leading-relaxed">Show me all types of travel experiences available.</p>
                       </div>
                     </button>
@@ -382,20 +382,20 @@ const Itineraries = () => {
 
               {/* ── STEP 3: Duration ── */}
               {wizardStep === 3 && (
-                <div className="px-6 md:px-12 pb-12 pt-10">
-                  <div className="text-center mb-10">
+                <div className="px-4 sm:px-6 md:px-12 pb-8 sm:pb-12 pt-6 sm:pt-10">
+                  <div className="text-center wizard-section-mb">
                     <h2 className="text-2xl md:text-3xl font-display font-bold text-[#111111] mb-3">
                       How much time do you have for this trip?
                     </h2>
                     <p className="text-gray-500 text-sm md:text-base max-w-xl mx-auto">Select a duration that suits your schedule — we'll match the best routes.</p>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 wizard-section-gap">
                     {DURATION_OPTIONS.map(dur => (
                       <button
                         key={dur.id}
                         onClick={() => handleSelectDuration(dur.id)}
                         aria-label={`Select ${dur.label}: ${dur.range}`}
-                        className="group relative bg-white border-2 border-gray-100 hover:border-amber-400 hover:bg-amber-50/30 rounded-2xl p-6 text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
+                        className="group relative bg-white border-2 border-gray-100 hover:border-amber-400 hover:bg-amber-50/30 rounded-2xl wizard-tile text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
                       >
                         <div className="flex items-center justify-between mb-4">
                           <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-colors">
@@ -406,7 +406,7 @@ const Itineraries = () => {
                           </span>
                         </div>
                         <div className="mt-auto">
-                          <div className="font-bold text-[#111111] text-lg group-hover:text-amber-700 transition-colors mb-1">{dur.label}</div>
+                          <div className="font-bold text-[#111111] text-base sm:text-lg group-hover:text-amber-700 transition-colors mb-1">{dur.label}</div>
                           <p className="text-sm text-gray-500 leading-relaxed">{dur.bestFor}</p>
                         </div>
                       </button>
@@ -414,14 +414,14 @@ const Itineraries = () => {
                     <button
                       onClick={() => handleSelectDuration("All")}
                       aria-label="Any duration"
-                      className="group relative bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 hover:border-amber-400 rounded-2xl p-6 text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
+                      className="group relative bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 hover:border-amber-400 rounded-2xl wizard-tile text-left transition-all duration-200 hover:shadow-lg hover:-translate-y-1 cursor-pointer flex flex-col h-full"
                     >
                       <div className="absolute top-4 right-4 px-2 py-0.5 bg-amber-200/50 text-amber-700 text-[10px] font-bold uppercase tracking-wider rounded">Recommended</div>
                       <div className="w-12 h-12 rounded-xl bg-white text-amber-600 flex items-center justify-center mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors shadow-sm">
                         <Compass className="w-6 h-6" />
                       </div>
                       <div className="mt-auto">
-                        <div className="font-bold text-[#111111] text-lg group-hover:text-amber-700 transition-colors mb-1">I Haven't Decided</div>
+                        <div className="font-bold text-[#111111] text-base sm:text-lg group-hover:text-amber-700 transition-colors mb-1">I Haven't Decided</div>
                         <p className="text-sm text-amber-700/80 leading-relaxed">Show me itineraries of all durations to get inspired.</p>
                       </div>
                     </button>
@@ -438,7 +438,7 @@ const Itineraries = () => {
                   {wizardStep === 3 ? (
                     <Button
                       onClick={() => handleSelectDuration(selectedDuration === "All" ? "All" : selectedDuration)}
-                      className="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full px-8 py-6 font-bold shadow-lg shadow-amber-500/20 group"
+                      className="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full px-6 sm:px-8 py-4 sm:py-6 font-bold shadow-lg shadow-amber-500/20 group"
                     >
                       Show My Matches <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -458,7 +458,7 @@ const Itineraries = () => {
           SECTION 3: RESULTS
           ═══════════════════════════════════════════════════════════════════════ */}
       {wizardStep === 4 && (
-        <section ref={resultsRef} className="bg-[#faf7f1] pb-10 md:pb-20 relative z-20 reveal-section" style={{ marginTop: "-80px" }}>
+        <section ref={resultsRef} className="bg-[#faf7f1] pb-10 md:pb-20 relative z-20 reveal-section -mt-12 sm:-mt-16 md:-mt-20">
           <div className="container mx-auto px-4">
 
             {/* Results header card */}
@@ -562,7 +562,7 @@ const Itineraries = () => {
                   <Button
                     onClick={() => openPlanner({}, "itinerary_empty_state")}
                     size="lg"
-                    className="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full px-8 py-6 text-base font-bold shadow-lg shadow-amber-500/20"
+                    className="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base font-bold shadow-lg shadow-amber-500/20"
                   >
                     Request Custom Itinerary
                   </Button>
@@ -570,7 +570,7 @@ const Itineraries = () => {
                     variant="outline"
                     size="lg"
                     onClick={() => { setSelectedRegion("All"); setSelectedExperience("All"); setSelectedDuration("All"); setSearchQuery(""); }}
-                    className="rounded-full border-gray-200 text-gray-600 px-8 py-6 text-base font-bold"
+                    className="rounded-full border-gray-200 text-gray-600 px-6 sm:px-8 py-4 sm:py-6 text-base font-bold"
                   >
                     Clear All Filters
                   </Button>
@@ -581,7 +581,7 @@ const Itineraries = () => {
             {/* Fallback popular packages */}
             {wizardStep === 4 && filteredItineraries.length < 4 && (
               <div className="mt-20 max-w-7xl mx-auto">
-                <div className="text-center mb-10">
+                <div className="text-center wizard-section-mb">
                   <h4 className="text-3xl font-display font-bold text-[#111111] mb-2">Popular Itineraries You Might Like</h4>
                   <p className="text-base text-gray-500">These are some of our most-loved travel routes across India</p>
                 </div>
