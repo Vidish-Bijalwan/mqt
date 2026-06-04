@@ -21,7 +21,7 @@ async function fetchFestivals() {
     .select("*")
     .order("sort_order", { ascending: true });
   if (error) throw error;
-  return data;
+  return (data ?? []) as unknown as Festival[];
 }
 
 async function deleteFestival(id: string) {

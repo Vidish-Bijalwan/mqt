@@ -5,19 +5,26 @@ import { ImgWithFallback } from "@/components/ui/ImgWithFallback";
 import { getBlogImage } from "@/lib/imageMap";
 
 const BlogPreview = () => {
+  const posts = blogPosts.slice(0, 4);
+
   return (
-    <section className="section-y-compact" style={{ background: 'linear-gradient(180deg, #f3efe7 0%, #f8f6f2 100%)' }}>
+    <section
+      className="section-compact"
+      style={{ background: "linear-gradient(180deg, #f3efe7 0%, #f8f6f2 100%)" }}
+    >
       <div className="container-page">
-        <div className="section-header-center">
+        <div className="section-header-center section-intro-center">
           <h2 className="section-heading">Travel Inspiration &amp; Guides</h2>
-          <p className="section-subheading mx-auto">Expert tips and guides to help you plan your next adventure</p>
+          <p className="section-subheading mx-auto">
+            Expert tips and guides to help you plan your next adventure
+          </p>
         </div>
 
-        <div className="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4 sm:pb-6 -mx-4 px-4 md:grid md:grid-cols-3 gap-4 md:gap-6 md:mx-0 md:px-0 md:pb-0 items-stretch">
-          {blogPosts.slice(0, 3).map((post) => {
-            const { src, fallbackSrc } = getBlogImage(post.slug, 'hero', post.image);
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-gap">
+          {posts.map((post) => {
+            const { src, fallbackSrc } = getBlogImage(post.slug, "hero", post.image);
             return (
-              <Link key={post.id} to={`/blog/${post.slug}`} className="group snap-center shrink-0 w-[85vw] max-w-[320px] md:w-auto md:max-w-none">
+              <Link key={post.id} to={`/blog/${post.slug}`} className="group block h-full">
                 <div className="bg-card rounded-xl overflow-hidden border border-border card-hover shadow-soft h-full flex flex-col">
                   <div className="relative overflow-hidden aspect-video">
                     <ImgWithFallback
@@ -30,16 +37,22 @@ const BlogPreview = () => {
                       {post.category}
                     </span>
                   </div>
-                  <div className="p-5 flex flex-col flex-1">
-                    <h3 className="font-body font-semibold text-base text-card-foreground mb-3 leading-snug group-hover:text-primary transition-colors">
+                  <div className="p-5 flex flex-col flex-1 gap-2">
+                    <h3 className="font-body font-semibold text-base text-card-foreground leading-snug line-clamp-2 group-hover:text-primary transition-colors">
                       {post.title}
                     </h3>
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
-                      <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" /> {post.date}</span>
-                      <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> {post.readTime}</span>
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="h-3.5 w-3.5" /> {post.date}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-3.5 w-3.5" /> {post.readTime}
+                      </span>
                     </div>
-                    <p className="text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
-                    <span className="inline-block mt-auto pt-3 text-sm font-medium text-primary group-hover:underline">Read More →</span>
+                    <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{post.excerpt}</p>
+                    <span className="text-sm font-medium text-primary group-hover:underline pt-1">
+                      Read More →
+                    </span>
                   </div>
                 </div>
               </Link>
@@ -47,10 +60,10 @@ const BlogPreview = () => {
           })}
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-8 text-center">
           <Link
             to="/blog"
-            className="inline-flex items-center justify-center py-3 px-8 rounded-xl bg-white border border-border text-foreground font-semibold shadow-sm hover:shadow-md hover:bg-gray-50 transition-all duration-200"
+            className="inline-flex items-center justify-center min-h-12 py-3 px-8 rounded-xl bg-white border border-border text-foreground font-semibold shadow-sm hover:shadow-md hover:bg-gray-50 transition-all duration-200"
           >
             View All Posts
           </Link>

@@ -55,13 +55,12 @@ const TRAVEL_STYLES = [
   },
 ];
 
-const EASE = EASE_SMOOTH;
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.5, ease: EASE },
+    transition: { delay: i * 0.08, duration: 0.5, ease: EASE_SMOOTH },
   }),
 };
 
@@ -72,23 +71,17 @@ const TravelStyleSelector = () => {
     navigate(`/packages?category=${category}`);
   };
 
-  // First card = featured (full width), rest are in 2-col or 3-col grid
   const [featured, ...rest] = TRAVEL_STYLES;
 
   return (
-    <section className="section-y-compact bg-[#FAF8F4] relative overflow-hidden">
-      <div className="container-page max-w-[1400px]">
-        <div className="section-header-center">
+    <section className="section bg-[#FAF8F4] relative overflow-hidden">
+      <div className="container-page">
+        <div className="section-header-center section-intro-center">
           <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase">Find Your Journey</span>
-          <h2 className="section-heading mt-2 mb-1.5 sm:mb-2">
-            How do you want to travel?
-          </h2>
-          <p className="text-base md:text-lg text-gray-500 max-w-lg mx-auto">
-            Find journeys tailored to your style and budget.
-          </p>
+          <h2 className="section-heading">How do you want to travel?</h2>
+          <p className="section-subheading mx-auto">Find journeys tailored to your style and budget.</p>
         </div>
 
-        {/* Featured Card — full width */}
         <motion.button
           custom={0}
           variants={cardVariants}
@@ -96,22 +89,24 @@ const TravelStyleSelector = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
           onClick={() => handleSelect(featured.category)}
-          className="group relative w-full h-[160px] sm:h-[220px] md:h-[360px] rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer text-left mb-3 sm:mb-5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60"
+          className="group relative w-full aspect-[16/9] sm:aspect-[21/9] md:aspect-[3/1] max-h-[280px] md:max-h-[320px] rounded-2xl overflow-hidden cursor-pointer text-left mb-5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60"
           aria-label={`Explore ${featured.title} packages`}
         >
           <img
             src={featured.image}
             alt={featured.title}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            onError={(e) => { (e.currentTarget as HTMLImageElement).src = featured.fallback; }}
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = featured.fallback;
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
-          <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-12 z-10">
-            <h3 className="font-sans text-xl sm:text-2xl md:text-5xl font-bold text-white mb-2">
+          <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-8 z-10">
+            <h3 className="font-sans text-xl sm:text-2xl md:text-4xl font-bold text-white mb-1 leading-tight">
               {featured.title}
             </h3>
-            <div className="flex items-center justify-between">
-              <p className="text-white/70 text-sm md:text-lg">{featured.desc}</p>
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-white/75 text-sm md:text-base">{featured.desc}</p>
               <span className="hidden md:inline-flex items-center gap-2 text-sm font-bold bg-white/15 backdrop-blur-sm text-white px-5 py-2.5 rounded-full border border-white/20 group-hover:bg-white group-hover:text-gray-900 transition-all duration-300">
                 Explore <ArrowRight className="w-4 h-4" />
               </span>
@@ -119,8 +114,7 @@ const TravelStyleSelector = () => {
           </div>
         </motion.button>
 
-        {/* Secondary cards — responsive grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 grid-gap">
           {rest.map((style, i) => (
             <motion.button
               key={style.id}
@@ -130,25 +124,24 @@ const TravelStyleSelector = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               onClick={() => handleSelect(style.category)}
-              className="group relative h-[180px] sm:h-[220px] md:h-[280px] rounded-2xl overflow-hidden cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60 hover:-translate-y-2 hover:shadow-xl transition-all duration-500"
+              className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
               aria-label={`Explore ${style.title} packages`}
             >
               <img
                 src={style.image}
                 alt={style.title}
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).src = style.fallback; }}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = style.fallback;
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
               <div className="absolute inset-0 flex flex-col justify-end p-5 z-10">
-                <h3 className="font-sans text-lg md:text-xl font-bold text-white leading-tight mb-1">
+                <h3 className="font-sans text-base md:text-lg font-bold text-white leading-tight mb-0.5">
                   {style.title}
                 </h3>
-                <p className="text-xs text-white/60 mb-3">{style.desc}</p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                  Explore <ArrowRight className="w-3.5 h-3.5" />
-                </span>
+                <p className="text-xs text-white/65 line-clamp-1">{style.desc}</p>
               </div>
             </motion.button>
           ))}

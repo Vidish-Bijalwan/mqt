@@ -50,7 +50,7 @@ const TrustStrip = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.45 }}
-              className="flex flex-col items-center justify-center py-4 sm:py-5 px-2 sm:px-6 md:px-10 gap-0.5 min-w-0 text-center"
+              className="flex flex-col items-center justify-center py-5 px-4 sm:px-8 gap-1 min-w-0 text-center"
             >
               <span
                 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-amber-500"

@@ -84,7 +84,12 @@ export interface StateData {
     famous_for: string[];
     UNESCO_sites: string[];
     national_parks: string[];
+    /** Legacy UI — prefer top-level `capital` */
+    capital?: string;
+    topPlacesCount?: number;
   };
+  /** Legacy UI badge: State vs UT */
+  type?: string;
   mqtPackagesAvailable: string[]; 
   seo?: SEOData;
   image?: string; // Legacy UI fallback compatibility
@@ -109,7 +114,9 @@ export interface DestinationData {
     y: number;                   
   };
   altitude_meters: number | null;
-  shortDescription: string;      
+  shortDescription: string;
+  /** Legacy mock / CMS shorthand */
+  description?: string;
   detailedDescription: string;   
   historicalContext: string;     
   bestTimeToVisit: string;       

@@ -4,7 +4,8 @@ import { MapPin, Sparkles, X, ArrowRight, RotateCcw } from 'lucide-react';
 import { useTripPlanner } from '../../contexts/TripPlannerContext';
 
 export function ResumePlannerPopup() {
-  const { resumeVisible, dismissResume, resumePlanner, startFresh, partialData } = useTripPlanner();
+  const { resumeVisible, dismissResume, resumePlanner, startFresh, partialData, resumeStep } =
+    useTripPlanner();
   const autoDismissRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Auto-dismiss after 8s of no interaction
@@ -19,9 +20,9 @@ export function ResumePlannerPopup() {
     };
   }, [resumeVisible, dismissResume]);
 
-  const destination = partialData?.destination_interest || partialData?.destinations?.[0] || null;
+  const destination = partialData?.destination_interest || partialData?.state_interest || null;
   const tripStyle = partialData?.trip_style?.[0] || null;
-  const stepComplete = partialData?.currentStep || 1;
+  const stepComplete = resumeStep > 0 ? resumeStep : 1;
   const totalSteps = 6;
   const progressPct = Math.round((stepComplete / totalSteps) * 100);
 

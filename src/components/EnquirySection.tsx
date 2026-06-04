@@ -6,7 +6,7 @@ import { getGeneralWhatsAppUrl, getPhoneUrl, getEmailUrl, getInstagramUrl } from
 // Fitts's Law: massive CTA button, impossible to miss.
 const EnquirySection = () => {
   return (
-    <section className="relative py-8 sm:py-12 md:py-16 text-center overflow-hidden reveal-section w-full" id="enquiry">
+    <section className="relative section-emphasis text-center overflow-hidden reveal-section w-full" id="enquiry">
 
       {/* Background image — emotional, aspirational */}
       <div
@@ -30,15 +30,14 @@ const EnquirySection = () => {
         <span className="section-eyebrow text-amber-400">YOU'RE ONE MESSAGE AWAY</span>
 
         <h2
-          className="font-display font-bold text-white leading-tight mb-4"
-          style={{ fontSize: "clamp(1.75rem, 5vw, 3rem)" }}
+          className="font-display font-bold text-white leading-[1.1] mb-4 text-[clamp(1.75rem,5vw,2.75rem)]"
         >
           Your Dream India Trip
           <br />
           Starts with a WhatsApp
         </h2>
 
-        <p className="text-white/75 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-lg mx-auto px-2">
+        <p className="text-white/75 text-sm sm:text-base leading-relaxed mb-6 max-w-lg mx-auto">
           No forms. No waiting. Just tell us where you want to go and we'll plan
           everything — permits, hotels, guides, and memories.
         </p>
@@ -51,7 +50,7 @@ const EnquirySection = () => {
           whileHover={{ scale: 1.03, y: -3 }}
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 340, damping: 24 }}
-          className="inline-flex items-center justify-center gap-2 sm:gap-3 h-12 sm:h-14 px-6 sm:px-10 text-sm sm:text-lg font-bold text-white rounded-xl sm:rounded-2xl mb-5 sm:mb-6 bg-[#25D366] shadow-lg shadow-[#25D366]/40 no-underline transition-colors"
+          className="inline-flex items-center justify-center gap-2 min-h-12 h-12 sm:h-14 px-8 text-sm sm:text-base font-bold text-white rounded-xl mb-6 bg-[#25D366] shadow-lg shadow-[#25D366]/40 no-underline transition-colors"
           id="final-cta-whatsapp"
         >
           {/* WhatsApp icon */}

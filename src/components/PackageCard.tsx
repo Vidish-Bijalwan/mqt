@@ -73,7 +73,7 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
         </div>
 
         {/* Content Section */}
-        <div className="p-4 sm:p-5 flex flex-col flex-1">
+        <div className="p-5 flex flex-col flex-1 gap-0">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-2">
             <Clock className="h-3.5 w-3.5" />
             <span>{pkg.duration}</span>
@@ -83,11 +83,11 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
             {pkg.title}
           </h3>
 
-          <div className="text-xs font-semibold text-rose-600 bg-rose-50 px-2 py-1 rounded inline-block mb-3 self-start">
+          <div className="text-xs font-semibold text-rose-600 bg-rose-50 px-2 py-1 rounded inline-block mb-2 self-start">
             Usually booked 3–4 weeks in advance
           </div>
 
-          <div className="mt-auto mb-4 relative overflow-hidden group/itinerary">
+          <div className="mt-auto mb-3 relative overflow-hidden group/itinerary">
              {/* Teaser Itinerary (hover to expand) */}
              <div className="text-xs text-gray-600 mb-1 font-semibold flex items-center justify-between">
                 <span>Quick Itinerary</span>
@@ -103,7 +103,7 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
              </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mt-auto pt-4 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-2 mt-auto pt-3 border-t border-gray-100">
             <span className="flex items-center justify-center py-2.5 rounded-lg text-primary text-[12px] font-bold tracking-wide hover:bg-primary/5 transition-colors">
                <Search className="w-4 h-4 mr-1.5" /> View Details
             </span>

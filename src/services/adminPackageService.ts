@@ -72,7 +72,7 @@ export async function listAdminPackages(filters?: {
 
     const { data, error } = await query;
     if (error) throw error;
-    return { data: data as AdminPackage[], error: null };
+    return { data: data as unknown as AdminPackage[], error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -82,7 +82,7 @@ export async function getAdminPackageById(id: string): Promise<ServiceResponse<A
   try {
     const { data, error } = await supabase.from("packages").select("*").eq("id", id).single();
     if (error) throw error;
-    return { data: data as AdminPackage, error: null };
+    return { data: data as unknown as AdminPackage, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -92,7 +92,7 @@ export async function createAdminPackage(payload: AdminPackageInsert): Promise<S
   try {
     const { data, error } = await supabase.from("packages").insert([payload as any] as any).select().single();
     if (error) throw error;
-    return { data: data as AdminPackage, error: null };
+    return { data: data as unknown as AdminPackage, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -106,7 +106,7 @@ export async function updateAdminPackage(id: string, payload: Partial<AdminPacka
       .update({ ...payload, updated_at: new Date().toISOString() } as any)
       .eq("id", id).select().single();
     if (error) throw error;
-    return { data: data as AdminPackage, error: null };
+    return { data: data as unknown as AdminPackage, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }

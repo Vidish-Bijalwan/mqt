@@ -1,6 +1,6 @@
 import { DestinationModel } from "../types/models";
 
-export const destinationsData: DestinationModel[] = [
+export const destinationsData = [
 
   {
     "id": "gujarat-mock-0",
@@ -44349,4 +44349,4 @@ export const destinationsData: DestinationModel[] = [
     ],
     "fullDescription": "Located in the heart of West Bengal, Murshidabad is famous for its natural beauty and cultural significance. Visitors from all over India and the world come to experience its unique atmosphere."
   }
-];
+] as DestinationModel[];

@@ -11,16 +11,13 @@ const IndianCraftsCarousel = () => {
   const featuredCrafts = craftsData.filter((_, i) => i % 10 === 0).slice(0, 12);
 
   return (
-    <section className="section-y-compact bg-background overflow-hidden relative">
-      <div className="container-page mx-auto">
-        {/* Header */}
-        <ScrollReveal className="section-header-center">
-          <span className="inline-block py-1 px-3 sm:py-1.5 sm:px-4 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3">
+    <section className="section-compact bg-background overflow-hidden relative">
+      <div className="container-page">
+        <ScrollReveal className="section-header-center section-intro-center">
+          <span className="inline-block py-1 px-3 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider">
             Exquisite Crafts
           </span>
-          <h2 className="section-heading mb-2 sm:mb-3">
-            Handicrafts of Incredible India
-          </h2>
+          <h2 className="section-heading">Handicrafts of Incredible India</h2>
           <p className="section-subheading mx-auto">
             Discover the rich heritage of Indian artisans. From exquisite embroidery to intricate woodwork, bring home a piece of timeless tradition.
           </p>
@@ -28,11 +25,11 @@ const IndianCraftsCarousel = () => {
 
         {/* Scrollable Carousel */}
         <ScrollReveal delay={0.2} className="relative w-full overflow-visible">
-          <ScrollableRow className="pb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
-            {featuredCrafts.map((craft, i) => (
-              <div 
-                key={craft.id} 
-                className="flex-none w-[min(85vw,280px)] sm:w-[320px] lg:w-[350px] snap-center sm:snap-start mr-4 sm:mr-6 lg:mr-8 group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border bg-gray-200 flex flex-col card-tile-md"
+          <ScrollableRow className="pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 gap-5">
+            {featuredCrafts.map((craft) => (
+              <div
+                key={craft.id}
+                className="flex-none w-[min(85vw,280px)] sm:w-[300px] snap-center shrink-0 group relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-border bg-gray-200 aspect-[4/5]"
               >
                 {/* Background image */}
                 <ImgWithFallback
@@ -54,7 +51,7 @@ const IndianCraftsCarousel = () => {
                 </div>
 
                 {/* Content Container (Bottom Aligned) */}
-                <div className="relative z-20 mt-auto p-5 flex flex-col justify-end h-full">
+                <div className="relative z-20 mt-auto p-5 flex flex-col justify-end h-full min-h-0">
                   
                   {/* Title & Location (Always Visible) */}
                   <div className="transform transition-transform duration-300 group-hover:-translate-y-2">
@@ -94,7 +91,7 @@ const IndianCraftsCarousel = () => {
         </ScrollReveal>
 
         {/* CTA row */}
-        <ScrollReveal className="mt-12 text-center" delay={0.4}>
+        <ScrollReveal className="mt-8 text-center" delay={0.4}>
           <div className="inline-flex flex-col items-center">
             <Link
               to="/crafts"

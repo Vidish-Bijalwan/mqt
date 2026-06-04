@@ -27,11 +27,13 @@ export async function listStates(filters?: {
   try {
     let query = supabase.from("states_uts").select("*").order("sort_order").order("name");
     if (filters?.region) query = query.eq("region", filters.region);
-    if (filters?.type) query = query.eq("type", filters.type);
+    if (filters?.type) {
+      query = query.eq("type", filters.type as StateUT["type"]);
+    }
     if (filters?.search) query = query.ilike("name", `%${filters.search}%`);
     const { data, error } = await query;
     if (error) throw error;
-    return { data: data as StateUT[], error: null };
+    return { data: data as unknown as StateUT[], error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -41,7 +43,7 @@ export async function getStateById(id: string): Promise<ServiceResponse<StateUT>
   try {
     const { data, error } = await supabase.from("states_uts").select("*").eq("id", id).single();
     if (error) throw error;
-    return { data: data as StateUT, error: null };
+    return { data: data as unknown as StateUT, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -51,7 +53,7 @@ export async function createState(payload: StateUTInsert): Promise<ServiceRespon
   try {
     const { data, error } = await supabase.from("states_uts").insert([payload] as any).select().single();
     if (error) throw error;
-    return { data: data as StateUT, error: null };
+    return { data: data as unknown as StateUT, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -61,12 +63,12 @@ export async function updateState(id: string, payload: Partial<StateUTInsert>): 
   try {
     const { data, error } = await supabase
       .from("states_uts")
-      .update({ ...payload, updated_at: new Date().toISOString() } as any)
+      .update({ ...payload, updated_at: new Date().toISOString() })
       .eq("id", id)
       .select()
       .single();
     if (error) throw error;
-    return { data: data as StateUT, error: null };
+    return { data: data as unknown as StateUT, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }

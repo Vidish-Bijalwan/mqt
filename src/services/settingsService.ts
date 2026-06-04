@@ -41,7 +41,7 @@ export async function getSiteSettings(): Promise<ServiceResponse<SiteSettings>> 
       .limit(1)
       .single();
     if (error && error.code !== "PGRST116") throw error;
-    return { data: data as SiteSettings, error: null };
+    return { data: data as unknown as SiteSettings, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -67,7 +67,7 @@ export async function upsertSiteSettings(payload: Partial<SiteSettings>): Promis
         .single();
     }
     if (result.error) throw result.error;
-    return { data: result.data as SiteSettings, error: null };
+    return { data: result.data as unknown as SiteSettings, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -82,7 +82,7 @@ export async function listHomepageSections(): Promise<ServiceResponse<HomepageSe
       .select("*")
       .order("sort_order");
     if (error) throw error;
-    return { data: data as HomepageSection[], error: null };
+    return { data: data as unknown as unknown as HomepageSection[], error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
@@ -116,7 +116,7 @@ export async function upsertHomepageSection(
         .single();
     }
     if (result.error) throw result.error;
-    return { data: result.data as HomepageSection, error: null };
+    return { data: result.data as unknown as HomepageSection, error: null };
   } catch (e) {
     return { data: null, error: e as Error };
   }
