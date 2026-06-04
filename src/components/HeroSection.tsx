@@ -87,7 +87,7 @@ const HeroSection = () => {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative z-30 mt-auto w-full container-page pb-8 pt-20 sm:pt-24 md:py-16 flex flex-col items-center text-center md:justify-center md:flex-1"
+        className="relative z-30 mt-auto w-full container-page pb-6 pt-16 sm:pb-8 sm:pt-20 md:py-14 flex flex-col items-center text-center md:justify-center md:flex-1"
       >
         <motion.h1
           variants={staggerItem}

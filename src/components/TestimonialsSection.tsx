@@ -138,11 +138,10 @@ const TestimonialsSection = () => {
   const prevMobile = () => setMobileIdx((p) => (p - 1 + mobileReviews.length) % mobileReviews.length);
 
   return (
-    <section className="py-20 md:py-28 bg-[#F5F1EB]">
-      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
-        {/* Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+    <section className="section-y-compact md:section-y bg-[#F5F1EB]">
+      <div className="container-page max-w-[1400px]">
+        <div className="section-header-center">
+          <h2 className="section-heading mb-2 sm:mb-3">
             What Our Travellers Say
           </h2>
           <div className="flex items-center justify-center gap-4 flex-wrap text-sm">
@@ -178,7 +177,7 @@ const TestimonialsSection = () => {
 
         {/* Mobile carousel */}
         <div className="md:hidden">
-          <div className="min-h-[360px]">
+          <div className="min-h-0">
             {mobileReviews[mobileIdx] === featured ? (
               <FeaturedReview review={featured} />
             ) : (

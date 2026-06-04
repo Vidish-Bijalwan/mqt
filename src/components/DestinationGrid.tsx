@@ -43,21 +43,21 @@ const DESTINATIONS = [
 
 const DestinationGrid = () => {
   return (
-    <section className="section-y bg-slate-50">
+    <section className="section-y-compact bg-slate-50">
       <div className="container-page">
-        <div className="text-center mb-10">
+        <div className="section-header-center">
           <span className="section-eyebrow">EXPLORE BY REGION</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+          <h2 className="section-heading">
             Top Destinations
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
           {DESTINATIONS.map((dest, i) => (
             <Link
               key={dest.id}
               to={`/destinations/${dest.slug}`}
-              className="group relative rounded-xl overflow-hidden aspect-[4/5] block"
+              className="group relative rounded-lg sm:rounded-xl overflow-hidden aspect-[3/4] sm:aspect-[4/5] block"
             >
               <img
                 src={dest.image}
@@ -65,10 +65,10 @@ const DestinationGrid = () => {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h3 className="text-white font-bold text-lg md:text-xl flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-primary" />
-                  {dest.name}
+              <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4">
+                <h3 className="text-white font-bold text-xs sm:text-lg md:text-xl flex items-center gap-1">
+                  <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-primary shrink-0" />
+                  <span className="truncate">{dest.name}</span>
                 </h3>
               </div>
             </Link>

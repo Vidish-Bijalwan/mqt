@@ -6,7 +6,7 @@ import { getGeneralWhatsAppUrl, getPhoneUrl, getEmailUrl, getInstagramUrl } from
 // Fitts's Law: massive CTA button, impossible to miss.
 const EnquirySection = () => {
   return (
-    <section className="relative py-12 sm:py-20 md:py-28 text-center overflow-hidden reveal-section w-full" id="enquiry">
+    <section className="relative py-8 sm:py-12 md:py-16 text-center overflow-hidden reveal-section w-full" id="enquiry">
 
       {/* Background image — emotional, aspirational */}
       <div

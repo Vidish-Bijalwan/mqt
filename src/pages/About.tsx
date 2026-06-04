@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { buildTravelAgencySchema, combineSchemas } from "@/lib/seo";
 import PageHero from "@/components/PageHero";
 import InquiryBanner from "@/components/InquiryBanner";
+import HowItWorks from "@/components/HowItWorks";
 import aboutHero from "@/assets/dest-valley-flowers.jpg";
 import { Check, ShieldCheck, HeartPulse, Trophy } from "lucide-react";
 
@@ -46,9 +47,11 @@ const About = () => {
         breadcrumb={[{ label: "About Us" }]}
       />
 
+      <HowItWorks />
+
       <section className="section-padding bg-background">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
+        <div className="container-page max-w-4xl">
+          <div className="section-header-center">
             <h2 className="font-display text-3xl font-semibold mb-6">Our Story</h2>
             <p className="font-body text-muted-foreground leading-relaxed mb-4 text-lg">
               India is a medley of fascinating colors and cultures, a canvas of architectural masterpieces, and an extravagant exuberance of royal splendor. Crowned by the mighty Himalayas in the north and surrounded by emerald oceans in the south, India offers a platter full of variety, packed in one country.
@@ -61,7 +64,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="mt-16 rounded-2xl border border-primary/20 bg-primary/5 p-8 md:p-10">
+          <div className="mt-8 sm:mt-12 rounded-2xl border border-primary/20 bg-primary/5 p-5 sm:p-8 md:p-10">
             <h2 className="font-display text-2xl font-bold mb-4 text-center">Why choose MQT?</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-6 leading-relaxed">
               Unlike large OTAs, MyQuickTrippers pairs human experts with curated inventory — personalised routing, verified Himalayan partners, and transparent pricing for families, honeymooners, and spiritual travellers.
@@ -74,9 +77,9 @@ const About = () => {
             </ul>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12">
             {values.map((v, i) => (
-              <div key={i} className="bg-surface p-8 rounded-2xl border border-border text-center">
+              <div key={i} className="bg-surface p-5 sm:p-8 rounded-2xl border border-border text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <v.icon className="w-8 h-8 text-primary" />
                 </div>
@@ -89,8 +92,8 @@ const About = () => {
       </section>
 
       {/* Journey Stats */}
-      <section className="py-16 bg-surface-2 border-y border-border">
-        <div className="container mx-auto px-4">
+      <section className="section-y-compact bg-surface-2 border-y border-border">
+        <div className="container-page">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-border">
             <div>
               <p className="text-4xl md:text-5xl font-display font-bold text-accent mb-2">5k+</p>

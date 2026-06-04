@@ -14,14 +14,14 @@ const IndianCraftsCarousel = () => {
     <section className="section-y-compact bg-background overflow-hidden relative">
       <div className="container-page mx-auto">
         {/* Header */}
-        <ScrollReveal className="text-center mb-16">
-          <span className="inline-block py-1.5 px-4 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider mb-4">
+        <ScrollReveal className="section-header-center">
+          <span className="inline-block py-1 px-3 sm:py-1.5 sm:px-4 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3">
             Exquisite Crafts
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground mb-4">
+          <h2 className="section-heading mb-2 sm:mb-3">
             Handicrafts of Incredible India
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="section-subheading mx-auto">
             Discover the rich heritage of Indian artisans. From exquisite embroidery to intricate woodwork, bring home a piece of timeless tradition.
           </p>
         </ScrollReveal>
