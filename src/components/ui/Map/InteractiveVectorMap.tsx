@@ -179,7 +179,7 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
   const handleReset = () => { setZoom(1); setPan({x: 0, y: 0}); };
 
   return (
-    <section className="relative w-full min-h-screen bg-[#0F172A] overflow-hidden text-slate-100 flex flex-col font-body py-12">
+    <section className="relative w-full min-h-0 md:min-h-screen bg-[#0F172A] overflow-hidden text-slate-100 flex flex-col font-body py-8 md:py-12">
       
       {/* Heavy blurred dark forest backdrop */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -193,8 +193,8 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
       <div className="relative z-10 container mx-auto px-4 flex flex-col h-full flex-1 max-w-7xl">
         
         {/* Header & Search */}
-        <div className="flex flex-col items-center mb-10 w-full">
-          <h2 className="font-display text-5xl lg:text-6xl font-bold text-white tracking-tight drop-shadow-md text-center mb-8">
+        <div className="flex flex-col items-center mb-6 sm:mb-10 w-full">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-6xl font-bold text-white tracking-tight drop-shadow-md text-center mb-4 sm:mb-8">
             Explore the Unexplored
           </h2>
 
@@ -267,7 +267,7 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
         </div>
 
         {/* 50/50 Split Layout */}
-        <div className="flex flex-col lg:flex-row gap-8 w-full min-h-[600px] h-[70vh]">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 w-full min-h-[320px] h-[50vh] sm:h-[60vh] md:min-h-[500px] md:h-[70vh]">
           
           {/* Left: Interactive Map */}
           <div className="relative flex-1 rounded-3xl border border-white/10 overflow-hidden bg-slate-900/60 backdrop-blur-xl shadow-2xl flex flex-col">
@@ -480,7 +480,7 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
                           <Star className="w-4 h-4 fill-current" /> 4.8 (124 reviews)
                         </div>
                       </div>
-                      <h2 className="text-4xl font-display font-bold text-white leading-tight">{selectedDest.name}</h2>
+                      <h2 className="text-2xl md:text-4xl font-display font-bold text-white leading-tight">{selectedDest.name}</h2>
                     </div>
                   </div>
 
@@ -555,7 +555,7 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
                   <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mb-6 border border-primary/30 shadow-[0_0_40px_rgba(0,105,92,0.3)]">
                     <MapIcon className="w-10 h-10 text-accent" />
                   </div>
-                  <h3 className="font-display text-4xl font-bold text-white mb-2">{stateModel.name} Overview</h3>
+                  <h3 className="font-display text-2xl md:text-4xl font-bold text-white mb-2">{stateModel.name} Overview</h3>
                   <p className="text-slate-400 text-lg mb-10 max-w-sm">
                     {mapMode === "district" 
                       ? "Hover over districts to view local highlights, or select a destination marker."
@@ -564,19 +564,19 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
 
                   <div className="grid grid-cols-2 gap-6 w-full max-w-md">
                     <div className="bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-colors cursor-default">
-                      <div className="text-4xl font-bold text-white mb-1">{destinations.length}+</div>
+                      <div className="text-2xl sm:text-4xl font-bold text-white mb-1">{destinations.length}+</div>
                       <div className="text-sm text-slate-400 uppercase tracking-wider font-bold">Destinations</div>
                     </div>
                     <div className="bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-colors cursor-default">
-                      <div className="text-4xl font-bold text-white mb-1">{mapConfig?.districts?.length || 33}</div>
+                      <div className="text-2xl sm:text-4xl font-bold text-white mb-1">{mapConfig?.districts?.length || 33}</div>
                       <div className="text-sm text-slate-400 uppercase tracking-wider font-bold">Districts</div>
                     </div>
                     <div className="bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-colors cursor-default">
-                      <div className="text-4xl font-bold text-white mb-1">{CATEGORY_MAP.length - 1}</div>
+                      <div className="text-2xl sm:text-4xl font-bold text-white mb-1">{CATEGORY_MAP.length - 1}</div>
                       <div className="text-sm text-slate-400 uppercase tracking-wider font-bold">Categories</div>
                     </div>
                     <div className="bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-colors cursor-default">
-                      <div className="text-4xl font-bold text-white mb-1">12</div>
+                      <div className="text-2xl sm:text-4xl font-bold text-white mb-1">12</div>
                       <div className="text-sm text-slate-400 uppercase tracking-wider font-bold">Tour Circuits</div>
                     </div>
                   </div>

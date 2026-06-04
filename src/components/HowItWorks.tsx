@@ -32,14 +32,14 @@ const steps = [
 const HowItWorks = () => {
 
   return (
-    <section className="py-16 bg-slate-900 text-white">
-      <div className="container mx-auto px-4 w-full">
-        <ScrollReveal className="text-center mb-8">
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-3 text-white">How It Works</h2>
-          <p className="text-white/70 max-w-2xl mx-auto">Four simple steps to your dream journey</p>
+    <section className="py-10 sm:py-14 md:py-16 bg-slate-900 text-white w-full overflow-hidden">
+      <div className="container-page w-full">
+        <ScrollReveal className="text-center mb-6 sm:mb-8">
+          <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3 text-white">How It Works</h2>
+          <p className="text-white/70 text-sm sm:text-base max-w-2xl mx-auto px-2">Four simple steps to your dream journey</p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 relative w-full">
           {/* Connecting line (desktop only) */}
           <div className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-0.5 border-t-2 border-dashed border-white/20 z-0" />
 
@@ -49,8 +49,8 @@ const HowItWorks = () => {
                 whileHover={{ y: -4 }}
                 className="text-center relative z-10 group"
               >
-                <div className="mx-auto rounded-full bg-slate-800 flex items-center justify-center text-primary relative w-24 h-24 border-4 border-slate-900 shadow-lg transition-all group-hover:shadow-primary/20 group-hover:border-slate-800 mb-4">
-                  <step.Icon className="w-10 h-10 text-amber-400" strokeWidth={1.5} />
+                <div className="mx-auto rounded-full bg-slate-800 flex items-center justify-center text-primary relative w-20 h-20 sm:w-24 sm:h-24 border-4 border-slate-900 shadow-lg transition-all group-hover:shadow-primary/20 group-hover:border-slate-800 mb-3 sm:mb-4">
+                  <step.Icon className="w-8 h-8 sm:w-10 sm:h-10 text-amber-400" strokeWidth={1.5} />
                 </div>
                 <span className="inline-block bg-white/10 text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">
                   Step {step.step_number || i + 1}

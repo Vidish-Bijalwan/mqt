@@ -51,7 +51,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col pb-16 lg:pb-0">
+    <div className="min-h-screen flex flex-col w-full max-w-[100vw] overflow-x-hidden pb-[4.75rem] lg:pb-0">
       <SEO
         title="India Tour Packages 2026"
         description="Book curated India tour packages — Kerala, Kashmir, Rajasthan, Ladakh & Goa. Custom family, honeymoon & pilgrimage trips. Free quote from expert planners in Meerut."
@@ -84,7 +84,7 @@ const Index = () => {
         - Newsletter          → moved to footer
       */}
 
-      <main>
+      <main className="w-full overflow-x-hidden">
         {/* Section 1: Hero — Peak-End Rule peak moment */}
         <HeroSection />
 

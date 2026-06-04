@@ -15,10 +15,10 @@ export const StateMapContainer: React.FC<StateMapContainerProps> = ({
   subtitle = "Click on a state to discover popular travel destinations and packages.",
 }) => {
   return (
-    <div className={cn("w-full bg-surface/30 rounded-[3rem] border border-border/50 p-8 md:p-12 overflow-hidden", className)}>
+    <div className={cn("w-full bg-surface/30 rounded-2xl sm:rounded-[3rem] border border-border/50 p-4 sm:p-8 md:p-12 overflow-hidden", className)}>
       <div className="max-w-4xl mx-auto flex flex-col items-center">
-        <div className="text-center mb-12">
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 tracking-tighter">
+        <div className="text-center mb-6 sm:mb-12">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold mb-4 tracking-tighter">
             {title}
           </h2>
           <p className="text-muted-foreground text-sm font-medium uppercase tracking-widest">

@@ -42,7 +42,7 @@ const TrustStrip = () => {
   return (
     <section className="bg-[#0F172A] border-b border-amber-500/20">
       <div className="container-page">
-        <div className="flex items-center justify-center divide-x divide-white/10">
+        <div className="grid grid-cols-3 divide-x divide-white/10">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -50,17 +50,14 @@ const TrustStrip = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.45 }}
-              className="flex flex-col items-center py-6 px-8 sm:px-12 md:px-16 gap-1"
+              className="flex flex-col items-center justify-center py-4 sm:py-5 px-2 sm:px-6 md:px-10 gap-0.5 min-w-0 text-center"
             >
-              {/* Von Restorff: amber number stands out against dark bg */}
               <span
-                className="font-display text-2xl sm:text-3xl font-bold"
-                style={{ color: "#F59E0B" }}
+                className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-amber-500"
               >
                 {stat.number}
               </span>
-              {/* Law of Proximity: label immediately below number */}
-              <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-white/50">
+              <span className="text-[9px] sm:text-[11px] md:text-xs font-semibold uppercase tracking-wide sm:tracking-widest text-white/50 leading-tight">
                 {stat.label}
               </span>
             </motion.div>

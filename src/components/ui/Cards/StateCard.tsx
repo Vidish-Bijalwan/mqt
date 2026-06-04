@@ -14,7 +14,7 @@ export const StateCard: React.FC<StateCardProps> = ({ state }) => {
   return (
     <Link
       to={`/destinations/${state.slug}`}
-      className="group relative bg-card rounded-2xl overflow-hidden border border-border/50 card-hover shadow-lg block h-[400px]"
+      className="group relative bg-card rounded-2xl overflow-hidden border border-border/50 card-hover shadow-lg block card-tile-sm md:h-[400px]"
     >
       <SmartImage
         src={src}
@@ -25,7 +25,7 @@ export const StateCard: React.FC<StateCardProps> = ({ state }) => {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
       
-      <div className="absolute inset-0 p-6 flex flex-col justify-end">
+      <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end">
         <div className="flex items-center gap-2 mb-2">
           <span className="px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-bold tracking-widest text-white uppercase border border-white/20">
             {state.type}
@@ -35,7 +35,7 @@ export const StateCard: React.FC<StateCardProps> = ({ state }) => {
           </span>
         </div>
         
-        <h3 className="font-display text-3xl font-bold text-white mb-3 leading-tight tracking-tight group-hover:text-primary transition-colors duration-300">
+        <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2 sm:mb-3 leading-tight tracking-tight group-hover:text-primary transition-colors duration-300">
           {state.name}
         </h3>
         

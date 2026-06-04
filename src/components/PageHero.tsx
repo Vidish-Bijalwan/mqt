@@ -30,7 +30,7 @@ const PageHero = ({
   overlayOpacity = 0.58,
 }: PageHeroProps) => {
   return (
-    <section className="relative min-h-[320px] md:min-h-[420px] flex flex-col justify-end overflow-hidden">
+    <section className="relative hero-page flex flex-col justify-end overflow-hidden">
       {/* Background */}
       {backgroundImage ? (
         typeof backgroundImage === 'string' ? (
@@ -92,7 +92,7 @@ const PageHero = ({
         )}
 
         {/* Title */}
-        <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-semibold text-background leading-tight max-w-3xl">
+        <h1 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold text-background leading-tight max-w-3xl">
           {title}
         </h1>
 
