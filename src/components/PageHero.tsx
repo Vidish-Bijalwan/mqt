@@ -62,7 +62,7 @@ const PageHero = ({
       />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 pt-20 pb-10 md:pb-14">
+      <div className="relative z-10 container-page pt-14 pb-8 sm:pt-16 sm:pb-10 md:pb-12">
         {/* Breadcrumb */}
         {breadcrumb && (
           <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-background/60 mb-4 flex-wrap">

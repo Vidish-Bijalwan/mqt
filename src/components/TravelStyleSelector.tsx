@@ -76,12 +76,11 @@ const TravelStyleSelector = () => {
   const [featured, ...rest] = TRAVEL_STYLES;
 
   return (
-    <section className="section-y-compact md:py-24 bg-[#FAF8F4] relative overflow-hidden">
-      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
-        {/* Header */}
-        <div className="text-center mb-10 md:mb-14">
+    <section className="section-y-compact bg-[#FAF8F4] relative overflow-hidden">
+      <div className="container-page max-w-[1400px]">
+        <div className="section-header-center">
           <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase">Find Your Journey</span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-gray-900 leading-tight mt-3 mb-3">
+          <h2 className="section-heading mt-2 mb-1.5 sm:mb-2">
             How do you want to travel?
           </h2>
           <p className="text-base md:text-lg text-gray-500 max-w-lg mx-auto">
@@ -97,7 +96,7 @@ const TravelStyleSelector = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
           onClick={() => handleSelect(featured.category)}
-          className="group relative w-full h-[200px] sm:h-[260px] md:h-[400px] rounded-3xl overflow-hidden cursor-pointer text-left mb-5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60"
+          className="group relative w-full h-[160px] sm:h-[220px] md:h-[360px] rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer text-left mb-3 sm:mb-5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60"
           aria-label={`Explore ${featured.title} packages`}
         >
           <img

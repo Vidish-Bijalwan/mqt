@@ -5,7 +5,6 @@ import DestinationGrid from "@/components/DestinationGrid";
 import TravelStyleSelector from "@/components/TravelStyleSelector";
 import HomepagePackagesSection from "@/components/HomepagePackagesSection";
 import IndianCraftsCarousel from "@/components/IndianCraftsCarousel";
-import HowItWorks from "@/components/HowItWorks";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import EnquirySection from "@/components/EnquirySection";
@@ -90,9 +89,6 @@ const Index = () => {
 
         {/* Section 2: Trust Strip — 3 numbers, dark bar */}
         <TrustStrip />
-
-        {/* Section 3: How It Works — 3 steps */}
-        <HowItWorks />
 
             {/* Section 3: Travel Style Selector — Hick's Law: 3 choices */}
             <TravelStyleSelector />

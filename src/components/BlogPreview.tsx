@@ -6,14 +6,14 @@ import { getBlogImage } from "@/lib/imageMap";
 
 const BlogPreview = () => {
   return (
-    <section className="section-padding" style={{ background: 'linear-gradient(180deg, #f3efe7 0%, #f8f6f2 100%)' }}>
-      <div className="container mx-auto">
-        <div className="text-center mb-10">
+    <section className="section-y-compact" style={{ background: 'linear-gradient(180deg, #f3efe7 0%, #f8f6f2 100%)' }}>
+      <div className="container-page">
+        <div className="section-header-center">
           <h2 className="section-heading">Travel Inspiration &amp; Guides</h2>
           <p className="section-subheading mx-auto">Expert tips and guides to help you plan your next adventure</p>
         </div>
 
-        <div className="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-8 -mx-4 px-4 md:grid md:grid-cols-3 gap-6 md:mx-0 md:px-0 md:pb-0 items-stretch">
+        <div className="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4 sm:pb-6 -mx-4 px-4 md:grid md:grid-cols-3 gap-4 md:gap-6 md:mx-0 md:px-0 md:pb-0 items-stretch">
           {blogPosts.slice(0, 3).map((post) => {
             const { src, fallbackSrc } = getBlogImage(post.slug, 'hero', post.image);
             return (

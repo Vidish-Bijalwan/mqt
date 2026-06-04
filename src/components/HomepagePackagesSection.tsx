@@ -79,14 +79,14 @@ const HomepagePackagesSection = () => {
       })();
 
   return (
-    <section className="section-y reveal-section bg-white">
+    <section className="section-y-compact reveal-section bg-white">
       <div className="container-page">
 
         {/* Section header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between section-header gap-3 sm:gap-4">
           <div>
             <span className="section-eyebrow">HANDPICKED FOR YOU</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+            <h2 className="section-heading">
               Most Booked Packages
             </h2>
           </div>
@@ -99,7 +99,7 @@ const HomepagePackagesSection = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex overflow-x-auto hide-scrollbar gap-2 mb-8 pb-2">
+        <div className="flex overflow-x-auto hide-scrollbar gap-2 mb-4 sm:mb-6 pb-2">
           {CATEGORIES.map(cat => (
             <button
               key={cat.id}
@@ -121,7 +121,7 @@ const HomepagePackagesSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="flex overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 gap-4 md:grid md:grid-cols-2 xl:grid-cols-4 md:mx-0 md:px-0 md:pb-0 items-stretch"
+          className="flex overflow-x-auto snap-x snap-mandatory pb-4 sm:pb-6 -mx-4 px-4 gap-3 md:grid md:grid-cols-2 xl:grid-cols-4 md:mx-0 md:px-0 md:pb-0 md:gap-6 items-stretch"
         >
           {displayPackages.map(({ pkg, cat }) => (
             <motion.div 
