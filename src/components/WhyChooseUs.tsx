@@ -64,7 +64,7 @@ const cardVariants: Variants = {
 
 const WhyChooseUs = () => {
   return (
-    <section className="section-compact relative overflow-hidden bg-gray-50 w-full">
+    <section className="section-compact relative overflow-hidden w-full">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-20 -left-20 w-48 h-48 rounded-full bg-amber-200/20 blur-[80px]" />
         <div className="absolute -bottom-20 -right-16 w-40 h-40 rounded-full bg-blue-200/20 blur-[80px]" />

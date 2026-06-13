@@ -74,7 +74,7 @@ const TravelStyleSelector = () => {
   const [featured, ...rest] = TRAVEL_STYLES;
 
   return (
-    <section className="section bg-[#FAF8F4] relative overflow-hidden">
+    <section className="section relative overflow-hidden">
       <div className="container-page">
         <div className="section-header-center section-intro-center">
           <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase">Find Your Journey</span>

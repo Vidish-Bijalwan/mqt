@@ -76,7 +76,7 @@ const HomepagePackagesSection = () => {
         })();
 
   return (
-    <section className="section reveal-section bg-white">
+    <section className="section reveal-section">
       <div className="container-page">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between section-header">
           <div className="section-intro">

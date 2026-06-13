@@ -42,7 +42,7 @@ const DESTINATIONS = [
 
 const DestinationGrid = () => {
   return (
-    <section className="section bg-slate-50">
+    <section className="section">
       <div className="container-page">
         <div className="section-header-center section-intro-center">
           <span className="section-eyebrow">EXPLORE BY REGION</span>
