@@ -17,7 +17,10 @@ const mapDbToDomain = (row: DbPackagePublic): TourPackage => {
     state: row.state,
     country: row.country,
     type: row.type,
-    duration: { nights: row.duration_nights, days: row.duration_days },
+    duration: {
+      nights: row.duration_nights ?? fallbackObj?.duration?.nights ?? 2,
+      days: row.duration_days ?? fallbackObj?.duration?.days ?? 3,
+    },
     price: fallbackObj?.price || 0, // Fallback to static if DB version is stripped
     originalPrice: fallbackObj?.originalPrice || 0, 
     rating: Number(row.rating),
@@ -25,7 +28,11 @@ const mapDbToDomain = (row: DbPackagePublic): TourPackage => {
     image: isRefined ? (fallbackObj?.image || "") : resolveImageSource("package-images", row.image_url, fallbackObj?.image || ""),
     badge: isRefined ? (fallbackObj?.badge || row.badge) : (row.badge || undefined),
     includes: fallbackObj?.includes?.length ? fallbackObj.includes : (row.includes || []),
-    categories: fallbackObj?.categories?.length ? fallbackObj.categories : (row.categories || []),
+    categories: fallbackObj?.categories?.length
+      ? fallbackObj.categories
+      : Array.isArray(row.categories)
+        ? row.categories
+        : [],
     tags: fallbackObj?.tags?.length ? fallbackObj.tags : (row.tags || []),
     highlights: fallbackObj?.highlights?.length ? fallbackObj.highlights : (row.highlights || []),
     season: row.season,
@@ -86,7 +93,9 @@ export async function getPackageBySlug(categorySlug: string, packageSlug: string
     return { data: mapDbToDomain(data), error: null };
   } catch (err) {
     console.warn(`[PackageService] Falling back to static data for slug: ${packageSlug}`, err);
-    const fallback = tourPackages.find((p) => p.slug === packageSlug && p.categories.includes(categorySlug));
+    const fallback = tourPackages.find(
+      (p) => p.slug === packageSlug && (p.categories ?? []).includes(categorySlug)
+    );
     if (!fallback) {
       // Try again without category
        const fallbackAny = tourPackages.find((p) => p.slug === packageSlug);

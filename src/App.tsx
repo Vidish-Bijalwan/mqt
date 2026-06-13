@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { AnimatePresence } from "framer-motion";
+import { RouteErrorBoundary } from "@/components/RouteErrorBoundary";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -63,6 +63,8 @@ const AdminDestinations = React.lazy(() => import('./pages/admin/content/AdminDe
 const DestinationForm = React.lazy(() => import('./pages/admin/content/AdminDestinations.tsx').then(module => ({ default: module.DestinationForm })));
 const AdminPackages = React.lazy(() => import('./pages/admin/content/AdminPackages.tsx').then(module => ({ default: module.AdminPackages })));
 const PackageForm = React.lazy(() => import('./pages/admin/content/AdminPackages.tsx').then(module => ({ default: module.PackageForm })));
+const AdminItineraries = React.lazy(() => import('./pages/admin/content/AdminItineraries.tsx').then(module => ({ default: module.AdminItineraries })));
+const ItineraryForm = React.lazy(() => import('./pages/admin/content/AdminItineraries.tsx').then(module => ({ default: module.ItineraryForm })));
 const AdminBlog = React.lazy(() => import('./pages/admin/content/AdminBlog.tsx').then(module => ({ default: module.AdminBlog })));
 const BlogForm = React.lazy(() => import('./pages/admin/content/AdminBlog.tsx').then(module => ({ default: module.BlogForm })));
 const AdminTestimonials = React.lazy(() => import('./pages/admin/content/AdminTestimonials.tsx').then(module => ({ default: module.AdminTestimonials })));
@@ -111,9 +113,9 @@ const AnimatedRoutes = () => {
   }, [location]);
 
   return (
-    <AnimatePresence mode="wait">
+    <RouteErrorBoundary>
       <Suspense fallback={<div className="h-screen w-full flex items-center justify-center p-4"><div className="w-8 h-8 rounded-full border-4 border-primary/30 border-t-primary animate-spin"></div></div>}>
-        <Routes location={location} key={location.pathname}>
+        <Routes>
           {/* ── Public Routes ── */}
           <Route path="/" element={<Index />} />
           <Route path="/destinations" element={<Destinations />} />
@@ -175,6 +177,11 @@ const AnimatedRoutes = () => {
               <Route path="/admin/content/packages" element={<AdminPackages />} />
               <Route path="/admin/content/packages/new" element={<PackageForm />} />
               <Route path="/admin/content/packages/:id/edit" element={<PackageForm />} />
+
+              {/* Itineraries */}
+              <Route path="/admin/content/itineraries" element={<AdminItineraries />} />
+              <Route path="/admin/content/itineraries/new" element={<ItineraryForm />} />
+              <Route path="/admin/content/itineraries/:id/edit" element={<ItineraryForm />} />
 
               {/* Blog */}
               <Route path="/admin/content/blog" element={<AdminBlog />} />
@@ -248,7 +255,7 @@ const AnimatedRoutes = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-    </AnimatePresence>
+    </RouteErrorBoundary>
   );
 };
 

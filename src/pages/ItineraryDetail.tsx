@@ -1,5 +1,6 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { SEO } from "@/components/SEO";
 import { buildBreadcrumbSchema, combineSchemas } from "@/lib/seo";
 import { Map, Calendar, Sun, Check, MessageCircle, Zap, ShieldCheck } from "lucide-react";
@@ -8,7 +9,7 @@ import PageHero from "@/components/PageHero";
 import EnquirySection from "@/components/EnquirySection";
 import InquiryBanner from "@/components/InquiryBanner";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
-import { getItineraryBySlug } from "@/data/itineraries";
+import { getEnrichedItineraryAsync } from "@/lib/itineraryContent";
 import { getPackageGallery } from "@/data/packageGalleries";
 import { ImmersiveItinerary } from "@/components/ImmersiveItinerary";
 import { AudioGuide } from "@/components/AudioGuide";
@@ -20,13 +21,28 @@ const ItineraryDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const { openPlanner } = useTripPlanner();
 
-  const itinerary = useMemo(() => slug ? getItineraryBySlug(slug) : undefined, [slug]);
+  const { data: itinerary, isLoading } = useQuery({
+    queryKey: ["itinerary-detail", slug],
+    queryFn: () => (slug ? getEnrichedItineraryAsync(slug) : undefined),
+    enabled: !!slug,
+    staleTime: 60_000,
+  });
 
   useEffect(() => {
     if (itinerary) {
       window.scrollTo(0, 0);
     }
   }, [itinerary]);
+
+  if (isLoading) {
+    return (
+      <PageLayout>
+        <div className="min-h-[50vh] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full border-4 border-primary/30 border-t-primary animate-spin" />
+        </div>
+      </PageLayout>
+    );
+  }
 
   if (!itinerary) {
     return <Navigate to="/404" replace />;

@@ -39,7 +39,7 @@ const Packages = () => {
 
   const filteredPackages = useMemo(() => {
     if (activeCategory === "all") return tourPackages;
-    return tourPackages.filter((pkg) => pkg.categories.includes(activeCategory));
+    return tourPackages.filter((pkg) => pkg.categories?.includes(activeCategory));
   }, [activeCategory, tourPackages]);
 
   const categoryMeta = experienceCategories.find((c) => c.slug === activeCategory);

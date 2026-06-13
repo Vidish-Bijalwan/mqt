@@ -38,9 +38,13 @@ const THEME = {
 };
 
 const projectCoordinates = (lat: number, lng: number, mapConfig: any) => {
-  const x = lng * mapConfig.cosFactor;
+  if (!mapConfig?.viewBox || !Number.isFinite(lat) || !Number.isFinite(lng)) {
+    return { x: 50, y: 50 };
+  }
+  const x = lng * (mapConfig.cosFactor ?? 1);
   const y = -lat;
   const [vMinX, vMinY, vWidth, vHeight] = mapConfig.viewBox.split(" ").map(Number);
+  if (!vWidth || !vHeight) return { x: 50, y: 50 };
   const xPct = ((x - vMinX) / vWidth) * 100;
   const yPct = ((y - vMinY) / vHeight) * 100;
   return { x: xPct, y: yPct };

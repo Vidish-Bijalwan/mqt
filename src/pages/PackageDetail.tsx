@@ -10,7 +10,7 @@ import GalleryGrid from "@/components/GalleryGrid";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import PackageRecommendations from "@/components/PackageRecommendations";
 import PackageReviews from "@/components/PackageReviews";
-import { tourPackages } from "@/data/packages";
+import { getPackageBySlug, tourPackages } from "@/data/packages";
 import { getSimilarPackages } from "@/lib/recommendations";
 import { addRecentlyViewed } from "@/lib/personalization";
 import { useAnalytics } from "@/hooks/useAnalytics";
@@ -29,7 +29,7 @@ import {
   combineSchemas,
 } from "@/lib/seo";
 import { getPackageGallery } from "@/data/packageGalleries";
-import { ImmersiveItinerary, buildItineraryDays } from "@/components/ImmersiveItinerary";
+import { ImmersiveItinerary } from "@/components/ImmersiveItinerary";
 import { AudioGuide } from "@/components/AudioGuide";
 import {
   Accordion,
@@ -43,8 +43,11 @@ const PackageDetail = () => {
   const { track } = useAnalytics();
   const { openPlanner } = useTripPlanner();
 
-  const pkg = useMemo(() => tourPackages.find((p) => p.slug === slug), [slug]);
-  const similarPackages = useMemo(() => pkg ? getSimilarPackages(pkg, tourPackages, 3) : [], [pkg]);
+  const pkg = useMemo(() => (slug ? getPackageBySlug(slug) : undefined), [slug]);
+  const similarPackages = useMemo(
+    () => (pkg ? getSimilarPackages(pkg, tourPackages, 3) : []),
+    [pkg]
+  );
 
   useEffect(() => {
     if (pkg) {
@@ -144,14 +147,21 @@ const PackageDetail = () => {
           : `Day ${i + 1}: Guided Tour of ${pkg.destination} Highlights`
       );
 
-  // Build immersive itinerary day objects (with per-day gallery images)
-  const itineraryDays = buildItineraryDays(itineraryLines, galleryEntries);
+  const itineraryDays = itineraryLines.map((line, i) => {
+    const desc = line.replace(/^Day\s+\d+:\s*/i, "").trim();
+    return {
+      day: i + 1,
+      title: line.match(/^Day\s+\d+:/i) ? line : `Day ${i + 1}: ${line}`,
+      description: desc.length > 20 ? desc : undefined,
+      gallery: galleryEntries,
+    };
+  });
 
   return (
     <PageLayout>
       <SEO
         title={`${pkg.title} Package 2026`}
-        description={`Book ${pkg.title} in ${pkg.destination}. ${pkg.duration.days}D/${pkg.duration.nights}N from ₹${pkg.price.toLocaleString("en-IN")}. ${(pkg.highlights || []).slice(0, 2).join(", ")}. Free MQT quote today.`}
+        description={`Book ${pkg.title} in ${pkg.destination}. ${pkg.duration?.days ?? "—"}D/${pkg.duration?.nights ?? "—"}N from ₹${pkg.price.toLocaleString("en-IN")}. ${(pkg.highlights || []).slice(0, 2).join(", ")}. Free MQT quote today.`}
         canonical={canonicalPath}
         image={pkg.image}
         schema={schema}
@@ -211,7 +221,7 @@ const PackageDetail = () => {
                 <h2 className="text-3xl font-display font-semibold mb-4">Tour Overview</h2>
                 <div className="flex items-center gap-6 text-sm text-muted-foreground font-body mb-6 pb-6 border-b border-border">
                   <span className="flex items-center gap-2"><Map className="w-4 h-4 text-primary" /> {pkg.destination}, {pkg.state}</span>
-                  <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /> {pkg.duration.nights}N / {pkg.duration.days}D</span>
+                  <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /> {pkg.duration?.nights ?? "—"}N / {pkg.duration?.days ?? "—"}D</span>
                   <span className="flex items-center gap-2"><Sun className="w-4 h-4 text-primary" /> {pkg.season}</span>
                   <a href="#reviews" className="flex items-center gap-1 font-medium text-foreground ml-auto hover:text-primary transition-colors hover:underline">
                     <Star className="w-4 h-4 fill-accent text-accent" /> {pkg.rating} ({pkg.reviewsCount} reviews)

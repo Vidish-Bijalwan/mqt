@@ -23,7 +23,7 @@ const BlogDetail = () => {
     const keywords = [...post.tags, post.category.toLowerCase()];
     // Simple mock logic to get related packages based on blog tags
     return tourPackages.filter(pkg => 
-      keywords.some(k => pkg.destination.toLowerCase().includes(k) || pkg.categories.includes(k))
+      keywords.some(k => pkg.destination.toLowerCase().includes(k) || (pkg.categories?.includes(k) ?? false))
     ).slice(0, 3);
   }, [post]);
 

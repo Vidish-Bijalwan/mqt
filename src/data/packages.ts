@@ -1,4 +1,5 @@
 import { packageMenuData } from "./packageMenuData";
+import { enrichAllPackages, enrichPackage } from "@/lib/packageEnrichment";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Type Definitions
@@ -866,7 +867,7 @@ packageMenuData.forEach((group) => {
           includes: ["Accommodation", "Meals", "Transport", "Guide"],
           categories: [cat.slug, ...(featured.categories || [])],
           tags: ["bestseller"],
-          highlights: featured.highlights,
+          highlights: featured.highlights ?? [],
           season: "All Year",
           availability: "Available",
           popularityScore: 85 + Math.floor(Math.random() * 10),
@@ -880,14 +881,17 @@ packageMenuData.forEach((group) => {
   });
 });
 
+enrichAllPackages(tourPackages);
+
 export function getPackageBySlug(slug: string): TourPackage | undefined {
-  return tourPackages.find((p) => p.slug === slug);
+  const pkg = tourPackages.find((p) => p.slug === slug);
+  return pkg ? enrichPackage({ ...pkg }) : undefined;
 }
 
 export function getPackagesByCategory(category: string): TourPackage[] {
   if (category === "all") return tourPackages;
   return tourPackages.filter((p) =>
-    p.categories.map((c) => c.toLowerCase()).includes(category.toLowerCase())
+    (p.categories ?? []).map((c) => c.toLowerCase()).includes(category.toLowerCase())
   );
 }
 

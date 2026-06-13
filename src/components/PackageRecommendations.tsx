@@ -52,7 +52,7 @@ const PackageCard: React.FC<PackageCardProps> = ({ pkg }) => {
         <div className="flex items-center justify-between mt-4">
           <div className="flex flex-col">
              <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-tighter">Duration</span>
-             <span className="text-xs font-bold text-gray-700">{pkg.duration.days} Days</span>
+             <span className="text-xs font-bold text-gray-700">{pkg.duration?.days ?? "—"} Days</span>
           </div>
           <div className="text-right">
              <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-tighter block mb-0.5">Price</span>

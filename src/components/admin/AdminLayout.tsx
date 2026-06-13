@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Inbox, Image as ImageIcon, LogOut,
   Globe, Package, MapPin, BookOpen, MessageSquare, HelpCircle,
   Home, Settings, Map, ChevronRight, Menu, X, Flag, Compass, Flower2,
-  Lightbulb, HelpingHand, Mail, Waves, Smile, ScrollText, Star, Wand2, Palette
+  Lightbulb, HelpingHand, Mail, Waves, Smile, ScrollText, Star, Wand2, Palette, Route
 } from "lucide-react";
 
 const sidebarGroups = [
@@ -30,6 +30,7 @@ const sidebarGroups = [
       { label: "Destinations", path: "/admin/content/destinations", icon: MapPin },
       { label: "Categories", path: "/admin/content/categories", icon: Map },
       { label: "Packages", path: "/admin/content/packages", icon: Package },
+      { label: "Itineraries", path: "/admin/content/itineraries", icon: Route },
       { label: "Blog", path: "/admin/content/blog", icon: BookOpen },
       { label: "Testimonials", path: "/admin/content/testimonials", icon: MessageSquare },
       { label: "FAQs", path: "/admin/content/faqs", icon: HelpCircle },

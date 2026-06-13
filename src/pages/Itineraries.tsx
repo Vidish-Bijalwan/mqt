@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { SEO } from "@/components/SEO";
 import {
   Map, Search, Filter, Tag, ArrowRight, ChevronLeft, Calendar, Compass,
@@ -7,7 +8,8 @@ import {
 } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import { ItineraryCard } from "@/components/itineraries/ItineraryCard";
-import { itineraries, getRegions, getCategoryTags, getRelatedItineraries } from "@/data/itineraries";
+import { itineraries as staticItineraries, getRegions, getCategoryTags, getRelatedItineraries } from "@/data/itineraries";
+import { getMergedItineraries } from "@/lib/itineraryContent";
 import { Button } from "@/components/ui/button";
 import { useTripPlanner } from "@/contexts/TripPlannerContext";
 
@@ -19,8 +21,8 @@ const REGION_META: Record<string, { icon: React.ReactNode; examples: string; des
   "West India": { icon: <Sunrise className="w-6 h-6" />, examples: "Rajasthan, Gujarat, Goa, Maharashtra", desc: "Best for deserts, beaches & royal cities", count: 0 },
   "South India": { icon: <Waves className="w-6 h-6" />, examples: "Kerala, Coorg, Andaman, Tamil Nadu, Karnataka", desc: "Best for beaches, backwaters & hill stations", count: 0 },
 };
-// Populate counts
-itineraries.forEach(i => { if (REGION_META[i.region]) REGION_META[i.region].count++; });
+// Populate counts (static baseline; updated at runtime via merged list)
+staticItineraries.forEach(i => { if (REGION_META[i.region]) REGION_META[i.region].count++; });
 
 // ─── Experience categories (mapped to actual categoryTags) ─────────────────
 const EXPERIENCE_OPTIONS = [
@@ -51,6 +53,14 @@ const STEPS = [
 const Itineraries = () => {
   const { openPlanner } = useTripPlanner();
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const { data: mergedItineraries } = useQuery({
+    queryKey: ["public-itineraries"],
+    queryFn: getMergedItineraries,
+    staleTime: 60_000,
+  });
+
+  const itineraries = mergedItineraries ?? staticItineraries;
 
   // Wizard state: 0 = hero/start, 1 = region, 2 = experience, 3 = duration, 4 = results
   const [wizardStep, setWizardStep] = useState(0);
@@ -513,11 +523,11 @@ const Itineraries = () => {
                       className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all text-sm text-[#111111]"
                     />
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <select
                       value={selectedRegion}
                       onChange={(e) => setSelectedRegion(e.target.value)}
-                      className="appearance-none bg-white border border-gray-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 font-semibold text-gray-700 text-sm pr-8"
+                      className="appearance-none w-full sm:w-auto bg-white border border-gray-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 font-semibold text-gray-700 text-sm pr-8"
                       aria-label="Filter by region"
                     >
                       <option value="All">All Regions</option>
@@ -526,7 +536,7 @@ const Itineraries = () => {
                     <select
                       value={selectedExperience}
                       onChange={(e) => setSelectedExperience(e.target.value)}
-                      className="appearance-none bg-white border border-gray-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 font-semibold text-gray-700 text-sm pr-8"
+                      className="appearance-none w-full sm:w-auto bg-white border border-gray-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 font-semibold text-gray-700 text-sm pr-8"
                       aria-label="Filter by experience"
                     >
                       <option value="All">All Types</option>

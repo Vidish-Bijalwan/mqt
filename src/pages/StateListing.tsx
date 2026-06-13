@@ -14,6 +14,7 @@ import { getStateGuideContent } from "@/data/destination-seo-content";
 import { tourPackages } from "@/data/packages";
 import { buildFaqSchema, buildBreadcrumbSchema, combineSchemas } from "@/lib/seo";
 import { InteractiveVectorMap } from "@/components/ui/Map/InteractiveVectorMap";
+import { MapErrorBoundary } from "@/components/ui/Map/MapErrorBoundary";
 import { StateGallery } from "@/components/ui/StateGallery";
 import { getStateImage } from "@/lib/imageMap";
 import { stateImagesMap } from "@/data/stateImagesMap";
@@ -161,10 +162,12 @@ const StateListing = () => {
             </p>
           </div>
 
-          <InteractiveVectorMap 
-            destinations={filteredDestinations} 
-            stateModel={stateData} 
-          />
+          <MapErrorBoundary>
+            <InteractiveVectorMap
+              destinations={filteredDestinations}
+              stateModel={stateData}
+            />
+          </MapErrorBoundary>
 
           <DestinationFilterSystem
             filters={filters}

@@ -5520,5 +5520,9 @@ export function getStatesByRegion(region: Region | "All"): StateModel[] {
 }
 
 export function getStateBySlug(slug: string): StateModel | undefined {
-  return indiaStatesData[slug];
+  const key = slug.toLowerCase().trim();
+  return (
+    indiaStatesData[key] ??
+    Object.values(indiaStatesData).find((s) => s.slug.toLowerCase() === key)
+  );
 }
