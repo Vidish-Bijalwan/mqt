@@ -14,7 +14,7 @@ import BottomNav from "@/components/BottomNav";
 import { ExclusiveAlertModal } from "@/components/ExclusiveAlertModal";
 import { SEO } from "@/components/SEO";
 import { buildTravelAgencySchema, combineSchemas } from "@/lib/seo";
-import { WaveDivider, FloatingOrbs, DotPattern } from "@/components/SectionDivider";
+import { FloatingOrbs, DotPattern, HanddrawnSwoosh, CompassWatermark } from "@/components/SectionDivider";
 
 const Index = () => {
   const schema = combineSchemas(buildTravelAgencySchema());
@@ -31,45 +31,46 @@ const Index = () => {
       <ExclusiveAlertModal />
       <Navbar />
 
-      <main className="w-full overflow-x-hidden">
-        {/* Section 1: Hero — Peak-End Rule peak moment */}
-        <HeroSection />
-
-        {/* Section 2: Trust Strip — 3 numbers, dark bar */}
-        <TrustStrip />
-
-        {/* Section 3: Travel Style Selector — Hick's Law: 3 choices */}
-        <TravelStyleSelector />
-
-        {/* Organic wave transition from warm beige to cool slate */}
-        <WaveDivider color="#f1f5f9" />
-
-        {/* Section 3.5: Destinations Grid — with decorative background */}
-        <div className="relative">
+      <main className="w-full overflow-x-hidden relative">
+        {/* Global floating orbs and dots for the entire page */}
+        <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
           <FloatingOrbs />
           <DotPattern />
+        </div>
+
+        {/* Section 1: Hero */}
+        <HeroSection />
+
+        {/* Section 2: Trust Strip */}
+        <TrustStrip />
+
+        {/* Section 3: Travel Style Selector */}
+        <div className="relative">
+          <HanddrawnSwoosh className="top-10 left-[10%] w-[120px] sm:w-[200px]" />
+          <TravelStyleSelector />
+        </div>
+
+        {/* Section 3.5: Destinations Grid */}
+        <div className="relative">
+          <CompassWatermark className="top-1/4 right-[-5%] w-[300px] h-[300px] sm:w-[500px] sm:h-[500px]" />
           <DestinationGrid />
         </div>
 
-        {/* Wave transition back to white for packages */}
-        <WaveDivider color="#ffffff" flip />
-
-        {/* Section 4: Featured Packages — with subtle background accents */}
+        {/* Section 4: Featured Packages */}
         <div className="relative">
-          <FloatingOrbs className="opacity-60" />
           <HomepagePackagesSection />
         </div>
 
-        {/* Section 5: Why MQT — Miller's Law: 3 reasons */}
+        {/* Section 5: Why MQT */}
         <WhyChooseUs />
 
-        {/* Section 6: Testimonials — social proof before final CTA */}
+        {/* Section 6: Testimonials */}
         <TestimonialsSection />
 
-        {/* Blog teaser — lightweight, below fold, before final CTA */}
+        {/* Blog teaser */}
         <BlogPreview />
 
-        {/* Section 7: Final CTA — Peak-End Rule end moment */}
+        {/* Section 7: Final CTA */}
         <EnquirySection />
       </main>
 

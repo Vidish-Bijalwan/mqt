@@ -137,7 +137,7 @@ const TestimonialsSection = () => {
   const prevMobile = () => setMobileIdx((p) => (p - 1 + mobileReviews.length) % mobileReviews.length);
 
   return (
-    <section className="section-compact bg-[#F5F1EB]">
+    <section className="section-compact">
       <div className="container-page">
         <div className="section-header-center section-intro-center">
           <h2 className="section-heading">What Our Travellers Say</h2>
