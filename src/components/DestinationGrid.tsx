@@ -42,7 +42,9 @@ const DESTINATIONS = [
 
 const DestinationGrid = () => {
   return (
-    <section className="section">
+    <section className="section relative bg-[#F8F9FA] overflow-hidden">
+      {/* Subtle background texture */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
       <div className="container-page">
         <div className="section-header-center section-intro-center">
           <span className="section-eyebrow">EXPLORE BY REGION</span>
