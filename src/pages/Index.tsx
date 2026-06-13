@@ -14,7 +14,6 @@ import BottomNav from "@/components/BottomNav";
 import { ExclusiveAlertModal } from "@/components/ExclusiveAlertModal";
 import { SEO } from "@/components/SEO";
 import { buildTravelAgencySchema, combineSchemas } from "@/lib/seo";
-import { FloatingOrbs, DotPattern, HanddrawnSwoosh, CompassWatermark } from "@/components/SectionDivider";
 
 const Index = () => {
   const schema = combineSchemas(buildTravelAgencySchema());
@@ -32,12 +31,6 @@ const Index = () => {
       <Navbar />
 
       <main className="w-full overflow-x-hidden relative">
-        {/* Global floating orbs and dots for the entire page */}
-        <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-          <FloatingOrbs />
-          <DotPattern />
-        </div>
-
         {/* Section 1: Hero */}
         <HeroSection />
 
@@ -45,21 +38,13 @@ const Index = () => {
         <TrustStrip />
 
         {/* Section 3: Travel Style Selector */}
-        <div className="relative">
-          <HanddrawnSwoosh className="top-10 left-[10%] w-[120px] sm:w-[200px]" />
-          <TravelStyleSelector />
-        </div>
+        <TravelStyleSelector />
 
         {/* Section 3.5: Destinations Grid */}
-        <div className="relative">
-          <CompassWatermark className="top-1/4 right-[-5%] w-[300px] h-[300px] sm:w-[500px] sm:h-[500px]" />
-          <DestinationGrid />
-        </div>
+        <DestinationGrid />
 
         {/* Section 4: Featured Packages */}
-        <div className="relative">
-          <HomepagePackagesSection />
-        </div>
+        <HomepagePackagesSection />
 
         {/* Section 5: Why MQT */}
         <WhyChooseUs />

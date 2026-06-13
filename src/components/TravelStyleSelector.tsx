@@ -74,16 +74,14 @@ const TravelStyleSelector = () => {
   const [featured, ...rest] = TRAVEL_STYLES;
 
   return (
-    <section className="section relative overflow-hidden bg-slate-900 text-white">
-      {/* Subtle topographic/wave pattern for the dark background */}
-      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%)' }} />
+    <section className="section relative overflow-hidden">
       <div className="container-page relative z-10">
         <div className="section-header-center section-intro-center">
-          <span className="text-xs font-bold tracking-[0.2em] text-amber-400 uppercase">Find Your Journey</span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-tight leading-tight">
+          <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase">Find Your Journey</span>
+          <h2 className="section-heading">
             How do you want to travel?
           </h2>
-          <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto">Find journeys tailored to your style and budget.</p>
+          <p className="section-subheading mx-auto">Find journeys tailored to your style and budget.</p>
         </div>
 
         <motion.button
