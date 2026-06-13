@@ -64,7 +64,7 @@ const Navbar = () => {
               <AnimatePresence>{activeDropdown === "packages" && <TourPackagesMegaMenu />}</AnimatePresence>
             </div>
 
-            <Link to="/crafts" className={`text-[15px] font-semibold tracking-wide transition-colors duration-200 hover:text-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm ${location.pathname === "/crafts" ? "text-amber-500" : "text-[#111111]"}`}>Crafts</Link>
+            {/* <Link to="/crafts" className={`text-[15px] font-semibold tracking-wide transition-colors duration-200 hover:text-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm ${location.pathname === "/crafts" ? "text-amber-500" : "text-[#111111]"}`}>Crafts</Link> */}
             <Link to="/itineraries" className={`text-[15px] font-semibold tracking-wide transition-colors duration-200 hover:text-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm ${location.pathname === "/itineraries" ? "text-amber-500" : "text-[#111111]"}`}>Itineraries</Link>
             <Link to="/contact" className={`text-[15px] font-semibold tracking-wide transition-colors duration-200 hover:text-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm ${location.pathname === "/contact" ? "text-amber-500" : "text-[#111111]"}`}>Contact</Link>
           </nav>
@@ -110,7 +110,7 @@ const Navbar = () => {
             <Link to="/destinations" className={`block px-5 py-4 text-lg font-bold rounded-xl transition-colors active:scale-[0.98] ${location.pathname.startsWith("/destinations") ? "bg-amber-50 text-amber-600" : "text-[#111111] hover:bg-gray-50"}`}>Destinations</Link>
             <Link to="/packages" className={`block px-5 py-4 text-lg font-bold rounded-xl transition-colors active:scale-[0.98] ${location.pathname.startsWith("/packages") ? "bg-amber-50 text-amber-600" : "text-[#111111] hover:bg-gray-50"}`}>Packages</Link>
             <Link to="/itineraries" className={`block px-5 py-4 text-lg font-bold rounded-xl transition-colors active:scale-[0.98] ${location.pathname.startsWith("/itineraries") ? "bg-amber-50 text-amber-600" : "text-[#111111] hover:bg-gray-50"}`}>Itineraries</Link>
-            <Link to="/crafts" className={`block px-5 py-4 text-lg font-bold rounded-xl transition-colors active:scale-[0.98] ${location.pathname === "/crafts" ? "bg-amber-50 text-amber-600" : "text-[#111111] hover:bg-gray-50"}`}>Shop Crafts</Link>
+            {/* <Link to="/crafts" className={`block px-5 py-4 text-lg font-bold rounded-xl transition-colors active:scale-[0.98] ${location.pathname === "/crafts" ? "bg-amber-50 text-amber-600" : "text-[#111111] hover:bg-gray-50"}`}>Shop Crafts</Link> */}
             <Link to="/contact" className={`block px-5 py-4 text-lg font-bold rounded-xl transition-colors active:scale-[0.98] ${location.pathname === "/contact" ? "bg-amber-50 text-amber-600" : "text-[#111111] hover:bg-gray-50"}`}>Contact</Link>
             <Link to="/profile" className={`flex items-center gap-3 px-5 py-4 text-lg font-bold rounded-xl transition-colors active:scale-[0.98] ${location.pathname === "/profile" ? "bg-amber-50 text-amber-600" : "text-amber-500 bg-amber-50 hover:bg-amber-100"}`}>
               <User className="h-5 w-5" /> My Account
