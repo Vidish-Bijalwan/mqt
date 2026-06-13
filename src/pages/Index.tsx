@@ -9,6 +9,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import EnquirySection from "@/components/EnquirySection";
 import BlogPreview from "@/components/BlogPreview";
+import HowItWorks from "@/components/HowItWorks";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 import BottomNav from "@/components/BottomNav";
@@ -17,37 +18,12 @@ import { SEO } from "@/components/SEO";
 import { buildTravelAgencySchema, combineSchemas } from "@/lib/seo";
 import { useEffect } from "react";
 
-// IntersectionObserver scroll reveal — apply Goal-Gradient Effect
-// Each section fading in as user scrolls creates sense of progress
-const setupReveal = () => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
-          // Stagger children
-          const children = entry.target.querySelectorAll(".reveal-child");
-          children.forEach((child, index) => {
-            (child as HTMLElement).style.transitionDelay = `${index * 80}ms`;
-            child.classList.add("revealed");
-          });
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-  document.querySelectorAll(".reveal-section").forEach((el) => observer.observe(el));
-  return observer;
-};
+// Scroll reveal has been removed to fix the "sticky/stuck" feeling when scrolling quickly.
 
 const Index = () => {
   const schema = combineSchemas(buildTravelAgencySchema());
 
-  // Set up scroll reveal after mount
-  useEffect(() => {
-    const observer = setupReveal();
-    return () => observer.disconnect();
-  }, []);
+  // Scroll reveal removed for better UX on fast scroll
 
   return (
     <div className="min-h-screen flex flex-col w-full max-w-[100vw] overflow-x-hidden pb-[4.75rem] lg:pb-0">
@@ -78,7 +54,6 @@ const Index = () => {
         - FestivalsOfIndia    → /destinations
         - DomesticInternational → removed (redundant)
         - TravelExperiences   → /packages
-        - HowItWorks          → /about
         - BlogPreview         → kept below final CTA (lightweight)
         - Newsletter          → moved to footer
       */}
@@ -95,6 +70,9 @@ const Index = () => {
 
             {/* Section 3.5: Destinations Grid */}
             <DestinationGrid />
+
+            {/* Added HowItWorks to break up the large white space between the grids */}
+            <HowItWorks />
 
             {/* Section 4: Featured Packages — Miller's Law: 4 only */}
             <HomepagePackagesSection />
