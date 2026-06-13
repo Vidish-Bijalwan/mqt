@@ -116,7 +116,7 @@ const TravelStyleSelector = () => {
           </div>
         </motion.button>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 grid-gap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 grid-gap mt-4">
           {rest.map((style, i) => (
             <motion.button
               key={style.id}
@@ -126,24 +126,24 @@ const TravelStyleSelector = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               onClick={() => handleSelect(style.category)}
-              className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+              className="group relative aspect-[3/4] sm:aspect-square rounded-2xl overflow-hidden cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60 hover:-translate-y-1.5 shadow-sm hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.15)] transition-all duration-400"
               aria-label={`Explore ${style.title} packages`}
             >
               <img
                 src={style.image}
                 alt={style.title}
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src = style.fallback;
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-end p-5 z-10">
-                <h3 className="font-sans text-base md:text-lg font-bold text-white leading-tight mb-0.5">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
+                <h3 className="font-display text-lg sm:text-xl font-bold text-white leading-tight mb-1.5 drop-shadow-sm">
                   {style.title}
                 </h3>
-                <p className="text-xs text-white/65 line-clamp-1">{style.desc}</p>
+                <p className="text-sm text-white/70 line-clamp-2">{style.desc}</p>
               </div>
             </motion.button>
           ))}

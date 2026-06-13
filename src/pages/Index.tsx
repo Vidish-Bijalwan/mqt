@@ -14,6 +14,7 @@ import BottomNav from "@/components/BottomNav";
 import { ExclusiveAlertModal } from "@/components/ExclusiveAlertModal";
 import { SEO } from "@/components/SEO";
 import { buildTravelAgencySchema, combineSchemas } from "@/lib/seo";
+import { SunriseGradient, TopographicMap, ForestGlow, PassportStamps } from "@/components/ui/CinematicBackgrounds";
 
 const Index = () => {
   const schema = combineSchemas(buildTravelAgencySchema());
@@ -38,13 +39,19 @@ const Index = () => {
         <TrustStrip />
 
         {/* Section 3: Travel Style Selector */}
-        <TravelStyleSelector />
+        <SunriseGradient>
+          <TravelStyleSelector />
+        </SunriseGradient>
 
         {/* Section 3.5: Destinations Grid */}
-        <DestinationGrid />
+        <TopographicMap>
+          <DestinationGrid />
+        </TopographicMap>
 
         {/* Section 4: Featured Packages */}
-        <HomepagePackagesSection />
+        <ForestGlow>
+          <HomepagePackagesSection />
+        </ForestGlow>
 
         {/* Section 5: Why MQT */}
         <WhyChooseUs />
@@ -53,7 +60,9 @@ const Index = () => {
         <TestimonialsSection />
 
         {/* Blog teaser */}
-        <BlogPreview />
+        <PassportStamps>
+          <BlogPreview />
+        </PassportStamps>
 
         {/* Section 7: Final CTA */}
         <EnquirySection />

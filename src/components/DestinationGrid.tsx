@@ -54,17 +54,17 @@ const DestinationGrid = () => {
             <Link
               key={dest.id}
               to={`/destinations/${dest.slug}`}
-              className="group relative rounded-xl overflow-hidden aspect-[4/3] block"
+              className="group relative rounded-2xl overflow-hidden aspect-[3/4] block shadow-sm hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.15)] hover:-translate-y-1.5 transition-all duration-400"
             >
               <img
                 src={dest.image}
                 alt={dest.name}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h3 className="text-white font-bold text-sm sm:text-base flex items-center gap-1.5 leading-tight">
-                  <MapPin className="w-3.5 h-3.5 text-primary shrink-0" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+                <h3 className="text-white font-display font-bold text-lg sm:text-xl md:text-2xl flex items-center gap-2 leading-tight drop-shadow-sm">
+                  <MapPin className="w-4 h-4 md:w-5 md:h-5 text-amber-500 shrink-0" />
                   <span className="truncate">{dest.name}</span>
                 </h3>
               </div>

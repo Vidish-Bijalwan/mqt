@@ -40,24 +40,24 @@ const TrustStrip = () => {
       : DEFAULT_STATS;
 
   return (
-    <section className="bg-transparent border-b border-amber-900/10 relative z-10">
-      <div className="container-page">
-        <div className="grid grid-cols-3 divide-x divide-slate-300">
+    <section className="bg-transparent relative z-20 -mt-8 sm:-mt-12 pb-8">
+      <div className="container-page relative">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.45 }}
-              className="flex flex-col items-center justify-center py-5 px-4 sm:px-8 gap-1 min-w-0 text-center"
+              transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
+              className="flex flex-col items-center justify-center py-6 px-4 bg-white/80 backdrop-blur-md border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl gap-1 text-center hover:-translate-y-1 transition-transform duration-300"
             >
               <span
-                className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-amber-700 drop-shadow-sm"
+                className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-amber-600 drop-shadow-sm"
               >
                 {stat.number}
               </span>
-              <span className="text-[9px] sm:text-[11px] md:text-xs font-bold uppercase tracking-wide sm:tracking-widest text-slate-500 leading-tight">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 leading-tight">
                 {stat.label}
               </span>
             </motion.div>
