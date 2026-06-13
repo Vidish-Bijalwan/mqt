@@ -137,7 +137,9 @@ const TestimonialsSection = () => {
   const prevMobile = () => setMobileIdx((p) => (p - 1 + mobileReviews.length) % mobileReviews.length);
 
   return (
-    <section className="section-compact">
+    <section className="section-compact bg-[#FDFBF7] relative overflow-hidden">
+      {/* Decorative floral/mandala watermark */}
+      <div className="absolute -top-40 -right-40 w-[400px] h-[400px] opacity-[0.03] rotate-45 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, currentColor 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
       <div className="container-page">
         <div className="section-header-center section-intro-center">
           <h2 className="section-heading">What Our Travellers Say</h2>
