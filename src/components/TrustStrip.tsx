@@ -40,9 +40,9 @@ const TrustStrip = () => {
       : DEFAULT_STATS;
 
   return (
-    <section className="bg-[#0F172A] border-b border-amber-500/20">
+    <section className="bg-transparent border-b border-amber-900/10 relative z-10">
       <div className="container-page">
-        <div className="grid grid-cols-3 divide-x divide-white/10">
+        <div className="grid grid-cols-3 divide-x divide-slate-300">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -53,11 +53,11 @@ const TrustStrip = () => {
               className="flex flex-col items-center justify-center py-5 px-4 sm:px-8 gap-1 min-w-0 text-center"
             >
               <span
-                className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-amber-500"
+                className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-amber-700 drop-shadow-sm"
               >
                 {stat.number}
               </span>
-              <span className="text-[9px] sm:text-[11px] md:text-xs font-semibold uppercase tracking-wide sm:tracking-widest text-white/50 leading-tight">
+              <span className="text-[9px] sm:text-[11px] md:text-xs font-bold uppercase tracking-wide sm:tracking-widest text-slate-500 leading-tight">
                 {stat.label}
               </span>
             </motion.div>
