@@ -8,11 +8,8 @@ const BlogPreview = () => {
   const posts = blogPosts.slice(0, 4);
 
   return (
-    <section
-      className="section-compact"
-      style={{ background: "linear-gradient(180deg, #f3efe7 0%, #f8f6f2 100%)" }}
-    >
-      <div className="container-page">
+    <section className="section-compact relative w-full overflow-hidden">
+      <div className="container-page relative z-10">
         <div className="section-header-center section-intro-center">
           <h2 className="section-heading">Travel Inspiration &amp; Guides</h2>
           <p className="section-subheading mx-auto">
@@ -20,13 +17,13 @@ const BlogPreview = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-gap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-gap mt-4">
           {posts.map((post) => {
             const { src, fallbackSrc } = getBlogImage(post.slug, "hero", post.image);
             return (
               <Link key={post.id} to={`/blog/${post.slug}`} className="group block h-full">
-                <div className="bg-card rounded-xl overflow-hidden border border-border card-hover shadow-soft h-full flex flex-col">
-                  <div className="relative overflow-hidden aspect-video">
+                <div className="bg-white rounded-2xl overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-elevated transition-all duration-300 h-full flex flex-col hover:-translate-y-1.5">
+                  <div className="relative overflow-hidden aspect-[4/3]">
                     <ImgWithFallback
                       src={src}
                       fallbackSrc={fallbackSrc}

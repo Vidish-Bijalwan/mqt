@@ -25,13 +25,13 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
   };
 
   return (
-    <TiltCard className="bg-white w-full h-full rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow group block">
+    <TiltCard className="bg-white w-full h-full rounded-2xl overflow-hidden border border-slate-200/60 shadow-sm hover:border-primary/20 hover:shadow-elevated transition-all duration-300 group block flex flex-col">
       <Link
         to={`/packages/${categorySlug || 'tour'}/${pkg.slug}`}
         className="block h-full relative border-none outline-none flex flex-col"
       >
         {/* Image Section */}
-        <div className="relative overflow-hidden aspect-[16/10] shrink-0">
+        <div className="relative overflow-hidden aspect-[4/3] shrink-0">
           {(() => {
             const { src, fallbackSrc } = getPackageImage(pkg.slug, 'card', pkg.image);
             return (
@@ -39,33 +39,31 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
                 src={src}
                 fallbackSrc={fallbackSrc}
                 alt={`${pkg.title} - ${pkg.destination} tour package`}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 lazy={true}
               />
             );
           })()}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 transition-opacity" />
           
           {/* Category Badge */}
           {categoryLabel && (
-            <div className="absolute top-3 left-3">
-              <span className="bg-white/90 backdrop-blur-sm text-gray-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm">
+            <div className="absolute top-4 left-4">
+              <span className="bg-white/95 backdrop-blur-sm text-foreground text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
                 {categoryLabel}
               </span>
             </div>
           )}
 
-          {/* Removed Starting price badge per requirements */}
-
-          <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
-            <div className="flex items-center gap-1.5 text-xs font-medium">
-              <MapPin className="w-3.5 h-3.5" />
-              {pkg.destination}
+          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">
+            <div className="flex items-center gap-1.5 text-sm font-medium drop-shadow-sm">
+              <MapPin className="w-4 h-4 text-amber-400" />
+              <span className="truncate">{pkg.destination}</span>
             </div>
-            <div className="flex flex-col items-end">
-              <div className="flex items-center gap-1 mt-1">
+            <div className="flex flex-col items-end drop-shadow-sm">
+              <div className="flex items-center gap-1 mt-1 text-amber-400">
                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
                  ))}
               </div>
             </div>
@@ -73,43 +71,43 @@ const PackageCard = ({ pkg, categoryLabel, categorySlug }: PackageCardProps) => 
         </div>
 
         {/* Content Section */}
-        <div className="p-5 flex flex-col flex-1 gap-0">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-2">
-            <Clock className="h-3.5 w-3.5" />
+        <div className="p-5 sm:p-6 flex flex-col flex-1">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-3">
+            <Clock className="h-4 w-4" />
             <span>{pkg.duration}</span>
           </div>
 
-          <h3 className="font-display font-bold text-base sm:text-lg text-gray-900 mb-2 leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+          <h3 className="font-display font-bold text-lg sm:text-xl text-slate-900 mb-4 leading-tight line-clamp-2 group-hover:text-primary transition-colors">
             {pkg.title}
           </h3>
 
-          <div className="text-xs font-semibold text-rose-600 bg-rose-50 px-2 py-1 rounded inline-block mb-2 self-start">
+          <div className="text-[11px] font-semibold text-rose-600 bg-rose-50 px-2.5 py-1.5 rounded-md inline-block mb-4 self-start border border-rose-100">
             Usually booked 3–4 weeks in advance
           </div>
 
-          <div className="mt-auto mb-3 relative overflow-hidden group/itinerary">
+          <div className="mt-auto mb-4 relative overflow-hidden group/itinerary bg-slate-50/80 rounded-xl p-3 sm:p-4 border border-slate-100/50">
              {/* Teaser Itinerary (hover to expand) */}
-             <div className="text-xs text-gray-600 mb-1 font-semibold flex items-center justify-between">
+             <div className="text-xs text-slate-500 mb-2 font-bold uppercase tracking-wider flex items-center justify-between">
                 <span>Quick Itinerary</span>
-                <span className="text-[10px] text-primary/60 group-hover/itinerary:hidden">Hover to view</span>
+                <span className="text-[10px] text-primary/60 group-hover/itinerary:text-primary transition-colors cursor-pointer hover:underline">Hover to view</span>
              </div>
-             <div className="space-y-1.5 max-h-[48px] group-hover/itinerary:max-h-[120px] transition-all duration-300 ease-in-out">
+             <div className="space-y-1.5 max-h-[64px] overflow-hidden group-hover/itinerary:max-h-[140px] group-hover/itinerary:overflow-y-auto custom-scrollbar transition-all duration-300 ease-in-out">
                {pkg.highlights.slice(0, 3).map((highlight, idx) => (
-                  <div key={idx} className="flex items-start gap-2 text-xs text-gray-600">
-                    <span className="font-bold text-gray-400 min-w-[36px]">Day {idx + 1}</span>
-                    <span className="line-clamp-1">{highlight}</span>
+                  <div key={idx} className="flex items-start gap-2 text-[13px] text-slate-600">
+                    <span className="font-medium text-slate-700 min-w-[36px]">Day {idx + 1}</span>
+                    <span className="line-clamp-1 group-hover/itinerary:line-clamp-none" title={highlight}>{highlight}</span>
                   </div>
                ))}
              </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 mt-auto pt-3 border-t border-gray-100">
-            <span className="flex items-center justify-center py-2.5 rounded-lg text-primary text-[12px] font-bold tracking-wide hover:bg-primary/5 transition-colors">
-               <Search className="w-4 h-4 mr-1.5" /> View Details
+          <div className="grid grid-cols-2 gap-3 mt-auto pt-4 border-t border-slate-100">
+            <span className="flex items-center justify-center py-2.5 rounded-xl text-primary text-[13px] font-bold tracking-wide hover:bg-primary/5 transition-colors border border-transparent hover:border-primary/20">
+               <Search className="w-4 h-4 mr-1.5" /> Details
             </span>
             <span
               onClick={handleGetQuote}
-              className="flex items-center justify-center py-2.5 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wider shadow-sm transition-all hover:bg-primary/90 hover:shadow-md cursor-pointer"
+              className="flex items-center justify-center py-2.5 rounded-xl bg-primary text-white text-[13px] font-bold tracking-wide shadow-sm transition-all hover:bg-primary-dark hover:shadow-md cursor-pointer"
             >
                Get Quote
             </span>
