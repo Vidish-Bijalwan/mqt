@@ -52,7 +52,7 @@ const RecentlyViewed = ({ excludeSlug, title = "Recently Viewed" }: RecentlyView
               : `/destinations/${dest!.stateSlug}/${dest!.slug}`;
             const label = isPackage ? pkg!.title : dest!.name;
             const sub = isPackage
-              ? `${pkg!.duration.nights}N / ${pkg!.duration.days}D`
+              ? `${pkg!.duration?.nights ?? "—"}N / ${pkg!.duration?.days ?? "—"}D`
               : dest!.shortDescription ?? dest!.stateSlug;
             const { src, fallbackSrc } = isPackage
               ? getPackageImage(pkg!.slug, 'card', pkg!.image)

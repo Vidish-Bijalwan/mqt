@@ -100,7 +100,7 @@ const Index = () => {
             <HomepagePackagesSection />
 
             {/* Section 4.5: Indian Crafts Carousel */}
-            <IndianCraftsCarousel />
+            {/* <IndianCraftsCarousel /> */}
 
             {/* Section 5: Why MQT — Miller's Law: 3 reasons */}
             <WhyChooseUs />

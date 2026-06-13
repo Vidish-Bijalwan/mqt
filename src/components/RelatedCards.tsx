@@ -62,7 +62,7 @@ const RelatedCards = (props: RelatedCardsProps) => {
                 <div className="p-4">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1.5">
                     <Clock className="h-3.5 w-3.5" />
-                    <span>{pkg.duration.nights}N · {pkg.duration.days}D</span>
+                    <span>{pkg.duration?.nights ?? "—"}N · {pkg.duration?.days ?? "—"}D</span>
                   </div>
                   <h3 className="font-body font-semibold text-sm text-card-foreground mb-2 leading-snug">
                     {pkg.title}

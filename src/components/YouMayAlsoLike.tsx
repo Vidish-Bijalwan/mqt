@@ -54,7 +54,7 @@ const YouMayAlsoLike = ({ packages, title = "You May Also Like" }: YouMayAlsoLik
                 <div className="p-4">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1.5">
                     <Clock className="h-3.5 w-3.5" />
-                    <span>{pkg.duration.nights}N · {pkg.duration.days}D</span>
+                    <span>{pkg.duration?.nights ?? "—"}N · {pkg.duration?.days ?? "—"}D</span>
                     <span className="ml-auto flex items-center gap-1">
                       <Star className="h-3 w-3 fill-accent text-accent" />
                       {pkg.rating}

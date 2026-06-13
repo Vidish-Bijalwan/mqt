@@ -28,8 +28,8 @@ function scorePackageSimilarity(ref: TourPackage, candidate: TourPackage): numbe
   if (ref.destination === candidate.destination) score += 40;
 
   // Overlapping categories — medium signal
-  const sharedCategories = ref.categories.filter((c) =>
-    candidate.categories.includes(c)
+  const sharedCategories = (ref.categories ?? []).filter((c) =>
+    (candidate.categories ?? []).includes(c)
   );
   score += sharedCategories.length * 15;
 
@@ -97,7 +97,7 @@ export function getPackagesByCategory(
 ): TourPackage[] {
   if (category === "all") return all;
   return all.filter((pkg) =>
-    pkg.categories.map((c) => c.toLowerCase()).includes(category.toLowerCase())
+    (pkg.categories ?? []).map((c) => c.toLowerCase()).includes(category.toLowerCase())
   );
 }
 

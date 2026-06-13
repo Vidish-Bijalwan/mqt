@@ -76,7 +76,7 @@ export function DestinationSeoSections({
                 >
                   <span className="font-semibold text-foreground">{pkg.title}</span>
                   <span className="block text-sm text-muted-foreground mt-1">
-                    {pkg.duration.days} days · from ₹
+                    {pkg.duration?.days ?? "—"} days · from ₹
                     {pkg.price.toLocaleString("en-IN")}
                   </span>
                 </Link>

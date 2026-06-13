@@ -252,6 +252,45 @@ export interface DbReview extends Record<string, unknown> {
   updated_at?: string;
 }
 
+// ── Itineraries ───────────────────────────────────────────────────────────────
+export interface DbItinerary extends Record<string, unknown> {
+  id: string;
+  slug: string;
+  package_name: string;
+  region: "North India" | "East India" | "Central India" | "West India" | "South India";
+  duration_label: string | null;
+  days: number;
+  nights: number;
+  places_covered: string[];
+  starting_point: string | null;
+  ending_point: string | null;
+  short_description: string | null;
+  image_url: string | null;
+  highlights: string[];
+  inclusions: string[];
+  exclusions: string[];
+  category_tags: string[];
+  starting_price: number | null;
+  price_label: string | null;
+  price_disclaimer: string | null;
+  seo_title: string | null;
+  seo_description: string | null;
+  active: boolean;
+  featured: boolean;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface DbItineraryDay extends Record<string, unknown> {
+  id: string;
+  itinerary_id: string;
+  day_number: number;
+  title: string;
+  description: string;
+  created_at: string;
+}
+
 /** Loose row for CMS tables not fully modeled yet */
 export type DbJsonRow = Record<string, unknown>;
 
@@ -343,6 +382,16 @@ export interface Database {
       profiles: CmsTable;
       trust_strip: CmsTable;
       newsletter_settings: CmsTable;
+      itineraries: TableDef<
+        DbItinerary,
+        Omit<DbItinerary, "id" | "created_at" | "updated_at">,
+        Partial<Omit<DbItinerary, "id" | "created_at">>
+      >;
+      itinerary_days: TableDef<
+        DbItineraryDay,
+        Omit<DbItineraryDay, "id" | "created_at">,
+        Partial<Omit<DbItineraryDay, "id" | "created_at">>
+      >;
     };
     Views: {
       public_packages: {

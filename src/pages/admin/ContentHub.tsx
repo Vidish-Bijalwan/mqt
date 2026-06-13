@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Globe, MapPin, Package, BookOpen, MessageSquare, HelpCircle, Home, Settings, Map, Plus, ArrowRight, Compass, Flower2, Waves, Flag, Lightbulb, Smile, ScrollText, Mail, HelpingHand, Palette } from "lucide-react";
+import { Globe, MapPin, Package, BookOpen, MessageSquare, HelpCircle, Home, Settings, Map, Plus, ArrowRight, Compass, Flower2, Waves, Flag, Lightbulb, Smile, ScrollText, Mail, HelpingHand, Palette, Route } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 async function fetchContentCounts() {
-  const [states, destinations, categories, packages, blogs, testimonials, faqs, travelRoutes, festivals, discoveryVibes, domesticIntl, travelExperiences, whyChooseUs, howItWorks, crafts] = await Promise.all([
+  const [states, destinations, categories, packages, itineraries, blogs, testimonials, faqs, travelRoutes, festivals, discoveryVibes, domesticIntl, travelExperiences, whyChooseUs, howItWorks, crafts] = await Promise.all([
     supabase.from("states_uts").select("*", { count: "exact", head: true }),
     supabase.from("destinations").select("*", { count: "exact", head: true }),
     supabase.from("package_categories").select("*", { count: "exact", head: true }),
     supabase.from("packages").select("*", { count: "exact", head: true }),
+    supabase.from("itineraries").select("*", { count: "exact", head: true }),
     supabase.from("blog_posts").select("*", { count: "exact", head: true }),
     supabase.from("testimonials").select("*", { count: "exact", head: true }),
     supabase.from("faqs").select("*", { count: "exact", head: true }),
@@ -26,6 +27,7 @@ async function fetchContentCounts() {
     destinations: destinations.count ?? 0,
     categories: categories.count ?? 0,
     packages: packages.count ?? 0,
+    itineraries: itineraries.count ?? 0,
     blogs: blogs.count ?? 0,
     testimonials: testimonials.count ?? 0,
     faqs: faqs.count ?? 0,
@@ -76,6 +78,15 @@ const contentModules = (counts: Record<string, number>) => [
     newPath: "/admin/content/packages/new",
     count: counts.packages,
     color: "bg-orange-50 text-orange-600",
+  },
+  {
+    label: "Itineraries",
+    icon: Route,
+    description: "Create and edit full day-wise itineraries shown on /itineraries pages.",
+    path: "/admin/content/itineraries",
+    newPath: "/admin/content/itineraries/new",
+    count: counts.itineraries,
+    color: "bg-teal-50 text-teal-600",
   },
   {
     label: "Blog",

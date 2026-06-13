@@ -25,32 +25,13 @@ const RetentionNudge = () => {
       const consent = localStorage.getItem('mqt_cookie_consent');
       if (consent === 'declined') return;
 
+      // Instead of pinging an offline API (which causes CORS errors in the console),
+      // we'll use a local fallback heuristic: show nudge if they've been on the page
+      // for 30+ seconds and haven't clicked much, indicating hesitation.
       const timeOnPage = (Date.now() - startTime.current) / 1000;
-      const device = window.innerWidth < 768 ? 0 : 1;
-
-      try {
-        const response = await fetch(`${API_BASE_URL}/predict-dropout`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            time_on_page: timeOnPage,
-            steps_completed: stepsCompleted.current,
-            clicks: clicks.current,
-            device: device,
-          })
-        });
-
-        if (!response.ok) throw new Error("API error");
-        
-        const data = await response.json();
-        
-        // Machine Learning told us this user is going to leave! Show the nudge!
-        if (data.show_nudge) {
-          setShowNudge(true);
-        }
-
-      } catch (err) {
-        console.error("Dropout prediction failed", err);
+      
+      if (timeOnPage > 30 && clicks.current < 5) {
+        setShowNudge(true);
       }
     }, 15000); // Check every 15 seconds
 
