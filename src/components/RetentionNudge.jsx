@@ -33,6 +33,7 @@ const RetentionNudge = () => {
       if (timeOnPage > 30 && clicks.current < 5) {
         setShowNudge(true);
       }
+    }, 15000); // Check every 15 seconds
 
     return () => {
       window.removeEventListener("click", trackClick);
