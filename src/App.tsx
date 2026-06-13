@@ -131,7 +131,7 @@ const AnimatedRoutes = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
-          <Route path="/crafts" element={<IndianCrafts />} />
+          {/* <Route path="/crafts" element={<IndianCrafts />} /> */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/profile" element={<UserProfile />} />
