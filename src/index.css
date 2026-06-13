@@ -405,22 +405,20 @@
 
   /* ── Scroll reveal base states ──────────────────────────────────── */
   .reveal-section {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1), transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 1;
+    transform: none;
   }
   .reveal-section.revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
   .reveal-child {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 1;
+    transform: none;
   }
   .reveal-child.revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
   @media (prefers-reduced-motion: reduce) {
     .reveal-section, .reveal-child {
