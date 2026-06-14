@@ -4,8 +4,8 @@
  */
 
 // Contact Details
-export const CONTACT_PHONE = "+91-7668741373";
-export const CONTACT_WHATSAPP = "917668741373";
+export const CONTACT_PHONE = "+91-8171158569";
+export const CONTACT_WHATSAPP = "918171158569";
 export const CONTACT_EMAIL = "hello@myquicktrippers.com";
 export const CONTACT_INSTAGRAM = "MQT_myquicktrippers";
 

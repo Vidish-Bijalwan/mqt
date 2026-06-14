@@ -6,8 +6,8 @@ import type { Session, User } from "@supabase/supabase-js";
  */
 export function checkIsAdmin(user: User | null): boolean {
   if (!user) return false;
-  // Supabase injects the `role: "admin"` into user_metadata from their dashboard when managing users
-  return user.user_metadata?.role === "admin";
+  // SECURITY FIX: user_metadata is controllable by the user. app_metadata is strictly controlled by the backend.
+  return user.app_metadata?.role === "admin";
 }
 
 /**

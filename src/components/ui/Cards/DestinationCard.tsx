@@ -167,7 +167,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({ destination, s
               onClick={(e) => {
                 e.stopPropagation();
                 window.open(
-                  `https://wa.me/917668741373?text=Hi MQT! I'm interested in visiting ${destination.name}. Please share package details.`,
+                  `https://wa.me/918171158569?text=Hi MQT! I'm interested in visiting ${destination.name}. Please share package details.`,
                   '_blank'
                 );
               }}

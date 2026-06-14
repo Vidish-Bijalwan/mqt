@@ -18,8 +18,8 @@ const FloatingElements = () => {
 
   return (
     <>
-      {/* FloatingContactBar: WhatsApp-only on desktop */}
-      <FloatingContactBar />
+      {/* WhatsApp button removed to prevent overlap with ChatbotWidget */}
+
 
       {/* Scroll to Top — desktop only, top-right, appears late */}
       <AnimatePresence>

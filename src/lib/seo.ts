@@ -84,7 +84,7 @@ export function buildTravelAgencySchema() {
     logo: absoluteUrl("/logo.png"),
     description:
       "Premium curated travel experiences across India — Rajasthan, Kerala, Ladakh, Goa and all states.",
-    telephone: "+91-7668741373",
+    telephone: "+91-8171158569",
     email: "info@myquicktrippers.com",
     address: {
       "@type": "PostalAddress",

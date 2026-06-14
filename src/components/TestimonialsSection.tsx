@@ -125,8 +125,6 @@ const TestimonialsSection = () => {
   const featured = allTestimonials[1]; // Priya – Kashmir Honeymoon
   const secondary = [
     allTestimonials[0],  // Rahul – Kedarnath
-    allTestimonials[2],  // Amit – Ladakh
-    allTestimonials[5],  // Deepak – Varanasi
     allTestimonials[6],  // Kavya – Manali
   ];
 
@@ -137,38 +135,48 @@ const TestimonialsSection = () => {
   const prevMobile = () => setMobileIdx((p) => (p - 1 + mobileReviews.length) % mobileReviews.length);
 
   return (
-    <section className="section-compact relative overflow-hidden w-full">
+    <section className="section-y relative overflow-hidden w-full">
       <div className="container-page">
-        <div className="section-header-center section-intro-center">
-          <h2 className="section-heading">What Our Travellers Say</h2>
-          <div className="flex items-center justify-center gap-4 flex-wrap text-sm">
+        <div className="section-header-center section-intro-center mb-10 md:mb-16">
+          <h2 className="section-heading text-4xl md:text-5xl">What Our Travellers Say</h2>
+          <div className="flex items-center justify-center gap-4 flex-wrap text-sm mt-3">
             <div className="flex items-center gap-1.5">
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <span className="font-bold text-gray-900">4.9</span>
+              <span className="font-bold text-slate-900 text-lg">4.9</span>
             </div>
-            <span className="text-gray-300">·</span>
-            <span className="text-gray-500 font-medium">500+ Verified Travellers</span>
-            <span className="text-gray-300">·</span>
-            <span className="text-gray-500 font-medium">Google & TripAdvisor</span>
+            <span className="text-slate-300">·</span>
+            <span className="text-slate-600 font-medium">500+ Verified Travellers</span>
+            <span className="text-slate-300">·</span>
+            <span className="text-slate-600 font-medium">Google & TripAdvisor</span>
           </div>
         </div>
 
-        {/* Desktop layout */}
-        <div className="hidden md:block">
-          {/* Featured */}
-          <div className="mb-6">
+        {/* Desktop layout: Featured on left, stack of 2 on right */}
+        <div className="hidden lg:grid grid-cols-12 gap-6 items-stretch">
+          <div className="col-span-8 flex">
             <FeaturedReview review={featured} />
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 grid-gap">
+          <div className="col-span-4 flex flex-col gap-6">
             {secondary.map((t) => (
-              <ReviewCard key={t.id} review={t} />
+              <div key={t.id} className="flex-1">
+                <ReviewCard review={t} />
+              </div>
             ))}
           </div>
+        </div>
+
+        {/* Tablet layout: Featured on top, 2 below */}
+        <div className="hidden md:block lg:hidden space-y-6">
+           <FeaturedReview review={featured} />
+           <div className="grid grid-cols-2 gap-6">
+             {secondary.map((t) => (
+               <ReviewCard key={t.id} review={t} />
+             ))}
+           </div>
         </div>
 
         {/* Mobile carousel */}
@@ -186,7 +194,7 @@ const TestimonialsSection = () => {
             <button
               type="button"
               onClick={prevMobile}
-              className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors shadow-sm"
+              className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-colors shadow-sm"
               aria-label="Previous review"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -199,8 +207,8 @@ const TestimonialsSection = () => {
                   onClick={() => setMobileIdx(i)}
                   className={`rounded-full transition-all duration-300 ${
                     i === mobileIdx
-                      ? "w-6 h-2.5 bg-primary"
-                      : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
+                      ? "w-6 h-2.5 bg-emerald-600"
+                      : "w-2.5 h-2.5 bg-slate-200 hover:bg-slate-300"
                   }`}
                   aria-label={`Go to review ${i + 1}`}
                 />
@@ -210,7 +218,7 @@ const TestimonialsSection = () => {
             <button
               type="button"
               onClick={nextMobile}
-              className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors shadow-sm"
+              className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-colors shadow-sm"
               aria-label="Next review"
             >
               <ChevronRight className="w-5 h-5" />

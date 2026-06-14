@@ -18,14 +18,14 @@ const Contact = () => {
   const handleWhatsAppSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `Hi, I am ${formData.name}. Phone: ${formData.phone}. Message: ${formData.message}`;
-    window.open(`https://wa.me/917668741373?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/918171158569?text=${encodeURIComponent(text)}`, "_blank");
   };
 
   return (
     <PageLayout>
       <SEO
         title="Contact MyQuickTrippers"
-        description="Get a free India tour quote — call +91-7668741373 or WhatsApp MQT. Custom Kerala, Kashmir, Rajasthan & pilgrimage packages from Meerut."
+        description="Get a free India tour quote — call +91-8171158569 or WhatsApp MQT. Custom Kerala, Kashmir, Rajasthan & pilgrimage packages from Meerut."
         canonical="/contact"
         image={contactHero}
       />
@@ -56,18 +56,18 @@ const Contact = () => {
                   <div>
                     <h3 className="font-bold text-foreground">WhatsApp Us</h3>
                     <p className="text-sm text-muted-foreground mb-1">Fastest response time (24/7)</p>
-                    <span className="text-success font-semibold text-sm block mt-1">+91 76687 41373</span>
+                    <span className="text-success font-semibold text-sm block mt-1">+91 81711 58569</span>
                   </div>
                 </a>
 
-                <a href="tel:+917668741373" className="flex items-start gap-4 p-5 bg-card rounded-2xl border border-border shadow-soft hover:-translate-y-1 transition-transform group">
+                <a href="tel:+918171158569" className="flex items-start gap-4 p-5 bg-card rounded-2xl border border-border shadow-soft hover:-translate-y-1 transition-transform group">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                     <Phone className="w-6 h-6 text-primary group-hover:text-white" />
                   </div>
                   <div>
                     <h3 className="font-bold text-foreground">Call Us</h3>
                     <p className="text-sm text-muted-foreground mb-1">Mon-Sat from 9am to 7pm</p>
-                    <span className="text-primary font-semibold text-sm block mt-1">+91 76687 41373</span>
+                    <span className="text-primary font-semibold text-sm block mt-1">+91 81711 58569</span>
                   </div>
                 </a>
 

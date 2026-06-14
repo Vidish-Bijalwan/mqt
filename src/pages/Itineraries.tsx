@@ -654,7 +654,7 @@ const Itineraries = () => {
                 Request Custom Itinerary
               </Button>
               <a
-                href="https://wa.me/917668741373?text=Hi!%20I%20need%20a%20custom%20India%20itinerary."
+                href="https://wa.me/918171158569?text=Hi!%20I%20need%20a%20custom%20India%20itinerary."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-7 text-base font-bold text-white border-2 border-white/20 rounded-full hover:bg-white hover:text-[#111827] transition-all backdrop-blur-sm"

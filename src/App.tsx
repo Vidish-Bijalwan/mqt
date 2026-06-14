@@ -13,6 +13,7 @@ import { PlannerTeaser } from "@/components/planner/PlannerTeaser";
 import { ResumePlannerPopup } from "@/components/planner/ResumePlannerPopup";
 import RetentionNudge from "@/components/RetentionNudge";
 import CookieConsent from "@/components/CookieConsent";
+import ChatbotWidget from "@/components/ChatbotWidget";
 
 // Public Pages
 import Index from "./pages/Index.tsx";
@@ -268,6 +269,7 @@ const App = () => (
             <TripPlannerProvider>
               <Toaster />
               <Sonner />
+              <ChatbotWidget />
               <RetentionNudge />
               <CookieConsent />
               <AnimatedRoutes />
