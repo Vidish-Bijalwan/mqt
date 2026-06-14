@@ -203,14 +203,14 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
           </h2>
 
           {/* Search Bar - 500-600px wide */}
-          <div className="relative w-full max-w-[600px] group mb-8">
+          <div className="relative w-full max-w-[600px] group mb-8 transform-gpu">
             <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-accent transition-colors" />
             <input 
               type="text" 
               placeholder="Search destinations, districts, circuits..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/10 border border-white/20 text-white rounded-full py-4 pl-14 pr-6 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent placeholder:text-slate-400 text-lg shadow-xl"
+              className="w-full bg-white/10 border border-white/20 text-white rounded-full py-4 pl-14 pr-6 backdrop-blur-md transform-gpu focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent placeholder:text-slate-400 text-lg shadow-xl"
             />
           </div>
 
@@ -222,7 +222,7 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full border transition-all duration-300 ${
+                  className={`transform-gpu flex items-center gap-2 px-5 py-2.5 rounded-full border transition-all duration-300 ${
                     isActive 
                       ? "bg-accent border-accent text-slate-900 shadow-[0_0_20px_rgba(249,168,37,0.4)] scale-105 font-bold" 
                       : "bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 hover:text-white"
@@ -242,7 +242,7 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
               <button
                 key={mood}
                 onClick={() => setActiveMood(activeMood === mood ? null : mood)}
-                className={`px-4 py-1.5 rounded-full border text-xs font-semibold transition-all ${
+                className={`transform-gpu px-4 py-1.5 rounded-full border text-xs font-semibold transition-all ${
                   activeMood === mood 
                     ? "bg-white text-slate-900 border-white shadow-lg scale-105" 
                     : "bg-transparent border-slate-600 text-slate-400 hover:border-slate-300 hover:text-slate-200"
@@ -254,7 +254,7 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
           </div>
 
           {/* Circuit / District Toggle */}
-          <div className="flex bg-slate-800/80 backdrop-blur-md border border-white/10 p-1 rounded-full mt-4">
+          <div className="flex bg-slate-800/80 backdrop-blur-md transform-gpu border border-white/10 p-1 rounded-full mt-4">
             <button 
               onClick={() => setMapMode("circuit")}
               className={`px-8 py-2 rounded-full text-sm font-semibold transition-all ${mapMode === "circuit" ? "bg-white text-slate-900 shadow-md" : "text-slate-400 hover:text-white"}`}
@@ -274,10 +274,10 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
         <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 w-full min-h-[320px] h-[50vh] sm:h-[60vh] md:min-h-[500px] md:h-[70vh]">
           
           {/* Left: Interactive Map */}
-          <div className="relative flex-1 rounded-3xl border border-white/10 overflow-hidden bg-slate-900/60 backdrop-blur-xl shadow-2xl flex flex-col">
+          <div className="relative flex-1 rounded-3xl border border-white/10 overflow-hidden bg-slate-900/60 backdrop-blur-xl transform-gpu shadow-2xl flex flex-col">
             
             {/* Zoom Controls */}
-            <div className="absolute left-6 bottom-6 z-20 flex flex-col gap-2 bg-slate-800/80 backdrop-blur-md p-2 rounded-2xl border border-white/10 shadow-xl">
+            <div className="absolute left-6 bottom-6 z-20 flex flex-col gap-2 bg-slate-800/80 backdrop-blur-md transform-gpu p-2 rounded-2xl border border-white/10 shadow-xl">
               <button onClick={handleZoomIn} className="p-2 rounded-xl hover:bg-white/10 text-slate-300 hover:text-white transition-colors">
                 <Plus className="w-5 h-5" />
               </button>
@@ -455,7 +455,7 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
           </div>
 
           {/* Right: Details Panel / Overview Card */}
-          <div className="flex-1 rounded-3xl border border-white/10 overflow-hidden bg-slate-800/50 backdrop-blur-xl shadow-2xl flex flex-col relative">
+          <div className="flex-1 rounded-3xl border border-white/10 overflow-hidden bg-slate-800/50 backdrop-blur-xl transform-gpu shadow-2xl flex flex-col relative">
             <AnimatePresence mode="wait">
               {selectedDest ? (
                 // Destination Details Panel
@@ -464,7 +464,7 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
-                  className="absolute inset-0 overflow-y-auto flex flex-col bg-slate-900/80"
+                  className="absolute inset-0 overflow-y-auto flex flex-col bg-slate-900/80 transform-gpu"
                 >
                   <div className="relative h-72 shrink-0">
                     <img src={selectedDest.image || 'https://images.unsplash.com/photo-1448375240586-882707db888b'} alt={selectedDest.name} className="w-full h-full object-cover" />
@@ -538,7 +538,7 @@ export const InteractiveVectorMap: React.FC<InteractiveVectorMapProps> = ({ stat
                     )}
                   </div>
 
-                  <div className="p-6 bg-slate-900/90 backdrop-blur-md border-t border-white/10 shrink-0 sticky bottom-0">
+                  <div className="p-6 bg-slate-900/90 backdrop-blur-md transform-gpu border-t border-white/10 shrink-0 sticky bottom-0">
                     <button 
                       onClick={() => navigate(selectedDest.mqtPackageSlug || `/destinations/${selectedDest.stateSlug}/${selectedDest.slug}`)}
                       className="w-full bg-accent hover:bg-yellow-400 text-slate-900 font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-lg text-lg"
