@@ -47,7 +47,6 @@ const HeroSection = () => {
             src={slide.src}
             alt={slide.alt}
             loading={index === 0 ? "eager" : "lazy"}
-            fetchPriority={index === 0 ? "high" : ("auto" as const)}
             decoding="async"
             className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity ease-in-out ${
               currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"
@@ -118,7 +117,7 @@ const HeroSection = () => {
                   const val = e.currentTarget.value;
                   if (val) {
                     window.open(
-                      `https://wa.me/917668741373?text=Hi! I want to plan: ${encodeURIComponent(val)}`,
+                      `https://wa.me/918171158569?text=Hi! I want to plan: ${encodeURIComponent(val)}`,
                       "_blank"
                     );
                   }
@@ -133,7 +132,7 @@ const HeroSection = () => {
                 const val = input?.value;
                 if (val) {
                   window.open(
-                    `https://wa.me/917668741373?text=Hi! I want to plan: ${encodeURIComponent(val)}`,
+                    `https://wa.me/918171158569?text=Hi! I want to plan: ${encodeURIComponent(val)}`,
                     "_blank"
                   );
                 } else {

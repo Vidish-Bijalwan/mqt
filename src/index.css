@@ -74,10 +74,13 @@
     --space-8: 32px;
     --space-10: 40px;
     --space-12: 48px;
+    --space-14: 56px;
     --space-16: 64px;
+    --space-18: 72px;
     --space-20: 80px;
+    --space-24: 96px;
 
-    --container-max: 1248px;
+    --container-max: 1280px; /* max-w-7xl */
   }
 }
 
@@ -87,7 +90,7 @@
     width: 100%;
     max-width: 100%;
     position: relative;
-    overscroll-behavior: auto; /* Keeps scroll snappy, native behavior */
+    overscroll-behavior: auto;
     scroll-behavior: smooth;
   }
 
@@ -97,15 +100,12 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
-    font-size: 16px; /* bump base font size for premium feel */
+    font-size: 16px; 
     line-height: 1.7;
     background-color: #FBF7EF;
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
+  h1, h2, h3, h4 {
     font-family: var(--font-display);
     line-height: 1.15;
     @apply text-slate-900 tracking-tight;
@@ -113,13 +113,13 @@
 
   p {
     line-height: 1.6;
-    @apply text-slate-600; /* Softer blue-grey text */
+    @apply text-slate-600; 
   }
 }
 
 @layer components {
 
-  /* ── Layout: 1248px container, 8px spacing scale ───────────────── */
+  /* ── Layout: 1280px container ───────────────── */
   .container-page {
     width: 100%;
     max-width: var(--container-max);
@@ -136,8 +136,8 @@
     }
   }
 
-  /* Section vertical rhythm: 40px mobile → 64px desktop (default) */
-  /* Standard: 48px mobile → 64px tablet → 96px desktop */
+  /* ── Section vertical rhythm ───────────────── */
+  /* Standard: 48px mobile → 72px tablet → 96px desktop */
   .section,
   .section-y {
     padding-top: var(--space-12);
@@ -147,8 +147,8 @@
   @media (min-width: 768px) {
     .section,
     .section-y {
-      padding-top: var(--space-16);
-      padding-bottom: var(--space-16);
+      padding-top: var(--space-18);
+      padding-bottom: var(--space-18);
     }
   }
 
@@ -160,47 +160,31 @@
     }
   }
 
-  /* Compact: 32px mobile → 48px desktop (content-heavy blocks) */
+  /* Compact: 40px mobile → 56px desktop */
   .section-compact,
   .section-y-compact {
-    padding-top: var(--space-8);
-    padding-bottom: var(--space-8);
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
   }
 
   @media (min-width: 768px) {
     .section-compact,
     .section-y-compact {
-      padding-top: var(--space-12);
-      padding-bottom: var(--space-12);
+      padding-top: var(--space-14);
+      padding-bottom: var(--space-14);
     }
   }
 
-  /* Emphasis: hero-adjacent / final CTA — 48px mobile → 80px desktop */
+  /* Emphasis: 64px mobile → 80px desktop */
   .section-emphasis {
-    padding-top: var(--space-12);
-    padding-bottom: var(--space-12);
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
   }
 
   @media (min-width: 768px) {
     .section-emphasis {
       padding-top: var(--space-20);
       padding-bottom: var(--space-20);
-    }
-  }
-
-  .section-padding {
-    padding-top: var(--space-10);
-    padding-bottom: var(--space-10);
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
-  }
-
-  @media (min-width: 768px) {
-    .section-padding {
-      padding-top: var(--space-16);
-      padding-bottom: var(--space-16);
-      padding-left: var(--space-6);
-      padding-right: var(--space-6);
     }
   }
 

@@ -1,39 +1,42 @@
 import { useState, useEffect, useRef } from "react";
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? "http://localhost:8000" : "https://api.myquicktrippers.com");
+import { X, Sparkles, MessageCircle } from "lucide-react";
+import { getGeneralWhatsAppUrl } from "@/lib/contact";
 
 const RetentionNudge = () => {
   const [showNudge, setShowNudge] = useState(false);
   const [nudgeDismissed, setNudgeDismissed] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Use refs to silently track state without causing React re-renders on every tick/click
   const startTime = useRef(Date.now());
   const clicks = useRef(0);
-  const stepsCompleted = useRef(0); // In reality, update this when forms/filters act up
 
   useEffect(() => {
-    // 1. Silent click tracker
+    const handleScroll = () => {
+      // On mobile, only show after scrolling 50%
+      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      setIsScrolled(scrolled > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
     const trackClick = () => { clicks.current += 1; };
     window.addEventListener("click", trackClick);
 
-    // 2. Periodic checker pinging the ML model
-    const checker = setInterval(async () => {
-      // Stop checking if showing or permanently dismissed
+    const checker = setInterval(() => {
       if (showNudge || nudgeDismissed) return;
       
-      // Check for cookie consent before tracking data
       const consent = localStorage.getItem('mqt_cookie_consent');
       if (consent === 'declined') return;
 
-      // Instead of pinging an offline API (which causes CORS errors in the console),
-      // we'll use a local fallback heuristic: show nudge if they've been on the page
-      // for 30+ seconds and haven't clicked much, indicating hesitation.
       const timeOnPage = (Date.now() - startTime.current) / 1000;
       
-      if (timeOnPage > 30 && clicks.current < 5) {
+      if (timeOnPage > 20 && clicks.current < 5) {
         setShowNudge(true);
       }
-    }, 15000); // Check every 15 seconds
+    }, 15000);
 
     return () => {
       window.removeEventListener("click", trackClick);
@@ -44,50 +47,70 @@ const RetentionNudge = () => {
   if (!showNudge || nudgeDismissed) return null;
 
   return (
-    <div style={styles.overlay}>
-      <div style={styles.nudgeBox}>
+    <>
+      {/* Mobile: Sticky Bottom Bar (only shows after 50% scroll) */}
+      <div className={`md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 p-4 pb-safe z-40 shadow-[0_-10px_40px_rgba(0,0,0,0.08)] transition-transform duration-500 ease-in-out ${isScrolled ? 'translate-y-0' : 'translate-y-[120%]'}`}>
         <button 
-          style={styles.closeBtn} 
-          onClick={() => {
-            setShowNudge(false);
-            setNudgeDismissed(true);
-          }}>
-          ✕
+          onClick={() => setNudgeDismissed(true)}
+          className="absolute -top-3 right-4 w-6 h-6 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-600 shadow-sm"
+        >
+          <X className="w-3.5 h-3.5" />
         </button>
-        <span style={styles.icon}>🤔</span>
-        <div style={styles.content}>
-          <h3 style={styles.title}>Still deciding?</h3>
-          <p style={styles.text}>
-            Our travel experts can help you customize the perfect itinerary based on your budget.
-          </p>
-          <div style={styles.btnRow}>
-            <button style={styles.primaryBtn} onClick={() => window.open(`https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent("Hi! I'm planning a trip and need some help customizing an itinerary.")}`, "_blank")}>
-              Chat with an Expert
-            </button>
-            <button style={styles.secondaryBtn} onClick={() => {
-              setShowNudge(false);
-              setNudgeDismissed(true);
-            }}>
-              Keep browsing
-            </button>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+            <Sparkles className="w-5 h-5 text-emerald-600" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-[13px] font-bold text-slate-900 leading-tight">Need a custom itinerary?</p>
+            <p className="text-[11px] text-slate-500 truncate">Our experts can plan it for free.</p>
+          </div>
+          <a
+            href={getGeneralWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setNudgeDismissed(true)}
+            className="shrink-0 bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm hover:bg-emerald-700"
+          >
+            Chat Now
+          </a>
+        </div>
+      </div>
+
+      {/* Desktop: Compact Floating Pill (Bottom Right, avoiding WhatsApp icon) */}
+      <div className="hidden md:flex fixed bottom-24 right-6 z-40 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] p-4 max-w-[280px] animate-in slide-in-from-bottom-8 fade-in duration-500">
+        <button 
+          onClick={() => setNudgeDismissed(true)}
+          className="absolute top-2 right-2 p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-md transition-colors"
+        >
+          <X className="w-4 h-4" />
+        </button>
+        
+        <div className="flex items-start gap-3 pt-1">
+          <div className="mt-0.5">
+            <span className="text-2xl">💡</span>
+          </div>
+          <div className="flex flex-col gap-2.5">
+            <div>
+              <h4 className="text-sm font-bold text-slate-900 leading-tight mb-0.5">Still deciding?</h4>
+              <p className="text-xs text-slate-500 leading-snug pr-4">
+                Chat with an expert to customise a trip matching your exact budget and dates.
+              </p>
+            </div>
+            <a
+              href={getGeneralWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setNudgeDismissed(true)}
+              className="inline-flex items-center justify-center gap-1.5 bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors self-start"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              Ask an Expert
+            </a>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
-};
-
-const styles = {
-  overlay: { position: "fixed", bottom: "20px", right: "20px", zIndex: 9999, animation: "slideUp 0.4s ease-out" },
-  nudgeBox: { display: "flex", gap: "16px", background: "#fff", padding: "20px", borderRadius: "12px", boxShadow: "0 10px 40px rgba(0,0,0,0.15)", maxWidth: "340px", border: "1px solid #eaeaea", position: "relative" },
-  closeBtn: { position: "absolute", top: "10px", right: "10px", background: "none", border: "none", fontSize: "14px", cursor: "pointer", color: "#999" },
-  icon: { fontSize: "32px", lineHeight: "1" },
-  content: { flex: 1 },
-  title: { margin: "0 0 6px 0", fontSize: "16px", fontWeight: "700", color: "#111" },
-  text: { margin: "0 0 16px 0", fontSize: "13px", color: "#555", lineHeight: "1.5" },
-  btnRow: { display: "flex", gap: "10px" },
-  primaryBtn: { flex: 1, padding: "8px", background: "#1a1a2e", color: "#fff", border: "none", borderRadius: "6px", fontSize: "12px", fontWeight: "600", cursor: "pointer", transition: "background 0.2s" },
-  secondaryBtn: { flex: 1, padding: "8px", background: "#f5f5f5", color: "#555", border: "none", borderRadius: "6px", fontSize: "12px", fontWeight: "600", cursor: "pointer" }
 };
 
 export default RetentionNudge;

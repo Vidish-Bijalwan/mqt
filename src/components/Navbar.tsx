@@ -118,7 +118,7 @@ const Navbar = () => {
           
           <div className="pt-8 px-5 mt-6 border-t border-gray-100">
             <p className="text-sm font-medium text-gray-500 mb-4 uppercase tracking-wider">Contact Us Directly</p>
-            <a href="tel:+917668741373" className="block text-[#111111] font-bold text-xl mb-2 hover:text-amber-500">+91 76687 41373</a>
+            <a href="tel:+918171158569" className="block text-[#111111] font-bold text-xl mb-2 hover:text-amber-500">+91 81711 58569</a>
             <a href="mailto:myquicktrippers@gmail.com" className="block text-gray-600 font-medium hover:text-amber-500">myquicktrippers@gmail.com</a>
           </div>
         </nav>

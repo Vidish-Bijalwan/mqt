@@ -14,7 +14,7 @@ const BottomNav = () => {
       style={{ paddingBottom: 'calc(8px + env(safe-area-inset-bottom, 0px))' }}
     >
       <a
-        href="https://wa.me/917668741373?text=Hi!%20I'm%20interested%20in%20planning%20a%20trip."
+        href="https://wa.me/918171158569?text=Hi!%20I'm%20interested%20in%20planning%20a%20trip."
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleWhatsApp}
